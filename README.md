@@ -2,7 +2,7 @@
 
 # Demo
 
-* [HTML Demo](htmlpreview.github.io/?https://github.com/Michaelangel007/easing_optimizations/blob/master/demo.html)
+* [HTML Demo](https://htmlpreview.github.io/?https://github.com/Michaelangel007/easing_optimizations/blob/master/demo.html)
 
 # Pictures
 
