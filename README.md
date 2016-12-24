@@ -1,5 +1,9 @@
 # Easing Functions Tutorial and Optimizations
 
+# Demo
+
+* [HTML Demo](htmlpreview.github.io/?https://github.com/Michaelangel007/easing_optimizations/demo.html)
+
 # Pictures
 
 * Start of animation
@@ -12,10 +16,11 @@
 ![End](pics/end.png)
 
 # TODO
-*[x] Optimize easing functions
-*[x] Demo
-*[ ] Plot easing functions
-*[ ] Write up tutorial
+
+* [x] Optimize easing functions
+* [x] Demo
+* [ ] Plot easing functions
+* [ ] Write up tutorial
 
 By: Michael Pohoreski
 Copyright: 2017
