@@ -1,0 +1,419 @@
+"use strict";
+
+function Ease() {}
+
+var Direction =
+{
+    LEFT : 0,
+    RIGHT: 1,
+};
+
+Ease.prototype =
+{
+    init: function()
+    {
+        Widget.prototype.init.call( this, "Ease" );
+
+        var dim = 15; // cube dimensions (pixels)
+
+        var left  = 100;
+        var right = left + dim*2*10;
+
+        var extra = 5; // number of extra grid lines (for bounce)
+        var dx    = (right - left) / 10;
+        var pad   = extra*dx;
+        var w     = (right - left) + 2*pad; // 2* for left and right edges
+
+        var top   = 16;
+        var space = 8;
+
+        this.left  = left;
+        this.right = right;
+
+        var r = 0, g = 0, b = 0, a = 1;
+        var x, y = top;
+        var dx, dy = dim + space;
+
+        var rect;
+        var line;
+
+        var aRect = []; // Note: length must stay in sync with labels
+        var aVals = [];
+
+        this._labels = new Widget().init(); // Container
+        this._grid   = new Widget().init(); // Container
+
+        var eEasing;
+        var aEasing =
+        [
+            EASING.LINEAR          , // reference guide
+
+        // Power
+            EASING.IN_QUADRATIC    ,
+            EASING.IN_CUBIC        ,
+            EASING.IN_QUARTIC      ,
+            EASING.IN_QUINTIC      ,
+            EASING.IN_SEXTIC       ,
+            EASING.IN_SEPTIC       ,
+            EASING.IN_OCTIC        ,
+
+            EASING.IN_OUT_QUADRATIC,
+            EASING.IN_OUT_CUBIC    ,
+            EASING.IN_OUT_QUARTIC  ,
+            EASING.IN_OUT_QUINTIC  ,
+            EASING.IN_OUT_SEXTIC   ,
+            EASING.IN_OUT_SEPTIC   ,
+            EASING.IN_OUT_OCTIC    ,
+
+            EASING.OUT_QUADRATIC   ,
+            EASING.OUT_CUBIC       ,
+            EASING.OUT_QUARTIC     ,
+            EASING.OUT_QUINTIC     ,
+            EASING.OUT_SEXTIC      ,
+            EASING.OUT_SEPTIC      ,
+            EASING.OUT_OCTIC       ,
+
+            EASING.LINEAR          , // show reference in vertical middle
+
+        // Standard
+            EASING.IN_BACK         ,
+            EASING.IN_BOUNCE       ,
+            EASING.IN_CIRC         ,
+            EASING.IN_ELASTIC      ,
+            EASING.IN_EXPO         ,
+            EASING.IN_SINE         ,
+
+            EASING.IN_OUT_BACK     ,
+            EASING.IN_OUT_BOUNCE   ,
+            EASING.IN_OUT_CIRC     ,
+            EASING.IN_OUT_ELASTIC  ,
+            EASING.IN_OUT_EXPO     ,
+            EASING.IN_OUT_SINE     ,
+
+            EASING.OUT_BACK        ,
+            EASING.OUT_BOUNCE      ,
+            EASING.OUT_CIRC        ,
+            EASING.OUT_ELASTIC     ,
+            EASING.OUT_EXPO        ,
+            EASING.OUT_SINE        ,
+        ];
+
+        var nType  = aEasing.length;
+
+        // Linear line used as a visual reference
+        this.middle = (dim * 0.5) | 0; // center in block
+        rect = new Rect().init( { w:1, h:1, r: 0.7, g:0.7, b:0.7 } );
+
+        // [0] is refence to tell when all animations are done
+        rect.index = -1; // none
+        aRect.push( rect );
+        this.addXY( rect, left, 0 ); // Note: Or to show in center: left + this.middle
+
+        var m = 0.2; // monochrome
+        var c = 1.0; // color 
+        for( var iType = 1; iType < nType; ++iType )
+        {
+            eEasing = aEasing[ iType ];
+
+            /**/ if( eEasing === EASING.LINEAR           ) { r = m; g = m; b = m; } // gray
+            else if( eEasing === EASING.IN_QUADRATIC     ) { r = c; g = 0; b = 0; } // red
+            else if( eEasing === EASING.IN_OUT_QUADRATIC ) { r = 0; g = c; b = 0; } // green
+            else if( eEasing === EASING.OUT_QUADRATIC    ) { r = 0; g = 0; b = c; } // blue
+            else if( eEasing === EASING.IN_BACK          ) { r = c; g = g; b = 0; } // normally yellow but orange has better contrast on white
+            else if( eEasing === EASING.IN_OUT_BACK      ) { r = 0; g = c; b = c; } // cyan
+            else if( eEasing === EASING.OUT_BACK         ) { r = c; g = 0; b = c; } // magenta
+
+            rect = new Rect().init( { w: dim, h: dim, r: r, g: g, b: b } );
+            rect.index = iType - 1; // pointer to corresponding aVals[]
+            aRect.push( rect );
+            this.addXY( rect, left, y );
+
+            var text = new Text().init( { text: EasingNames[ eEasing ], r: r, g: g, b: b, a:0.8 } );
+            this._labels.addXY( text, 0, y );
+
+            var val = new Text().init( { text: '?', r: 0, g: 0, b: 0 } );
+            aVals.push( val );
+            this.addXY( val, right + pad + dim, y ); // layout will fix x
+
+            y += dy;
+        }
+        y += space;
+        var bot = y;
+
+        this.addXY( this._labels,  right + pad + dim, 0 );
+
+        aRect[0].setH( y ); // Didn't initially have total height, fix up reference guide
+
+        // Visual Left and Right Edget Boundaries
+        r = 0; g = 0; b = 0;
+
+        // When all cubes moved right, black boundary line touching right edge
+        var rectR = new Rect().init( { w: 1, h: y, r: r, g: g, b: b } );
+        this.addXY( rectR, right+dim, 0 );
+
+        // Grid
+        var major = 1.0; // alpha of major grid line
+        var minor = 1/3; // alpha of minor grid line
+
+        // Vertical grid lines
+        x = left - dx*extra;
+        for( var i = -extra; i <= (10+extra); ++i )
+        {
+            // CellX
+            //  0 dark
+            //  5 darker
+            // 10 dark
+            //  ? "Ruler" Grid Blue
+            r = (i === 0) ? 0 : 0.8;
+            g = (i === 0) ? 0 : 0.9;
+            b = (i === 0) ? 0 : 1.0;
+            a = (i === 0) || (i === 5) || (i === 10)
+                ? major
+                : minor;
+
+            line = new Rect().init( { w:1, h: y, r: r, g: g, b: b, a:a } );
+            this._grid.addXY( line, x, 0 );
+
+            x += dx;
+        }
+
+        // Horizontal grid lines
+        r = 0.8;
+        g = 0.9;
+        b = 1.0;
+        a = minor;
+        for( y = top; y <= bot; y += dy )
+        {
+            line = new Rect().init( { w: w, h: 1, r: r, g: g, b: b, a:a } );
+            this._grid.addXY( line, left - dx*extra, y + this.middle );
+        }
+
+        this.addXY( this._grid, 0, 0 );
+
+        // Instructions
+        var textHead = 'Easing Instructions';
+        var textKeys =
+        [
+              '&larr;'
+            , '&rarr;'
+            , '&uarr;' 
+            , '&darr;'
+            , '{Return}'
+            , '{Spacebar}'
+        ];
+        var textHelp =
+        [
+              'Animate left'
+            , 'Animate right'
+            , 'Set all boxes left' 
+            , 'Set all boxes right'
+            , 'Toggle direction'
+            , 'Stop animation'
+        ];
+        var textFoot =
+            '<a href="http://www.github.com/Michaelangel007/easing_optimizations">http://www.github.com/Michaelangel007/easing_optimizations</a>';
+
+        var fontSize = 16;
+        var head = new Text().init( { text: textHead, size: 2*fontSize } );
+
+        this._instructions = new Widget().init();
+        this._instructions.addXY( head,  0, 0 );
+
+        y = fontSize*3;
+        for( i = 0; i < textKeys.length; ++i )
+        {
+            var keys = new Text().init( { text: textKeys[i], size: fontSize } );
+            var help = new Text().init( { text: textHelp[i], size: fontSize } );
+            this._instructions.addXY( keys,  0, y );
+            this._instructions.addXY( help, 96, y );
+
+            y += fontSize * 1.5;
+        }
+
+        this._footer = new Text().init( { text: textFoot, size: fontSize*0.75|0 } );
+
+        // layout will re-position to right align
+        this.addXY( this._instructions, Game.w, 0 );
+        this.addXY( this._footer      , Game.w, y );
+
+        this._eases  = aEasing;
+        this._rects  = aRect; // Save for anim start
+        this._vals   = aVals;
+
+        this._animating = 0; // current number of cubes in-flight
+        this._direction = Direction.RIGHT;
+
+        return this;
+    },
+
+    // While animating update the values with the current x position
+    // ========================================================================
+    onAnimInc: function( rect )
+    {
+        var i = rect.index; // child has offset/pointer into array of current x values
+        if( i >= 0 )
+            this._vals[ i ].setText( rect.getX() );
+    },
+
+    // ========================================================================
+    onAnimDone: function( rect )
+    {
+        var edge = this._direction
+            ? this.right
+            : this.left;
+        var done = rect.getX() === edge;
+        if( done )
+            rect.setA( 1.0 );
+
+        this.onAnimInc( rect );
+
+        --this._animating;
+    },
+
+    // ========================================================================
+    onCreate: function()
+    {
+        // Fixup column of values
+        var i, n = this._vals.length;
+
+        var x     = this._labels.getX();
+        var w     = this._labels.getDimensions().w;
+        var align = x + w + this.middle;
+
+        // set initial values
+        for( i = 0; i < n; ++i )
+        {
+            this._vals[ i ].setX   ( align );
+            this._vals[ i ].setText( this._rects[ i ].getX() );
+        }
+
+        // right align instructions
+        var dim = this._instructions.getDimensions();
+        this._instructions.setX( Game.w - (dim.w + this.middle) );
+
+        // right align footer
+        this._footer.setX( Game.w - this._footer.getW() );
+    },
+
+    // ========================================================================
+    onInput: function( isKeyPressed, key )
+    {
+        var bProcessed = true;
+
+        if( isKeyPressed )
+        {
+            if( this._animating === 0 )
+            {
+                if((key === KEY.ENTER)
+                || (key === KEY.LEFT)
+                || (key === KEY.RIGHT))
+                {
+                    var prev = this._direction;
+                    var edge = this._direction
+                        ? this.right
+                        : this.left;
+                    var done = this._rects[0].getX() === edge;
+
+                    if( key === KEY.ENTER )
+                        this._direction = 1 - this._direction;
+
+                    if( key === KEY.RIGHT )
+                        this._direction = 1;
+
+                    if( key === KEY.LEFT )
+                        this._direction = 0;
+
+                    if( !done || (done && (prev !== this._direction)) )
+                        this.startAnim( this._direction, 2000 ); // milliseconds
+                }
+            }
+
+            if( key === KEY.UP )
+            {
+                this._direction = 0;
+                this.stopAnim();
+                this.startAnim( this._direction, 0 );
+                this._direction = 1 - this._direction;
+            }
+
+            if( key === KEY.DOWN )
+            {
+                this._direction = 1;
+                this.stopAnim();
+                this.startAnim( this._direction, 0 );
+                this._direction = 1 - this._direction;
+            }
+            
+            if( key === KEY.SPACE )
+                if( this._animating > 0 )
+                    this.stopAnim();
+                else
+                {
+                    // TODO: Reverse direction if all are at the same edge
+                    this.startAnim( this._direction, 2000 );
+                }
+        }
+
+        return bProcessed;
+    },
+
+    /**
+     * @param {Boolean} isDirectionRight
+     * @param {Number}  durationMS
+     */
+    // ========================================================================
+    startAnim: function( isDirectionRight, durationMS )
+    {
+        var edge = isDirectionRight
+            ? this.right
+            : this.left;
+
+        this._animating = 0;
+
+        var self = this;
+        var cbEnd = function( axis, widget )
+        {
+            self.onAnimDone( widget );
+        };
+
+        var cbInc = function( axis, widget )
+        {
+            self.onAnimInc( widget );
+        }
+
+        var rect;
+        var eases = this._eases;
+        var rects = this._rects;
+        var nRect = this._rects.length;
+
+        for( var iRect = 0; iRect < nRect; ++iRect )
+        {
+            var easing = eases[ iRect ];
+
+            rect = rects[ iRect ];
+            var done = rect.getX() === edge;
+
+            if( !done )
+            {
+                if( !durationMS )
+                    rect.setA( 1.0 );
+                else
+                    rect.setA( 0.5 ); // 0.25
+
+                ++this._animating;
+                rect.animate( { x: edge, ms: durationMS, type: easing, onEnd: cbEnd, onInc: cbInc } );
+            }
+        }
+    },
+
+    // ========================================================================
+    stopAnim: function()
+    {
+        var aRect = this._rects;
+        var nRect = this._rects.length;
+
+        for( var iRect = 0; iRect < nRect; ++iRect )
+            aRect[ iRect ].stop( Axis.X );
+    },
+};
+
