@@ -1,7 +1,14 @@
 # Easing Functions Tutorial and Optimizations
 
+# Pictures
+
+* Start of animation
 ![Begin](pics/begin.png)
+
+* Middle of animation
 ![Middle](pics/middle.png)
+
+* End of animation
 ![End](pics/end.png)
 
 # TODO
