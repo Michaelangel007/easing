@@ -287,7 +287,7 @@ Widget.prototype =
         this._cur = vals.slice();
         this._max = vals.slice();
 
-        this._cur[ Axis.S ] = 'nowrap';
+        this._cur[ Axis._ ] = 'nowrap';
 
         return this;
     },
