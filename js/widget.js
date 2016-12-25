@@ -152,8 +152,8 @@ var EasingFuncs = // Array of Functions
                                     var s = 2*p-1;                 // remap: [0,0.5] -> [-1,0]
                                     var k = (80*s-9) * Math.PI/18; // and    [0.5,1] -> [0,+1]
 
-                                    if (s < 0) return -0.5*Math.pow(2, 10*s) * Math.sin( k );
-                                    return          1 +0.5*Math.pow(2,-10*s) * Math.sin( k );
+                                    if (s < 0) return   -0.5*Math.pow(2, 10*s) * Math.sin( k );
+                                    else       return 1 +0.5*Math.pow(2,-10*s) * Math.sin( k );
                                 },
 
     // NOTE: InExpo and OutExpo need clamping for 0 and 1 respectively
