@@ -591,7 +591,7 @@ Widget.prototype =
     setW  : function( w ) { this._cur[ Axis.W ] = w; if( this._div ) this._div.style.width      = '' + w + 'px'; },
     setH  : function( h ) { this._cur[ Axis.H ] = h; if( this._div ) this._div.style.height     = '' + h + 'px'; },
 // Misc
-    set_  : function( s ) { this._cur[ Axis._ ] = s; if( this._div ) this._div.style.whiteSpace =      s       ; },
+    set_  : function( _ ) { this._cur[ Axis._ ] = _; if( this._div ) this._div.style.whiteSpace =      _       ; },
 
     setColor: function( color )
     {
