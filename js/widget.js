@@ -89,8 +89,8 @@ var Easing =
 */
 var EasingFuncs = // Array of Functions
 [
-    function None          (p)  { return 1; }, // p^0
-    function Linear        (p)  { return p; }, // p^1 Note: In = Out = InOut
+    function None          (p)  { return 1;               }, // p^0
+    function Linear        (p)  { return p;               }, // p^1 Note: In = Out = InOut
 
 // Power
     function InQuadratic   (p)  { return p*p;             }, // p^2 = Math.pow(p,2)
