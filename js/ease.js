@@ -14,7 +14,7 @@ Ease.prototype =
     {
         Widget.prototype.init.call( this, "Ease" );
 
-        var dim = 15; // cube dimensions (pixels)
+        var dim = 11; // cube dimensions (pixels) // 15 = 2560x1440
 
         var left  = 100;
         var right = left + dim*2*10;
