@@ -662,8 +662,8 @@ Widget.prototype =
 
         for( var axis = 0; axis < n; ++axis )
         {
-            var type = this._type[ axis ];
-            if( type ) // Animation != EASING.NONE
+            var easing = this._type[ axis ];
+            if( easing ) // Animation != EASING.NONE
             {
                 var ms = this._ms[ axis ];
                 var ts = this._ts[ axis ];
@@ -685,9 +685,7 @@ Widget.prototype =
                 }
                 else
                 {
-                    // switch( type )
-                    var easing = EasingFuncs[ this._type[ axis ] ];
-                    v = easing( p );
+                    v = EasingFuncs[ easing ]( p );
 
                     val = this._min[ axis ] + v*dv;
                     this.setAxis( axis, val );
