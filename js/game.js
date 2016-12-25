@@ -25,8 +25,18 @@ Game.prototype =
         Game.h = window.innerHeight; // document.body.height;
 
         // Allow input once all children are created
-        document.body.onkeyup   = function( keyEvent ) { self.onKeyUp  ( keyEvent ); };
-        document.body.onkeydown = function( keyEvent ) { self.onKeyDown( keyEvent ); };
+        // @param {KeyboardEvent} keyEvent - data
+        var onKeyDown = function( keyEvent )
+        {
+            self.input( true, keyEvent.keyCode );
+        };
+        var onKeyUp = function( keyEvent )
+        {
+            self.input( false, keyEvent.keyCode );
+        };
+
+        document.body.onkeyup   = onKeyUp;
+        document.body.onkeydown = onKeyDown;
 
         var onResize = function()
         {
@@ -37,20 +47,6 @@ Game.prototype =
         window.addEventListener( 'resize', onResize );
 
         return this;
-    },
-
-    // @param KeyboardEvent - data
-    // =======================================================================
-    onKeyDown: function( keyEvent )
-    {
-        this.input( true, keyEvent.keyCode );
-    },
-
-    // @param KeyboardEvent - data
-    // ========================================================================
-    onKeyUp: function( keyEvent )
-    {
-        this.input( false, keyEvent.keyCode );
     },
 
     // @param {Widget} className - screen to create and switch focus to
