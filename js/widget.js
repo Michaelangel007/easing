@@ -301,7 +301,7 @@ Widget.prototype =
 
         this._type  = vals.slice(); // animation easing type NOTE: Easing.NONE == 0
         this._ts    = vals.slice(); // animation time start
-        this._ms    = vals.slice(); // animation time duration (milliseconds)
+        this._ms    = vals.slice(); // animation time duration (NOTE: This is 1/milliseconds in order to use multiply instead of divide)
         this._onEnd = vals.slice(); // callback when animation done
         this._onInc = vals.slice(); // callback while animationg active
 
@@ -382,10 +382,12 @@ Widget.prototype =
             if( axis !== undefined )
             {
                 val = params[ key ];
+                if( !ms )
+                     ms = 1; // we store 1/ms
 
                 this._max  [ axis ] = val;
                 this._min  [ axis ] = this._cur[ axis ];;
-                this._ms   [ axis ] = ms;        // anim time length
+                this._ms   [ axis ] = 1 / ms;        // anim time length
                 this._onEnd[ axis ] = params.onEnd;
                 this._onInc[ axis ] = params.onInc;
                 this._ts   [ axis ] = Widget.time; // anim time start
@@ -670,7 +672,7 @@ Widget.prototype =
                      ms = 1;
 
                 var dt = Widget.time - ts;
-                var p  = dt / ms;
+                var p  = dt * ms; // Note: ms is 1/milliseconds
                 var dv = this._max[ axis ] - this._min[ axis ];
                 var v;
 
