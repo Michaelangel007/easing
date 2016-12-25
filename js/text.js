@@ -19,9 +19,9 @@ Text.prototype =
     {
         Widget.prototype.init.call( this, "Text" );
 
+        this.setS   ( params.size || 16 );
         this.setText( params.text );
         this._font = params.font || 'sans-serif'; // "Verdana"
-        this._size = params.size || 16;
 
         this.setR( params.r || 0 );
         this.setG( params.g || 0 );
@@ -41,8 +41,8 @@ Text.prototype =
     {
         var div = this._div;
 
+        // .style.fontSize already set in Widget via setS()
         div.style.fontFamily = this._font;
-        div.style.fontSize   = this._size + 'px';
         div.innerHTML        = this._text;
     },
 
