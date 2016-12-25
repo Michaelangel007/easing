@@ -28,6 +28,14 @@ Game.prototype =
         document.body.onkeyup   = function( keyEvent ) { self.onKeyUp  ( keyEvent ); };
         document.body.onkeydown = function( keyEvent ) { self.onKeyDown( keyEvent ); };
 
+        var onResize = function()
+        {
+            Game.w = window.innerWidth ; // document.body.width;
+            Game.h = window.innerHeight; // document.body.height;
+            self.resize();
+        };
+        window.addEventListener( 'resize', onResize );
+
         return this;
     },
 

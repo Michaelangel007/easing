@@ -631,7 +631,19 @@ Widget.prototype =
             this._div.style.backgroundColor = color;
     },
 
+    // ========================================================================
+    resize: function()
+    {
+        if( this.onResize )
+            this.onResize();
+
+        var n = this._children.length;
+        for( var child = 0; child < n; ++child )
+            this._children[ child ].resize();
+    },
+
     /**
+     * Animation
      * @param {Axis} axis - Stop specific axis from animating
      */
     // ========================================================================
