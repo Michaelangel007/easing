@@ -2,15 +2,15 @@
 
 var Axis =
 {
-    X   : 0,
-    Y   : 1,
-    W   : 2,
-    H   : 3,
-    R   : 4,
-    G   : 5,
-    B   : 6,
-    A   : 7,
-    S   : 8, // Font size
+    X   : 0, // left position    (in pixels)
+    Y   : 1, // top  position    (in pixels)
+    W   : 2, // width  dimension (in pixels)
+    H   : 3, // height dimension
+    R   : 4, // normalized red   color
+    G   : 5, // normalized green color
+    B   : 6, // normalized blue  color
+    A   : 7, // normalized alpha color
+    S   : 8, // Font size        (in pixels)
     _   : 9, // whiteSpace 'nowrap' // http://www.w3schools.com/jsref/prop_style_whitespace.asp
     NUM : 9, // NOTE: NOT a typo -- there is no point to interpolate whitespace
     INIT:10,
