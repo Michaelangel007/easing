@@ -163,7 +163,7 @@ var EasingFuncs = // Array of Functions
                                     if (p <= 0) return 0;
                                     if (p >= 1) return 1;
                                     if (p <0.5) return             Math.pow( 2,  10*(2*p-1)-1);
-                                               return           1-Math.pow( 2, -10*(2*p-1)-1);
+                                    else        return           1-Math.pow( 2, -10*(2*p-1)-1);
                                 },
 
     function InSine        (p)  { return      1 - Math.cos( p * Math.PI*0.5 );  },
@@ -222,7 +222,42 @@ var EasingFuncs = // Array of Functions
 ];
 
 var EasingNames = [];
-EasingFuncs.map( function( elem ) { EasingNames.push( elem.name ); } );
+EasingNames.insert = function( elem )
+{
+    // To insert name 'as-is':
+    //     EasingNames.push( elem.name );
+    //
+    // OR
+    //
+    // To pretty print by inserting space when:
+    //  * prev letter is lowercase, AND
+    //  * next letter is uppercase
+    var prev = elem.name.substr( 0, 1 );
+    var next;
+
+    var t = prev;
+    var n = elem.name.length;
+
+    var lo;
+    var up;
+
+    for( var i = 1; i < n; ++i )
+    {
+        next = elem.name.substr( i, 1 );
+
+        lo = prev.charCodeAt(0);
+        up = next.charCodeAt(0);
+
+        if( ((lo > 96) && (lo <= 122))
+        &&  ((up > 64) && (up <=  90)) )
+            t += ' ';
+
+        t += next;
+        prev = next;
+    }
+    EasingNames.push( t );
+};
+EasingFuncs.map( EasingNames.insert );
 
 function Widget() {}
 
