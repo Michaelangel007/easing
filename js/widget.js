@@ -421,6 +421,26 @@ Widget.prototype =
     },
 
     /*
+     * Get the absolute x and y
+     * @returns {Object}
+     */
+    // ========================================================================
+    getAbsXY: function()
+    {
+        var pos = { x: 0, y: 0 };
+        var obj = this;
+
+        while( obj )
+        {
+            pos.x += this.getX() | 0;
+            pos.y += this.getY() | 0;
+            obj = obj._parent;
+        };
+
+        return pos;
+    },
+
+    /*
      * Returns the bounding box of the container
      * Iterate though all children recoding the maximum width and height
      * @returns {Object}
