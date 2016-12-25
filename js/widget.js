@@ -261,6 +261,9 @@ EasingNames.insert = function( elem )
 };
 EasingFuncs.map( EasingNames.insert );
 
+/**
+ * @classname Widget
+ */
 function Widget() {}
 
 Widget.focus = null;
@@ -268,6 +271,23 @@ Widget.time  = 0;
 
 Widget.prototype =
 {
+    /**
+     * @param {String} [className] - Class name for debug out
+     * Note: ALL derived classes need to do two things:
+     *  - Manually chain to their parent init constructor
+     *    i.e.
+     *
+     *      Foo.prototype =
+     *      {
+     *          init: function( params )
+     *          {
+     *              Widget.prototype.init.call( this, "Text" );
+     *              :
+     *          }
+     *
+     *  - Extend their class from their parent in OnLoad()
+     *      Extend( Widget, Foo );
+     */
     init: function( className )
     {
         this._class = className;
