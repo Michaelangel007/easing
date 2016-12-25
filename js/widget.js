@@ -661,7 +661,7 @@ Widget.prototype =
         for( var axis = 0; axis < n; ++axis )
         {
             var type = this._type[ axis ];
-            if( type )
+            if( type ) // Animation != EASING.NONE
             {
                 var ms = this._ms[ axis ];
                 var ts = this._ts[ axis ];
