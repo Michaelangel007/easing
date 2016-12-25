@@ -10,9 +10,10 @@ var Axis =
     G   : 5,
     B   : 6,
     A   : 7,
-    _   : 8, // whiteSpace 'nowrap' // http://www.w3schools.com/jsref/prop_style_whitespace.asp
-    NUM : 8, // NOTE: NOT a typo -- there is no point to interpolate whitespace
-    INIT: 9,
+    S   : 8, // Font size
+    _   : 9, // whiteSpace 'nowrap' // http://www.w3schools.com/jsref/prop_style_whitespace.asp
+    NUM : 9, // NOTE: NOT a typo -- there is no point to interpolate whitespace
+    INIT:10,
 };
 
 var EASING =
@@ -319,14 +320,15 @@ Widget.prototype =
     },
 
     /** Animate specified axis
-     * params.a     - Alpha  to animate to
-     * params.b     - Blue   to animate to
-     * params.g     - Green  to animate to
-     * params.h     - Height to animate to
-     * params.r     - Red    to animate to
-     * params.w     - Width  to animate to
-     * params.x     - Left   to animate to
-     * params.y     - Top    to animate to
+     * params.a     - Alpha     to animate to
+     * params.b     - Blue      to animate to
+     * params.g     - Green     to animate to
+     * params.h     - Height    to animate to
+     * params.r     - Red       to animate to
+     * params.s     - Font size to animate to
+     * params.w     - Width     to animate to
+     * params.x     - Left      to animate to
+     * params.y     - Top       to animate to
      * params.ms    - Delay in milliseconds
      * params.onEnd - Callback when animation done
      * params.onInc - Callback while animating
@@ -349,6 +351,7 @@ Widget.prototype =
                 case 'g': axis = Axis.G; break;
                 case 'h': axis = Axis.H; break;
                 case 'r': axis = Axis.R; break;
+                case 's': axis = Axis.S; break;
                 case 'w': axis = Axis.W; break;
                 case 'x': axis = Axis.X; break;
                 case 'y': axis = Axis.Y; break;
@@ -379,6 +382,7 @@ Widget.prototype =
     {
         this.setA( this._cur[ Axis.A ] );
         this.setH( this._cur[ Axis.H ] );
+        this.setS( this._cur[ Axis.S ] );
         this.setW( this._cur[ Axis.W ] );
         this.setX( this._cur[ Axis.X ] );
         this.setY( this._cur[ Axis.Y ] );
@@ -437,6 +441,8 @@ Widget.prototype =
 // Position
     getX: function() { return this._cur[ Axis.X ]; },
     getY: function() { return this._cur[ Axis.Y ]; },
+// Font
+    getS: function() { return this._cur[ Axis.S ]; },
 // Misc.
     get_: function() { return this._cur[ Axis._ ]; },
 
@@ -574,6 +580,7 @@ Widget.prototype =
             case Axis.G: this.setG( val ); break;
             case Axis.H: this.setH( val ); break;
             case Axis.R: this.setR( val ); break;
+            case Axis.S: this.setS( val ); break;
             case Axis.W: this.setW( val ); break;
             case Axis.X: this.setX( val ); break;
             case Axis.Y: this.setY( val ); break;
@@ -584,6 +591,8 @@ Widget.prototype =
     setG  : function( g ) { this._cur[ Axis.G ] = g; this.setColor( this.getRGB() ); },
     setB  : function( b ) { this._cur[ Axis.B ] = b; this.setColor( this.getRGB() ); },
     setA  : function( a ) { this._cur[ Axis.A ] = a; if( this._div ) this._div.style.opacity    =      a       ; },
+// Font
+    setS  : function( s ) { this._cur[ Axis.S ] = s; if( this._div ) this._div.style.fontSize   = '' + s + 'px'; },
 // Position
     setX  : function( x ) { this._cur[ Axis.X ] = x; if( this._div ) this._div.style.left       = '' + x + 'px'; },
     setY  : function( y ) { this._cur[ Axis.Y ] = y; if( this._div ) this._div.style.top        = '' + y + 'px'; },
