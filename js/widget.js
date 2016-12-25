@@ -395,8 +395,8 @@ Widget.prototype =
     getX: function() { return this._cur[ Axis.X ]; },
     getY: function() { return this._cur[ Axis.Y ]; },
 
-    getW: function() { return this._cur[ Axis.W ]; },
-    getH: function() { return this._cur[ Axis.H ]; },
+    getW: function() { return this._cur[ Axis.W ]; }, // return this._div.offsetHeight | 0;
+    getH: function() { return this._cur[ Axis.H ]; }, // return this._div.offsetWidth  | 0;
 
     getB: function() { return this._cur[ Axis.B ]; },
     getG: function() { return this._cur[ Axis.G ]; },
