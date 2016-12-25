@@ -451,17 +451,14 @@ Widget.prototype =
         var dim = { w: this.getW() | 0, h: this.getH() | 0 };
 
         var kid;
-        var kx, ky;
         var kw, kh;
 
         var i = 0, n = this._children.length;
         for( ; i < n; ++i )
         {
             kid = this._children[ i ].getDimensions();
-            kx  = this._children[ i ].getX();
-            ky  = this._children[ i ].getY();
-            kw  = kx + kid.w;
-            kh  = ky + kid.h;
+            kw  = this._children[ i ].getX() + kid.w;
+            kh  = this._children[ i ].getY() + kid.h;
             if( dim.w < kw ) dim.w = kw;
             if( dim.h < kh ) dim.h = kh;
         }
