@@ -694,9 +694,10 @@ Widget.prototype =
      * Category: Animation
      * Update all axis animation, and then children
      * If there is an on end callback will call with (Axis, Widget)
+     * @param {Number} dT - Delta Time (in milliseconds)
      */
     // ========================================================================
-    update: function()
+    update: function( dT )
     {
         var n = Axis.NUM, dv, t, val;
 
@@ -737,6 +738,9 @@ Widget.prototype =
         n = this._children.length;
         for( var child = 0; child < n; ++child )
             this._children[ child ].update();
+
+        if( this.onUpdate )
+            this.onUpdate( dT );
     },
 };
 

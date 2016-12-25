@@ -66,11 +66,10 @@ Game.prototype =
     // ========================================================================
     run: function( timestamp )
     {
-        // Alternative: update( dT )
-        //var dT = timestamp - Widget.time;
+        var dT = timestamp - Widget.time;
         Widget.time = timestamp;
 
-        this.update();
+        this.update( dT );
     },
 };
 
