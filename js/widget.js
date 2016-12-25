@@ -11,7 +11,8 @@ var Axis =
     B   : 6,
     A   : 7,
     _   : 8, // whiteSpace 'nowrap' // http://www.w3schools.com/jsref/prop_style_whitespace.asp
-    NUM : 9,
+    NUM : 8, // NOTE: NOT a typo -- there is no point to interpolate whitespace
+    INIT: 9,
 };
 
 var EASING =
@@ -272,8 +273,8 @@ Widget.prototype =
 
         this._children = [];
 
-        var vals  = new Array( Axis.NUM );
-        for( var axis = 0; axis < Axis.NUM; ++axis )
+        var vals  = new Array( Axis.INIT );
+        for( var axis = 0; axis < Axis.INIT; ++axis )
             vals[ axis ] = 0;
 
         this._type  = vals.slice(); // animation easing type NOTE: Easing.NONE == 0
