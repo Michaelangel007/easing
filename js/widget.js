@@ -267,6 +267,7 @@ EasingFuncs.map( EasingNames.insert );
 function Widget() {}
 
 Widget.focus = null;
+Widget.ID    = 0;
 Widget.time  = 0;
 
 Widget.prototype =
@@ -290,8 +291,8 @@ Widget.prototype =
      */
     init: function( className )
     {
-        this._class = className;
-
+        this._id       = ++Widget.ID;
+        this._class    = className;
         this._children = [];
 
         var vals  = new Array( Axis.INIT );
