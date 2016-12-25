@@ -273,26 +273,7 @@ Ease.prototype =
     // ========================================================================
     onCreate: function()
     {
-        // Fixup column of values
-        var i, n = this._vals.length;
-
-        var x     = this._labels.getX();
-        var w     = this._labels.getDimensions().w;
-        var align = x + w + this.middle;
-
-        // set initial values
-        for( i = 0; i < n; ++i )
-        {
-            this._vals[ i ].setX   ( align );
-            this._vals[ i ].setText( this._rects[ i ].getX() );
-        }
-
-        // right align instructions
-        var dim = this._instructions.getDimensions();
-        this._instructions.setX( Game.w - (dim.w + this.middle) );
-
-        // right align footer
-        this._footer.setX( Game.w - this._footer.getW() );
+        this.onResize();
     },
 
     // ========================================================================
@@ -355,6 +336,31 @@ Ease.prototype =
         }
 
         return bProcessed;
+    },
+
+    // ========================================================================
+    onResize: function()
+    {
+        // Fixup column of values
+        var i, n = this._vals.length;
+
+        var x     = this._labels.getX();
+        var w     = this._labels.getDimensions().w;
+        var align = x + w + this.middle;
+
+        // set initial values
+        for( i = 0; i < n; ++i )
+        {
+            this._vals[ i ].setX   ( align );
+            this._vals[ i ].setText( this._rects[ i ].getX() );
+        }
+
+        // right align instructions
+        var dim = this._instructions.getDimensions();
+        this._instructions.setX( Game.w - (dim.w + this.middle) );
+
+        // right align footer
+        this._footer.setX( Game.w - this._footer.getW() );
     },
 
     /**
