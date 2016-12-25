@@ -719,7 +719,7 @@ Widget.prototype =
                     this.setAxis( axis, val );
 
                     var callback = this._onInc[ axis ];
-                    if( callback != undefined )
+                    if( callback )
                         callback( axis, this );
                 }
             }
