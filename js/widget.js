@@ -703,7 +703,7 @@ Widget.prototype =
                 var ts = this._ts[ axis ];
 
                 var dt = Widget.time - ts;
-                var p  = dt * ms; // Note: ms is 1/milliseconds
+                var p  = dt * ms; // Note: ms is reciprocal time: 1/milliseconds
 
                 // Animation done?
                 if( p >= 1 )
