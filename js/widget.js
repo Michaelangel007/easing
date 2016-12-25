@@ -606,11 +606,14 @@ Widget.prototype =
         }
     },
 
-// You need to provide if you over-ride
-//  onCreate     : function() {}
+/*
+    // You need to provide if you over-ride:
+    onCreate     : function() {}, // Called when a widget's div and all their children has been created
     onFocusAccept: function() {},
     onFocusLost  : function() {},
-//  onResize     : function() {},
+    onResize     : function() {}, // Game.w and/or Game.h has changed
+    onUpdate     : function( dt ) { },
+*/
 
     /**
      * Category: Animation
