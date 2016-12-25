@@ -544,7 +544,7 @@ Widget.prototype =
     },
 
     /**
-     * @param {Axis}   axis   - Stop specific axis from animating
+     * @param {Axis} axis - Stop specific axis from animating
      */
     // ========================================================================
     stop: function( axis )
