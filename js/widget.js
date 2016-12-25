@@ -10,7 +10,7 @@ var Axis =
     G   : 5,
     B   : 6,
     A   : 7,
-    S   : 8, // whiteSpace 'nowrap' // http://www.w3schools.com/jsref/prop_style_whitespace.asp
+    _   : 8, // whiteSpace 'nowrap' // http://www.w3schools.com/jsref/prop_style_whitespace.asp
     NUM : 9,
 };
 
@@ -381,7 +381,7 @@ Widget.prototype =
         this.setW( this._cur[ Axis.W ] );
         this.setX( this._cur[ Axis.X ] );
         this.setY( this._cur[ Axis.Y ] );
-        this.setS( this._cur[ Axis.S ] );
+        this.set_( this._cur[ Axis._ ] );
         this.setColor( this.getRGB() );
     },
 
@@ -425,18 +425,19 @@ Widget.prototype =
             this._parent._div.appendChild( div );
     },
 
-    getX: function() { return this._cur[ Axis.X ]; },
-    getY: function() { return this._cur[ Axis.Y ]; },
-
-    getW: function() { return this._cur[ Axis.W ]; }, // return this._div.offsetHeight | 0;
-    getH: function() { return this._cur[ Axis.H ]; }, // return this._div.offsetWidth  | 0;
-
+// Color
     getB: function() { return this._cur[ Axis.B ]; },
     getG: function() { return this._cur[ Axis.G ]; },
     getR: function() { return this._cur[ Axis.R ]; },
     getA: function() { return this._cur[ Axis.A ]; },
-
-    getS: function() { return this._cur[ Axis.S ]; },
+// Dimension
+    getW: function() { return this._cur[ Axis.W ]; }, // return this._div.offsetHeight | 0;
+    getH: function() { return this._cur[ Axis.H ]; }, // return this._div.offsetWidth  | 0;
+// Position
+    getX: function() { return this._cur[ Axis.X ]; },
+    getY: function() { return this._cur[ Axis.Y ]; },
+// Misc.
+    get_: function() { return this._cur[ Axis._ ]; },
 
     /**
      * @returns {String} HTML hex color string '#RRGGBB'
@@ -574,18 +575,19 @@ Widget.prototype =
             case Axis.Y: this.setY( val ); break;
         }
     },
-
-    setX  : function( x ) { this._cur[ Axis.X ] = x; if( this._div ) this._div.style.left       = '' + x + 'px'; },
-    setY  : function( y ) { this._cur[ Axis.Y ] = y; if( this._div ) this._div.style.top        = '' + y + 'px'; },
-    setW  : function( w ) { this._cur[ Axis.W ] = w; if( this._div ) this._div.style.width      = '' + w + 'px'; },
-    setH  : function( h ) { this._cur[ Axis.H ] = h; if( this._div ) this._div.style.height     = '' + h + 'px'; },
-
-    setA  : function( a ) { this._cur[ Axis.A ] = a; if( this._div ) this._div.style.opacity    =      a       ; },
-    setS  : function( s ) { this._cur[ Axis.S ] = s; if( this._div ) this._div.style.whiteSpace =      s       ; },
-
+// Color
     setR  : function( r ) { this._cur[ Axis.R ] = r; this.setColor( this.getRGB() ); },
     setG  : function( g ) { this._cur[ Axis.G ] = g; this.setColor( this.getRGB() ); },
     setB  : function( b ) { this._cur[ Axis.B ] = b; this.setColor( this.getRGB() ); },
+    setA  : function( a ) { this._cur[ Axis.A ] = a; if( this._div ) this._div.style.opacity    =      a       ; },
+// Position
+    setX  : function( x ) { this._cur[ Axis.X ] = x; if( this._div ) this._div.style.left       = '' + x + 'px'; },
+    setY  : function( y ) { this._cur[ Axis.Y ] = y; if( this._div ) this._div.style.top        = '' + y + 'px'; },
+// Dimension
+    setW  : function( w ) { this._cur[ Axis.W ] = w; if( this._div ) this._div.style.width      = '' + w + 'px'; },
+    setH  : function( h ) { this._cur[ Axis.H ] = h; if( this._div ) this._div.style.height     = '' + h + 'px'; },
+// Misc
+    set_  : function( s ) { this._cur[ Axis._ ] = s; if( this._div ) this._div.style.whiteSpace =      s       ; },
 
     setColor: function( color )
     {
