@@ -344,19 +344,19 @@ Widget.prototype =
     /**
      * Category: Animation
      * Animate specified axis
-     * params.a     - Alpha     to animate to
-     * params.b     - Blue      to animate to
-     * params.g     - Green     to animate to
-     * params.h     - Height    to animate to
-     * params.r     - Red       to animate to
-     * params.s     - Font size to animate to
-     * params.w     - Width     to animate to
-     * params.x     - Left      to animate to
-     * params.y     - Top       to animate to
-     * params.ms    - Delay in milliseconds
-     * params.onEnd - Callback when animation done
-     * params.onInc - Callback while animating
-     * params.type  - Easing type, one of EASING.*
+     * @param {Number}   [params.a]     - Alpha     to animate to
+     * @param {Number}   [params.b]     - Blue      to animate to
+     * @param {Number}   [params.g]     - Green     to animate to
+     * @param {Number}   [params.h]     - Height    to animate to
+     * @param {Number}   [params.r]     - Red       to animate to
+     * @param {Number}   [params.s]     - Font size to animate to
+     * @param {Number}   [params.w]     - Width     to animate to
+     * @param {Number}   [params.x]     - Left      to animate to
+     * @param {Number}   [params.y]     - Top       to animate to
+     * @param {Number}   [params.ms     - Delay in milliseconds
+     * @param {Function} [params.onEnd] - Callback when animation done
+     * @param {Function} [params.onInc] - Callback while animating
+     * @param {EASING}   [params.type]  - Type of easing animation
      */
     // ========================================================================
     animate: function( params )
