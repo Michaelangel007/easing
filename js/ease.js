@@ -46,56 +46,56 @@ Ease.prototype =
         var eEasing;
         var aEasing =
         [
-            EASING.LINEAR          , // reference guide
+            Easing.LINEAR          , // reference guide
 
         // Power
-            EASING.IN_QUADRATIC    ,
-            EASING.IN_CUBIC        ,
-            EASING.IN_QUARTIC      ,
-            EASING.IN_QUINTIC      ,
-            EASING.IN_SEXTIC       ,
-            EASING.IN_SEPTIC       ,
-            EASING.IN_OCTIC        ,
+            Easing.IN_QUADRATIC    ,
+            Easing.IN_CUBIC        ,
+            Easing.IN_QUARTIC      ,
+            Easing.IN_QUINTIC      ,
+            Easing.IN_SEXTIC       ,
+            Easing.IN_SEPTIC       ,
+            Easing.IN_OCTIC        ,
 
-            EASING.IN_OUT_QUADRATIC,
-            EASING.IN_OUT_CUBIC    ,
-            EASING.IN_OUT_QUARTIC  ,
-            EASING.IN_OUT_QUINTIC  ,
-            EASING.IN_OUT_SEXTIC   ,
-            EASING.IN_OUT_SEPTIC   ,
-            EASING.IN_OUT_OCTIC    ,
+            Easing.IN_OUT_QUADRATIC,
+            Easing.IN_OUT_CUBIC    ,
+            Easing.IN_OUT_QUARTIC  ,
+            Easing.IN_OUT_QUINTIC  ,
+            Easing.IN_OUT_SEXTIC   ,
+            Easing.IN_OUT_SEPTIC   ,
+            Easing.IN_OUT_OCTIC    ,
 
-            EASING.OUT_QUADRATIC   ,
-            EASING.OUT_CUBIC       ,
-            EASING.OUT_QUARTIC     ,
-            EASING.OUT_QUINTIC     ,
-            EASING.OUT_SEXTIC      ,
-            EASING.OUT_SEPTIC      ,
-            EASING.OUT_OCTIC       ,
+            Easing.OUT_QUADRATIC   ,
+            Easing.OUT_CUBIC       ,
+            Easing.OUT_QUARTIC     ,
+            Easing.OUT_QUINTIC     ,
+            Easing.OUT_SEXTIC      ,
+            Easing.OUT_SEPTIC      ,
+            Easing.OUT_OCTIC       ,
 
-            EASING.LINEAR          , // show reference in vertical middle
+            Easing.LINEAR          , // show reference in vertical middle
 
         // Standard
-            EASING.IN_BACK         ,
-            EASING.IN_BOUNCE       ,
-            EASING.IN_CIRC         ,
-            EASING.IN_ELASTIC      ,
-            EASING.IN_EXPO         ,
-            EASING.IN_SINE         ,
+            Easing.IN_BACK         ,
+            Easing.IN_BOUNCE       ,
+            Easing.IN_CIRC         ,
+            Easing.IN_ELASTIC      ,
+            Easing.IN_EXPO         ,
+            Easing.IN_SINE         ,
 
-            EASING.IN_OUT_BACK     ,
-            EASING.IN_OUT_BOUNCE   ,
-            EASING.IN_OUT_CIRC     ,
-            EASING.IN_OUT_ELASTIC  ,
-            EASING.IN_OUT_EXPO     ,
-            EASING.IN_OUT_SINE     ,
+            Easing.IN_OUT_BACK     ,
+            Easing.IN_OUT_BOUNCE   ,
+            Easing.IN_OUT_CIRC     ,
+            Easing.IN_OUT_ELASTIC  ,
+            Easing.IN_OUT_EXPO     ,
+            Easing.IN_OUT_SINE     ,
 
-            EASING.OUT_BACK        ,
-            EASING.OUT_BOUNCE      ,
-            EASING.OUT_CIRC        ,
-            EASING.OUT_ELASTIC     ,
-            EASING.OUT_EXPO        ,
-            EASING.OUT_SINE        ,
+            Easing.OUT_BACK        ,
+            Easing.OUT_BOUNCE      ,
+            Easing.OUT_CIRC        ,
+            Easing.OUT_ELASTIC     ,
+            Easing.OUT_EXPO        ,
+            Easing.OUT_SINE        ,
         ];
 
         var nType  = aEasing.length;
@@ -115,13 +115,13 @@ Ease.prototype =
         {
             eEasing = aEasing[ iType ];
 
-            /**/ if( eEasing === EASING.LINEAR           ) { r = m; g = m; b = m; } // gray
-            else if( eEasing === EASING.IN_QUADRATIC     ) { r = c; g = 0; b = 0; } // red
-            else if( eEasing === EASING.IN_OUT_QUADRATIC ) { r = 0; g = c; b = 0; } // green
-            else if( eEasing === EASING.OUT_QUADRATIC    ) { r = 0; g = 0; b = c; } // blue
-            else if( eEasing === EASING.IN_BACK          ) { r = c; g = g; b = 0; } // normally yellow but orange has better contrast on white
-            else if( eEasing === EASING.IN_OUT_BACK      ) { r = 0; g = c; b = c; } // cyan
-            else if( eEasing === EASING.OUT_BACK         ) { r = c; g = 0; b = c; } // magenta
+            /**/ if( eEasing === Easing.LINEAR           ) { r = m; g = m; b = m; } // gray
+            else if( eEasing === Easing.IN_QUADRATIC     ) { r = c; g = 0; b = 0; } // red
+            else if( eEasing === Easing.IN_OUT_QUADRATIC ) { r = 0; g = c; b = 0; } // green
+            else if( eEasing === Easing.OUT_QUADRATIC    ) { r = 0; g = 0; b = c; } // blue
+            else if( eEasing === Easing.IN_BACK          ) { r = c; g = g; b = 0; } // normally yellow but orange has better contrast on white
+            else if( eEasing === Easing.IN_OUT_BACK      ) { r = 0; g = c; b = c; } // cyan
+            else if( eEasing === Easing.OUT_BACK         ) { r = c; g = 0; b = c; } // magenta
 
             rect = new Rect().init( { w: dim, h: dim, r: r, g: g, b: b } );
             rect.index = iType - 1; // pointer to corresponding aVals[]

@@ -16,7 +16,7 @@ var Axis =
     INIT:10,
 };
 
-var EASING =
+var Easing =
 {
     NONE            :  0,
     LINEAR          :  1,
@@ -122,11 +122,11 @@ var EasingFuncs = // Array of Functions
     function InOutBack     (p)  { var m=p-1,t=p*2, k = 1.70158 * 1.525; if (p < 0.5) return p*t*(t*(k+1) - k); else return 1 + 2*m*m*(2*m*(k+1) + k); },
     function OutBack       (p)  { var m=p-1,       k = 1.70158        ;                                             return 1 +   m*m*(  m*(k+1) + k); },
 
-    function InBounce      (p)  { return 1 - EasingFuncs[ EASING.OUT_BOUNCE ]( 1-p ); },
+    function InBounce      (p)  { return 1 - EasingFuncs[ Easing.OUT_BOUNCE ]( 1-p ); },
     function InOutBounce   (p)  {
                                     var t = p*2;
-                                    if (t < 1) return 0.5 - 0.5*EasingFuncs[ EASING.OUT_BOUNCE ]( 1 - t );
-                                    return            0.5 + 0.5*EasingFuncs[ EASING.OUT_BOUNCE ]( t - 1 );
+                                    if (t < 1) return 0.5 - 0.5*EasingFuncs[ Easing.OUT_BOUNCE ]( 1 - t );
+                                    return            0.5 + 0.5*EasingFuncs[ Easing.OUT_BOUNCE ]( t - 1 );
                                 },
     function OutBounce     (p)  {
                                     var r  = 1  / 2.75; // reciprocal
@@ -356,7 +356,7 @@ Widget.prototype =
      * @param {Number}   [params.ms     - Delay in milliseconds
      * @param {Function} [params.onEnd] - Callback when animation done
      * @param {Function} [params.onInc] - Callback while animating
-     * @param {EASING}   [params.type]  - Type of easing animation
+     * @param {Easing}   [params.type]  - Type of easing animation
      */
     // ========================================================================
     animate: function( params )
@@ -364,7 +364,7 @@ Widget.prototype =
         var key, axis, val, ms = params.ms | 0, easing = params.type;
 
         if( !easing )
-             easing = EASING.OUT_QUADRATIC;
+             easing = Easing.OUT_QUADRATIC;
 
         for( key  in params )
         {
@@ -547,7 +547,7 @@ Widget.prototype =
      * @returns {Boolean} true if animating, else false
      */
     // ========================================================================
-    isAxisAnimating: function( axis ) { return this._type[ axis ] !== EASING.NONE; },
+    isAxisAnimating: function( axis ) { return this._type[ axis ] !== Easing.NONE; },
 
     /**
      * Category: Animation
@@ -670,7 +670,7 @@ Widget.prototype =
         if( axis === undefined )
             console.error( "Widget.stop() Axis not specified" );
 
-        this._type[ axis ] = EASING.NONE;
+        this._type[ axis ] = Easing.NONE;
         this._max [ axis ] = this._cur[ axis ];
 
         var callback = this._onEnd[ axis ];
@@ -694,7 +694,7 @@ Widget.prototype =
         for( var axis = 0; axis < n; ++axis )
         {
             var easing = this._type[ axis ];
-            if( easing ) // Animation != EASING.NONE
+            if( easing ) // Animation != Easing.NONE
             {
                 var ms = this._ms[ axis ];
                 var ts = this._ts[ axis ];
