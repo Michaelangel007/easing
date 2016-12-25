@@ -75,18 +75,24 @@ var Easing =
 };
 
 /**
-* @param {Number} p - Normalized Standard Time Percentage [0.0,1.0] (inclusive)
-* @returns {Number} - Normalized Adjusted Time Percentage
-*
-* @Notes:
-*
-*   Distance = Velocity*Time
-*   d = v*t
-*
-*   Distance = Start + (Finish-Start)*Time
-* Or
-*   Current = Min + (Max-Min)*Time
-*/
+ * Given an normalized elapsed time (between 0.0 and 1.0 inclusive)
+ * an easing function returns an ajusted, or 'warped', elapsed time
+ * For example, a linear function returns the time "as-is".
+ * An Out Quadratic easing quickly accelerates then deaccelerates
+ * as it closes to the final total time.
+ *
+ * @param {Number} p - Normalized Standard Time Percentage [0.0,1.0] (inclusive)
+ * @returns {Number} - Normalized Adjusted Time Percentage
+ *
+ * @Notes:
+ *
+ *   Distance = Velocity*Time
+ *   d = v*t
+ *
+ *   Distance = Start + (Finish-Start)*Time
+ * Or
+ *   Current = Min + (Max-Min)*Time
+ */
 var EasingFuncs = // Array of Functions
 [
     function None          (p)  { return 1;               }, // p^0
