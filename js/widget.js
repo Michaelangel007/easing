@@ -554,8 +554,11 @@ Widget.prototype =
         }
     },
 
+// You need to provide if you over-ride
+//  onCreate     : function() {}
     onFocusAccept: function() {},
     onFocusLost  : function() {},
+//  onLayout     : function() {},
 
     /**
      * @param {Axis}   axis - Which axis to set
