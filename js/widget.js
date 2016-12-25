@@ -699,9 +699,6 @@ Widget.prototype =
                 var ms = this._ms[ axis ];
                 var ts = this._ts[ axis ];
 
-                if( !ms )
-                     ms = 1;
-
                 var dt = Widget.time - ts;
                 var p  = dt * ms; // Note: ms is 1/milliseconds
                 var dv = this._max[ axis ] - this._min[ axis ];
