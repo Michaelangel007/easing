@@ -283,7 +283,7 @@ Widget.prototype =
         this._onEnd = vals.slice(); // callback when animation done
         this._onInc = vals.slice(); // callback while animationg active
 
-        vals[ Axis.A ] = 1;
+        vals[ Axis.A ] =  1; // default alpha = opaque
         this._min = vals.slice();
         this._cur = vals.slice();
         this._max = vals.slice();
