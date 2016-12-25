@@ -316,6 +316,7 @@ Widget.prototype =
     },
 
     /**
+     * Category: Creation
      * After a widget has been 'init' add it to its parent
      * @param {Widget} child - Child widget to add
      * @param {Number} x     - Left in pixels
@@ -340,7 +341,9 @@ Widget.prototype =
         child._max[ Axis.Y ] = y;
     },
 
-    /** Animate specified axis
+    /**
+     * Category: Animation
+     * Animate specified axis
      * params.a     - Alpha     to animate to
      * params.b     - Blue      to animate to
      * params.g     - Green     to animate to
@@ -398,7 +401,9 @@ Widget.prototype =
         }
     },
 
-    /** Apply the current axis values to the div
+    /**
+     * Category: Creation
+     * Apply the current axis values to the div
      */
     // ========================================================================
     applyDiv: function()
@@ -414,8 +419,10 @@ Widget.prototype =
     },
 
     /**
+     * Category: Creation
      * Once a widget has 'init' and 'addXY' all its children
      * create the div container and append them their parent
+     * @see createDiv(), applyDiv()
      * @example
      *     Foo.prototype =
      *     {
@@ -443,6 +450,10 @@ Widget.prototype =
             this.onCreate();
     },
 
+    /**
+     * Category: Creation
+     * A screen is reponsible for creating all children
+     */
     // ========================================================================
     createDiv: function()
     {
@@ -531,6 +542,7 @@ Widget.prototype =
     },
 
     /**
+     * Category: Animation
      * Test if widget's axis is animating
      * @returns {Boolean} true if animating, else false
      */
@@ -538,6 +550,7 @@ Widget.prototype =
     isAxisAnimating: function( axis ) { return this._type[ axis ] !== EASING.NONE; },
 
     /**
+     * Category: Animation
      * Test if any widget's axis is animating
      * @returns {Boolean} true if animating, else false
      */
@@ -551,6 +564,9 @@ Widget.prototype =
         return bIsAnimating;
     },
 
+    /**
+     * Category: Focus
+     */
     // ========================================================================
     focusRequest: function( widget )
     {
@@ -564,6 +580,7 @@ Widget.prototype =
     },
 
     /**
+     * Category: Input
      * Dispatch key to current widget with focus
      * @param {Boolean} isKeyPressed - true if pressed else false
      * @param {Number}  key          - key code
@@ -587,9 +604,10 @@ Widget.prototype =
 //  onCreate     : function() {}
     onFocusAccept: function() {},
     onFocusLost  : function() {},
-//  onLayout     : function() {},
+//  onResize     : function() {},
 
     /**
+     * Category: Animation
      * @param {Axis}   axis - Which axis to set
      * @param {Number} val  - New value
      */
@@ -643,7 +661,7 @@ Widget.prototype =
     },
 
     /**
-     * Animation
+     * Category: Animation
      * @param {Axis} axis - Stop specific axis from animating
      */
     // ========================================================================
@@ -664,6 +682,7 @@ Widget.prototype =
     },
 
     /**
+     * Category: Animation
      * Update all axis animation, and then children
      * If there is an on end callback will call with (Axis, Widget)
      */
