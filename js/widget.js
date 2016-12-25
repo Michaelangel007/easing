@@ -689,33 +689,33 @@ Widget.prototype =
     // ========================================================================
     update: function()
     {
-        var n = Axis.NUM, val;
+        var n = Axis.NUM, dv, t, val;
 
         for( var axis = 0; axis < n; ++axis )
         {
             var easing = this._type[ axis ];
             if( easing ) // Animation != Easing.NONE
             {
+                var min = this._min[ axis ];
+                var max = this._max[ axis ];
+
                 var ms = this._ms[ axis ];
                 var ts = this._ts[ axis ];
 
                 var dt = Widget.time - ts;
                 var p  = dt * ms; // Note: ms is 1/milliseconds
-                var dv = this._max[ axis ] - this._min[ axis ];
-                var v;
 
                 // Animation done?
                 if( p >= 1 )
                 {
-                    val = this._max[ axis ];
-                    this.setAxis( axis, val  );
+                    this.setAxis( axis, max );
                     this.stop   ( axis );
                 }
                 else
                 {
-                    v = EasingFuncs[ easing ]( p );
-
-                    val = this._min[ axis ] + v*dv;
+                    t   = EasingFuncs[ easing ]( p );
+                    dv  = max - min;
+                    val = min + dv*t;
                     this.setAxis( axis, val );
 
                     var callback = this._onInc[ axis ];
