@@ -442,7 +442,7 @@ Widget.prototype =
 
     /*
      * Returns the bounding box of the container
-     * Iterate though all children recoding the maximum width and height
+     * Iterate though all children keeping track of the maximum width and height
      * @returns {Object}
      */
     // ========================================================================
