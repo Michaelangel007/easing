@@ -395,7 +395,7 @@ Widget.prototype =
                      ms = 1; // we store 1/ms
 
                 this._max  [ axis ] = val;
-                this._min  [ axis ] = this._cur[ axis ];;
+                this._min  [ axis ] = this._cur[ axis ];
                 this._ms   [ axis ] = 1 / ms;        // anim time length
                 this._onEnd[ axis ] = params.onEnd;
                 this._onInc[ axis ] = params.onInc;
