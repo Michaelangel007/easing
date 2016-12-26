@@ -5,12 +5,18 @@ function Rect() {}
 Rect.prototype =
 {
     /**
-     * @param {Number}  params.w    - Width
-     * @param {Number}  params.h    - Height
-     * @param {Number} [params.r=0] - Normalized red   (0.0 .. 1.0)
-     * @param {Number} [params.g=0] - Normalized green (0.0 .. 1.0)
-     * @param {Number} [params.b=0] - Normalized green (0.0 .. 1.0)
-     * @param {Number} [params.a=1] - Normalized alpha (0.0 .. 1.0)
+     * @param {Number}    params.w             - Width
+     * @param {Number}    params.h             - Height
+     * @param {Number}   [params.r=0]          - Normalized red   [0.0 .. 1.0]
+     * @param {Number}   [params.g=0]          - Normalized green [0.0 .. 1.0]
+     * @param {Number}   [params.b=0]          - Normalized blue  [0.0 .. 1.0]
+     * @param {Number}   [params.a=1]          - Normalized alpha [0.0 .. 1.0]
+     * @param {Object}   [params.border]       - Optional border
+     * @param {Number}   [params.border.size]  - Single value will be applied to top,left,bottom,right border thickness
+     * @param {Number[]} [params.border.skirt] - Array for [top,right,bottom,left] for border thickness
+     * @param {Number}   [params.border.r]     - Normalized border color red   [0.0 .. 1.0]
+     * @param {Number}   [params.border.g]     - Normalized border color green [0.0 .. 1.0]
+     * @param {Number}   [params.border.b]     - Normalized border color blue  [0.0 .. 1.0]
      */
     init: function( params )
     {
@@ -23,7 +29,39 @@ Rect.prototype =
         if( params.b ) this.setB( params.b );
         if( params.a ) this.setA( params.a );
 
+        if( params.border )
+        {
+            var border = params.border;
+            var skirt  = border.size
+                ? [ border.size, border.size, border.size, border.size ]
+                : border.skirt;
+
+            if( !Array.isArray( skirt ) )
+                console.error( "Border is not array!" );
+
+            this._borderR   = border.r || 0;
+            this._borderG   = border.g || 0;
+            this._borderB   = border.b || 0;
+            this._borderDim = skirt;
+        }
+
         return this;
+    },
+
+    onCreate: function()
+    {
+        if( this._borderDim )
+        {
+            var div = this._div;
+
+            div.style.borderColor = Widget.RGBtoHex( this._borderR, this._borderG, this._borderB );
+            div.style.borderStyle = 'solid solid solid solid';
+            div.style.borderWidth = ''
+                + this._borderDim[0] + 'px ';
+                + this._borderDim[1] + 'px ';
+                + this._borderDim[2] + 'px ';
+                + this._borderDim[3] + 'px ';
+        }
     },
 };
 
