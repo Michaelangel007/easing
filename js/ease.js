@@ -109,6 +109,7 @@ Ease.prototype =
         aRect.push( rect );
         this.addXY( rect, left, 0 ); // Note: Or to show in center: left + this.middle
 
+        var z = 0.6; // border color
         var m = 0.2; // monochrome
         var c = 1.0; // color 
         for( var iType = 1; iType < nType; ++iType )
@@ -123,7 +124,10 @@ Ease.prototype =
             else if( eEasing === Easing.IN_OUT_BACK      ) { r = 0; g = c; b = c; } // cyan
             else if( eEasing === Easing.OUT_BACK         ) { r = c; g = 0; b = c; } // magenta
 
-            rect = new Rect().init( { w: dim, h: dim, r: r, g: g, b: b } );
+            var border = { size: 1       , r: r*z, g: g*z, b: b*z };
+            var params = { w: dim, h: dim, r: r  , g: g  , b: b  , border: border };
+
+            rect = new Rect().init( params );
             rect.index = iType - 1; // pointer to corresponding aVals[]
             aRect.push( rect );
             this.addXY( rect, left, y );
@@ -148,8 +152,8 @@ Ease.prototype =
         r = 0; g = 0; b = 0;
 
         // When all cubes moved right, black boundary line touching right edge
-        var rectR = new Rect().init( { w: 1, h: y, r: r, g: g, b: b } );
-        this.addXY( rectR, right+dim, 0 );
+        var rectR = new Rect().init( { w: 1, h: y, r: r, g: g, b: b, a:0.5 } );
+        this.addXY( rectR, right+dim+1, 0 ); // +1 to account for border
 
         // Grid
         var major = 1.0; // alpha of major grid line
