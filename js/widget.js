@@ -306,8 +306,8 @@ Widget.prototype =
             vals[ axis ] = 0;
 
         this._type  = vals.slice(); // animation easing type NOTE: Easing.NONE == 0
-        this._ts    = vals.slice(); // animation time start
-        this._ms    = vals.slice(); // animation time duration (NOTE: This is 1/milliseconds in order to use multiply instead of divide)
+        this._start = vals.slice(); // animation time start
+        this._oodur = vals.slice(); // animation time One Over Duration (NOTE: This is 1/milliseconds in order to use multiply instead of divide)
         this._onEnd = vals.slice(); // callback when animation done
         this._onInc = vals.slice(); // callback while animationg active
 
@@ -396,10 +396,10 @@ Widget.prototype =
 
                 this._max  [ axis ] = val;
                 this._min  [ axis ] = this._cur[ axis ];
-                this._ms   [ axis ] = 1 / ms;        // anim time length
+                this._oodur[ axis ] = 1 / ms;      // anim time length
                 this._onEnd[ axis ] = params.onEnd;
                 this._onInc[ axis ] = params.onInc;
-                this._ts   [ axis ] = Widget.time; // anim time start
+                this._start[ axis ] = Widget.time; // anim time start
                 this._type [ axis ] = easing;
             }
 
@@ -709,11 +709,11 @@ Widget.prototype =
                 var min = this._min[ axis ];
                 var max = this._max[ axis ];
 
-                var ms = this._ms[ axis ];
-                var ts = this._ts[ axis ];
+                var total = this._oodur[ axis ];
+                var start = this._start[ axis ];
 
-                var dt = Widget.time - ts;
-                var p  = dt * ms; // Note: ms is reciprocal time: 1/milliseconds
+                var dt = Widget.time - start;
+                var p  = dt * total; // Note: total ms is reciprocal duration: 1/milliseconds
 
                 // Animation done?
                 if( p >= 1 )
