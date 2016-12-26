@@ -699,7 +699,7 @@ Widget.prototype =
     // ========================================================================
     update: function( dT )
     {
-        var n = Axis.NUM, dx, t, val;
+        var n = Axis.NUM, dx, t, x;
 
         for( var axis = 0; axis < n; ++axis )
         {
@@ -723,10 +723,10 @@ Widget.prototype =
                 }
                 else
                 {
-                    t   = EasingFuncs[ easing ]( p );
-                    dx  = max - min;
-                    val = min + dx*t;
-                    this.setAxis( axis, val );
+                    t  = EasingFuncs[ easing ]( p );
+                    dx = max - min;
+                    x  = min + dx*t;
+                    this.setAxis( axis, x );
 
                     var callback = this._onInc[ axis ];
                     if( callback )
