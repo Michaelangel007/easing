@@ -102,7 +102,7 @@ Ease.prototype =
 
         // Linear line used as a visual reference
         this.middle = (dim * 0.5) | 0; // center in block
-        rect = new Rect().init( { w:1, h:1, r: 0.7, g:0.7, b:0.7 } );
+        rect = new Rect().init( { w:1, h:1, r: 0, g:0, b:0, a:0.5 } );
 
         // [0] is refence to tell when all animations are done
         rect.index = -1; // none
