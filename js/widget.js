@@ -272,9 +272,16 @@ EasingFuncs.map( EasingNames.insert );
  */
 function Widget() {}
 
-Widget.focus = null;
-Widget.ID    = 0;
-Widget.time  = 0;
+Widget.focus    = null;
+Widget.ID       = 0;
+Widget.time     = 0;
+Widget.RGBtoHex = function( r, g, b )
+{
+        return '#'
+            + ('0' + ((255 * r) | 0).toString( 16 )).slice( -2 )
+            + ('0' + ((255 * g) | 0).toString( 16 )).slice( -2 )
+            + ('0' + ((255 * b) | 0).toString( 16 )).slice( -2 )
+};
 
 Widget.prototype =
 {
@@ -491,14 +498,7 @@ Widget.prototype =
      */
     getRGB: function()
     {
-        var r = '0' + ((255 * this._cur[ Axis.R ]) | 0).toString( 16 );
-        var g = '0' + ((255 * this._cur[ Axis.G ]) | 0).toString( 16 );
-        var b = '0' + ((255 * this._cur[ Axis.B ]) | 0).toString( 16 );
-        var c = '#'
-              + r.slice( -2 )
-              + g.slice( -2 )
-              + b.slice( -2 );
-        return c;
+        return Widget.RGBtoHex( this._cur[ Axis.R ], this._cur[ Axis.G ], this._cur[ Axis.B ] );
     },
 
     /*
