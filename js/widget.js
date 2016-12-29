@@ -513,9 +513,9 @@ Widget.prototype =
 
         while( obj )
         {
-            pos.x += this.getX() | 0;
-            pos.y += this.getY() | 0;
-            obj = obj._parent;
+            pos.x += obj.getX() | 0;
+            pos.y += obj.getY() | 0;
+            obj    = obj._parent;
         };
 
         return pos;
