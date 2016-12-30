@@ -465,13 +465,16 @@ Widget.prototype =
 
     /**
      * Category: Creation
-     * A screen is reponsible for creating all children
+     * Note: A screen is reponsible for creating all children
      */
     // ========================================================================
     createDiv: function()
     {
         var div = this._div = document.createElement( 'div' );
-        div.style.position = 'absolute';
+        if( this._id )
+            div.id          = '_' + this._id;
+        div.style.position  = 'absolute';
+        div.style.margin    = '0px';
 
         if( this._parent )
             this._parent._div.appendChild( div );
