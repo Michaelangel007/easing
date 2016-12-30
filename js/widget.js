@@ -433,6 +433,15 @@ Widget.prototype =
     },
 
     /**
+     * Category: Animation
+     */
+    // ========================================================================
+    clearOnEnd: function( axis )
+    {
+        this._onEnd[ axis ] = undefined;
+    },
+
+    /**
      * Category: Creation
      * Once a widget has 'init' and 'addXY' all its children
      * create the div container and append them their parent
