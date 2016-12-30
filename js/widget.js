@@ -370,6 +370,7 @@ Widget.prototype =
      * @param {Function} [params.onEnd] - Callback when animation done
      * @param {Function} [params.onInc] - Callback while animating
      * @param {Easing}   [params.type]  - Type of easing animation
+     * @see stop(), clearEnd()
      */
     // ========================================================================
     animate: function( params )
