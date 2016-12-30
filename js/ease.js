@@ -23,6 +23,7 @@ Ease.prototype =
         var dx    = (right - left) / 10;
         var pad   = extra*dx;
         var w     = (right - left) + 2*pad; // 2* for left and right edges
+        var h     = 0; // auto-calculated
 
         var top   = 16;
         var space = 8;
@@ -143,6 +144,7 @@ Ease.prototype =
         }
         y += space;
         var bot = y;
+        h = bot;
 
         this.addXY( this._labels,  right + pad + dim, 0 );
 
