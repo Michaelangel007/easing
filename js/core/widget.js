@@ -5,7 +5,7 @@ var Axis =
     X   : 0, // left position    (in pixels)
     Y   : 1, // top  position    (in pixels)
     W   : 2, // width  dimension (in pixels)
-    H   : 3, // height dimension
+    H   : 3, // height dimension (in pixels)
     R   : 4, // normalized red   color
     G   : 5, // normalized green color
     B   : 6, // normalized blue  color
