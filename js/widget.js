@@ -11,9 +11,10 @@ var Axis =
     B   : 6, // normalized blue  color
     A   : 7, // normalized alpha color
     S   : 8, // Font size        (in pixels)
-    _   : 9, // whiteSpace 'nowrap' // http://www.w3schools.com/jsref/prop_style_whitespace.asp
-    NUM : 9, // NOTE: NOT a typo -- there is no point to interpolate whitespace
-    INIT:10,
+    T   : 9, // User Timer
+    _   :10, // whiteSpace 'nowrap' // http://www.w3schools.com/jsref/prop_style_whitespace.asp
+    NUM :10, // NOTE: NOT a typo -- there is no point to interpolate whitespace
+    INIT:11,
 };
 
 var Easing =
@@ -390,6 +391,7 @@ Widget.prototype =
                 case 'h': axis = Axis.H; break;
                 case 'r': axis = Axis.R; break;
                 case 's': axis = Axis.S; break;
+                case 't': axis = Axis.T; break;
                 case 'w': axis = Axis.W; break;
                 case 'x': axis = Axis.X; break;
                 case 'y': axis = Axis.Y; break;
@@ -505,6 +507,8 @@ Widget.prototype =
     getS: function() { return this._cur[ Axis.S ]; },
 // Misc.
     get_: function() { return this._cur[ Axis._ ]; },
+// User Timer
+    getT: function() { return this._cur[ Axis.T ]; },
 
     /**
      * @returns {String} HTML hex color string '#RRGGBB'
@@ -644,6 +648,7 @@ Widget.prototype =
             case Axis.H: this.setH( val ); break;
             case Axis.R: this.setR( val ); break;
             case Axis.S: this.setS( val ); break;
+            case Axis.T: this.setT( val ); break;
             case Axis.W: this.setW( val ); break;
             case Axis.X: this.setX( val ); break;
             case Axis.Y: this.setY( val ); break;
@@ -667,6 +672,7 @@ Widget.prototype =
     setH  : function( h ) { this._cur[ Axis.H ] = h; if(h&&this._div)this._div.style.height     = '' + h + 'px'; },
 // Misc
     set_  : function( _ ) { this._cur[ Axis._ ] = _; if( this._div ) this._div.style.whiteSpace =      _       ; },
+    setT  : function( t ) { this._cur[ Axis.T ] = t;                                                             }, // User Timer
 
     setColor: function( color )
     {
