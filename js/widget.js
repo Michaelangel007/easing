@@ -651,6 +651,7 @@ Widget.prototype =
                 console.error( 'ERROR: setAxis() invalid axis:' + axis );
         }
     },
+
 // Color
     setR  : function( r ) { this._cur[ Axis.R ] = r; this.setColor( this.getRGB() ); },
     setG  : function( g ) { this._cur[ Axis.G ] = g; this.setColor( this.getRGB() ); },
