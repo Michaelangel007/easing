@@ -16,6 +16,10 @@ Game.prototype =
         var self = this;
         Widget.focus = self;
 
+        // Don't add scrollbars
+        document.body.style.overflow = 'hidden';
+        document.body.style.margin = '0px 0px 0px 0px';
+
         // root attachment point for all widgets
         this._parent      = document.body;
         this._parent._div = document.getElementById( 'root' );
