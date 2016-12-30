@@ -24,16 +24,23 @@ function OnAnimFrame( timestamp )
     window.requestAnimationFrame( OnAnimFrame );
 }
 
+/*
+ * @param {Widget} screen - Ease or Plot
+ */
 // ========================================================================
-function OnLoad()
+function OnLoad( screen )
 {
+    // Core
     Extend( Widget, Game );
     Extend( Widget, Rect );
-    Extend( Widget, Ease );
     Extend( Widget, Text );
 
+    // Screen
+    Extend( Widget, Ease );
+    Extend( Widget, Plot );
+
     game = new Game().init();
-    game.pushScreen( Ease );
+    game.pushScreen( screen );
 
     OnAnimFrame( 0 );
 }
