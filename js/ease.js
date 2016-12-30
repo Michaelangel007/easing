@@ -328,7 +328,7 @@ Ease.prototype =
                 this.startAnim( this._direction, 0 );
                 this._direction = 1 - this._direction;
             }
-            
+
             if( key === KEY.SPACE )
                 if( this._animating > 0 )
                     this.stopAnim();
