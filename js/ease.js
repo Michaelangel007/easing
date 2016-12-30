@@ -162,8 +162,9 @@ Ease.prototype =
         var minor = 1/3; // alpha of minor grid line
 
         // Vertical grid lines
+        var i;
         x = left - dx*extra;
-        for( var i = -extra; i <= (10+extra); ++i )
+        for( i = -extra; i <= (10+extra); ++i )
         {
             // CellX
             //  0 dark
