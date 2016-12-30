@@ -161,10 +161,11 @@ var Original =
     }
 };
 ```
-
 ... into this beautiful, exact equivalent:
 
 ```
+// Optimized Easing Functions by Michael Pohoreski
+// License: BSD
 var EasingFuncs = // Array of Functions
 [
 // Power -- grouped by In,Out,InOut
