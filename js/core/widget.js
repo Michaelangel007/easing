@@ -264,6 +264,7 @@ Widget.prototype =
     },
 
     /*
+     * Category: Metrics
      * Get the absolute x and y
      * @returns {Object}
      */
@@ -284,6 +285,7 @@ Widget.prototype =
     },
 
     /*
+     * Category: Metrics
      * Returns the bounding box of the container
      * Iterate though all children keeping track of the maximum width and height
      * @returns {Object}
@@ -307,6 +309,21 @@ Widget.prototype =
         }
 
         return dim;
+    },
+
+    /*
+     * Category: Metrics
+     * @returns {Object} - width, height, x, y
+     */
+    // ========================================================================
+    getMetrics: function()
+    {
+        var    metrics   = {};
+               metrics.x = this.getX();
+               metrics.y = this.getY();
+               metrics.w = this.getW();
+               metrics.h = this.getH();
+        return metrics;
     },
 
     /**
