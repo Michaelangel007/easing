@@ -49,6 +49,26 @@ Game.prototype =
         return this;
     },
 
+    // ========================================================================
+    createCanvasContext: function( id )
+    {
+        // Normally
+        //      var canvas = document.getElementById( 'canvas' );
+        // But we are creating the canvas programmatically
+        var canvas                = document.createElement( 'canvas' );
+            canvas.id             = id;
+            canvas.width          = Game.w;
+            canvas.height         = Game.h;
+            canvas.style.left     = 0;
+            canvas.style.top      = 0;
+            canvas.style.position = 'absolute';
+            canvas.style.margin   = '0px';
+
+
+        document.body.appendChild( canvas );
+        Game[ id ] = canvas.getContext('2d'); // Game.fg, Game.bg
+    },
+
     // @param {Widget} className - screen to create and switch focus to
     // @param {Object} [params]  - Additional configuration
     // ========================================================================
