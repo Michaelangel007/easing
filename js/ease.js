@@ -178,7 +178,7 @@ Ease.prototype =
                 ? major
                 : minor;
 
-            line = new Rect().init( { w:1, h: y, r: r, g: g, b: b, a: a } );
+            line = new Rect().init( { w:1, h: h, r: r, g: g, b: b, a: a } );
             this._grid.addXY( line, x, 0 );
 
             x += dx;
