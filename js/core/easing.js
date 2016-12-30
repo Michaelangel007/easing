@@ -79,7 +79,7 @@ var Easing =
  */
 var EasingFuncs = // Array of Functions
 [
-// Power
+// Power -- grouped by In,Out,InOut
     function None          (p)  { return 1;               }, // p^0 Placeholder for no active animation
     function Linear        (p)  { return p;               }, // p^1 Note: In = Out = InOut
     function InQuadratic   (p)  { return p*p;             }, // p^2 = Math.pow(p,2)
