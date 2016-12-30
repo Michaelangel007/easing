@@ -12,5 +12,8 @@ var KEY =
     RIGHT   : 39,
 
     SPACE   : 32,
+
+    MINUS   : 189,
+    EQUAL   : 187,
 };
 
