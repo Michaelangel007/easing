@@ -18,6 +18,7 @@ Rect.prototype =
      * @param {Number}   [params.border.g]     - Normalized border color green [0.0 .. 1.0]
      * @param {Number}   [params.border.b]     - Normalized border color blue  [0.0 .. 1.0]
      */
+    // ========================================================================
     init: function( params )
     {
         Widget.prototype.init.call( this, "Rect" );
@@ -48,6 +49,7 @@ Rect.prototype =
         return this;
     },
 
+    // ========================================================================
     onCreate: function()
     {
         if( this._borderDim )
