@@ -2,7 +2,9 @@
 
 # Demo
 
-* [HTML Demo](https://htmlpreview.github.io/?https://github.com/Michaelangel007/easing_optimizations/blob/master/demo.html)
+* [Compare Demo](https://htmlpreview.github.io/?https://github.com/Michaelangel007/easing_optimizations/blob/master/compare.html)
+* [Graph   Demo](https://htmlpreview.github.io/?https://github.com/Michaelangel007/easing_optimizations/blob/master/graph.html)
+
 
 # Pictures
 
@@ -19,7 +21,10 @@
 
 * [x] Optimize easing functions
 * [x] Demo
-* [ ] Plot easing functions
+* [*] Plot easing functions (code)
+ * [ ] Linear
+ * [ ] Quadratic
+ * 
 * [ ] Write up tutorial
 
 By: Michael Pohoreski
