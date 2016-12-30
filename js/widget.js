@@ -663,8 +663,8 @@ Widget.prototype =
     setX  : function( x ) { this._cur[ Axis.X ] = x; if( this._div ) this._div.style.left       = '' + x + 'px'; },
     setY  : function( y ) { this._cur[ Axis.Y ] = y; if( this._div ) this._div.style.top        = '' + y + 'px'; },
 // Dimension
-    setW  : function( w ) { this._cur[ Axis.W ] = w; if( this._div ) this._div.style.width      = '' + w + 'px'; },
-    setH  : function( h ) { this._cur[ Axis.H ] = h; if( this._div ) this._div.style.height     = '' + h + 'px'; },
+    setW  : function( w ) { this._cur[ Axis.W ] = w; if(w&&this._div)this._div.style.width      = '' + w + 'px'; },
+    setH  : function( h ) { this._cur[ Axis.H ] = h; if(h&&this._div)this._div.style.height     = '' + h + 'px'; },
 // Misc
     set_  : function( _ ) { this._cur[ Axis._ ] = _; if( this._div ) this._div.style.whiteSpace =      _       ; },
 
