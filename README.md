@@ -167,8 +167,8 @@ var Original =
 ```
 var EasingFuncs = // Array of Functions
 [
-// Power
-    function None          (p)  { return 1;               }, // p^0
+// Power -- grouped by In,Out,InOut
+    function None          (p)  { return 1;               }, // p^0 Placeholder for no active animation
     function Linear        (p)  { return p;               }, // p^1 Note: In = Out = InOut
     function InQuadratic   (p)  { return p*p;             }, // p^2 = Math.pow(p,2)
     function InCubic       (p)  { return p*p*p;           }, // p^3 = Math.pow(p,3)
@@ -248,7 +248,6 @@ var EasingFuncs = // Array of Functions
     function InSine        (p)  { return      1 - Math.cos( p * Math.PI*0.5 );  },
     function InOutSine     (p)  { return 0.5*(1 - Math.cos( p * Math.PI     )); },
     function OutSine       (p)  { return          Math.sin( p * Math.PI*0.5 );  },
-
 ];
 ```
 
