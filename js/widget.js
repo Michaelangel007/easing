@@ -492,8 +492,7 @@ Widget.prototype =
             this._parent._div.appendChild( div );
     },
 
-// Color
-    getB: function() { return this._cur[ Axis.B ]; },
+    getB: function() { return this._cur[ Axis.B ]; }, // Color
     getG: function() { return this._cur[ Axis.G ]; },
     getR: function() { return this._cur[ Axis.R ]; },
     getA: function() { return this._cur[ Axis.A ]; },
