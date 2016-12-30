@@ -20,13 +20,16 @@ Game.prototype =
         document.body.style.overflow = 'hidden';
         document.body.style.margin = '0px 0px 0px 0px';
 
-        // root attachment point for all widgets
-        this._parent      = document.body;
-        this._parent._div = document.getElementById( 'root' );
-        this.createChildren();
-
         Game.w = window.innerWidth ; // document.body.width;
         Game.h = window.innerHeight; // document.body.height;
+
+        // root attachment point for all widgets
+        this.createDiv();
+        this.applyDiv();
+        var div = this._div;
+            div.id = 'root';
+            document.body.appendChild( div );
+        this._rootDiv = div;
 
         // Allow input once all children are created
         // @param {KeyboardEvent} keyEvent - data
@@ -82,6 +85,7 @@ Game.prototype =
 
         this.addXY( screen, 0, 0 );
         screen.createChildren();
+        this._rootDiv.appendChild( screen._div );
 
         this.focusRequest( screen );
     },
