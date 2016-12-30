@@ -178,7 +178,7 @@ Ease.prototype =
                 ? major
                 : minor;
 
-            line = new Rect().init( { w:1, h: y, r: r, g: g, b: b, a:a } );
+            line = new Rect().init( { w:1, h: y, r: r, g: g, b: b, a: a } );
             this._grid.addXY( line, x, 0 );
 
             x += dx;
@@ -189,9 +189,10 @@ Ease.prototype =
         g = 0.9;
         b = 1.0;
         a = minor;
+
         for( y = top; y <= bot; y += dy )
         {
-            line = new Rect().init( { w: w, h: 1, r: r, g: g, b: b, a:a } );
+            line = new Rect().init( { w: w, h: 1, r: r, g: g, b: b, a: a } );
             this._grid.addXY( line, left - dx*extra, y + this.middle );
         }
 
