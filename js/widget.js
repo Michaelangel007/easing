@@ -312,7 +312,7 @@ Widget.prototype =
         for( var axis = 0; axis < Axis.INIT; ++axis )
             vals[ axis ] = 0;
 
-        this._type  = vals.slice(); // animation easing type NOTE: Easing.NONE == 0
+        this._type  = vals.slice(); // animation easing type NOTE: Easing.NONE = 0, no active animation
         this._start = vals.slice(); // animation time start
         this._oodur = vals.slice(); // animation time One Over Duration (NOTE: This is 1/milliseconds in order to use multiply instead of divide)
         this._onEnd = vals.slice(); // callback when animation done
