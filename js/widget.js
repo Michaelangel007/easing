@@ -497,18 +497,13 @@ Widget.prototype =
     getG: function() { return this._cur[ Axis.G ]; },
     getR: function() { return this._cur[ Axis.R ]; },
     getA: function() { return this._cur[ Axis.A ]; },
-// Dimension
-    getW: function() { return this._cur[ Axis.W ]; }, // return this._div.offsetHeight | 0;
-    getH: function() { return this._cur[ Axis.H ]; }, // return this._div.offsetWidth  | 0;
-// Position
-    getX: function() { return this._cur[ Axis.X ]; },
+    getW: function() { return this._cur[ Axis.W ]; }, // Dimension // return this._div.offsetHeight | 0;
+    getH: function() { return this._cur[ Axis.H ]; },              // return this._div.offsetWidth  | 0;
+    getX: function() { return this._cur[ Axis.X ]; }, // Position
     getY: function() { return this._cur[ Axis.Y ]; },
-// Font
-    getS: function() { return this._cur[ Axis.S ]; },
-// Misc.
-    get_: function() { return this._cur[ Axis._ ]; },
-// User Timer
-    getT: function() { return this._cur[ Axis.T ]; },
+    getS: function() { return this._cur[ Axis.S ]; }, // Font
+    get_: function() { return this._cur[ Axis._ ]; }, // Whitespace
+    getT: function() { return this._cur[ Axis.T ]; }, // User Timer
 
     /**
      * @returns {String} HTML hex color string '#RRGGBB'
@@ -657,22 +652,17 @@ Widget.prototype =
         }
     },
 
-// Color
-    setR  : function( r ) { this._cur[ Axis.R ] = r; this.setColor( this.getRGB() ); },
-    setG  : function( g ) { this._cur[ Axis.G ] = g; this.setColor( this.getRGB() ); },
-    setB  : function( b ) { this._cur[ Axis.B ] = b; this.setColor( this.getRGB() ); },
-    setA  : function( a ) { this._cur[ Axis.A ] = a; if( this._div ) this._div.style.opacity    =      a       ; },
-// Font
-    setS  : function( s ) { this._cur[ Axis.S ] = s; if( this._div ) this._div.style.fontSize   = '' + s + 'px'; },
-// Position
-    setX  : function( x ) { this._cur[ Axis.X ] = x; if( this._div ) this._div.style.left       = '' + x + 'px'; },
-    setY  : function( y ) { this._cur[ Axis.Y ] = y; if( this._div ) this._div.style.top        = '' + y + 'px'; },
-// Dimension
-    setW  : function( w ) { this._cur[ Axis.W ] = w; if(w&&this._div)this._div.style.width      = '' + w + 'px'; },
-    setH  : function( h ) { this._cur[ Axis.H ] = h; if(h&&this._div)this._div.style.height     = '' + h + 'px'; },
-// Misc
-    set_  : function( _ ) { this._cur[ Axis._ ] = _; if( this._div ) this._div.style.whiteSpace =      _       ; },
-    setT  : function( t ) { this._cur[ Axis.T ] = t;                                                             }, // User Timer
+    setR: function( r ) { this._cur[ Axis.R ] = r; this.setColor( this.getRGB() ); }, // Color
+    setG: function( g ) { this._cur[ Axis.G ] = g; this.setColor( this.getRGB() ); },
+    setB: function( b ) { this._cur[ Axis.B ] = b; this.setColor( this.getRGB() ); },
+    setA: function( a ) { this._cur[ Axis.A ] = a; if( this._div ) this._div.style.opacity    =      a       ; },
+    setS: function( s ) { this._cur[ Axis.S ] = s; if( this._div ) this._div.style.fontSize   = '' + s + 'px'; }, // Font
+    setX: function( x ) { this._cur[ Axis.X ] = x; if( this._div ) this._div.style.left       = '' + x + 'px'; }, // Position
+    setY: function( y ) { this._cur[ Axis.Y ] = y; if( this._div ) this._div.style.top        = '' + y + 'px'; },
+    setW: function( w ) { this._cur[ Axis.W ] = w; if(w&&this._div)this._div.style.width      = '' + w + 'px'; }, // Dimension
+    setH: function( h ) { this._cur[ Axis.H ] = h; if(h&&this._div)this._div.style.height     = '' + h + 'px'; },
+    set_: function( _ ) { this._cur[ Axis._ ] = _; if( this._div ) this._div.style.whiteSpace =      _       ; }, // Misc
+    setT: function( t ) { this._cur[ Axis.T ] = t;                                                             }, // User Timer
 
     setColor: function( color )
     {
