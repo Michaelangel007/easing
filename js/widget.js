@@ -647,6 +647,8 @@ Widget.prototype =
             case Axis.W: this.setW( val ); break;
             case Axis.X: this.setX( val ); break;
             case Axis.Y: this.setY( val ); break;
+            default:
+                console.error( 'ERROR: setAxis() invalid axis:' + axis );
         }
     },
 // Color
