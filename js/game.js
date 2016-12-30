@@ -2,8 +2,10 @@
 
 function Game() {}
 
-Game.w = 0;
-Game.h = 0;
+Game.w  = 0;
+Game.h  = 0;
+Game.bg = null;
+Game.fg = null;
 
 Game.prototype =
 {
@@ -23,6 +25,9 @@ Game.prototype =
         Game.w = window.innerWidth ; // document.body.width;
         Game.h = window.innerHeight; // document.body.height;
 
+        // Background Canvas
+        this.createCanvasContext( 'bg' );
+
         // root attachment point for all widgets
         this.createDiv();
         this.applyDiv();
@@ -30,6 +35,9 @@ Game.prototype =
             div.id = 'root';
             document.body.appendChild( div );
         this._rootDiv = div;
+
+        // Foreground Canvas
+        this.createCanvasContext( 'fg' );
 
         // Allow input once all children are created
         // @param {KeyboardEvent} keyEvent - data
