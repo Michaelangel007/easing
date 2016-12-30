@@ -479,11 +479,9 @@ its center point at:
 
  * `<screen width/2, screen height/2, 0.0>` (in pixels),
 
-OR
+OR, in normalized coordinates:
 
-in normalized coordinates:
-
- *`<0.5, 0.5>` -- basically half the width, and half the height.
+ * `<0.5, 0.5>` -- basically half the width, and half the height.
 
 Getting back to our normalized time value `p`:
 
