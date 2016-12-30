@@ -125,7 +125,7 @@ var EasingFuncs = // Array of Functions
 
 // Standard -- grouped by Type
     function InBack        (p)  { var              k = 1.70158        ;              return p*p*(p*(k+1) - k);                                        },
-    function InOutBack     (p)  { var m=p-1,t=p*2, k = 1.70158 * 1.525; if (p < 0.5) return p*t*(t*(k+1) - k); else return 1 + 2*m*m*(2*m*(k+1) + k); },
+    function InOutBack     (p)  { var m=p-1,t=p*2, k = 1.70158 * 1.525; if (p < 0.5) return p*t*(t*(k+1) - k); else return 1 + 2*m*m*(2*m*(k+1) + k); }, // NOTE: Can go negative! i.e. p = 0.008
     function OutBack       (p)  { var m=p-1,       k = 1.70158        ;                                             return 1 +   m*m*(  m*(k+1) + k); },
 
     function InBounce      (p)  { return 1 - EasingFuncs[ Easing.OUT_BOUNCE ]( 1-p ); },
