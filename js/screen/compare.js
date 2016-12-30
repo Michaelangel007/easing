@@ -118,12 +118,12 @@ Ease.prototype =
             eEasing = aEasing[ iType ];
 
             /**/ if( eEasing === Easing.LINEAR           ) { r = m; g = m; b = m; } // gray
-            else if( eEasing === Easing.IN_QUADRATIC     ) { r = c; g = 0; b = 0; } // red
-            else if( eEasing === Easing.IN_OUT_QUADRATIC ) { r = 0; g = c; b = 0; } // green
-            else if( eEasing === Easing.OUT_QUADRATIC    ) { r = 0; g = 0; b = c; } // blue
-            else if( eEasing === Easing.IN_BACK          ) { r = c; g = g; b = 0; } // normally yellow but orange has better contrast on white
-            else if( eEasing === Easing.IN_OUT_BACK      ) { r = 0; g = c; b = c; } // cyan
-            else if( eEasing === Easing.OUT_BACK         ) { r = c; g = 0; b = c; } // magenta
+            else if( eEasing === Easing.IN_QUADRATIC     ) { r = c; g = 0; b = 0; } // Red
+            else if( eEasing === Easing.IN_OUT_QUADRATIC ) { r = 0; g = c; b = 0; } // Green
+            else if( eEasing === Easing.OUT_QUADRATIC    ) { r = 0; g = 0; b = c; } // Blue
+            else if( eEasing === Easing.IN_BACK          ) { r = z; g = z; b = 0; } // Yellow
+            else if( eEasing === Easing.IN_OUT_BACK      ) { r = 0; g = z; b = z; } // Cyan
+            else if( eEasing === Easing.OUT_BACK         ) { r = z; g = 0; b = z; } // Magenta
 
             var border = { size: 1       , r: r*z, g: g*z, b: b*z };
             var params = { w: dim, h: dim, r: r  , g: g  , b: b  , border: border };
