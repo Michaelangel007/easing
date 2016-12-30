@@ -165,7 +165,9 @@ var Original =
 
 ```
 // Optimized Easing Functions by Michael Pohoreski
-// License: BSD
+// https://github.com/Michaelangel007/easing_optimizations
+// License: Free as in speech and beer; Attribution is always appreciated!
+// Note: Please keep the URL so people can refer back to how these were derived.
 var EasingFuncs = // Array of Functions
 [
 // Power -- grouped by In,Out,InOut
