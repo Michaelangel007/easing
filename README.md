@@ -249,55 +249,6 @@ var EasingFuncs = // Array of Functions
     function InOutSine     (p)  { return 0.5*(1 - Math.cos( p * Math.PI     )); },
     function OutSine       (p)  { return          Math.sin( p * Math.PI*0.5 );  },
 
-/*
-// Alternative: Standard -- Grouped by In, Out, InOut
-
-    function InBack      (p) { var k = 1.70158; return p*p*(p*(k+1) - k); },
-    function InBounce    (p) { return 1 - EasingFuncs[ 'easeOutBounce' ]( 1-p ); },
-    function InCirc      (p) { return 1 - Math.sqrt( 1 - p*p ); },
-    function InElastic   (p) { var m = p-1; return  - Math.pow( 2,10*m  ) * Math.sin( ( m*40 - 3) * Math.PI/6 ); },
-    function InExpo      (p) { if (p <= 0) return 0; return  Math.pow( 2, 10*(p-1) ); },
-    function InSine      (p) { return      1 - Math.cos( p * Math.PI*0.5 );  },
-
-    function OutBack     (p) { var m=p-1, k = 1.70158; return 1 + m*m*( m*(k+1) + k); },
-    function OutBounce   (p) {
-                                var k1 = 1   / 2.75; // 36.36%
-                                var k2 = 2     * k1; // 72.72%
-                                var k3 = 1.5   * k1; // 54.54%
-                                var k4 = 2.5   * k1; // 90.90%
-                                var k5 = 2.25  * k1; // 81.81%
-                                var k6 = 2.625 * k1; // 95.45%
-                                var k0 = 7.5625, t;
-
-                                     if (p < k1) {             return k0 * p*p;            }
-                                else if (p < k2) { t = p - k3; return k0 * t*t + 0.75;     } // 48/64
-                                else if (p < k4) { t = p - k5; return k0 * t*t + 0.9375;   } // 60/64
-                                else             { t = p - k6; return k0 * t*t + 0.984375; } // 63/64
-                             },
-    function OutCirc     (p) { var m=p-1; return Math.sqrt( 1 - m*m ); },
-    function OutElastic  (p) { return 1 + (Math.pow( 2,10*-p ) * Math.sin( (-p*40 - 3) * Math.PI/6 )); },
-    function OutExpo     (p) { return 1 - Math.pow( 2, -10* p ); },
-    function OutSine     (p) { return Math.sin( p * Math.PI*0.5 ); },
-
-    function InOutBack   (p) { var m=p-1,t=p*2, k = 1.70158 * 1.525; if (p < 0.5) return p*t*(t*(k+1) - k); else return 1 + 2*m*m*(2*m*(k+1) + k); },
-    function InOutBounce (p) {
-                                var t = p*2;
-                                if (t < 1) return 0.5 - 0.5*EasingFuncs[ EASEING.OUT_BOUNCE ]( 1 - t );
-                                return            0.5 + 0.5*EasingFuncs[ EASEING.OUT_BOUNCE ]( t - 1 );
-                             },
-    function InOutCirc   (p) { var m=p-1,t=p*2; if (t < 1) return (1-Math.sqrt( 1 - t*t ))*0.5; else return (Math.sqrt( 1 - 4*m*m ) + 1) * 0.5; },
-    function InOutElastic(p) {
-                                var s = 2*p-1;                 // remap: [0,0.5] -> [-1,0]
-                                var k = (80*s-9) * Math.PI/18; // and    [0.5,1] -> [0,+1]
-                                if (s < 0) return -0.5*Math.pow(2, 10*s) * Math.sin( k );
-                                return          1 +0.5*Math.pow(2,-10*s) * Math.sin( k );
-                             },
-    function InOutExpo   (p) {
-                                if (p <0.5) return   Math.pow( 2,  10*(2*p-1)-1);
-                                            return 1-Math.pow( 2, -10*(2*p-1)-1);
-                             },
-    function InOutSine   (p) { return 0.5 * (1 - Math.cos( p * Math.PI )); },
-*/
 ];
 ```
 
