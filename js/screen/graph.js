@@ -26,6 +26,10 @@ Plot.prototype =
             var line;
             var grid = new Widget().init(); // container
 
+            var text;
+            var gridLabelX = new Widget().init();
+            var gridLabelY = new Widget().init();
+
             var dx    = (right - left) / 10;
             var dy    = (bot   - top ) / 10;
 
@@ -76,6 +80,20 @@ Plot.prototype =
                 line = new Rect().init( { w:1, h: gh, r: r, g: g, b: b, a: a } );
                 grid.addXY( line, x, gy );
 
+                if( (i >= 0) && (i <= 10) )
+                {
+                    var axisLabel = (i/10).toFixed(1);
+
+                    text = new Text().init( { text: axisLabel } );
+                    gridLabelX.addXY( text, x, gb );
+
+                    if( i ) // don't duplicate '0.0'
+                    {
+                        text = new Text().init( { text: axisLabel } );
+                        gridLabelY.addXY( text, 0, gb - y );
+                    }
+                }
+
                 // Horizontal grid lines
                 line = new Rect().init( { w: gw, h: 1, r: r, g: g, b: b, a:a } );
                 grid.addXY( line, gx, gb - y );
@@ -87,8 +105,13 @@ Plot.prototype =
             this.addXY( grid, left, top );
             this._grid = grid;
 
+            this.addXY( gridLabelX, left, top );
+            this.addXY( gridLabelY, left, top );
+            this._gridLabelX = gridLabelX;
+            this._gridLabelY = gridLabelY;
+
         // Label showing easing type
-            var text = new Text().init( { text:'', size: size } );
+            text = new Text().init( { text:'', size: size } );
             this.addXY( text, left, gh + dy );
 
         // Graph
@@ -242,8 +265,40 @@ Plot.prototype =
     },
 
     // ========================================================================
+    fixupGridLabels: function()
+    {
+        var kid;
+        var x, y;
+        var w, h;
+        var i, n;
+        var gridLabelX = this._gridLabelX;
+        var gridLabelY = this._gridLabelY;
+        var pad = 2;
+        var dim;
+
+        n = gridLabelX._children.length;
+        for( i = 0; i < n; ++i )
+        {
+            kid = gridLabelX._children[i];
+            dim = kid.getMetrics();
+            y   = pad;
+            y  += (i & 1) ? dim.h :  0;
+            kid.setX( dim.x - dim.w*0.5 ); // Center
+            kid.setY( dim.y + y );
+
+            if( i != (n-1) )
+            {
+                kid = gridLabelY._children[i];
+                dim = kid.getMetrics();
+                kid.setX( dim.x - dim.w - pad );
+            }
+        }
+    },
+
+    // ========================================================================
     onCreate: function()
     {
+        this.fixupGridLabels();
         this.layout( 0 );
         this._cbInc();
     },
