@@ -276,6 +276,8 @@ function Widget() {}
 Widget.focus    = null;
 Widget.ID       = 0;
 Widget.time     = 0;
+
+// Convert numeric r,g,b values to a HTML color hex string `#RRGGBB`
 Widget.RGBtoHex = function( r, g, b )
 {
         return '#'
