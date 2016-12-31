@@ -809,11 +809,11 @@ Hmmm, some of these equations are starting to look familiar !
 
 ## Cleanup - In Circle
 
-![In Circle graph](pics/20_in_bounce.png)
+![In Circle graph](pics/29_in_circle.png)
 
 ## Cleanup - In Cubic
 
-![In Cubic graph](pics/3_in_cubic.png)
+![In Cubic graph](pics/03_in_cubic.png)
 
 ## Cleanup - In Elastic
 
@@ -833,27 +833,27 @@ Hmmm, some of these equations are starting to look familiar !
 
 ## Cleanup - In Octic
 
-![In Octic graph](pics/8_in_octic.png)
+![In Octic graph](pics/08_in_octic.png)
 
 ## Cleanup - In Quadratic
 
-![In Quadratic graph](pics/2_in_quadratic.png)
+![In Quadratic graph](pics/02_in_quadratic.png)
 
 ## Cleanup - In Quartic
 
-![In Quartic graph](pics/4_in_quartic.png)
+![In Quartic graph](pics/04_in_quartic.png)
 
 ## Cleanup - In Quintic
 
-![In Quintic graph](pics/5_in_quintic.png)
+![In Quintic graph](pics/05_in_quintic.png)
 
 ## Cleanup - In Septic
 
-![In Septic graph](pics/7_in_septic.png)
+![In Septic graph](pics/07_in_septic.png)
 
 ## Cleanup - In Sextic
 
-![In Sextic graph](pics/6_in_sextic.png)
+![In Sextic graph](pics/06_in_sextic.png)
 
 ## Cleanup - In Sine
 
