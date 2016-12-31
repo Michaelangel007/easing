@@ -121,8 +121,9 @@ Plot.prototype =
             this._gridLabelY = gridLabelY;
 
         // Label showing easing type
-            text = new Text().init( { text:'', size: size } );
-            this.addXY( text, left, gh + dy );
+            y = gh + dy;
+            var typeLabel = new Text().init( { text:'', size: size } ); // # of #: Type
+            this.addXY( typeLabel, left, y );
 
         // Graph
             var rect;
@@ -178,9 +179,6 @@ Plot.prototype =
             this.objInc = objInc;
             this.objDec = objDec;
 
-            var val = new Text().init( { text: 'ABC' } );
-            this.addXY( val, left + gw, gb );
-
         // layout needs access
             this._top    = top;
             this._left   = left;
@@ -188,8 +186,9 @@ Plot.prototype =
             this._h      = h;
             this._plot   = plot;
             this._gb     = gb;
-            this._text   = text;
-            this._val    = val;
+
+            this._type$  = typeLabel;
+
             this._anim   = rect;
 
         return this;
@@ -254,7 +253,7 @@ Plot.prototype =
         var i_n  = '' + this._easing + ' of ' + (Easing.NUM - 1) + ': ';
         var text = EasingNames[ this._easing ];
 
-        this._text.setText( i_n + text );
+        this._type$.setText( i_n + text );
 
         var isAnimating = this._anim.isAnimating( Axis.T );
         this._anim.stop( Axis.T );
@@ -301,6 +300,7 @@ Plot.prototype =
                 kid = gridLabelY._children[i];
                 dim = kid.getMetrics();
                 kid.setX( dim.x - dim.w - pad );
+                kid.setY( dim.y - dim.h*0.5 );
             }
         }
     },
@@ -309,6 +309,7 @@ Plot.prototype =
     onCreate: function()
     {
         this.fixupGridLabels();
+
         this.layout( 0 );
         this._cbInc();
     },
@@ -332,8 +333,6 @@ Plot.prototype =
         var y  = this._top  + this._gb - n;
         rect.setX( x - rect._dim );
         rect.setY( y - rect._dim );
-
-        rect._parent._val.setText( p.toFixed( 5 ) );
     },
 
     // ========================================================================
