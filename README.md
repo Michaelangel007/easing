@@ -11,8 +11,8 @@
 
 ## Easing Cheet Sheet
 
-![Cheat Sheet 1080p](pics/pics/easing_cheat_sheet_1080.png)
-![Cheat Sheet 4000 ](pics/pics/easing_cheat_sheet.png)
+![Cheat Sheet 1080p](pics/easing_cheat_sheet_1080.png)
+![Cheat Sheet 4000 ](pics/easing_cheat_sheet.png)
 
 ## Comparision of different easing
 
