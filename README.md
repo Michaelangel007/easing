@@ -6,7 +6,8 @@
 * Pictures
  * Easing Cheat Sheet
  * Comparision of easing functions
-* TL:DR; Overview
+* Overview
+* TL:DR; _"Shut up and show me the code!"_
 * Easing ... what is it and why is it important?
 * Parameter `t` or `p`
 * Simultaneous Animations
@@ -59,14 +60,16 @@ There is also a high resolution [4861x4000 Cheat Sheet](pics/easing_cheat_sheet.
 ![End](pics/end.png)
 
 
-# TL:DR; Overview
+# Overview
 
 This a tutorial in how to:
 
 * understand easing functions
 * how to implement them,
 * how to optimize them, and
-* how to write beautiful code such as:
+* how to write beautiful code
+
+# TL:DR; _"Shut up and show me the code!"_
 
 ```
 // Optimized Easing Functions by Michael Pohoreski
