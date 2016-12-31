@@ -592,7 +592,7 @@ a `linear` interpolation.
 
 The graph looks like this:
 
-![Linear Interpolation](pics/linear.png)
+![Linear Interpolation](pics/01_linear.png)
 
 
 Since this type of interpolation is so common it has its own abbreviation: `Lerp`
