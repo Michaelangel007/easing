@@ -849,7 +849,6 @@ Hmmm, some of these equations are starting to look familiar !
 
 ## Cleanup - In Septic
 
-![In Bounce graph](pics/26_in_bounce.png)
 ![In Septic graph](pics/7_in_septic.png)
 
 ## Cleanup - In Sextic
