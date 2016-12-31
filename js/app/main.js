@@ -25,10 +25,11 @@ function OnAnimFrame( timestamp )
 }
 
 /*
- * @param {Widget} screen - Ease or Plot
+ * @param {Widget} screen          - Ease or Plot
+ * @param {Number} [bCanvasMask=3] - Bitmask of which canvas to create. 1 = Background, 2 = Foreground
  */
 // ========================================================================
-function OnLoad( screen )
+function OnLoad( screen, bCanvasMask )
 {
     // Core
     Extend( Widget, Game );
@@ -39,7 +40,7 @@ function OnLoad( screen )
     Extend( Widget, Ease );
     Extend( Widget, Plot );
 
-    game = new Game().init();
+    game = new Game().init( bCanvasMask );
     game.pushScreen( screen );
 
     OnAnimFrame( 0 );

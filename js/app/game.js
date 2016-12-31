@@ -9,8 +9,9 @@ Game.fg = null;
 
 Game.prototype =
 {
+    // @param {Number} [bForeGroundCanvas=3] Bitmask of which canvas to create. 1=Background, 2=Foreground
     // ========================================================================
-    init: function()
+    init: function( bCanvasMask )
     {
         Widget.prototype.init.call( this, "Game" );
 
@@ -25,8 +26,12 @@ Game.prototype =
         Game.w = window.innerWidth ; // document.body.width;
         Game.h = window.innerHeight; // document.body.height;
 
+        if( bCanvasMask === undefined )
+            bCanvasMask = 3;
+
         // Background Canvas
-        this.createCanvasContext( 'bg' );
+        if( bCanvasMask & 1 )
+            this.createCanvasContext( 'bg' );
 
         // root attachment point for all widgets
         this.createDiv();
@@ -37,7 +42,8 @@ Game.prototype =
         this._rootDiv = div;
 
         // Foreground Canvas
-        this.createCanvasContext( 'fg' );
+        if( bCanvasMask & 2 )
+            this.createCanvasContext( 'fg' );
 
         // Allow input once all children are created
         // @param {KeyboardEvent} keyEvent - data
