@@ -35,142 +35,7 @@ This a tutorial in how to:
 * understand easing functions
 * how to implement them,
 * how to optimize them, and
-* how to write beautiful code so we can clean up fugly
-overengineered crap like the following ...
-
-```
-// http://www.robertpenner.com/easing
-// by Robert Penner Copyright 2001
-// License: BSD -- http://robertpenner.com/easing_terms_of_use.html
-var Original =
-{
-    easeInQuad: function (x, t, b, c, d) {
-        return c*(t/=d)*t + b;
-    },
-    easeOutQuad: function (x, t, b, c, d) {
-        return -c*(t/=d)*(t-2) + b;
-    },
-    easeInOutQuad: function (x, t, b, c, d) {
-        if ((t/=d/2) < 1) return c/2*t*t + b;
-        return -c/2 * ((--t)*(t-2) - 1) + b;
-    },
-    easeInCubic: function (x, t, b, c, d) {
-        return c*(t/=d)*t*t + b;
-    },
-    easeOutCubic: function (x, t, b, c, d) {
-        return c*((t=t/d-1)*t*t + 1) + b;
-    },
-    easeInOutCubic: function (x, t, b, c, d) {
-        if ((t/=d/2) < 1) return c/2*t*t*t + b;
-        return c/2*((t-=2)*t*t + 2) + b;
-    },
-    easeInQuart: function (x, t, b, c, d) {
-        return c*(t/=d)*t*t*t + b;
-    },
-    easeOutQuart: function (x, t, b, c, d) {
-        return -c * ((t=t/d-1)*t*t*t - 1) + b;
-    },
-    easeInOutQuart: function (x, t, b, c, d) {
-        if ((t/=d/2) < 1) return c/2*t*t*t*t + b;
-        return -c/2 * ((t-=2)*t*t*t - 2) + b;
-    },
-    easeInQuint: function (x, t, b, c, d) {
-        return c*(t/=d)*t*t*t*t + b;
-    },
-    easeOutQuint: function (x, t, b, c, d) {
-        return c*((t=t/d-1)*t*t*t*t + 1) + b;
-    },
-    easeInOutQuint: function (x, t, b, c, d) {
-        if ((t/=d/2) < 1) return c/2*t*t*t*t*t + b;
-        return c/2*((t-=2)*t*t*t*t + 2) + b;
-    },
-    easeInSine: function (x, t, b, c, d) {
-        return -c * Math.cos(t/d * (Math.PI/2)) + c + b;
-    },
-    easeOutSine: function (x, t, b, c, d) {
-        return c * Math.sin(t/d * (Math.PI/2)) + b;
-    },
-    easeInOutSine: function (x, t, b, c, d) {
-        return -c/2 * (Math.cos(Math.PI*t/d) - 1) + b;
-    },
-    easeInExpo: function (x, t, b, c, d) {
-        return (t==0) ? b : c * Math.pow(2, 10 * (t/d - 1)) + b;
-    },
-    easeOutExpo: function (x, t, b, c, d) {
-        return (t==d) ? b+c : c * (-Math.pow(2, -10 * t/d) + 1) + b;
-    },
-    easeInOutExpo: function (x, t, b, c, d) {
-        if (t==0) return b;
-        if (t==d) return b+c;
-        if ((t/=d/2) < 1) return c/2 * Math.pow(2, 10 * (t - 1)) + b;
-        return c/2 * (-Math.pow(2, -10 * --t) + 2) + b;
-    },
-    easeInCirc: function (x, t, b, c, d) {
-        return -c * (Math.sqrt(1 - (t/=d)*t) - 1) + b;
-    },
-    easeOutCirc: function (x, t, b, c, d) {
-        return c * Math.sqrt(1 - (t=t/d-1)*t) + b;
-    },
-    easeInOutCirc: function (x, t, b, c, d) {
-        if ((t/=d/2) < 1) return -c/2 * (Math.sqrt(1 - t*t) - 1) + b;
-        return c/2 * (Math.sqrt(1 - (t-=2)*t) + 1) + b;
-    },
-    easeInElastic: function (x, t, b, c, d) {
-        var s=1.70158;var p=0;var a=c;
-        if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
-        if (a < Math.abs(c)) { a=c; var s=p/4; }
-        else var s = p/(2*Math.PI) * Math.asin (c/a);
-        return -(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
-    },
-    easeOutElastic: function (x, t, b, c, d) {
-        var s=1.70158;var p=0;var a=c;
-        if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
-        if (a < Math.abs(c)) { a=c; var s=p/4; }
-        else var s = p/(2*Math.PI) * Math.asin (c/a);
-        return a*Math.pow(2,-10*t) * Math.sin( (t*d-s)*(2*Math.PI)/p ) + c + b;
-    },
-    easeInOutElastic: function (x, t, b, c, d) {
-        var s=1.70158;var p=0;var a=c;
-        if (t==0) return b;  if ((t/=d/2)==2) return b+c;  if (!p) p=d*(.3*1.5);
-        if (a < Math.abs(c)) { a=c; var s=p/4; }
-        else var s = p/(2*Math.PI) * Math.asin (c/a);
-        if (t < 1) return -.5*(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
-        return a*Math.pow(2,-10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )*.5 + c + b;
-    },
-    easeInBack: function (x, t, b, c, d, s) {
-        if (s == undefined) s = 1.70158;
-        return c*(t/=d)*t*((s+1)*t - s) + b;
-    },
-    easeOutBack: function (x, t, b, c, d, s) {
-        if (s == undefined) s = 1.70158;
-        return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
-    },
-    easeInOutBack: function (x, t, b, c, d, s) {
-        if (s == undefined) s = 1.70158;
-        if ((t/=d/2) < 1) return c/2*(t*t*(((s*=(1.525))+1)*t - s)) + b;
-        return c/2*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2) + b;
-    },
-    easeInBounce: function (x, t, b, c, d) {
-        return c - Original.easeOutBounce (x, d-t, 0, c, d) + b;
-    },
-    easeOutBounce: function (x, t, b, c, d) {
-        if ((t/=d) < (1/2.75)) {
-            return c*(7.5625*t*t) + b;
-        } else if (t < (2/2.75)) {
-            return c*(7.5625*(t-=(1.5/2.75))*t + .75) + b;
-        } else if (t < (2.5/2.75)) {
-            return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;
-        } else {
-            return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;
-        }
-    },
-    easeInOutBounce: function (x, t, b, c, d) {
-        if (t < d/2) return Original.easeInBounce (x, t*2, 0, c, d) * .5 + b;
-        return Original.easeOutBounce (x, t*2-d, 0, c, d) * .5 + c*.5 + b;
-    }
-};
-```
-... into this beautiful, exact equivalent:
+* how to write beautiful code such as:
 
 ```
 // Optimized Easing Functions by Michael Pohoreski
@@ -262,7 +127,7 @@ var EasingFuncs = // Array of Functions
 ];
 ```
 
-But we're getting ahead of ourselves.
+But we're getting ahead of ourselves ...
 
 
 
@@ -444,7 +309,7 @@ OR, in normalized coordinates:
 
  * `<0.5, 0.5>` -- basically half the width, and half the height.
 
-Getting back to our normalized time value `p`:
+Getting back to our normalized time value `p` ...
 
 ```
     p = elapsed / duration.
@@ -513,8 +378,8 @@ Javascript is a crappy language designed in 10 days. If it is so bad then why us
 
 Two reasons:
 
-* Every modern computer has a web browser which means there is nothing to install, and
-* More importantly, to show that is possible to write **good** code in any language,
+* Every modern computer has a web browser which means there is _nothing to install,_ and
+* More importantly, _to show that is possible_ to write **good** code in any language,
 even as one as bad as Javascript.
 
 Getting back to our axis of evil, er, 8D axis ...
@@ -522,7 +387,9 @@ Getting back to our axis of evil, er, 8D axis ...
 
 ## The Color Axis
 
-The astute reader will notice I snuck color in there! i.e. What if we wanted
+The astute reader will notice I snuck color in there!
+
+i.e. What if we wanted
 to fade an object from Black to Yellow and back to Black again, say for a glowing
 highlight? By separting the hue into separate axis such as red, green, and blue,
 our animation engine could support this very easily.
@@ -530,11 +397,12 @@ our animation engine could support this very easily.
 Why seperate the axis?
 
 We may be given two colors in a hex string format, `#RRGGBB`,
-and need to interpolate between them. We need to break this down into
-the 3 components, or Red, Green, Blue axis, respectively, before we can do this.
-we need to scale the triad (between 0 and 255), and then combine them to form a valid
-`#RRGGBB` hex string.
-Lastly, then when we need to apply the color to an HTML element,
+and want to interpolate between them. Before we can do this we would need to
+
+ * Break this down into the 3 components, or Red, Green, Blue axis, respectively.
+ * Then we need to scale the triad (between 0 and 255), and
+ * Combine them to form a valid `#RRGGBB` hex string.
+ * Lastly, then when we need to apply the color to the HTML element.
 
 For example this function will do exactly the middle part.
 
@@ -550,6 +418,7 @@ function RGBtoHex = function( r, g, b )
 ```
 
 Sometimes you'll see the terminology of a `controller`.
+
 i.e. If wanted to animate across the rainbow
 from Red,Orange,Yellow,Green,Cyan,Azure,Blue,Violet,Magenta
 it might be more convenient to use a `hue` controller.
@@ -573,7 +442,10 @@ At the high level it would be:
 This would in turn _drive_ the animation values red, green, blue over time.
 
 The reason I bring up color is that if you start interpolating color you may
-need to look into PMA (Premultiplied alpha). See Tom Forsyth's
+need to look into PMA (Premultiplied alpha) -- where you need to multiply `alpha`
+**into** the red, green, and blue channels.
+
+See Tom Forsyth's
 [Blog](http://eelpi.gotdns.org/blog.wiki.html) for these 2 articles:
 
 * Premultiplied alpha, 18 March 2015 (created 15 July 2006)
@@ -584,7 +456,7 @@ But I digress.
 
 ## Interpolation
 
-In _computer graphics_ terminology this calculation of calculating "inbetween" values is
+In _computer graphics_ terminology this calculating "inbetween" values is
 called `interpolation`. In _animation_ it is called `tweening`.
 
 Given different times, we want these values:
@@ -657,6 +529,248 @@ precision and minimize error, at the cost of slightly slower performance.
 This is a common trade-off in computing -- you can have speed or accuracy, pick one. :-/
 
 
+
+# De Facto Easing Functions
+
+Robert Penner provided the original, "canonical" 'de facto' easing functions in 2001 in ActionScript.
+
+First, let's tabulate the variables we'll be using:
+
+```
+Legend:
+    x = not used
+    t = elapsed time (starting from zero)
+    b = begin val
+    c = change val (end-begin)
+    d = duration (BUG: generates NaN if zero)
+```
+
+And without further ado:
+
+```Javascript
+// http://www.robertpenner.com/easing
+// by Robert Penner Copyright 2001
+// License: BSD -- http://robertpenner.com/easing_terms_of_use.html
+var Original =
+{
+    easeInQuad: function (x, t, b, c, d) {
+        return c*(t/=d)*t + b;
+    },
+    easeOutQuad: function (x, t, b, c, d) {
+        return -c*(t/=d)*(t-2) + b;
+    },
+    easeInOutQuad: function (x, t, b, c, d) {
+        if ((t/=d/2) < 1) return c/2*t*t + b;
+        return -c/2 * ((--t)*(t-2) - 1) + b;
+    },
+    easeInCubic: function (x, t, b, c, d) {
+        return c*(t/=d)*t*t + b;
+    },
+    easeOutCubic: function (x, t, b, c, d) {
+        return c*((t=t/d-1)*t*t + 1) + b;
+    },
+    easeInOutCubic: function (x, t, b, c, d) {
+        if ((t/=d/2) < 1) return c/2*t*t*t + b;
+        return c/2*((t-=2)*t*t + 2) + b;
+    },
+    easeInQuart: function (x, t, b, c, d) {
+        return c*(t/=d)*t*t*t + b;
+    },
+    easeOutQuart: function (x, t, b, c, d) {
+        return -c * ((t=t/d-1)*t*t*t - 1) + b;
+    },
+    easeInOutQuart: function (x, t, b, c, d) {
+        if ((t/=d/2) < 1) return c/2*t*t*t*t + b;
+        return -c/2 * ((t-=2)*t*t*t - 2) + b;
+    },
+    easeInQuint: function (x, t, b, c, d) {
+        return c*(t/=d)*t*t*t*t + b;
+    },
+    easeOutQuint: function (x, t, b, c, d) {
+        return c*((t=t/d-1)*t*t*t*t + 1) + b;
+    },
+    easeInOutQuint: function (x, t, b, c, d) {
+        if ((t/=d/2) < 1) return c/2*t*t*t*t*t + b;
+        return c/2*((t-=2)*t*t*t*t + 2) + b;
+    },
+    easeInSine: function (x, t, b, c, d) {
+        return -c * Math.cos(t/d * (Math.PI/2)) + c + b;
+    },
+    easeOutSine: function (x, t, b, c, d) {
+        return c * Math.sin(t/d * (Math.PI/2)) + b;
+    },
+    easeInOutSine: function (x, t, b, c, d) {
+        return -c/2 * (Math.cos(Math.PI*t/d) - 1) + b;
+    },
+    easeInExpo: function (x, t, b, c, d) {
+        return (t==0) ? b : c * Math.pow(2, 10 * (t/d - 1)) + b;
+    },
+    easeOutExpo: function (x, t, b, c, d) {
+        return (t==d) ? b+c : c * (-Math.pow(2, -10 * t/d) + 1) + b;
+    },
+    easeInOutExpo: function (x, t, b, c, d) {
+        if (t==0) return b;
+        if (t==d) return b+c;
+        if ((t/=d/2) < 1) return c/2 * Math.pow(2, 10 * (t - 1)) + b;
+        return c/2 * (-Math.pow(2, -10 * --t) + 2) + b;
+    },
+    easeInCirc: function (x, t, b, c, d) {
+        return -c * (Math.sqrt(1 - (t/=d)*t) - 1) + b;
+    },
+    easeOutCirc: function (x, t, b, c, d) {
+        return c * Math.sqrt(1 - (t=t/d-1)*t) + b;
+    },
+    easeInOutCirc: function (x, t, b, c, d) {
+        if ((t/=d/2) < 1) return -c/2 * (Math.sqrt(1 - t*t) - 1) + b;
+        return c/2 * (Math.sqrt(1 - (t-=2)*t) + 1) + b;
+    },
+    easeInElastic: function (x, t, b, c, d) {
+        var s=1.70158;var p=0;var a=c;
+        if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
+        if (a < Math.abs(c)) { a=c; var s=p/4; }
+        else var s = p/(2*Math.PI) * Math.asin (c/a);
+        return -(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+    },
+    easeOutElastic: function (x, t, b, c, d) {
+        var s=1.70158;var p=0;var a=c;
+        if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
+        if (a < Math.abs(c)) { a=c; var s=p/4; }
+        else var s = p/(2*Math.PI) * Math.asin (c/a);
+        return a*Math.pow(2,-10*t) * Math.sin( (t*d-s)*(2*Math.PI)/p ) + c + b;
+    },
+    easeInOutElastic: function (x, t, b, c, d) {
+        var s=1.70158;var p=0;var a=c;
+        if (t==0) return b;  if ((t/=d/2)==2) return b+c;  if (!p) p=d*(.3*1.5);
+        if (a < Math.abs(c)) { a=c; var s=p/4; }
+        else var s = p/(2*Math.PI) * Math.asin (c/a);
+        if (t < 1) return -.5*(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+        return a*Math.pow(2,-10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )*.5 + c + b;
+    },
+    easeInBack: function (x, t, b, c, d, s) {
+        if (s == undefined) s = 1.70158;
+        return c*(t/=d)*t*((s+1)*t - s) + b;
+    },
+    easeOutBack: function (x, t, b, c, d, s) {
+        if (s == undefined) s = 1.70158;
+        return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
+    },
+    easeInOutBack: function (x, t, b, c, d, s) {
+        if (s == undefined) s = 1.70158;
+        if ((t/=d/2) < 1) return c/2*(t*t*(((s*=(1.525))+1)*t - s)) + b;
+        return c/2*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2) + b;
+    },
+    easeInBounce: function (x, t, b, c, d) {
+        return c - Original.easeOutBounce (x, d-t, 0, c, d) + b;
+    },
+    easeOutBounce: function (x, t, b, c, d) {
+        if ((t/=d) < (1/2.75)) {
+            return c*(7.5625*t*t) + b;
+        } else if (t < (2/2.75)) {
+            return c*(7.5625*(t-=(1.5/2.75))*t + .75) + b;
+        } else if (t < (2.5/2.75)) {
+            return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;
+        } else {
+            return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;
+        }
+    },
+    easeInOutBounce: function (x, t, b, c, d) {
+        if (t < d/2) return Original.easeInBounce (x, t*2, 0, c, d) * .5 + b;
+        return Original.easeOutBounce (x, t*2-d, 0, c, d) * .5 + c*.5 + b;
+    }
+};
+```
+Let's learn how to clean up this _fugly, overengineered code_ into the _beautiful_, exact equivalent mentioned at the beginning.
+
+The astute reader will notice that `jQuery` initially adapted these _"as-is"_
+before coming to their sense and cleaning them up eventually.
+
+* https://raw.githubusercontent.com/danro/jquery-easing/master/jquery.easing.js
+
+
+
+# Easing Cleanup
+
+There are numerous problems with the defacto easing 5 parameter easing functions.
+This is **crap code** -- that's the technical term for _over-engineered._
+
+Problems can be placed into two general categories:
+
+* Meta
+* Implementation
+
+The _meta_ coding problems are:
+
+ * Functions aren't alphabetized making searching/finding them non-intuitiave,
+ * While _inter-easing_ functions are grouped together there is no seperator between _intra-easing_ such as whitespace.,
+ * Names are abbreviated making them not obvious, such as `Expo` -- Exponent comes in multiple variations such as `Exponent_2` and `Exponent_e`,
+ * Initially there seems to be a lot of easing functions, but they are incomplete -- they are missing some of the more common mathematical ones.
+
+The _implementation_ problems are:
+
+1. Buggy 1     - Generates NaN when d == 0
+2. Buggy 2     - Doesn't handle edge cases when t<0 or t>d
+3. Inefficient - t/d is always done to normalize the time; If there are multiple animations with the same duration then this causes extra processing
+4. Slow 1      - due to inefficient, redundant, or dead code
+5. Slow 2      - b can be replaced with 0.0
+6. Slow 3      - c can be replaced with 1.0
+7. Wasteful    - argument x is declared in to all functions but never used
+
+We will address and fix **all** of these bugs.
+
+
+# Cleanup - Linear
+
+First, let's start with the linear easing.
+
+It's graph looks like this:
+
+![Linear graph](pics/01_linear.png)
+
+
+Hmm, there isn't one. Let's add one for completeness.
+
+```
+    easeInLinear: function (x, t, b, c, d) {
+        return c*(t/=d) + b;
+    },
+```
+
+Now, when `d` is 0, this generates a bug #1 `NaN`.  Let's digress slightly and
+address bug #2, `t < 0` and `t > d` before we fix this.
+
+```
+    easeInLinear: function (x, t, b, c, d) {
+        if (t <= 0) return b    ; // start
+        if (t >= d) return b + c; // end
+        return c*(t/=d) + b;
+```
+
+What happens when `d` == 0 ? It returns the `end` for free!
+
+```
+    easeInLinear: function (x, t, b, c, d) {
+        if (t <= 0) return b    ;
+        if (t >= d) return b + c; // t >= 0 return end
+        return c*(t/=d) + b;
+```
+
+Let's make this a little more robust:
+
+```
+    easeInLinear: function (x, t, b, c, d) {
+        if (t <= 0) return b    ; // If d=0, then t is always t >= d
+        if (t >= d) return b + c; // due to t < 0 already being handled
+        var p = t/d;
+        return c*p + b;
+    },
+```
+
+Hmmm, some of these equations are starting to look familiar !
+
+
+# WIP
+
+To be continued.
 
 # TODO
 
