@@ -2,12 +2,12 @@
 
 # Table of Contents
 
-* Demos
+* [Demos](https://github.com/Michaelangel007/easing_optimizations#demos-html--javascript)
 * Pictures
- * Easing Cheat Sheet
- * Comparision of easing functions
-* Overview
-* TL:DR; _"Shut up and show me the code!"_
+ * [Easing Cheat Sheet](https://github.com/Michaelangel007/easing_optimizations#easing-cheet-sheet)
+ * [Comparision of easing functions](https://github.com/Michaelangel007/easing_optimizations#comparision-of-easing-functions)
+* [Overview](https://github.com/Michaelangel007/easing_optimizations#overview)
+* [TL:DR; _"Shut up and show me the code!"_](https://github.com/Michaelangel007/easing_optimizations#tldr-shut-up-and-show-me-the-code)
 * Easing ... what is it and why is it important?
 * Parameter `t` or `p`
 * Simultaneous Animations
@@ -42,13 +42,13 @@
 
 ## Pictures
 
-## Easing Cheet Sheet
+### Easing Cheet Sheet
 
 ![Cheat Sheet 1080p](pics/easing_cheat_sheet_1080.png)
 
 There is also a high resolution [4861x4000 Cheat Sheet](pics/easing_cheat_sheet.png)
 
-## Comparision of easing functions
+### Comparision of easing functions
 
 * Start of animation
 ![Begin](pics/begin.png)
