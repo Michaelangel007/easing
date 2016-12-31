@@ -82,21 +82,30 @@ Ease.prototype =
             Easing.IN_CIRCLE       ,
             Easing.IN_ELASTIC      ,
             Easing.IN_EXPONENT2    ,
+            Easing.IN_EXPONENTE    , // Non-standard
+            Easing.IN_LOG10        , // Non-standard
             Easing.IN_SINE         ,
+            Easing.IN_SQRT         , // Non-standard
 
             Easing.IN_OUT_BACK     ,
             Easing.IN_OUT_BOUNCE   ,
             Easing.IN_OUT_CIRCLE   ,
             Easing.IN_OUT_ELASTIC  ,
             Easing.IN_OUT_EXPONENT2,
+            Easing.IN_OUT_EXPONENTE, // Non-standard
+            Easing.IN_OUT_LOG10    , // Non-standard
             Easing.IN_OUT_SINE     ,
+            Easing.IN_OUT_SQRT     , // Non-standard
 
             Easing.OUT_BACK        ,
             Easing.OUT_BOUNCE      ,
             Easing.OUT_CIRCLE      ,
             Easing.OUT_ELASTIC     ,
             Easing.OUT_EXPONENT2   ,
+            Easing.OUT_EXPONENTE   , // Non-standard
+            Easing.OUT_LOG10       , // Non-standard
             Easing.OUT_SINE        ,
+            Easing.OUT_SQRT        , // Non-standard
         ];
 
         var nType  = aEasing.length;
