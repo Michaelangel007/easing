@@ -555,13 +555,17 @@ Since this type of interpolation is so common it has its own abbreviation: `Lerp
 
 _Lerp_ is typically shown in one of two common forms:
 
-```
-    function lerp(t,a,b)
+```Javascript
+    function lerp( t, a, b )
     {
         return a + (t-1)(b-a);
     }
+```
 
-    function lerp(t,a,b)
+or
+
+```Javascript
+    function lerp( t, a, b )
     {
         return (1-t)*a + t*b;
     }
@@ -573,12 +577,12 @@ Let's replace those abbreviations with descriptive names for now since we
 want to understand what they mean.
 
 ```
-    function lerp(p,start,end)
+    function lerp( p, start, end )
     {
         return start + (p-1)(end-start);
     }
 
-    function lerp(p,start,end)
+    function lerp( p, start, end )
     {
         return (1-p)*start + p*end;
     }
