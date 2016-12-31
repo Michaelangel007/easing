@@ -55,7 +55,20 @@ var Easing =
     IN_OUT_SINE     : 39,
     OUT_SINE        : 40,
 
-    NUM             : 41,
+// Non-Standard Power
+    IN_EXPONENTE    : 41,
+    IN_OUT_EXPONENTE: 42,
+    OUT_EXPONENTE   : 43,
+
+    IN_LOG10        : 44,
+    IN_OUT_LOG10    : 45,
+    OUT_LOG10       : 46,
+
+    IN_SQRT         : 47,
+    INT_OUT_SQRT    : 48,
+    OUT_SQRT        : 49,
+
+    NUM             : 50,
 };
 
 /**
@@ -161,6 +174,32 @@ var EasingFuncs = // Array of Functions
     function InSine        (p)  { return      1 - Math.cos( p * Math.PI*0.5 );  },
     function InOutSine     (p)  { return 0.5*(1 - Math.cos( p * Math.PI     )); },
     function OutSine       (p)  { return          Math.sin( p * Math.PI*0.5 );  },
+
+// Non-Standard
+    function InExponentE   (p)  {   if (p <= 0) return 0; return   Math.pow( Math.E, -10*(1-p) ); }, // Scale 0..1 -> p^-10 .. p^0
+    function InOutExponentE(p)  {
+                                    var t = p*2;
+                                    if (t < 1) return 0.5 - 0.5*EasingFuncs[ Easing.IN_EXPONENTE ]( 1 - t );
+                                    return            0.5 + 0.5*EasingFuncs[ Easing.IN_EXPONENTE ]( t - 1 );
+                                },
+    function OutExponentE  (p)  { return 1 - EasingFuncs[ Easing.IN_EXPONENTE ]( 1-p ); },
+
+
+    function InLog10       (p)  { return 1 - EasingFuncs[ Easing.OUT_LOG10 ]( 1-p ); },
+    function InOutLog10    (p)  {
+                                    var t = p*2;
+                                    if (t < 1) return 0.5 - 0.5*EasingFuncs[ Easing.OUT_LOG10      ]( 1 - t );
+                                    return            0.5 + 0.5*EasingFuncs[ Easing.OUT_LOG10      ]( t - 1 );
+                                },
+    function OutLog10      (p)  { return Math.log10( (p*9)+1 ); }, // Scale 0..1 -> Log10( 1 ) .. Log10( 10 )
+
+    function InSquareRoot  (p)  { return 1 - EasingFuncs[ Easing.OUT_SQRT       ]( 1-p ); },
+    function InOutSquareRoot(p) {
+                                    var t = p*2;
+                                    if (t < 1) return 0.5 - 0.5*EasingFuncs[ Easing.OUT_SQRT       ]( 1 - t );
+                                    return            0.5 + 0.5*EasingFuncs[ Easing.OUT_SQRT       ]( t - 1 );
+                                },
+    function OutSquareRoot (p)  { return Math.sqrt( p ) },
 
 /*
 // Alternative: Standard -- Grouped by In, Out, InOut
