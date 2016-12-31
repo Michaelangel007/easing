@@ -73,7 +73,7 @@ var Easing =
 
 /**
  * Given an normalized elapsed time (between 0.0 and 1.0 inclusive)
- * an easing function returns an ajusted, or 'warped', elapsed time
+ * an easing function returns an adjusted, or 'warped', elapsed time
  * For example, a `Linear` function returns the time "as-is".
  * An `Out Quadratic` easing quickly accelerates then deaccelerates
  * as it closes to the final total time.
