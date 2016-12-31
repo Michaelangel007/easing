@@ -237,15 +237,15 @@ var EasingFuncs = // Array of Functions
                                 },
     function OutElastic    (p)  {              return 1+(Math.pow( 2,10*-p ) * Math.sin( (-p*40 - 3) * Math.PI/6 )); },
 
-    // NOTE: InExpo and OutExpo need clamping for 0 and 1 respectively
-    function InExpo        (p)  {   if (p <= 0) return 0; return   Math.pow( 2,  10*(p-1) ); },
-    function InOutExpo     (p)  {
+    // NOTE: 'Exponent2' needs clamping for 0 and 1 respectively
+    function InExponent2   (p)  {   if (p <= 0) return 0; return   Math.pow( 2,  10*(p-1) ); },
+    function InOutExponent2(p)  {
                                     if (p <= 0) return 0;
                                     if (p >= 1) return 1;
                                     if (p <0.5) return             Math.pow( 2,  10*(2*p-1)-1);
                                     else        return           1-Math.pow( 2, -10*(2*p-1)-1);
                                 },
-    function OutExpo       (p)  {   if (p >= 1) return 1; return 1-Math.pow( 2, -10* p    ); },
+    function OutExponent2  (p)  {   if (p >= 1) return 1; return 1-Math.pow( 2, -10* p    ); },
 
     function InSine        (p)  { return      1 - Math.cos( p * Math.PI*0.5 );  },
     function InOutSine     (p)  { return 0.5*(1 - Math.cos( p * Math.PI     )); },

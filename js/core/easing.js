@@ -47,9 +47,9 @@ var Easing =
     IN_OUT_ELASTIC  : 33,
     OUT_ELASTIC     : 34,
 
-    IN_EXPO         : 35,
-    IN_OUT_EXPO     : 36,
-    OUT_EXPO        : 37,
+    IN_EXPONENT2    : 35,
+    IN_OUT_EXPONENT2: 36,
+    OUT_EXPONENT2   : 37,
 
     IN_SINE         : 38,
     IN_OUT_SINE     : 39,
@@ -132,6 +132,7 @@ var EasingFuncs = // Array of Functions
                                     else if (p < k4) { t = p - k5; return k0 * t*t + 0.9375;   } // 60/64
                                     else             { t = p - k6; return k0 * t*t + 0.984375; } // 63/64
                                 },
+
     function InCircle      (p)  {                             return  1-Math.sqrt( 1 - p*p );                                                      },
     function InOutCircle   (p)  { var m=p-1,t=p*2; if (t < 1) return (1-Math.sqrt( 1 - t*t ))*0.5; else return (Math.sqrt( 1 - 4*m*m ) + 1) * 0.5; },
     function OutCircle     (p)  { var m=p-1      ;                                                      return  Math.sqrt( 1 -   m*m );            },
@@ -146,15 +147,16 @@ var EasingFuncs = // Array of Functions
                                 },
     function OutElastic    (p)  {              return 1+(Math.pow( 2,10*-p ) * Math.sin( (-p*40 - 3) * Math.PI/6 )); },
 
-    // NOTE: InExpo and OutExpo need clamping for 0 and 1 respectively
-    function InExpo        (p)  {   if (p <= 0) return 0; return   Math.pow( 2,  10*(p-1) ); },
-    function InOutExpo     (p)  {
+    // NOTE: 'Exponent2' needs clamping for 0 and 1 respectively
+    function InExponent2   (p)  {   if (p <= 0) return 0; return   Math.pow( 2,  10*(p-1) ); },
+    function InOutExponent2(p)  {
                                     if (p <= 0) return 0;
                                     if (p >= 1) return 1;
                                     if (p <0.5) return             Math.pow( 2,  10*(2*p-1)-1);
                                     else        return           1-Math.pow( 2, -10*(2*p-1)-1);
                                 },
-    function OutExpo       (p)  {   if (p >= 1) return 1; return 1-Math.pow( 2, -10* p    ); },
+    function OutExponent2  (p)  {   if (p >= 1) return 1; return 1-Math.pow( 2, -10* p    ); },
+
 
     function InSine        (p)  { return      1 - Math.cos( p * Math.PI*0.5 );  },
     function InOutSine     (p)  { return 0.5*(1 - Math.cos( p * Math.PI     )); },

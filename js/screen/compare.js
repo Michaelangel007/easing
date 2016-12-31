@@ -81,21 +81,21 @@ Ease.prototype =
             Easing.IN_BOUNCE       ,
             Easing.IN_CIRCLE       ,
             Easing.IN_ELASTIC      ,
-            Easing.IN_EXPO         ,
+            Easing.IN_EXPONENT     ,
             Easing.IN_SINE         ,
 
             Easing.IN_OUT_BACK     ,
             Easing.IN_OUT_BOUNCE   ,
             Easing.IN_OUT_CIRCLE   ,
             Easing.IN_OUT_ELASTIC  ,
-            Easing.IN_OUT_EXPO     ,
+            Easing.IN_OUT_EXPONENT2,
             Easing.IN_OUT_SINE     ,
 
             Easing.OUT_BACK        ,
             Easing.OUT_BOUNCE      ,
             Easing.OUT_CIRCLE      ,
             Easing.OUT_ELASTIC     ,
-            Easing.OUT_EXPO        ,
+            Easing.OUT_EXPONENT2   ,
             Easing.OUT_SINE        ,
         ];
 
