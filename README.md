@@ -1,4 +1,4 @@
-# Code Poetry: Easing Functions Tutorial and Optimizations
+# Code Poetry: Easing Tutorial & Optimizations
 
 # Table of Contents
 
