@@ -768,7 +768,66 @@ Let's make this a little more robust:
 Hmmm, some of these equations are starting to look familiar !
 
 
-# WIP
+## Cleanup - In Back
+
+![In Bounce graph](pics/23_in_back.png)
+
+## Cleanup - In Bounce
+
+![In Bounce graph](pics/26_in_bounce.png)
+
+## Cleanup - In Circle
+
+![In Circle graph](pics/20_in_bounce.png)
+
+## Cleanup - In Cubic
+
+![In Cubic graph](pics/3_in_cubic.png)
+
+## Cleanup - In Elastic
+
+![In Elastic graph](pics/32_in_elastic.png)
+
+## Cleanup - In Exponent 2
+
+![In Exponent 2 graph](pics/35_in_elastic.png)
+
+## Cleanup - In Exponent e
+
+![In Exponent e graph](pics/41_in_elastic.png)
+
+## Cleanup - In Log10
+
+![In Log10 graph](pics/44_in_log10.png)
+
+## Cleanup - In Octic
+
+![In Octic graph](pics/8_in_octic.png)
+
+## Cleanup - In Quadratic
+
+![In Quadratic graph](pics/2_in_quadratic.png)
+
+## Cleanup - In Quartic
+
+![In Quartic graph](pics/4_in_quartic.png)
+
+## Cleanup - In Quintic
+
+![In Quintic graph](pics/5_in_quintic.png)
+
+## Cleanup - In Septic
+
+![In Septic graph](pics/7_in_septic.png)
+
+## Cleanup - In Sextic
+
+![In Sextic graph](pics/6_in_sextic.png)
+
+## Cleanup - In Sine
+
+![In Sine graph](pics/38_in_sine.png)
+
 
 To be continued.
 
@@ -777,48 +836,105 @@ To be continued.
 * [x] Optimize easing functions
 * [x] Demo
 * [x] Plot easing functions (code)
- * [ ] Linear
- * [ ] In Quadratic
- * [ ] In Cubic
- * [ ] In Quartic
- * [ ] In Quintic
- * [ ] In Sextic
- * [ ] In Septic
- * [ ] In Octic
- * [ ] In Out Quadratic
- * [ ] In Out Cubic
- * [ ] In Out Quartic
- * [ ] In Out Quintic
- * [ ] In Out Sextic
- * [ ] In Out Septic
- * [ ] In Out Octic
- * [ ] Out Quadratic
- * [ ] Out Cubic
- * [ ] Out Quartic
- * [ ] Out Quintic
- * [ ] Out Sextic
- * [ ] Out Septic
- * [ ] Out Octic
+ * [x] Linear
+ * [x] In Back
+ * [x] In Bounce
+ * [x] In Circle
+ * [x] In Cubic
+ * [x] In Elastic
+ * [x] In Exponent 2
+ * [x] In Exponent e
+ * [x] In Log10
+ * [x] In Octic
+ * [x] In Quadratic
+ * [x] In Quartic
+ * [x] In Quintic
+ * [x] In Septic
+ * [x] In Sextic
+ * [x] In Sine
+ * [x] In Square Root
+ * [x] In Out Back
+ * [x] In Out Bounce
+ * [x] In Out Circle
+ * [x] In Out Cubic
+ * [x] In Out Elastic
+ * [x] In Out Exponent 2
+ * [x] In Out Exponent e
+ * [x] In Out Log10
+ * [x] In Out Octic
+ * [x] In Out Quadratic
+ * [x] In Out Quartic
+ * [x] In Out Quintic
+ * [x] In Out Septic
+ * [x] In Out Sextic
+ * [x] In Out Sine
+ * [x] In Out Square Root
+ * [x] Out Back
+ * [x] Out Bounce
+ * [x] Out Circle
+ * [x] Out Cubic
+ * [x] Out Elastic
+ * [x] Out Exponent 2
+ * [x] Out Exponent e
+ * [x] Out Log10
+ * [x] Out Octic
+ * [x] Out Quadratic
+ * [x] Out Quartic
+ * [x] Out Quintic
+ * [x] Out Septic
+ * [x] Out Sextic
+ * [x] Out Sine
+ * [x] Out Square Root
+* [ ] Write up tutorial (Work-In-Progress)
  * [ ] Linear
  * [ ] In Back
  * [ ] In Bounce
- * [ ] In Circ
+ * [ ] In Circle
+ * [ ] In Cubic
  * [ ] In Elastic
- * [ ] In Expo
+ * [ ] In Exponent 2
+ * [ ] In Exponent e
+ * [ ] In Log10
+ * [ ] In Octic
+ * [ ] In Quadratic
+ * [ ] In Quartic
+ * [ ] In Quintic
+ * [ ] In Septic
+ * [ ] In Sextic
  * [ ] In Sine
+ * [ ] In Square Root
  * [ ] In Out Back
  * [ ] In Out Bounce
- * [ ] In Out Circ
- * [ ] Out Elastic
- * [ ] Out Expo
+ * [ ] In Out Circle
+ * [ ] In Out Cubic
+ * [ ] In Out Elastic
+ * [ ] In Out Exponent 2
+ * [ ] In Out Exponent e
+ * [ ] In Out Log10
+ * [ ] In Out Octic
+ * [ ] In Out Quadratic
+ * [ ] In Out Quartic
+ * [ ] In Out Quintic
+ * [ ] In Out Septic
+ * [ ] In Out Sextic
  * [ ] In Out Sine
+ * [ ] In Out Square Root
  * [ ] Out Back
  * [ ] Out Bounce
- * [ ] Out Circ
- * [ ] In Out Elastic
- * [ ] In Out Expo
+ * [ ] Out Circle
+ * [ ] Out Cubic
+ * [ ] Out Elastic
+ * [ ] Out Exponent 2
+ * [ ] Out Exponent e
+ * [ ] Out Log10
+ * [ ] Out Octic
+ * [ ] Out Quadratic
+ * [ ] Out Quartic
+ * [ ] Out Quintic
+ * [ ] Out Septic
+ * [ ] Out Sextic
  * [ ] Out Sine
-* [ ] Write up tutorial (Work-In-Progress)
+ * [ ] Out Square Root
 
 By: Michael Pohoreski
 Copyright: 2017
