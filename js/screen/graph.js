@@ -125,6 +125,13 @@ Plot.prototype =
             var typeLabel = new Text().init( { text:'', size: size } ); // # of #: Type
             this.addXY( typeLabel, left, y );
 
+            // <
+            // >
+            var prevLabel = new Text().init( { text: '<', size: size } );
+            var nextLabel = new Text().init( { text: '>', size: size } );
+            this.addXY( prevLabel, left  + gx, y );
+            this.addXY( nextLabel, right - gx, y );
+
             // And side labels and values
             x = left + gw;
             y = 0;
@@ -210,6 +217,8 @@ Plot.prototype =
             this._gb     = gb;
 
             this._type$  = typeLabel;
+            this._prev$  = prevLabel;
+            this._next$  = nextLabel;
 
             this._time$  = timeText;
             this._warp$  = warpText;
@@ -344,6 +353,11 @@ Plot.prototype =
         var dim = this._sideL.getDimensions();
         var x   = this._sideN.getX();
         /*     */ this._sideN.setX( x + dim.w + pad );
+
+        // Right Align '>' next button
+        dim = this._next$.getDimensions();
+        x   = this._next$.getX();
+        /* */ this._next$.setX( x - dim.w );
     },
 
     // ========================================================================
