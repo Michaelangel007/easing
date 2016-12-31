@@ -567,14 +567,15 @@ Robert Penner provided the original, "canonical" 'de facto' easing functions in 
 
 First, let's tabulate the variables we'll be using:
 
-```
-Legend:
-    x = not used
-    t = elapsed time (starting from zero)
-    b = begin val
-    c = change val (end-begin)
-    d = duration (BUG: generates NaN if zero)
-```
+**Legend:**
+
+|Symbol|Meaning       |Notes                                                  |
+|:----:|:-------------|:------------------------------------------------------|
+|  x   | not used     | Useless extra argument that just clutters up the code |
+|  t   | elapsed time | Starting from zero                                    |
+|  b   | begin val    |                                                       |
+|  c   | change val   | end-begin                                             |
+|  d   | duration     | **BUG:** generates NaN if zero!                       |
 
 And without further ado:
 
