@@ -187,6 +187,7 @@ Widget.prototype =
 
     /**
      * Category: Animation
+     * Clears the on end callback
      */
     // ========================================================================
     clearOnEnd: function( axis )
