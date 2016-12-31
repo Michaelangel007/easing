@@ -435,7 +435,7 @@ var Axis =
 
 ## Why Javascript
 
-Javascript is a crappy language designed in 10 days. If it is so bad then why use it?
+Javascript is a crappy language (*) designed in 10 days. If it is so bad then why use it?
 
 Two reasons:
 
@@ -443,7 +443,19 @@ Two reasons:
 * More importantly, _to show that is possible_ to write **good** code in any language,
 even as one as bad as Javascript.
 
-Getting back to our axis of evil, er, 8D axis ...
+What makes Javascript such as shitty _designed_ language?
+
+* It is BASIC all over again -- accidently misspell a variable and JS uses the `undefined` value _without any warnings_ ...
+* ... unless you use the **hack** `"use strict";` at the top of every Javascript program
+* No ability to include other code
+* ASI, aka Automatic Semi-Colon Insertion.  You can't put a return on a line by itself.  Douglas Crockford [said it best @3:41](https://www.youtube.com/watch?v=hQVTIJBZook#t=1906) _"Why am I betting my career on this piece of crap?"_
+* No native unsigned 64-bit int. `var n = (1 << 63); console.log( n ); // -2147483648` // *facepalm*
+* Every number is a 64-bit floating-point
+* The comparision operator `==` are horibly [broken](https://dorey.github.io/JavaScript-Equality-Table/) if( 0 == "0" ) console.log( "equal" ); // equal!?
+* Its type system is foobar. See Gary Bernhardt's [WAT](https://www.destroyallsoftware.com/talks/wat)
+* No automatic multi-line string concatenation
+
+OK, enough ranting. Let's get back to our axis of evil, er, 8D axis ...
 
 
 ## The Color Axis
