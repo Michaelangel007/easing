@@ -3,35 +3,37 @@
 # Table of Contents
 
 * [Demos](https://github.com/Michaelangel007/easing_optimizations#demos-html--javascript)
-* Pictures
+* [Overview](https://github.com/Michaelangel007/easing_optimizations#overview)
  * [Easing Cheat Sheet](https://github.com/Michaelangel007/easing_optimizations#easing-cheet-sheet)
  * [Comparision of easing functions](https://github.com/Michaelangel007/easing_optimizations#comparision-of-easing-functions)
-* [Overview](https://github.com/Michaelangel007/easing_optimizations#overview)
 * [TL:DR; _"Shut up and show me the code!"_](https://github.com/Michaelangel007/easing_optimizations#tldr-shut-up-and-show-me-the-code)
-* Easing ... what is it and why is it important?
-* Parameter `t` or `p`
-* Simultaneous Animations
-* Cleanup
-* Why Javascript
-* The Color Axis
-* Interpolation
-* De Facto Easing Functions
-* Easing Cleanup
- * Cleanup - Linear
- * Cleanup - In Back
- * Cleanup - In Bounce
- * Cleanup - In Circle
- * Cleanup - In Cubic
- * Cleanup - In Elastic
- * Cleanup - In Exponent 2
- * Cleanup - In Exponent e
- * Cleanup - In Log10
- * Cleanup - In Octic
- * Cleanup - In Quadratic
- * Cleanup - In Quartic
- * Cleanup - In Septic
- * Cleanup - In Sextic
- * Cleanup - In Sine
+* [Easing ... what is it and why is it important?](https://github.com/Michaelangel007/easing_optimizations#easing--what-is-it-and-why-is-it-important)
+* [Parameter `t` or `p`](https://github.com/Michaelangel007/easing_optimizations#parameter-t-or-p)
+* [Simultaneous Animations](https://github.com/Michaelangel007/easing_optimizations#simultaneous-animations)
+* [Why Javascript](https://github.com/Michaelangel007/easing_optimizations#why-javascript)
+* [The Color Axis](https://github.com/Michaelangel007/easing_optimizations#the-color-axis)
+* [Interpolation](https://github.com/Michaelangel007/easing_optimizations#interpolation)
+* [De Facto Easing Functions](https://github.com/Michaelangel007/easing_optimizations#de-facto-easing-functions)
+* [Easing Cleanup](https://github.com/Michaelangel007/easing_optimizations#easing-cleanup)
+ * Cleanup In
+  * [Cleanup - Linear](https://github.com/Michaelangel007/easing_optimizations#cleanup---linear)
+  * [Cleanup - In Back](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-back)
+  * [Cleanup - In Bounce](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-bounce)
+  * [Cleanup - In Circle](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-circle)
+  * [Cleanup - In Cubic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-cubic)
+  * [Cleanup - In Elastic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-elastic)
+  * [Cleanup - In Exponent 2](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-exponent-2)
+  * [Cleanup - In Exponent e](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-exponent-e)
+  * [Cleanup - In Log10](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-log10)
+  * [Cleanup - In Octic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-octic)
+  * [Cleanup - In Quadratic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-quadratic)
+  * [Cleanup - In Quartic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-quartic)
+  * [Cleanup - In Quintic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-quintic)
+  * [Cleanup - In Septic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-sextic)
+  * [Cleanup - In Sextic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-septic)
+  * [Cleanup - In Sine](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-sine)
+ * Cleanup Out
+ * Cleanup In Out
 
 
 ## Demos (HTML + Javascript)
@@ -39,16 +41,22 @@
 * [Compare Demo](https://htmlpreview.github.io/?https://github.com/Michaelangel007/easing_optimizations/blob/master/compare.html)
 * [Graph   Demo](https://htmlpreview.github.io/?https://github.com/Michaelangel007/easing_optimizations/blob/master/graph.html)
 
+# Overview
 
-## Pictures
+This a tutorial in how to:
 
-### Easing Cheet Sheet
+* understand easing functions
+* how to implement them,
+* how to optimize them, and
+* how to write beautiful code
+
+## Easing Cheet Sheet
 
 ![Cheat Sheet 1080p](pics/easing_cheat_sheet_1080.png)
 
 There is also a high resolution [4861x4000 Cheat Sheet](pics/easing_cheat_sheet.png)
 
-### Comparision of easing functions
+## Comparision of easing functions
 
 * Start of animation
 ![Begin](pics/begin.png)
@@ -59,15 +67,6 @@ There is also a high resolution [4861x4000 Cheat Sheet](pics/easing_cheat_sheet.
 * End of animation
 ![End](pics/end.png)
 
-
-# Overview
-
-This a tutorial in how to:
-
-* understand easing functions
-* how to implement them,
-* how to optimize them, and
-* how to write beautiful code
 
 # TL:DR; _"Shut up and show me the code!"_
 
