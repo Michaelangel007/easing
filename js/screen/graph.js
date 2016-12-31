@@ -89,16 +89,17 @@ Plot.prototype =
                 line = new Rect().init( { w:1, h: gh, r: r, g: g, b: b, a: a } );
                 grid.addXY( line, x, gy );
 
+                // Axis labels x and y
                 if( (i >= 0) && (i <= 10) )
                 {
                     var axisLabel = (i/10).toFixed(1);
 
-                    text = new Text().init( { text: axisLabel } );
+                    text = new Text().init( { text: axisLabel, r:xR, g:xG, b:xB } );
                     gridLabelX.addXY( text, x, gb );
 
                     if( i ) // don't duplicate '0.0'
                     {
-                        text = new Text().init( { text: axisLabel } );
+                        text = new Text().init( { text: axisLabel, r:yR, g:yG, b:yB } );
                         gridLabelY.addXY( text, 0, gb - y );
                     }
                 }
