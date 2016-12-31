@@ -179,8 +179,8 @@ var EasingFuncs = // Array of Functions
     function InExponentE   (p)  {   if (p <= 0) return 0; return   Math.pow( Math.E, -10*(1-p) ); }, // Scale 0..1 -> p^-10 .. p^0
     function InOutExponentE(p)  {
                                     var t = p*2;
-                                    if (t < 1) return 0.5 - 0.5*EasingFuncs[ Easing.IN_EXPONENTE ]( 1 - t );
-                                    return            0.5 + 0.5*EasingFuncs[ Easing.IN_EXPONENTE ]( t - 1 );
+                                    if (t < 1) return 0.5 - 0.5*EasingFuncs[ Easing.OUT_EXPONENTE ]( 1 - t );
+                                    return            0.5 + 0.5*EasingFuncs[ Easing.OUT_EXPONENTE ]( t - 1 );
                                 },
     function OutExponentE  (p)  { return 1 - EasingFuncs[ Easing.IN_EXPONENTE ]( 1-p ); },
 
