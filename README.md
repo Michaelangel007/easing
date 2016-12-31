@@ -70,7 +70,7 @@ There is also a high resolution [4861x4000 Cheat Sheet](pics/easing_cheat_sheet.
 
 # TL:DR; _"Shut up and show me the code!"_
 
-```
+```Javascript
 // Optimized Easing Functions by Michael Pohoreski
 // https://github.com/Michaelangel007/easing_optimizations
 // License: Free as in speech and beer; Attribution is always appreciated!
@@ -211,7 +211,7 @@ Before we can do that we first need to know four things ..
 ... then we can calculate the current value. Once we have all the variables we
 can use this equation:
 
-```
+```Javascript
     current = start + (end-start)*(elapsed/duration);
 ```
 
@@ -245,11 +245,13 @@ information that isn't pertinent to the problem.
 
 Anyways, solving for the unknown _current_ `position`:
 
+```Javascript
     position = start + (elapsed/duration)*(end-start);
     position = 30 + (2/10)*(40-30)
     position = 30 + (0.2*10)
     position = 30 + 2
     position = 32 px
+```
 
 If you don't have an intuitive feel for what easing is then maybe this alternative
 **analogy** might help.  Mathematically, easing is the _same concept as
@@ -257,13 +259,13 @@ calculating distance_ from Physics:
 
 For example, when we have constant, linear motion we use the formula:
 
-```
+```Javascript
     Velocity = Distance/Time
 ```
 
 And, solving for `distance`:
 
-```
+```Javascript
     Distance = Velocity*Time
 ```
 
@@ -274,7 +276,7 @@ Getting back on-topic. Note, that this is _relative_ distance.
 
 If we have an **absolute** start and end position the formula becomes:
 
-```
+```Javascript
     Position = Start + (End-Start)*(Elapsed/Duration)
 ```
 
@@ -282,7 +284,7 @@ Where did this formula come from?
 
 We can replace `Velocity` with `(Distance/Time)` and re-solving for this new equation:
 
-```
+```Javascript
     Distance = Velocity*Time
 
     Position = Start + Velocity*Elapsed
@@ -292,7 +294,7 @@ We can replace `Velocity` with `(Distance/Time)` and re-solving for this new equ
 
 Notice how if `start` is zero the formula becomes the common:
 
-```
+```Javascript
     Position = 0 + (End-0)*(Elapsed/Duration)
     Position = End*(Elapsed/Duration)
     Distance = (End/Duration)*Elapsed
@@ -315,25 +317,25 @@ generic or custom function. We'll discuss this more later.
 
 Remember, our easing function looks like:
 
-```
+```Javascript
     position = start + (end - start)*(elapsed/duration);
 ```
 
 As a function, it might look like:
 
-```
+```Javascript
     position = Easing( ... )
 ```
 
 With parameterization, it might look like:
 
-```
+```Javascript
     position = Easing( type, ... )
 ```
 
 But before we can calculate the final position we need the relevent information:
 
-```
+```Javascript
     position = Easing( type, elapsed/duration, start, end )
 ```
 
@@ -372,7 +374,7 @@ OR, in normalized coordinates:
 
 Getting back to our normalized time value `p` ...
 
-```
+```Javascript
     p = elapsed / duration.
 ```
 
@@ -417,7 +419,7 @@ For example we could have:
 These animation or easing `axis` are all **independent.**  We could represent
 these axis in Javascript as:
 
-```
+```Javascript
 var Axis =
 {
     X   : 0, // left position    (in pixels)
@@ -479,7 +481,7 @@ and want to interpolate between them. Before we can do this we would need to
 
 For example this function will do exactly the middle part.
 
-```
+```Javascript
 // Convert numeric r,g,b values to a HTML color hex string `#RRGGBB`
 function RGBtoHex = function( r, g, b )
 {
@@ -498,10 +500,11 @@ it might be more convenient to use a `hue` controller.
 
 At the high level it would be:
 
-```
-    /** {Number} startAngle - starting color in degrees
-     *  {Number} endAngle   - end      color in degrees
-     *  {Number} duration   - duration in seconds
+```Javascript
+    /** Animate between two colors
+     *  @param {Number} startAngle - starting color in degrees
+     *  @param {Number} endAngle   - end      color in degrees
+     *  @param {Number} duration   - duration in seconds
      */
     function HueControllerAnimate( startAngle, endAngle, duration )
     {
@@ -576,7 +579,7 @@ This is one of those times where `t` is commonly used.
 Let's replace those abbreviations with descriptive names for now since we
 want to understand what they mean.
 
-```
+```Javascript
     function lerp( p, start, end )
     {
         return start + (p-1)(end-start);
@@ -810,7 +813,7 @@ Its graph looks like this:
 ![Linear graph](pics/01_linear.png)
 
 
-```
+```Javascript
     easeInLinear: function (x, t, b, c, d) {
         return c*(t/=d) + b;
     },
@@ -819,7 +822,7 @@ Its graph looks like this:
 Now, when `d` is 0, this generates a bug #1 `NaN`.  Let's digress slightly and
 address bug #2, `t < 0` and `t > d` before we fix this.
 
-```
+```Javascript
     easeInLinear: function (x, t, b, c, d) {
         if (t <= 0) return b    ; // start
         if (t >= d) return b + c; // end
@@ -828,7 +831,7 @@ address bug #2, `t < 0` and `t > d` before we fix this.
 
 What happens when `d` == 0 ? It returns the `end` for free!
 
-```
+```Javascript
     easeInLinear: function (x, t, b, c, d) {
         if (t <= 0) return b    ;
         if (t >= d) return b + c; // t >= 0 return end
@@ -837,7 +840,7 @@ What happens when `d` == 0 ? It returns the `end` for free!
 
 Let's make this a little more robust:
 
-```
+```Javascript
     easeInLinear: function (x, t, b, c, d) {
         if (t <= 0) return b    ; // If d=0, then t is always t >= d
         if (t >= d) return b + c; // due to t < 0 already being handled
