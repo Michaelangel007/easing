@@ -65,7 +65,7 @@ var Easing =
     OUT_LOG10       : 46,
 
     IN_SQRT         : 47,
-    INT_OUT_SQRT    : 48,
+    IN_OUT_SQRT     : 48,
     OUT_SQRT        : 49,
 
     NUM             : 50,
