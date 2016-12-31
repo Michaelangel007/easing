@@ -81,7 +81,7 @@ Ease.prototype =
             Easing.IN_BOUNCE       ,
             Easing.IN_CIRCLE       ,
             Easing.IN_ELASTIC      ,
-            Easing.IN_EXPONENT     ,
+            Easing.IN_EXPONENT2    ,
             Easing.IN_SINE         ,
 
             Easing.IN_OUT_BACK     ,
