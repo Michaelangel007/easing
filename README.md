@@ -1,5 +1,7 @@
 # Code Poetry: Easing Functions Tutorial and Optimizations
 
+# Table of Contents
+
 # Demos (HTML + Javascript)
 
 * [Compare Demo](https://htmlpreview.github.io/?https://github.com/Michaelangel007/easing_optimizations/blob/master/compare.html)
