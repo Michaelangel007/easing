@@ -33,13 +33,13 @@
  * Cleanup - In Sine
 
 
-# Demos (HTML + Javascript)
+## Demos (HTML + Javascript)
 
 * [Compare Demo](https://htmlpreview.github.io/?https://github.com/Michaelangel007/easing_optimizations/blob/master/compare.html)
 * [Graph   Demo](https://htmlpreview.github.io/?https://github.com/Michaelangel007/easing_optimizations/blob/master/graph.html)
 
 
-# Pictures
+## Pictures
 
 ## Easing Cheet Sheet
 
