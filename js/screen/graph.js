@@ -182,8 +182,11 @@ Plot.prototype =
 
         // Label showing easing type
             y = gh + dy;
-            var typeLabel = new Text().init( { text:'', size: size } ); // # of #: Type
+            var typeLabel = new Text().init( { size: size } ); // Type
             this.addXY( typeLabel, left, y );
+
+            var iofnLabel = new Text().init( { size: size } ); // # of #
+            this.addXY( iofnLabel, left, y + size );
 
             // <
             // >
@@ -271,10 +274,17 @@ Plot.prototype =
             this._left   = left;
             this._w      = w;
             this._h      = h;
+
+            this._gridL  = left  + gx;
+            this._gridR  = right - gx;
+            this._gridW  = gw;
+
             this._plot   = plot;
             this._gb     = gb;
 
             this._type$  = typeLabel;
+            this._iofn$  = iofnLabel;
+
             this._prev$  = prevLabel;
             this._next$  = nextLabel;
 
@@ -342,10 +352,15 @@ Plot.prototype =
             }
         }
 
-        var i_n  = '' + this._iEasing + ' of ' + last + ': ';
         var text = EasingNames[ this._aEasing[ this._iEasing ] ];
+        var i_n  = '' + this._iEasing + ' of ' + last;
 
-        this._type$.setText( i_n + text );
+        this._type$.setText( text );
+        this._iofn$.setText( i_n  );
+
+        var dim;
+        dim = this._type$.getMetrics(); this._type$.setX( this._gridL + (this._gridW - dim.w)*0.5 );
+        dim = this._iofn$.getMetrics(); this._iofn$.setX( this._gridL + (this._gridW - dim.w)*0.5 );
 
         var isAnimating = this._anim.isAnimating( Axis.T );
         this._anim.stop( Axis.T );
