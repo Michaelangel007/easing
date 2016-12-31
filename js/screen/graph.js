@@ -19,6 +19,66 @@ Plot.prototype =
 
             var x, n = w+1, y;
 
+        // Easing
+        this._iEasing = 0;
+        this._aEasing =
+        [
+            Easing.LINEAR          ,
+
+        // Sorted "Visually" by slope
+            Easing.IN_SQRT         ,
+            Easing.IN_LOG10        ,
+            Easing.IN_SINE         ,
+            Easing.IN_QUADRATIC    ,
+            Easing.IN_CUBIC        ,
+            Easing.IN_CIRCLE       ,
+            Easing.IN_QUARTIC      ,
+            Easing.IN_QUINTIC      ,
+            Easing.IN_BACK         ,
+            Easing.IN_SEXTIC       ,
+            Easing.IN_EXPONENT2    ,
+            Easing.IN_SEPTIC       ,
+            Easing.IN_OCTIC        ,
+            Easing.IN_EXPONENTE    ,
+            Easing.IN_ELASTIC      ,
+            Easing.IN_BOUNCE       ,
+
+            Easing.IN_OUT_SQRT     ,
+            Easing.IN_OUT_LOG10    ,
+            Easing.IN_OUT_SINE     ,
+            Easing.IN_OUT_QUADRATIC,
+            Easing.IN_OUT_CUBIC    ,
+            Easing.IN_OUT_CIRCLE   ,
+            Easing.IN_OUT_QUARTIC  ,
+            Easing.IN_OUT_QUINTIC  ,
+            Easing.IN_OUT_BACK     ,
+            Easing.IN_OUT_SEXTIC   ,
+            Easing.IN_OUT_EXPONENT2,
+            Easing.IN_OUT_SEPTIC   ,
+            Easing.IN_OUT_OCTIC    ,
+            Easing.IN_OUT_EXPONENTE,
+            Easing.IN_OUT_ELASTIC  ,
+            Easing.IN_OUT_BOUNCE   ,
+
+            Easing.OUT_SQRT        ,
+            Easing.OUT_LOG10       ,
+            Easing.OUT_SINE        ,
+            Easing.OUT_QUADRATIC   ,
+            Easing.OUT_CUBIC       ,
+            Easing.OUT_CIRCLE      ,
+            Easing.OUT_QUARTIC     ,
+            Easing.OUT_QUINTIC     ,
+            Easing.OUT_BACK        ,
+            Easing.OUT_SEXTIC      ,
+            Easing.OUT_EXPONENT2   ,
+            Easing.OUT_SEPTIC      ,
+            Easing.OUT_OCTIC       ,
+            Easing.OUT_EXPONENTE   ,
+            Easing.OUT_ELASTIC     ,
+            Easing.OUT_BOUNCE      ,
+        ];
+
+
         // Grid
             var major = 1.0; // alpha of major grid line
             var minor = 1/3; // alpha of minor grid line
@@ -167,8 +227,6 @@ Plot.prototype =
             }
 
         // Animation
-            this._easing = Easing.LINEAR;
-
             var steps = 1000;
             var dim   = 3;
             rect = new Rect().init( { w:2*dim+1, h:2*dim+1, r:1, g:0, b:0 } );
@@ -190,15 +248,15 @@ Plot.prototype =
             {
                 obj.axis  = Axis.T;
                 obj.ms    = 2000;
-                obj.type  = self._easing;
+                obj.type  = self._iEasing;
                 obj.onInc = onIncDec;
 
                 obj.onEnd = onEnd;
                 obj.t     = t;
             };
 
-            var cbInc = function( axis ) { self.objInc.type = self._easing; self._anim.animate( self.objInc ); }; // Done decrement, start increment animation
-            var cbDec = function( axis ) { self.objInc.type = self._easing; self._anim.animate( self.objDec ); }; // Done increment, start decrement animation
+            var cbInc = function( axis ) { self.objInc.type = self._iEasing; self._anim.animate( self.objInc ); }; // Done decrement, start increment animation
+            var cbDec = function( axis ) { self.objInc.type = self._iEasing; self._anim.animate( self.objDec ); }; // Done increment, start decrement animation
 
             params( objInc, cbDec, steps ); // Count up   to 1000
             params( objDec, cbInc,     0 ); // Count down to    0
@@ -231,17 +289,17 @@ Plot.prototype =
     // ========================================================================
     layout: function( delta )
     {
-        var easing = this._easing;
+        var easing = this._iEasing;
+        var last   = this._aEasing.length - 1;
 
         easing += delta;
-        if( easing < Easing.LINEAR )
-            easing = Easing.NUM - 1;
-        if( easing >=Easing.NUM    )
-            easing = Easing.LINEAR ;
+        if( easing < 0 )
+            easing = last;
+        if( easing > last )
+            easing = 0;
 
-        this._easing = easing;
-
-        var op = EasingFuncs[ easing ];
+        this._iEasing = easing;
+        var op = EasingFuncs[ this._aEasing[ easing ] ];
 
         var plot = this._plot;
         var w    = this._w;
@@ -284,8 +342,8 @@ Plot.prototype =
             }
         }
 
-        var i_n  = '' + this._easing + ' of ' + (Easing.NUM - 1) + ': ';
-        var text = EasingNames[ this._easing ];
+        var i_n  = '' + this._iEasing + ' of ' + last + ': ';
+        var text = EasingNames[ this._aEasing[ this._iEasing ] ];
 
         this._type$.setText( i_n + text );
 
@@ -378,7 +436,7 @@ Plot.prototype =
         var h  = this._h;
 
         var t  = rect.getT();
-        var op = EasingFuncs[ this._easing ];
+        var op = EasingFuncs[ this._aEasing[ this._iEasing ] ];
         var p  = t * rect._invSteps;
         var q  = op( p );
 
