@@ -9,6 +9,13 @@
 
 # Pictures
 
+## Easing Cheet Sheet
+
+![Cheat Sheet 1080p](pics/pics/easing_cheat_sheet_1080.png)
+![Cheat Sheet 4000 ](pics/pics/easing_cheat_sheet.png)
+
+## Comparision of different easing
+
 * Start of animation
 ![Begin](pics/begin.png)
 
