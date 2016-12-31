@@ -825,11 +825,11 @@ Hmmm, some of these equations are starting to look familiar !
 
 ## Cleanup - In Exponent 2
 
-![In Exponent 2 graph](pics/35_in_elastic.png)
+![In Exponent 2 graph](pics/35_in_exponent_2.png)
 
 ## Cleanup - In Exponent e
 
-![In Exponent e graph](pics/41_in_elastic.png)
+![In Exponent e graph](pics/41_in_exponent_e.png)
 
 ## Cleanup - In Log10
 
