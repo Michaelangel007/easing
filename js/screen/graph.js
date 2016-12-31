@@ -125,6 +125,28 @@ Plot.prototype =
             var typeLabel = new Text().init( { text:'', size: size } ); // # of #: Type
             this.addXY( typeLabel, left, y );
 
+            // And side labels and values
+            x = left + gw;
+            y = 0;
+
+            var timeLabel = new Text().init( { text: 'x: ', size: size, r:xR, g:xG, b:xB } ); // Normal Time
+            var timeText  = new Text().init( { text: '?'  , size: size                   } );
+
+            var warpLabel = new Text().init( { text: 'y: ', size: size, r:yR, g:yG, b:yB } ); // Warped Time
+            var warpText  = new Text().init( { text: '?'  , size: size                   } );
+
+
+            this._sideL = new Widget().init(); // Container
+            this._sideN = new Widget().init();
+
+            this._sideL.addXY( timeLabel, 0, y );
+            this._sideN.addXY( timeText , 0, y ); y += size;
+            this._sideL.addXY( warpLabel, 0, y );
+            this._sideN.addXY( warpText , 0, y ); y += size;
+
+            this.addXY( this._sideL, x, gb - size );
+            this.addXY( this._sideN, x, gb - size );
+
         // Graph
             var rect;
             var plot = new Widget().init();
@@ -188,6 +210,9 @@ Plot.prototype =
             this._gb     = gb;
 
             this._type$  = typeLabel;
+
+            this._time$  = timeText;
+            this._warp$  = warpText;
 
             this._anim   = rect;
 
@@ -306,9 +331,26 @@ Plot.prototype =
     },
 
     // ========================================================================
+    fixupTextLabels: function()
+    {
+        var pad = 4;
+
+        // Put SideR's left edge adjacent SideL's width
+        // SideL  SideR
+        //
+        // Head1  Val1
+        // Head2  Val2
+        // Head3  Val3
+        var dim = this._sideL.getDimensions();
+        var x   = this._sideN.getX();
+        /*     */ this._sideN.setX( x + dim.w + pad );
+    },
+
+    // ========================================================================
     onCreate: function()
     {
         this.fixupGridLabels();
+        this.fixupTextLabels();
 
         this.layout( 0 );
         this._cbInc();
@@ -333,6 +375,11 @@ Plot.prototype =
         var y  = this._top  + this._gb - n;
         rect.setX( x - rect._dim );
         rect.setY( y - rect._dim );
+
+        t /= 1000;
+
+        this._time$.setText( t.toFixed( 5 ) );
+        this._warp$.setText( q.toFixed( 5 ) );
     },
 
     // ========================================================================
