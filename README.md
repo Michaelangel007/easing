@@ -2,6 +2,37 @@
 
 # Table of Contents
 
+* Demos
+* Pictures
+ * Easing Cheat Sheet
+ * Comparision of easing functions
+* TL:DR; Overview
+* Easing ... what is it and why is it important?
+* Parameter `t` or `p`
+* Simultaneous Animations
+* Cleanup
+* Why Javascript
+* The Color Axis
+* Interpolation
+* De Facto Easing Functions
+* Easing Cleanup
+ * Cleanup - Linear
+ * Cleanup - In Back
+ * Cleanup - In Bounce
+ * Cleanup - In Circle
+ * Cleanup - In Cubic
+ * Cleanup - In Elastic
+ * Cleanup - In Exponent 2
+ * Cleanup - In Exponent e
+ * Cleanup - In Log10
+ * Cleanup - In Octic
+ * Cleanup - In Quadratic
+ * Cleanup - In Quartic
+ * Cleanup - In Septic
+ * Cleanup - In Sextic
+ * Cleanup - In Sine
+
+
 # Demos (HTML + Javascript)
 
 * [Compare Demo](https://htmlpreview.github.io/?https://github.com/Michaelangel007/easing_optimizations/blob/master/compare.html)
@@ -16,7 +47,7 @@
 
 There is also a high resolution [4861x4000 Cheat Sheet](pics/easing_cheat_sheet.png)
 
-## Comparision of different easing
+## Comparision of easing functions
 
 * Start of animation
 ![Begin](pics/begin.png)
@@ -28,7 +59,7 @@ There is also a high resolution [4861x4000 Cheat Sheet](pics/easing_cheat_sheet.
 ![End](pics/end.png)
 
 
-# Overview
+# TL:DR; Overview
 
 This a tutorial in how to:
 
@@ -718,7 +749,7 @@ The _implementation_ problems are:
 We will address and fix **all** of these bugs.
 
 
-# Cleanup - Linear
+## Cleanup - Linear
 
 First, let's start with the linear easing.
 
