@@ -39,9 +39,9 @@ var Easing =
     IN_OUT_BOUNCE   : 27,
     OUT_BOUNCE      : 28,
 
-    IN_CIRC         : 29,
-    IN_OUT_CIRC     : 30,
-    OUT_CIRC        : 31,
+    IN_CIRCLE       : 29,
+    IN_OUT_CIRCLE   : 30,
+    OUT_CIRCLE      : 31,
 
     IN_ELASTIC      : 32,
     IN_OUT_ELASTIC  : 33,
@@ -132,10 +132,9 @@ var EasingFuncs = // Array of Functions
                                     else if (p < k4) { t = p - k5; return k0 * t*t + 0.9375;   } // 60/64
                                     else             { t = p - k6; return k0 * t*t + 0.984375; } // 63/64
                                 },
-
-    function InCirc        (p)  {                             return  1-Math.sqrt( 1 - p*p );                                                      },
-    function InOutCirc     (p)  { var m=p-1,t=p*2; if (t < 1) return (1-Math.sqrt( 1 - t*t ))*0.5; else return (Math.sqrt( 1 - 4*m*m ) + 1) * 0.5; },
-    function OutCirc       (p)  { var m=p-1      ;                                                      return  Math.sqrt( 1 -   m*m );            },
+    function InCircle      (p)  {                             return  1-Math.sqrt( 1 - p*p );                                                      },
+    function InOutCircle   (p)  { var m=p-1,t=p*2; if (t < 1) return (1-Math.sqrt( 1 - t*t ))*0.5; else return (Math.sqrt( 1 - 4*m*m ) + 1) * 0.5; },
+    function OutCircle     (p)  { var m=p-1      ;                                                      return  Math.sqrt( 1 -   m*m );            },
 
     function InElastic     (p)  { var m = p-1; return  - Math.pow( 2,10*m  ) * Math.sin( ( m*40 - 3) * Math.PI/6  ); },
     function InOutElastic  (p)  {
