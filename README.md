@@ -13,7 +13,8 @@
 ## Easing Cheet Sheet
 
 ![Cheat Sheet 1080p](pics/easing_cheat_sheet_1080.png)
-![Cheat Sheet 4000 ](pics/easing_cheat_sheet.png)
+
+There is also a high resolution [4861x4000 Cheat Sheet](pics/easing_cheat_sheet.png)
 
 ## Comparision of different easing
 
