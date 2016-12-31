@@ -5,7 +5,7 @@ function Text() {}
 Text.prototype =
 {
     /**
-     * @params {String} [params.text             ] - Text to display
+     * @params {String} [params.text=''          ] - Text to display
      * @params {String} [params.font='sans-serif'] - Font family
      * @params {Number} [params.size=16          ] - Font size in pixels
      * @params {Number} [params.r=0              ] - Red   (normalized)
