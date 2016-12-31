@@ -711,6 +711,9 @@ var Original =
     }
 };
 ```
+
+Uhm, _yeah._
+
 Let's learn how to clean up this _fugly, overengineered code_ into the _beautiful_, exact equivalent mentioned at the beginning.
 
 The astute reader will notice that `jQuery` initially adapted these _"as-is"_
@@ -754,12 +757,12 @@ We will address and fix **all** of these bugs.
 
 First, let's start with the linear easing.
 
-It's graph looks like this:
+Hmm, there isn't one. Really?!  Let's add one for _completeness._
+
+Its graph looks like this:
 
 ![Linear graph](pics/01_linear.png)
 
-
-Hmm, there isn't one. Let's add one for completeness.
 
 ```
     easeInLinear: function (x, t, b, c, d) {
