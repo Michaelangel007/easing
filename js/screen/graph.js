@@ -49,6 +49,15 @@ Plot.prototype =
             x = gx;
             y = -dy*extra;
 
+            // Axis label colors
+            var xR = 0.5;
+            var xG = 0.0;
+            var xB = 0.0;
+
+            var yR = 0.0;
+            var yG = 0.5;
+            var yB = 0.0;
+
             for( i = -extra; i <= (10+extra); ++i )
             {
                 // CellX
@@ -313,11 +322,13 @@ Plot.prototype =
         var t  = rect.getT();
         var op = EasingFuncs[ this._easing ];
         var p  = t * rect._invSteps;
+        var q  = op( p );
 
         // NOTE: InOutBack() can actually go negative!
         //     EasingFuncs[ Easing.IN_OUT_BACK ]( 0.008 )
         var x  = this._left + w*p;
-        var y  = this._top  + this._gb - h*op( p );
+        var n  = h*q;
+        var y  = this._top  + this._gb - n;
         rect.setX( x - rect._dim );
         rect.setY( y - rect._dim );
 
