@@ -64,6 +64,7 @@
  * [Cleanup - In Out Septic](https://github.com/Michaelangel007/easing#cleanup---in-out-sextic)
  * [Cleanup - In Out Sextic](https://github.com/Michaelangel007/easing#cleanup---in-out-septic)
  * [Cleanup - In Out Sine](https://github.com/Michaelangel007/easing#cleanup---in-out-sine)
+* [Verification](https://github.com/Michaelangel007/easing#verification)
 * TODO
 
 
@@ -1487,6 +1488,15 @@ $.each( baseEasings, function( name, easeIn ) {
 });
 ```
 
+# Verification
+
+Any good scientist _verifies_ the data. As computer scientists any time
+we do _optimizations_ we need to as well -- else we could be introducing bugs.
+
+* _"It doesn't matter how fast you get the answer if it is wrong!"_
+
+This will be forthcoming.
+
 
 # TODO
 
@@ -1595,6 +1605,7 @@ $.each( baseEasings, function( name, easeIn ) {
  * [ ] Out Sextic
  * [ ] Out Sine
  * [ ] Out Square Root
+* verify.html
 
 By: Michael "Code Poet" Pohoreski
 Copyright: 2016-2017
