@@ -1270,7 +1270,7 @@ function InOutQuadratic_v2( p ) {
 
  The graph looks like this:
 
- ![HalfH Out Quadratic](pics/tutorial/4_out_quadratic_halfh.png)
+ ![HalfH Out Quadratic](pics/tutorial/3_out_quadratic_halfh.png)
 
 4\. Again, similiarly for `In` we scale the `Out` width (`x`) by 1/2
 
