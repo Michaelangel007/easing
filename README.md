@@ -77,10 +77,10 @@
 
 This a tutorial in how to:
 
-* understand easing functions
+* understand easing functions,
 * how to implement them,
 * how to optimize them, and
-* how to write beautiful code
+* how to write the beautiful code behind them
 
 
 ## Easing Cheet Sheet
@@ -341,7 +341,7 @@ Now as programmers we love to invent our own terminology.
 However, instead of a "hard-coded" formula we:
 
 1. we call animation the name _"easing"_, and
-2. paramaterize it.
+2. parameterize it.
 
 What the heck is _Parameterization_ ?
 
@@ -349,22 +349,37 @@ _Parameterization_ is just a fancy word for abstraction or _generalizing_.
 Instead of using a hard-coded fixed function we instead use a
 generic or custom function. We'll discuss this more later.
 
-Remember, our easing function looks like:
+Remember, our easing _formula_ looks like:
 
 ```Javascript
     position = start + (end - start)*(elapsed/duration);
 ```
 
-As a function, it might look like:
+As a _function_, it might look like:
 
 ```Javascript
-    position = Easing( ... )
+    Easing: function( ... )
+    {
+        var position = ...;
+        return position;
+    }
 ```
 
 With parameterization, it might look like:
 
 ```Javascript
-    position = Easing( type, ... )
+    Easing: function( type, ... )
+    {
+        var position;
+
+        switch( type )
+        {
+            case ?: position = ...; break;
+            case ?: position = ...; break;
+        }
+
+        return position;
+    }
 ```
 
 But before we can calculate the final position we need the relevent information:
