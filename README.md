@@ -502,13 +502,31 @@ even as one as bad as Javascript.
 
 * It is BASIC all over again -- accidently misspell a variable and JS uses the `undefined` value _without any warnings_ ...
 * ... unless you use the **hack** `"use strict";` at the top of every Javascript program
-* No ability to include other code
-* ASI, aka Automatic Semi-Colon Insertion.  You can't put a return on a line by itself.  Douglas Crockford [said it best @3:41](https://www.youtube.com/watch?v=hQVTIJBZook#t=1906) _"Why am I betting my career on this piece of crap?"_
-* No native unsigned 64-bit int. `var n = (1 << 63); console.log( n ); // -2147483648` // *facepalm*
-* Every number is a 64-bit floating-point
-* The comparision operator `==` are horibly [broken](https://dorey.github.io/JavaScript-Equality-Table/) i.e. `if( 0 == "0" ) console.log( "equal" ); // equal!?`
-* Its type system is foobar. See Gary Bernhardt's [WAT talk](https://www.destroyallsoftware.com/talks/wat) for brain-dead the language is
-* No automatic multi-line string concatenation
+* No ability to include other code -- unless you use `require` hack which **only** works in _server_ and not in _a browser_
+* ASI, aka Automatic Semi-Colon Insertion.  You can't put a return on a line by itself due to the idiotic grammar/parsing.  Douglas Crockford [said it best @3:41](https://www.youtube.com/watch?v=hQVTIJBZook#t=1906) _"Why am I betting my career on this piece of crap?"_
+* No native unsigned 64-bit int. `var n = (1 << 63); console.log( n ); // -2147483648` // **facepalm**
+* Every number is a 64-bit floating-point, unless you use [Float32Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array)
+* The comparision operator `==` is [horribly broken](https://dorey.github.io/JavaScript-Equality-Table/) i.e. `if( 0 == "0" ) console.log( "equal" ); // equal!?`
+* Its type system is foobar. See Gary Bernhardt's [WAT talk](https://www.destroyallsoftware.com/talks/wat) talk for how brain-dead the language is.
+* No automatic multi-line string concatenation. This means you need to do stupd shit like this _at run-time!_
+
+```Javascript
+ var text = ''
+          +'First line\n'
+          + 'Second line\n'
+          + 'Third line\n'
+          ;
+```
+
+instead of C's or Python's automatic multi-line string concatenation:
+
+```C
+   char *text =
+"First line\n"
+"Second line\n"
+"Third line\n"
+        ;
+```
 
 OK, enough ranting. Let's get back to our axis of evil, er, 8D axis ...
 
