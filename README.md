@@ -1175,12 +1175,12 @@ one _continuous_ function.
 
 This means:
 
-* The end-point of `In` is <0.5,0.5>
+* The end-point   of `In`  is <0.5,0.5>
 * The start-point of `Out` is <0.5,0.5>
 
-In order to do this we need to do 4 things:
+In order to do this we need 4 pre-requisites:
 
-1. Scale `y` in `In` by 1/2.
+1. Scale the `In` height (`y`) by 1/2.
 
  ```Javascript
  function InOutQuadratic_v1( p ) {
@@ -1198,111 +1198,7 @@ In order to do this we need to do 4 things:
 
  The graph looks like this:
 
- ![In Out Quadratic Version 1](pics/tutorial/in_out_quadratic_1.png)
-
-
-2. Scale `y` in `Out` by 1/2
-
- ```Javascript
- function InOutQuadratic_v2( p ) {
-     return 0.5 * OutQuadratic(p);
- }
- ```
-
- or when inlined:
-
- ```Javascript
- function InOutQuadratic_v2( p ) {
-     return 0.5 * (1 - ((1-p)*(1-p)));
- }
- ```
-
- The graph looks like this:
-
- ![In Out Quadratic Version 2](pics/tutorial/in_out_quadratic_2.png)
-
-3. Hmm, but how do we join these two graphs to form one _continuous_ graph?
-
- We first need to "offset" or shift the `Out` x and y over by:
-
- * x += 0.5
- * y += 0.5
-
- ```Javascript
- function InOutQuadratic_v3( p ) {
-     return 0.5 + 0.5*OutQuadratic(p);
- }
- ```
-
- OK, that helps, but _how_ do we join these two graphs?
-
- Reparameterization to the rescue!
-
- How? We need to remap our original input `p` range and split it into two ranges.
- I'll call the new input `t`
-
-| p range      | new t range  | Easing |
-|:-------------|:-------------|:-------|
-| [0.0 .. 0.5) | [0.0 .. 1.0] | In     |
-| [0.5 .. 1.0] | [0.0 .. 1.0] | Out    |
-
- We have two new problems -- how to solve for `t` ? With a little bit of algebra:
-
- ```
-    Input  : p = [0.0 .. 0.5)
-    Output : t = [0.0 .. 1.0]
-    Formula: t = p/2
-
-    Input  : p = [0.5 .. 1.0]
-    Output : t = [0.0 .. 1.0]
-    Formula: t = p*2-1
- ```
-
- And now we can piece together our `InOut` function:
-
- ```Javascript
-function InOutQuadratic( p )
-{
-    if( p < 0.5 ) return InQuadratic ( 2*p     );
-    else          return OutQuadratic( 2*p - 1 );
-}
- ```
-
- We can factor out the common term `2*p` calling it `t`:
-
- ```Javascript
-function InOutQuadratic( p )
-{
-    var t = 2*p;
-
-    if( p < 0.5 ) return InQuadratic ( t     );
-    else          return OutQuadratic( t - 1 );
-}
- ```
-
- To save some typing we can remove that `0.5` and use `1` directly:
-
- ```Javascript
-function InOutQuadratic( p )
-{
-    var t = 2*p;
-
-    if( t < 1 ) return InQuadratic ( t     );
-    else        return OutQuadratic( t - 1 );
-}
- ```
-
- However remember that we need only _half_ of the `In` and `Out`:
-
- ```Javascript
-function InOutQuadratic( p )
-{
-    var t = 2*p;
-
-    if( t < 1 ) return 0.5*InQuadratic ( t     );
-    else        return 0.5*OutQuadratic( t - 1 );
-}
- ```
+ ![HalfH In Quadratic](pics/tutorial/1_in_quadratic_halfh.png)
 
 
 # Cleanup - In
