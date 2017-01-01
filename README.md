@@ -66,10 +66,12 @@
  * [Cleanup - In Out Sine](https://github.com/Michaelangel007/easing#cleanup---in-out-sine)
 * TODO
 
+
 ## Demos (HTML + Javascript)
 
 * [Compare Demo](https://htmlpreview.github.io/?https://github.com/Michaelangel007/easing/blob/master/compare.html)
 * [Graph   Demo](https://htmlpreview.github.io/?https://github.com/Michaelangel007/easing/blob/master/graph.html)
+
 
 # Overview
 
@@ -80,11 +82,13 @@ This a tutorial in how to:
 * how to optimize them, and
 * how to write beautiful code
 
+
 ## Easing Cheet Sheet
 
 ![Cheat Sheet 1080p](pics/easing_cheat_sheet_1080.png)
 
 There is also a high resolution [4861x4000 Cheat Sheet](pics/easing_cheat_sheet.png)
+
 
 ## Comparision of easing functions
 
@@ -796,7 +800,7 @@ Uhm, _yeah._ **NOT**.
 Let's learn how to clean up this _fugly, overengineered code_ into the _beautiful_, exact equivalent mentioned at the beginning.
 
 The astute reader will notice that `jQuery` initially adapted these _"as-is"_
-before coming to their sense and cleaning them up eventually.
+before coming to their senses and cleaning them up into the single argument version eventually.
 
 * https://raw.githubusercontent.com/danro/jquery-easing/master/jquery.easing.js
 
