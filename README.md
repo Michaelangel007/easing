@@ -903,7 +903,7 @@ Let's make this a little more robust:
 Hmmm, some of these equations are starting to look familiar !
 
 We still have a lot of arguments. Is there any way we can get rid of them?
-Yes, with re
+Yes, with _reparameterization._
 
 Reparameterization is just a fancy word for `re-mapping`.
 Technically, it is [this](https://en.wikipedia.org/wiki/Parametrization)
