@@ -1400,9 +1400,14 @@ With manual substitution:
 
 ![In Out Exponent 2 graph](pics/36_in_out_exponent_2.png)
 
-## Cleanup - In Exponent e
+## Cleanup - In Out Exponent e
 
 ![In Out Exponent e graph](pics/42_in_out_exponent_e.png)
+
+
+## Cleanup - In Out Log10
+
+![In Out Log10 graph](pics/45_in_out_log10.png)
 
 ## Cleanup - In Out Octic
 
