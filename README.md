@@ -1439,7 +1439,7 @@ With manual substitution:
 
 ## Cleanup - In Out Square Root
 
-![In Out Square root graph](pics/48_out_sqrt.png)
+![In Out Square root graph](pics/48_in_out_sqrt.png)
 
 
 # jQuery UI
