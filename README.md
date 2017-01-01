@@ -905,11 +905,44 @@ We'll do this for all the easing equations, converting them into a **single argu
 1. Since `x` is unused our function prototype becomes: `function( t, b, c, d )`
 2. Since `b` is zero, our function prototype becomes: `function( t, c, d )`
 3. Since `c` is one, our function prototype becomes: `function( t, d )`
-4. Whoever _calls_ our easing function will be responsible for the `p = t/d` calculation.
+4. Whoever _calls_ our easing function will be responsible for the `p = t/d` calculation so we can remove the last two terms and replace them with one.
 
-Our function prototype is the simple: `function( p )`
+Our function prototype then is the simple:
 
-Let's get started.
+```
+function easeInLinear( p ) {
+    return p;
+}
+```
+
+Now this by itself isn't very interesting.
+
+However, what if we _adjusted_ the time ? That is, when the animation is 50% done,
+we pretend it is only 25%?  And when it is 80% we say it is only 64% done, etc.
+
+| Normal Time | Adjusted Time |
+|:------------|:--------------|
+| 0.5         | 0.25   |
+| 0.7         | 0.49   |
+| 0.75        | 0.5625 |
+| 0.8         | 0.64   |
+| 0.9         | 0.81   |
+
+This is what is know as a `quadratic mapping.`
+
+```Javascript
+    y = x*x
+```
+
+Or in our parlance:
+
+```Javascript
+    function InQuadratic(p) { return p*p; }, // p^2 = Math.pow(p,2)
+```
+
+We can apply all sorts of "time warping" to produce many different interesting effects.
+
+Let's investigate and optimize them.
 
 # Cleanup - In
 
