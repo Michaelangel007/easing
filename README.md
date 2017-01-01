@@ -912,14 +912,14 @@ more then it helps.
 
 Basically, we want to re-map the range into something _convient_.
 
-What would be convenient?
+What would be convenient? Hmm, maybe a _range_ between 0.0 and 1.0 inclusive aka `normalized` values! :)
 
 | b   | c       | Notes     |
 |:---:|:--------|:----------|
 | min | max-min | Old range |
 | 0.0 | 1.0     | New range |
 
-Notice:
+Notice now:
 
  * how the term `b` drops out
  * how the term `c` drops out
