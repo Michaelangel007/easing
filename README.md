@@ -1128,14 +1128,14 @@ For now we're primarily interested in _flips_ -- of which there are 4 permutatio
     function OutQuadratic (p) { var m=p-1; return 1-m*m; }
  ```
 
- Let's "semantically uncompress" this so it is more readable:
+ Let's "semantically uncompress", adding line breaks and whitespace,  this so it is more readable:
 
  ```Javascript
     function OutQuadratic (p)
     {
-        var m=p-1
+        var m = p-1;
 
-        return 1-m*m;
+        return 1 - m*m;
     }
  ```
 
