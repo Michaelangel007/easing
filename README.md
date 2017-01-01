@@ -1198,10 +1198,10 @@ In order to do this we need to do 4 things:
  How? We need to remap our original input `p` range and split it into two ranges.
  I'll call the new input `q`
 
- | p range      | new q range  | Easing |
- |:-------------|:-------------|:-------|
- | [0.0 .. 0.5) | [0.0 .. 1.0] | In     |
- | [0.5 .. 1.0] | [0.0 .. 1.0] | Out    |
+| p range      | new q range  | Easing |
+|:-------------|:-------------|:-------|
+| [0.0 .. 0.5) | [0.0 .. 1.0] | In     |
+| [0.5 .. 1.0] | [0.0 .. 1.0] | Out    |
 
 
 
