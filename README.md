@@ -1316,6 +1316,9 @@ function InOutQuadratic_v5( p ) {
 }
 ```
 
+ ![Quarter ShiftUp Out Quadratic](pics/tutorial/5_out_quadratic_quarter_shift.png)
+
+
 # Cleanup - In
 
 With the fundamentals out of the way we can start optimizing
