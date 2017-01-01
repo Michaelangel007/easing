@@ -1158,10 +1158,10 @@ If you want to play around with these, there is an excellent online (browser) gr
 
 ![Desmos Quadratic Flips](pics/tutorial/flips_quadratic_desmos.png)
 
-I've add color names to the above flip functions so you can what corresponds to what, since
-I'm not aware if you can name functions in Desmos.
+I've added color names to the above flip functions so you can what corresponds to what
+since I'm not aware if you can name functions in Desmos.
 
-This reminds me of the [Cubic Hermite spline](https://en.wikipedia.org/wiki/Cubic_Hermite_spline) !
+This reminds me of the [Cubic Hermite spline](https://en.wikipedia.org/wiki/Cubic_Hermite_spline) -- specifically, the hermite basis functions.
 
 ![Hermite Basis Functions](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HermiteBasis.svg/300px-HermiteBasis.svg.png)
 
