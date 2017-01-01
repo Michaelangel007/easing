@@ -507,8 +507,8 @@ even as one as bad as Javascript.
 * No native unsigned 64-bit int. `var n = (1 << 63); console.log( n ); // -2147483648` // **facepalm**
 * Every number is a 64-bit floating-point, unless you use [Float32Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array)
 * The comparision operator `==` is [horribly broken](https://dorey.github.io/JavaScript-Equality-Table/) i.e. `if( 0 == "0" ) console.log( "equal" ); // equal!?`
-* Its type system is foobar. See Gary Bernhardt's [WAT talk](https://www.destroyallsoftware.com/talks/wat) talk for how brain-dead the language is.
-* No automatic multi-line string concatenation. This means you need to do stupd shit like this _at run-time!_
+* Its type system is foobar. See Gary Bernhardt's [WAT talk](https://www.destroyallsoftware.com/talks/wat) for how brain-dead the language is.
+* No automatic _multiline string_ concatenation. This means you need to do stupd shit like this _at run-time!_
 
 ```Javascript
  var text = ''
@@ -518,7 +518,7 @@ even as one as bad as Javascript.
           ;
 ```
 
-instead of C's or Python's automatic multi-line string concatenation:
+instead of C's automatic multiline string concatenation:
 
 ```C
    char *text =
@@ -527,6 +527,17 @@ instead of C's or Python's automatic multi-line string concatenation:
 "Third line\n"
         ;
 ```
+
+or [Python's way](http://stackoverflow.com/questions/10660435/pythonic-way-to-create-a-long-multi-line-string):
+
+```Python
+    s = """ First Line
+            Second line
+            Third line """
+```
+
+Of course you have to deal with Python's idiotic indentation shenanigans but that is a discussion for another day.
+
 
 OK, enough ranting. Let's get back to our axis of evil, er, 8D axis ...
 
