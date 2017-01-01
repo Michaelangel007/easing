@@ -1387,7 +1387,7 @@ With manual substitution:
 
 ## Cleanup - In Out Elastic
 
-![Out Elastic graph](pics/34_out_elastic.png)
+![In Out Elastic graph](pics/33_in_out_elastic.png)
 
 ```Javascript
     easeInOutElastic: function(p) {
@@ -1395,6 +1395,14 @@ With manual substitution:
         else         return 1 - this.easeOutElastic( t - 1 )*0.5;
     },
 ```
+
+## Cleanup - In Out Exponent 2
+
+![In Out Exponent 2 graph](pics/36_in_out_exponent_2.png)
+
+## Cleanup - In Exponent e
+
+![In Out Exponent e graph](pics/42_in_out_exponent_e.png)
 
 ## Cleanup - In Out Octic
 
