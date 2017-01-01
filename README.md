@@ -1244,11 +1244,10 @@ function InOutQuadratic_v2( p ) {
 
  ![HalfH HalfW In Quadratic](pics/tutorial/2_in_quadratic_halfh_halfw.png)
 
- **Note:** We don't care about the right side of the graph, since we'll
- replace that with the `Out` form.
-
  What we have done is move the end-point of `In` at <1,1> to <0.5, 0.5>.
- We are only keeping the bottom quarter:
+ Since we are only keeping the bottom quarter
+ we don't care about the right side of the graph
+ as we'll replace that with the `Out` form.
 
  ![Quarter In Quadratic](pics/tutorial/2_in_quadratic_quarter.png)
 
