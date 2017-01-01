@@ -18,8 +18,8 @@
 * Cleanup In
  * [Cleanup - Linear](https://github.com/Michaelangel007/easing#cleanup---linear)
  * [What's with this "In, Out, In-Out" business, anyways?](https://github.com/Michaelangel007/easing#whats-with-this-in-out-in-out-business-anyways)
-   * Out
-   * In-Out
+   * [Out](https://github.com/Michaelangel007/easing#out)
+   * [In-Out](https://github.com/Michaelangel007/easing#in-out)
  * [Cleanup - In Back](https://github.com/Michaelangel007/easing#cleanup---in-back)
  * [Cleanup - In Bounce](https://github.com/Michaelangel007/easing#cleanup---in-bounce)
  * [Cleanup - In Circle](https://github.com/Michaelangel007/easing#cleanup---in-circle)
