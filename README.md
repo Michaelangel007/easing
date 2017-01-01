@@ -508,7 +508,7 @@ even as one as bad as Javascript.
 * Every number is a 64-bit floating-point, unless you use [Float32Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array)
 * The comparision operator `==` is [horribly broken](https://dorey.github.io/JavaScript-Equality-Table/) i.e. `if( 0 == "0" ) console.log( "equal" ); // equal!?`
 * Its type system is foobar. See Gary Bernhardt's [WAT talk](https://www.destroyallsoftware.com/talks/wat) for how brain-dead the language is.
-* No automatic _multiline string_ concatenation. This means you need to do stupd shit like this _at run-time!_
+* No automatic _multiline string_ concatenation. This means you need to do stupid shit like this _at run-time!_
 
 ```Javascript
  var text = ''
