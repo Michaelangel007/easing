@@ -939,12 +939,13 @@ Yes, with _reparameterization._
 
 Reparameterization is just a fancy word for `re-mapping`.
 Technically, it is [this](https://en.wikipedia.org/wiki/Parametrization)
-But since that Wikipedia page is so badly written it will probably confuse you
+but since that Wikipedia page is so badly written it will probably just confuse you
 more then it helps.
 
-Basically, we want to re-map the range into something _convient_.
+Basically, we want to re-map the range into something _convenient._
 
-What would be convenient? Hmm, maybe a _range_ between 0.0 and 1.0 inclusive aka `normalized` values! :)
+Well that begs the question -- _what_ would be convenient?
+Hmm, maybe a _range_ between 0.0 and 1.0 inclusive aka `normalized` values! :)
 
 | b   | c       | Notes     |
 |:---:|:--------|:----------|
@@ -967,7 +968,7 @@ We'll do this for all the easing equations, converting them into a **single argu
 Our function prototype then is the simple:
 
 ```Javascript
-function easeInLinear( p ) {
+function Linear( p ) {
     return p;
 }
 ```
@@ -1076,7 +1077,7 @@ You may have noticed we have been using the prefix `In`.
 If you assumed this implies there are more variations you would be correct!
 There are many variations of mirrors, rotations, etc.
 
-We're primary interested in _flips_, of which there are 4 permutations:
+For now we're primarily interested in _flips_ -- of which there are 4 permutations:
 
 1. We have already been discussin the case of _no flips_.
 
@@ -1157,7 +1158,7 @@ For recap we derived 4 quadratic easing functions:
 
 In addition to flips, there is also another variation called
 `InOut` where we "stitch" together both the `In` and `Out` into
-one continuous function.
+one _continuous_ function.
 
 This means:
 
