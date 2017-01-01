@@ -800,7 +800,7 @@ Uhm, _yeah._ **NOT**.
 Let's learn how to clean up this _fugly, overengineered code_ into the _beautiful_, exact equivalent mentioned at the beginning.
 
 The astute reader will notice that `jQuery` initially adapted these _"as-is"_
-before coming to their senses and cleaning them up into the single argument version eventually.
+before coming to their senses and cleaning them up into the _single argument version_ eventually.
 
 * https://raw.githubusercontent.com/danro/jquery-easing/master/jquery.easing.js
 
@@ -1160,7 +1160,7 @@ Version 7 - Simplified & Optimized 'easeInElastic'
     },
 ```
 
-_Whew!_ We can now finally provide the **single variable version**:
+_Whew!_ We can now finally provide the **single argument version**:
 
 ```Javascript
     easeInElastic: function(p) {
@@ -1171,7 +1171,7 @@ _Whew!_ We can now finally provide the **single variable version**:
     },
 ```
 
-There are some variations, depending on how much inlining of variables you want to do:
+There are some variations, depending on how much inlining of terms you want to do:
 
 * With `m = p-1`:
 
