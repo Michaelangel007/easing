@@ -1025,7 +1025,7 @@ Or in our parlance:
     function InQuadratic(p) { return p*p; }, // p^2 = Math.pow(p,2)
 ```
 
-In one sense you could say that ** `easing` is a function that "warps time".**
+In one sense you could say that **`easing` is a function that "warps time".**
 We can apply all sorts of "time warping" to produce many different interesting effects.
 
 But first before we investigate and optimize them we need to go over `In`, `Out`, and `In Out`
