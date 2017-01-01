@@ -10,7 +10,7 @@
 * [Easing ... what is it and why is it important?](https://github.com/Michaelangel007/easing_optimizations#easing--what-is-it-and-why-is-it-important)
 * [Parameter `t` or `p`](https://github.com/Michaelangel007/easing_optimizations#parameter-t-or-p)
 * [Simultaneous Animations](https://github.com/Michaelangel007/easing_optimizations#simultaneous-animations)
-* [Why Javascript](https://github.com/Michaelangel007/easing_optimizations#why-javascript?)
+* [Why Javascript?](https://github.com/Michaelangel007/easing_optimizations#why-javascript)
 * [The Color Axis](https://github.com/Michaelangel007/easing_optimizations#the-color-axis)
 * [Interpolation](https://github.com/Michaelangel007/easing_optimizations#interpolation)
 * [De Facto Easing Functions](https://github.com/Michaelangel007/easing_optimizations#de-facto-easing-functions)
