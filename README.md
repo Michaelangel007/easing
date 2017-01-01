@@ -1184,7 +1184,7 @@ In order to do this we need 4 pre-requisites:
 
  ```Javascript
 function InOutQuadratic_v1( p ) {
-    return 0.5 * InQuadratic(p);
+    return 0.5 * InQuadratic( p );
 }
  ```
 
@@ -1222,7 +1222,7 @@ function InOutQuadratic_v1( p ) {
 
  ```Javascript
 function InOutQuadratic_v2( p ) {
-    return 0.5 * InQuadratic(2*p);
+    return 0.5 * InQuadratic( 2*p );
 }
  ```
 
@@ -1234,10 +1234,11 @@ function InOutQuadratic_v2( p ) {
 }
  ```
 
- Which simplies down to:
+ Which simplifies down to:
+
  ```Javascript
 function InOutQuadratic_v2( p ) {
-    return 2*(p*p);
+    return 2 * (p*p);
 }
  ```
 
@@ -1245,6 +1246,33 @@ function InOutQuadratic_v2( p ) {
 
  **Note:** We don't care about the right side of the graph, since we'll
  replace that with the `Out` form.
+
+ What we have done is move the end-point of `In` at <1,1> to <0.5, 0.5>.
+ We are only keeping the bottom quarter:
+
+ ![Quarter In Quadratic](pics/tutorial/3_in_quadratic_quarter.png)
+
+
+3. Similiarly for `Out` scale the height (`y`) by 1/2
+
+ ```Javascript
+ function InOutQuadratic_v3( p ) {
+     return 0.5 * OutQuadratic( p );
+ }
+ ```
+
+ or when inlined:
+
+ ```Javascript
+ function InOutQuadratic_v2( p ) {
+     return 0.5 * (1 - ((1-p)*(1-p)));
+ }
+ ```
+
+ The graph looks like this:
+
+ ![HalfH Out Quadratic](pics/tutorial/4_out_quadratic_halfh.png)
+
 
 
 # Cleanup - In
