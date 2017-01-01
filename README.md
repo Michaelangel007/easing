@@ -1297,7 +1297,7 @@ function InOutQuadratic_v4( p ) {
 }
 ```
 
- ![HalfH HalfW Out Quadratic](pics/tutorial/5_out_quadratic_halfh_halfw.png)
+ ![HalfH HalfW Out Quadratic](pics/tutorial/4_out_quadratic_halfh_halfw.png)
 
  We'll simplying this later in the [Cleanup - In Out Quadratic](https://github.com/Michaelangel007/easing#cleanup---in-out-quadratic) section.
 
@@ -1306,7 +1306,7 @@ function InOutQuadratic_v4( p ) {
 
  ![Quarter Out Quadratic](pics/tutorial/4_out_quadratic_quarter.png)
 
-5. We need to move the <0,0> of `Out` to <0.5,0.5>
+5\. We need to move the <0,0> of `Out` to <0.5,0.5>
 
  That is a simply `y + 0.5`
 
