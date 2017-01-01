@@ -914,10 +914,10 @@ Basically, we want to re-map the range into something _convient_.
 
 What would be convenient?
 
- | b   | c       | Notes     |
- |:---:|:--------|:----------|
- | min | max-min | Old range |
- | 0.0 | 1.0     | New range |
+| b   | c       | Notes     |
+|:---:|:--------|:----------|
+| min | max-min | Old range |
+| 0.0 | 1.0     | New range |
 
 Notice:
 
