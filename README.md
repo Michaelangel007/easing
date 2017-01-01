@@ -854,7 +854,7 @@ Hmmm, some of these equations are starting to look familiar !
 
 ## Cleanup - In Back
 
-![In Bounce graph](pics/23_in_back.png)
+![In Back graph](pics/23_in_back.png)
 
 ## Cleanup - In Bounce
 
