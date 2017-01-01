@@ -17,7 +17,7 @@
 * [Easing Cleanup](https://github.com/Michaelangel007/easing#easing-cleanup)
 * Cleanup In
  * [Cleanup - Linear](https://github.com/Michaelangel007/easing#cleanup---linear)
- * What's with this "In, Out, In-Out" business, anyways?
+ * [What's with this "In, Out, In-Out" business, anyways?](https://github.com/Michaelangel007/easing#whats-with-this-in-out-in-out-business-anyways)
    * Out
    * In-Out
  * [Cleanup - In Back](https://github.com/Michaelangel007/easing#cleanup---in-back)
@@ -1037,6 +1037,8 @@ Those graphs look like these:
 ![In Septic    graph](pics/07_in_septic.png)
 ![In Octic     graph](pics/08_in_octic.png)
 
+We'll discuss other variations but first we need to discuss an important concept.
+
 
 ### Out
 
@@ -1054,7 +1056,7 @@ We're primary interested in _flips_, of which there are 4 permutations:
 2. What happens when we flip the _output_ along the `y-axis`:
 
  ```Javascript
-    function FlipY_Quadratic(p) { return 1 - InQuadratic( p ); },
+    function FlipY_Quadratic(p) { return 1 - InQuadratic( p ); }
  ```
 
  That has a graph that looks like this:
@@ -1065,7 +1067,7 @@ We're primary interested in _flips_, of which there are 4 permutations:
 3. We could also flip the _input_ along the `x-axis:
 
  ```Javascript
-     function FlipX_Quadratic(p) { return InQuadratic( 1-p ); },
+     function FlipX_Quadratic(p) { return InQuadratic( 1-p ); }
  ```
 
  That has a graph that looks like this:
@@ -1076,7 +1078,7 @@ We're primary interested in _flips_, of which there are 4 permutations:
 4.  The most interesting ones are we _also_ flip along _both_ the `x-axis` and `y-axis`:
 
  ```Javascript
-     function FlipY_FlipX_Quadratic(p) { return 1 - InQuadratic( 1-p ); },
+     function FlipY_FlipX_Quadratic(p) { return 1 - InQuadratic( 1-p ); }
  ```
 
  ![FlipY FlipX InQuadratic graph](pics/09_out_quadratic.png)
@@ -1084,15 +1086,26 @@ We're primary interested in _flips_, of which there are 4 permutations:
  This _pattern_ of both x and y being flipped is _so common_ that it has its own name: **Out**
 
  ```Javascript
-     function OutQuadratic(p) { return 1 - InQuadratic( 1-p ); },
+     function OutQuadratic(p) { return 1 - InQuadratic( 1-p ); }
  ```
 
- Now you may be thinking _"Yeah but that doesn't even look like the one I saw at the very top!?"_
+ Now you may be thinking _"That doesn't even look like the one I saw at the very top!?"_
 
  i.e. To refresh your memory:
 
  ```Javascript
-    function OutQuadratic (p) { var m=p-1; return 1-m*m; },
+    function OutQuadratic (p) { var m=p-1; return 1-m*m; }
+ ```
+
+ Let's "semantically uncompress" this so it is more readable:
+
+ ```Javascript
+    function OutQuadratic (p)
+    {
+        var m=p-1
+
+        return 1-m*m;
+    }
  ```
 
  Mathematically, the two are _exact_; the original function has just
