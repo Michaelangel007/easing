@@ -467,7 +467,7 @@ For example we could have:
 * starts small (start width & height = 1 px)
 * slides in to the center of the screen (final x = screen width/2), and
 * becomes opaque (alpha = 1.0)
-* grows to full size (end width & height = 1920x1080 px respectively)
+* grows to half size (end width = screen width/2 px, end height = screen height/2 px)
 
 These animation or easing `axis` are all **independent.**  We could represent
 these axis in Javascript as:
