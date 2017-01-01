@@ -967,7 +967,7 @@ Or in our parlance:
 
 We can apply all sorts of "time warping" to produce many different interesting effects.
 
-In once sense, you could say that `easing` is a function that "warps time".
+In one sense you could say that `easing` is a function that "warps time".
 
 Let's investigate and optimize them.
 
