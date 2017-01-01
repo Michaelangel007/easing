@@ -1250,7 +1250,7 @@ function InOutQuadratic_v2( p ) {
  What we have done is move the end-point of `In` at <1,1> to <0.5, 0.5>.
  We are only keeping the bottom quarter:
 
- ![Quarter In Quadratic](pics/tutorial/3_in_quadratic_quarter.png)
+ ![Quarter In Quadratic](pics/tutorial/2_in_quadratic_quarter.png)
 
 3\. Similiarly for `In` we scale the `Out` height (`y`) by 1/2
 
