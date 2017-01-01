@@ -912,6 +912,81 @@ Hmmm, some of these equations are starting to look familiar !
 
 ![In Sine graph](pics/38_in_sine.png)
 
+## Cleanup - In Square Root
+
+![In Square root graph](pics/47_in_sqrt.png)
+
+Again, there isn't one so we'll add one for completeness.
+
+```Javascript
+    easeInSqrt: function (x, t, b, c, d) {
+        return c - easeOutSqrt( x, d-t, 0, c, d ) + b;
+    },
+```
+
+## Cleanup - Out Back
+
+![Out Back graph](pics/25_out_back.png)
+
+## Cleanup - Out Bounce
+
+![Out Bounce graph](pics/28_out_bounce.png)
+
+## Cleanup - Out Circle
+
+![Out Circle graph](pics/31_out_circle.png)
+
+## Cleanup - Out Cubic
+
+![Out Cubic graph](pics/10_out_cubic.png)
+
+## Cleanup - Out Elastic
+
+![Out Elastic graph](pics/34_out_elastic.png)
+
+## Cleanup - Out Exponent 2
+
+![Out Exponent 2 graph](pics/37_out_exponent_2.png)
+
+## Cleanup - Out Exponent e
+
+![Out Exponent e graph](pics/43_out_exponent_e.png)
+
+## Cleanup - Out Log10
+
+![Out Log10 graph](pics/46_out_log10.png)
+
+## Cleanup - Out Octic
+
+![Out Octic graph](pics/22_out_octic.png)
+
+## Cleanup - Out Quadratic
+
+![Out Quadratic graph](pics/09_out_quadratic.png)
+
+## Cleanup - Out Quartic
+
+![Out Quartic graph](pics/18_out_quartic.png)
+
+## Cleanup - Out Quintic
+
+![Out Quintic graph](pics/19_out_quintic.png)
+
+## Cleanup - Out Septic
+
+![Out Septic graph](pics/14_out_septic.png)
+
+## Cleanup - Out Sextic
+
+![Out Sextic graph](pics/13_out_sextic.png)
+
+## Cleanup - Out Sine
+
+![Out Sine graph](pics/40_out_sine.png)
+
+## Cleanup - Out Square Root
+
+![Out Square root graph](pics/49_out_sqrt.png)
 
 To be continued.
 
