@@ -71,7 +71,7 @@ There is also a high resolution [4861x4000 Cheat Sheet](pics/easing_cheat_sheet.
 # TL:DR; _"Shut up and show me the code!"_
 
 ```Javascript
-// Optimized Easing Functions by Michael Pohoreski
+// Optimized Easing Functions by Michael "Code Poet" Pohoreski, aka _Michaelangel007_
 // https://github.com/Michaelangel007/easing_optimizations
 // License: Free as in speech and beer; Attribution is always appreciated!
 // Note: Please keep the URL so people can refer back to how these were derived.
