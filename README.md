@@ -17,6 +17,9 @@
 * [Easing Cleanup](https://github.com/Michaelangel007/easing#easing-cleanup)
 * Cleanup In
  * [Cleanup - Linear](https://github.com/Michaelangel007/easing#cleanup---linear)
+ * What's with this "In, Out, In-Out" business, anyways?
+   * Out
+   * In-Out
  * [Cleanup - In Back](https://github.com/Michaelangel007/easing#cleanup---in-back)
  * [Cleanup - In Bounce](https://github.com/Michaelangel007/easing#cleanup---in-bounce)
  * [Cleanup - In Circle](https://github.com/Michaelangel007/easing#cleanup---in-circle)
@@ -940,20 +943,47 @@ function easeInLinear( p ) {
 }
 ```
 
-Now this by itself isn't very interesting.
+Now this linear easing form by itself isn't very interesting.
 
-However, what if we _adjusted_ the time ? That is, when the animation is 50% done,
-we pretend it is only 25%?  And when it is 80% we say it is only 64% done, etc.
+However, what if we _adjusted_ the time ? That is, when the animation is:
 
-| Normal Time | Adjusted Time |
-|:------------|:--------------|
-| 0.5         | 0.25   |
-| 0.7         | 0.49   |
-| 0.75        | 0.5625 |
-| 0.8         | 0.64   |
-| 0.9         | 0.81   |
+* 10% done, we pretend it is only  1% done,
+* 20% done, we pretend it is only  4% done,
+* 30% done, we pretend it is only  9% done,
+* 40% done, we pretend it is only 16% done,
+* 50% done, we pretend it is only 25% done,
+* 60% done, we pretend it is only 36% done,
+* 70% done, we pretend it is only 49% done,
+* 80% done, we pretend it is only 64% done,
+* 90% done, we pretend it is only 81% done,
+*100% done, it really is 100% done.
+
+Spot the pattern?
+
+Using this legend:
+
+* x = Percent 'normal' time
+* y = Percent 'warped' time
+
+| x   | y    |
+|:----|:-----|
+| 0.1 | 0.01 |
+| 0.2 | 0.04 |
+| 0.3 | 0.09 |
+| 0.4 | 0.16 |
+| 0.5 | 0.25 |
+| 0.7 | 0.49 |
+| 0.8 | 0.64 |
+| 0.9 | 0.81 |
+| 1.0 | 1.00 |
+
+If we graph this pretend game we end up with this:
+
+![In Quadratic graph](pics/02_in_quadratic.png)
 
 This is what is know as a `quadratic mapping.`
+
+Mathematically the formula looks like this:
 
 ```Javascript
     y = x*x
@@ -969,7 +999,196 @@ We can apply all sorts of "time warping" to produce many different interesting e
 
 In one sense you could say that `easing` is a function that "warps time".
 
-Let's investigate and optimize them.
+But first before we investigate and optimize them we need to go over `In`, `Out`, and `In Out`
+
+
+## What's with this "In, Out, In-Out" business, anyways?
+
+We introduced a new easing function which has the form: `quadratic`
+
+```Javascript
+    function InQuadratic(p) { return p*p; }, // p^2 = Math.pow(p,2)
+```
+
+And its graph:
+
+![In Quadratic graph](pics/02_in_quadratic.png)
+
+
+For example, we could raise p to the standard powers:
+
+|Power|Formula|Name       |
+|----:|------:|:----------|
+| 2   | p^2   | Quadratic |
+| 3   | p^3   | Cubic     |
+| 4   | p^4   | Quartic   |
+| 5   | p^5   | Quintic   |
+| 6   | p^6   | Sextic    |
+| 7   | p^7   | Septic    |
+| 8   | p^8   | Octic     |
+
+Those graphs look like these:
+
+![In Quadratic graph](pics/02_in_quadratic.png)
+![In Cubic     graph](pics/03_in_cubic.png)
+![In Quirtic   graph](pics/04_in_quartic.png)
+![In Quintic   graph](pics/05_in_quintic.png)
+![In Sextic    graph](pics/06_in_sextic.png)
+![In Septic    graph](pics/07_in_septic.png)
+![In Octic     graph](pics/08_in_octic.png)
+
+
+### Out
+
+You may have noticed we have been using the prefix `In`.
+
+If you assumed this implies there are more variations you would be correct!
+There are many variations of mirrors, rotations, etc.
+
+We're primary interested in _flips_, of which there are 4 permutations:
+
+1. We have already been discussin the case of _no flips_.
+
+ ![In Quadratic graph](pics/02_in_quadratic.png)
+
+2. What happens when we flip the _output_ along the `y-axis`:
+
+ ```Javascript
+    function FlipY_Quadratic(p) { return 1 - InQuadratic( p ); },
+ ```
+
+ That has a graph that looks like this:
+
+ ![FlipY InQuadratic graph](pics/tutorial/flipy_quadratic.png)
+
+
+3. We could also flip the _input_ along the `x-axis:
+
+ ```Javascript
+     function FlipX_Quadratic(p) { return InQuadratic( 1-p ); },
+ ```
+
+ That has a graph that looks like this:
+
+ ![FlipX InQuadratic graph](pics/tutorial/flipx_quadratic.png)
+
+
+4.  The most interesting ones are we _also_ flip along _both_ the `x-axis` and `y-axis`:
+
+ ```Javascript
+     function FlipY_FlipX_Quadratic(p) { return 1 - InQuadratic( 1-p ); },
+ ```
+
+ ![FlipY FlipX InQuadratic graph](pics/09_out_quadratic.png)
+
+ This _pattern_ of both x and y being flipped is _so common_ that it has its own name: **Out**
+
+ ```Javascript
+     function OutQuadratic(p) { return 1 - InQuadratic( 1-p ); },
+ ```
+
+ Now you may be thinking _"Yeah but that doesn't even look like the one I saw at the very top!?"_
+
+ i.e. To refresh your memory:
+
+ ```Javascript
+    function OutQuadratic (p) { var m=p-1; return 1-m*m; },
+ ```
+
+ Mathematically, the two are _exact_; the original function has just
+been optimized so that the _general pattern_ of the power series
+can be easier to spot
+
+ I'll discuss in the `Clean Up - Out Quadratic` section, etc.
+
+For recap we derived 4 quadratic easing functions:
+
+```Javascript
+    function      QuadraticIn      (p) { return        p *   p ; }
+    function FlipXQuadraticIn      (p) { return     (1-p)*(1-p); }
+    function FlipYQuadraticIn      (p) { return 1 -    p *   p ; }
+    function FlipYFlipXQuadraticIn (p) { return 1 - (1-p)*(1-p); } // a.k.a OutQuadratic
+```
+
+
+### In Out
+
+In addition to flips, there is also another variation called
+`InOut` where we "stitch" together both the `In` and `Out` into
+one continuous function.
+
+This means:
+
+* The end-point of `In` is <0.5,0.5>
+* The start-point of `Out` is <0.5,0.5>
+
+In order to do this we need to do 4 things:
+
+1. Scale `y` in `In` by 1/2.
+
+ ```Javascript
+ function InOutQuadratic_v1( p ) {
+     return 0.5 * InQuadratic(p);
+ }
+ ```
+
+ or simply when inlined:
+
+ ```Javascript
+ function InOutQuadratic_v1( p ) {
+     return 0.5 * p*p;
+ }
+ ```
+
+ The graph looks like this:
+
+ ![In Out Quadratic Version 1](pics/tutorial/in_out_quadratic_1.png)
+
+
+2. Scale `y` in `Out` by 1/2
+
+ ```Javascript
+ function InOutQuadratic_v2( p ) {
+     return 0.5 * OutQuadratic(p);
+ }
+ ```
+
+ or when inlined:
+
+ ```Javascript
+ function InOutQuadratic_v2( p ) {
+     return 0.5 * (1 - ((1-p)*(1-p)));
+ }
+ ```
+
+ The graph looks like this:
+
+ ![In Out Quadratic Version 2](pics/tutorial/in_out_quadratic_2.png)
+
+3. Hmm, but how do we join these two graphs to form one _continuous_ graph?
+
+ We first need to "offset" or shift the `Out` x and y over by:
+
+ * x += 0.5
+ * y += 0.5
+
+ ```Javascript
+ function InOutQuadratic_v3( p ) {
+     return 0.5 + 0.5*OutQuadratic(p);
+ }
+ ```
+
+ OK, that helps, but _how_ do we join these two graphs?
+
+ Reparameterization to the rescue!
+
+ How? We need to remap our original input `p` range and split it into two ranges.
+ I'll call the new input `q`
+
+ | p range      | new q range  | Easing |
+ | [0.0 .. 0.5) | [0.0 .. 1.0] | In     |
+ | [0.5 .. 1.0] | [0.0 .. 1.0] | Out    |
+
 
 # Cleanup - In
 
@@ -1553,7 +1772,8 @@ This will be forthcoming.
  * [x] Out Sine
  * [x] Out Square Root
 * [ ] Write up tutorial (Work-In-Progress)
- * [ ] Linear
+ * [x] Linear
+ * [x] What's with this "In, Out, In-Out" business, anyways?
 * Cleanup
  * [ ] In Back
  * [ ] In Bounce
