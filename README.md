@@ -823,7 +823,7 @@ before coming to their senses and cleaning them up into the _single argument ver
 
 # Easing Cleanup
 
-There are numerous problems with the defacto easing 5 parameter easing functions.
+There are numerous problems with the defacto 5-parameter easing functions.
 This is **crap code** -- that's the technical term for _over-engineered._
 
 Problems can be placed into two general categories:
@@ -861,6 +861,7 @@ Its graph looks like this:
 
 ![Linear graph](pics/01_linear.png)
 
+And in the original style the easing function would look like this:
 
 ```Javascript
     easeInLinear: function (x, t, b, c, d) {
@@ -900,9 +901,17 @@ Let's make this a little more robust:
 
 Hmmm, some of these equations are starting to look familiar !
 
-_Reparmatization_ is just a fancy word for `re-mapping`.
+We still have a lot of arguments. Is there any way we can get rid of them?
+Yes, with re
 
-If we re-map the range:
+Reparameterization is just a fancy word for `re-mapping`.
+Technically, it is [this](https://en.wikipedia.org/wiki/Parametrization)
+But since that Wikipedia page is so badly written it will probably confuse you
+more then it helps.
+
+Basically, we want to re-map the range into something _convient_.
+
+What would be convenient?
 
  | b   | c       | Notes     |
  |:---:|:--------|:----------|
@@ -924,7 +933,7 @@ We'll do this for all the easing equations, converting them into a **single argu
 
 Our function prototype then is the simple:
 
-```
+```Javascript
 function easeInLinear( p ) {
     return p;
 }
@@ -956,6 +965,8 @@ Or in our parlance:
 ```
 
 We can apply all sorts of "time warping" to produce many different interesting effects.
+
+In once sense, you could say that `easing` is a function that "warps time".
 
 Let's investigate and optimize them.
 
