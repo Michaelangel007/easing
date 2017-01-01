@@ -1207,10 +1207,10 @@ function InOutQuadratic_v1( p ) {
  How? We can remap our original input `p` range and split it into _two_ ranges.
  I'll call the new input `t`:
 
-    | p range      | new t range  |
-    |:-------------|:-------------|
-    | [0.0 .. 0.5) | [0.0 .. 1.0] |
-    | [0.5 .. 1.0] | don't care   |
+| p range      | new t range  |
+|:-------------|:-------------|
+| [0.0 .. 0.5) | [0.0 .. 1.0] |
+| [0.5 .. 1.0] | don't care   |
 
  And with a little bit of algebra it should be obvious of the scale factor:
 
@@ -1252,7 +1252,7 @@ function InOutQuadratic_v2( p ) {
 
  ![Quarter In Quadratic](pics/tutorial/3_in_quadratic_quarter.png)
 
-3. Similiarly for `In` we scale the `Out` height (`y`) by 1/2
+3\. Similiarly for `In` we scale the `Out` height (`y`) by 1/2
 
  ```Javascript
  function InOutQuadratic_v3( p ) {
@@ -1272,15 +1272,15 @@ function InOutQuadratic_v2( p ) {
 
  ![HalfH Out Quadratic](pics/tutorial/4_out_quadratic_halfh.png)
 
-4. Again, similiarly for `In` we scale the `Out` width (`x`) by 1/2
+4\. Again, similiarly for `In` we scale the `Out` width (`x`) by 1/2
 
  Using reparameterization again we remap our original input `p` range and split it into _two_ ranges.
  Again, I'll call the new input `t`:
 
-    | p range      | new t range  |
-    |:-------------|:-------------|
-    | [0.0 .. 0.5) | don't care   |
-    | [0.5 .. 1.0] | [0.0 .. 1.0] |
+| p range      | new t range  |
+|:-------------|:-------------|
+| [0.0 .. 0.5) | don't care   |
+| [0.5 .. 1.0] | [0.0 .. 1.0] |
 
  Solving for `t`:
 
