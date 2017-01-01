@@ -15,26 +15,56 @@
 * [Interpolation](https://github.com/Michaelangel007/easing_optimizations#interpolation)
 * [De Facto Easing Functions](https://github.com/Michaelangel007/easing_optimizations#de-facto-easing-functions)
 * [Easing Cleanup](https://github.com/Michaelangel007/easing_optimizations#easing-cleanup)
- * Cleanup In
-  * [Cleanup - Linear](https://github.com/Michaelangel007/easing_optimizations#cleanup---linear)
-  * [Cleanup - In Back](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-back)
-  * [Cleanup - In Bounce](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-bounce)
-  * [Cleanup - In Circle](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-circle)
-  * [Cleanup - In Cubic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-cubic)
-  * [Cleanup - In Elastic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-elastic)
-  * [Cleanup - In Exponent 2](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-exponent-2)
-  * [Cleanup - In Exponent e](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-exponent-e)
-  * [Cleanup - In Log10](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-log10)
-  * [Cleanup - In Octic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-octic)
-  * [Cleanup - In Quadratic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-quadratic)
-  * [Cleanup - In Quartic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-quartic)
-  * [Cleanup - In Quintic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-quintic)
-  * [Cleanup - In Septic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-sextic)
-  * [Cleanup - In Sextic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-septic)
-  * [Cleanup - In Sine](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-sine)
- * Cleanup Out
- * Cleanup In Out
-
+* Cleanup In
+ * [Cleanup - Linear](https://github.com/Michaelangel007/easing_optimizations#cleanup---linear)
+ * [Cleanup - In Back](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-back)
+ * [Cleanup - In Bounce](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-bounce)
+ * [Cleanup - In Circle](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-circle)
+ * [Cleanup - In Cubic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-cubic)
+ * [Cleanup - In Elastic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-elastic)
+ * [Cleanup - In Exponent 2](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-exponent-2)
+ * [Cleanup - In Exponent e](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-exponent-e)
+ * [Cleanup - In Log10](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-log10)
+ * [Cleanup - In Octic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-octic)
+ * [Cleanup - In Quadratic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-quadratic)
+ * [Cleanup - In Quartic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-quartic)
+ * [Cleanup - In Quintic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-quintic)
+ * [Cleanup - In Septic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-sextic)
+ * [Cleanup - In Sextic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-septic)
+ * [Cleanup - In Sine](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-sine)
+* Cleanup Out
+ * [Cleanup - Out Back](https://github.com/Michaelangel007/easing_optimizations#cleanup---out-back)
+ * [Cleanup - Out Bounce](https://github.com/Michaelangel007/easing_optimizations#cleanup---out-bounce)
+ * [Cleanup - Out Circle](https://github.com/Michaelangel007/easing_optimizations#cleanup---out-circle)
+ * [Cleanup - Out Cubic](https://github.com/Michaelangel007/easing_optimizations#cleanup---out-cubic)
+ * [Cleanup - Out Elastic](https://github.com/Michaelangel007/easing_optimizations#cleanup---out-elastic)
+ * [Cleanup - Out Exponent 2](https://github.com/Michaelangel007/easing_optimizations#cleanup---out-exponent-2)
+ * [Cleanup - Out Exponent e](https://github.com/Michaelangel007/easing_optimizations#cleanup---out-exponent-e)
+ * [Cleanup - Out Log10](https://github.com/Michaelangel007/easing_optimizations#cleanup---out-log10)
+ * [Cleanup - Out Octic](https://github.com/Michaelangel007/easing_optimizations#cleanup---out-octic)
+ * [Cleanup - Out Quadratic](https://github.com/Michaelangel007/easing_optimizations#cleanup---out-quadratic)
+ * [Cleanup - Out Quartic](https://github.com/Michaelangel007/easing_optimizations#cleanup---out-quartic)
+ * [Cleanup - Out Quintic](https://github.com/Michaelangel007/easing_optimizations#cleanup---out-quintic)
+ * [Cleanup - Out Septic](https://github.com/Michaelangel007/easing_optimizations#cleanup---out-sextic)
+ * [Cleanup - Out Sextic](https://github.com/Michaelangel007/easing_optimizations#cleanup---out-septic)
+ * [Cleanup - Out Sine](https://github.com/Michaelangel007/easing_optimizations#cleanup---out-sine)
+* Cleanup In Out
+ * [Cleanup - In Out Back](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-out-back)
+ * [Cleanup - In Out Bounce](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-out-bounce)
+ * [Cleanup - In Out Circle](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-out-circle)
+ * [Cleanup - In Out Cubic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-out-cubic)
+ * [Cleanup - In Out Elastic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-out-elastic)
+ * [Cleanup - In Out Exponent 2](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-out-exponent-2)
+ * [Cleanup - In Out Exponent e](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-out-exponent-e)
+ * [Cleanup - In Out Log10](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-out-log10)
+ * [Cleanup - In Out Octic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-out-octic)
+ * [Cleanup - In Out Quadratic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-out-quadratic)
+ * [Cleanup - In Out Quartic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-out-quartic)
+ * [Cleanup - In Out Quintic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-out-quintic)
+ * [Cleanup - In Out Septic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-out-sextic)
+ * [Cleanup - In Out Sextic](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-out-septic)
+ * [Cleanup - In Out Sine](https://github.com/Michaelangel007/easing_optimizations#cleanup---in-out-sine)
+* TODO
 
 ## Demos (HTML + Javascript)
 
@@ -851,6 +881,7 @@ Let's make this a little more robust:
 
 Hmmm, some of these equations are starting to look familiar !
 
+# Cleanup - In
 
 ## Cleanup - In Back
 
