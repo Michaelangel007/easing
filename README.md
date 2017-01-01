@@ -885,6 +885,32 @@ Let's make this a little more robust:
 
 Hmmm, some of these equations are starting to look familiar !
 
+_Reparmatization_ is just a fancy word for `re-mapping`.
+
+If we re-map the range:
+
+ | b   | c       | Notes     |
+ |:---:|:--------|:----------|
+ | min | max-min | Old range |
+ | 0.0 | 1.0     | New range |
+
+Notice:
+
+ * how the term `b` drops out
+ * how the term `c` drops out
+ * The entire formula becomes much simpler.
+
+We'll do this for all the easing equations, converting them into a **single argument version**.
+
+1. Since `x` is unused our function prototype becomes: `function( t, b, c, d )`
+2. Since `b` is zero, our function prototype becomes: `function( t, c, d )`
+3. Since `c` is one, our function prototype becomes: `function( t, d )`
+4. Whoever _calls_ our easing function will be responsible for the `p = t/d` calculation.
+
+Our function prototype is the simple: `function( p )`
+
+Let's get started.
+
 # Cleanup - In
 
 ## Cleanup - In Back
