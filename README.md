@@ -1095,7 +1095,7 @@ For now we're primarily interested in _flips_ -- of which there are 4 permutatio
  ![FlipY InQuadratic graph](pics/tutorial/flipy_quadratic.png)
 
 
-3. We could also flip the _input_ along the `x-axis:
+3. We could also flip the _input_ along the `x-axis`:
 
  ```Javascript
      function FlipX_Quadratic(p) { return InQuadratic( 1-p ); }
