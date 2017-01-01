@@ -1173,12 +1173,12 @@ In addition to flips, there is also another variation called
 `InOut` where we "stitch" together both the `In` and `Out` into
 one _continuous_ function.
 
-This means:
+This means we need to move 2 points:
 
 * The end-point   of `In`  is <0.5,0.5>
 * The start-point of `Out` is <0.5,0.5>
 
-In order to do this we need 4 pre-requisites:
+This requires 5 pre-requisites:
 
 1. Scale the `In` height (`y`) by 1/2.
 
@@ -1210,7 +1210,7 @@ function InOutQuadratic_v1( p ) {
 | p range      | new t range  |
 |:-------------|:-------------|
 | [0.0 .. 0.5) | [0.0 .. 1.0] |
-| [0.5 .. 1.0] | [1.0 .. 2.0] |
+| [0.5 .. 1.0] | don't care   |
 
  And with a little bit of algebra it should be obvious of the scale factor:
 
@@ -1253,7 +1253,7 @@ function InOutQuadratic_v2( p ) {
  ![Quarter In Quadratic](pics/tutorial/3_in_quadratic_quarter.png)
 
 
-3. Similiarly for `Out` scale the height (`y`) by 1/2
+3. Similiarly for `In` we scale the `Out` height (`y`) by 1/2
 
  ```Javascript
  function InOutQuadratic_v3( p ) {
@@ -1264,7 +1264,7 @@ function InOutQuadratic_v2( p ) {
  or when inlined:
 
  ```Javascript
- function InOutQuadratic_v2( p ) {
+ function InOutQuadratic_v3( p ) {
      return 0.5 * (1 - ((1-p)*(1-p)));
  }
  ```
@@ -1273,9 +1273,41 @@ function InOutQuadratic_v2( p ) {
 
  ![HalfH Out Quadratic](pics/tutorial/4_out_quadratic_halfh.png)
 
+4. Again, similiarly for `In` we scale the `Out` width (`x`) by 1/2
+
+ Using reparameterization again we remap our original input `p` range and split it into _two_ ranges.
+ Again, I'll call the new input `t`:
+
+| p range      | new t range  |
+|:-------------|:-------------|
+| [0.0 .. 0.5) | don't care   |
+| [0.5 .. 1.0] | [0.0 .. 1.0] |
+
+ Solving for `t`:
+
+ ```
+    Input  : p = [0.5 .. 1.0]
+    Output : t = [0.0 .. 1.0]
+    Formula: t = 2*p-1
+ ```
+
+ Leaving:
+
+```Javascript
+function InOutQuadratic_v4( p ) {
+    return 0.5 * OutQuadratic( 2*p - 1 );
+}
+```
+
+ ![HalfH HalfW Out Quadratic](pics/tutorial/5_out_quadratic_halfh_halfw.png)
+
+ We'll simplying this later in the [Cleanup - In Out Quadratic](https://github.com/Michaelangel007/easing#cleanup---in-out-quadratic) section.
 
 
 # Cleanup - In
+
+With the fundamentals out of the way we can start optimizing
+all the easing functions.
 
 ## Cleanup - In Back
 
