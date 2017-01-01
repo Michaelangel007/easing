@@ -1147,11 +1147,23 @@ can be easier to spot
 For recap we derived 4 quadratic easing functions:
 
 ```Javascript
-    function      QuadraticIn      (p) { return        p *   p ; }
-    function FlipXQuadraticIn      (p) { return     (1-p)*(1-p); }
-    function FlipYQuadraticIn      (p) { return 1 -    p *   p ; }
-    function FlipYFlipXQuadraticIn (p) { return 1 - (1-p)*(1-p); } // a.k.a OutQuadratic
+    function      QuadraticIn      (p) { return        p *   p ; } // Red
+    function FlipXQuadraticIn      (p) { return     (1-p)*(1-p); } // Green
+    function FlipYQuadraticIn      (p) { return 1 -    p *   p ; } // Blue
+    function FlipYFlipXQuadraticIn (p) { return 1 - (1-p)*(1-p); } // Orange "OutQuadratic"
 ```
+
+If you want to play around with these, there is an excellent online (browser) graphing calculator:
+[Desmos](https://www.desmos.com/calculator)
+
+![Desmos Quadratic Flips](pics/tutorial/flips_quadratic_desmos.png)
+
+I've add color names to the above flip functions so you can what corresponds to what, since
+I'm not aware if you can name functions in Desmos.
+
+This reminds me of the [Cubic Hermite spline](https://en.wikipedia.org/wiki/Cubic_Hermite_spline) !
+
+![Hermite Basis Functions](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HermiteBasis.svg/300px-HermiteBasis.svg.png)
 
 
 ### In Out
