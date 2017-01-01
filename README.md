@@ -1301,8 +1301,20 @@ function InOutQuadratic_v4( p ) {
 
  We'll simplying this later in the [Cleanup - In Out Quadratic](https://github.com/Michaelangel007/easing#cleanup---in-out-quadratic) section.
 
+ Again, we don't care about the left side since that is being
+ replaced with `In`
+
  ![Quarter Out Quadratic](pics/tutorial/4_out_quadratic_quarter.png)
 
+5. We need to move the <0,0> of `Out` to <0.5,0.5>
+
+ That is a simply `y + 0.5`
+
+```Javascript
+function InOutQuadratic_v5( p ) {
+    return 0.5 + 0.5*OutQuadratic( 2*p - 1 );
+}
+```
 
 # Cleanup - In
 
