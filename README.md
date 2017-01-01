@@ -1097,21 +1097,7 @@ Version 7 - Simplified & Optimized 'easeInElastic'
     },
 ```
 
-**NOTE**: jQuery UI does NOT match the original, constants are incorrect
-
-```Javascript
-    easeInElastic   : function(p) {
-        return p === 0 || p === 1 ? p :
-            -Math.pow( 2, 8 * (p - 1) ) * Math.sin( ( (p - 1) * 80 - 7.5 ) * Math.PI / 15 );
-    },
-    easeOutElastic  : function(p) { return 1 - this.easeInElastic( 1-p ); },
-    easeInOutElastic: function(p) {
-        if (p < 0.5) return     this.easeInBack ( t     )*0.5;
-        else         return 1 - this.easeOutBack( t - 1 )*0.5;
-    },
-```
-
-Whew! We can now finally provide the **single variable version**:
+_Whew!_ We can now finally provide the **single variable version**:
 
 ```Javascript
     easeInElastic: function(p) {
@@ -1148,6 +1134,9 @@ There are some variations, depending on how much inlining of variables you want 
         return -  Math.pow( 2,10*p-10 ) * Math.sin( (40*p  -43) * Math.PI/6 ); // m=p-1, m*40-1 -> (p-1)*40-3 -> 40*p-43
     },
 ```
+
+**NOTE**: jQuery UI does NOT match the original, constants are incorrect
+
 
 ## Cleanup - In Exponent 2
 
@@ -1224,6 +1213,24 @@ Again, there isn't one so we'll add one for completeness.
 
 ![Out Elastic graph](pics/34_out_elastic.png)
 
+If we are lazy ...
+
+ * Reverse x via `(1-p)`, and
+ * Flip y via `1 - f(x)`
+
+leaves us with:
+
+```Javascript
+    easeOutElastic: function(p) { return 1 - this.easeInElastic( 1-p ); },
+```
+However that isn't optimal:
+
+With manual substitution:
+
+```Javascript
+    easeOutElastic: function(p) { return 1+(Math.pow( 2,10*-p ) * Math.sin( (-p*40 - 3) * Math.PI/6 )); },
+```
+
 ## Cleanup - Out Exponent 2
 
 ![Out Exponent 2 graph](pics/37_out_exponent_2.png)
@@ -1271,6 +1278,17 @@ Again, there isn't one so we'll add one for completeness.
 
 
 # Cleanup In Out
+
+## Cleanup - In Out Elastic
+
+![Out Elastic graph](pics/34_out_elastic.png)
+
+```Javascript
+    easeInOutElastic: function(p) {
+        if (p < 0.5) return     this.easeInElastic ( t     )*0.5;
+        else         return 1 - this.easeOutElastic( t - 1 )*0.5;
+    },
+```
 
 ## Cleanup - In Out Octic
 
