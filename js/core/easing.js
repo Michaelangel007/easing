@@ -269,18 +269,42 @@ EasingNames.insert = function( elem )
     var t = prev;
     var n = elem.name.length;
 
-    var lo;
-    var up;
+    var p;
+    var q;
+
+    var isPrevDigit;
+    var isNextDigit;
+
+    var isPrevLower;
+    var isNextLower;
+
+    var isPrevUpper;
+    var isNextUpper;
 
     for( var i = 1; i < n; ++i )
     {
         next = elem.name.substr( i, 1 );
 
-        lo = prev.charCodeAt(0);
-        up = next.charCodeAt(0);
+        p = prev.charCodeAt( 0 );
+        q = next.charCodeAt( 0 );
 
-        if( ((lo > 96) && (lo <= 122))
-        &&  ((up > 64) && (up <=  90)) )
+        isPrevDigit = (p >=48) && (p <=  57); // '0' and '9'
+        isNextDigit = (q >=48) && (q <=  57);
+
+        isPrevLower = (p > 96) && (p <= 122); // '`' and 'z'
+        isPrevUpper = (p > 64) && (p <=  90); // '@' and 'Z'
+        isNextUpper = (q > 64) && (q <=  90);
+
+        if( isPrevLower
+        &&  isNextUpper )
+            t += ' ';
+
+        if( isPrevUpper
+        &&  isNextUpper )
+            t += ' ';
+
+        if( isPrevDigit
+        && !isNextDigit )
             t += ' ';
 
         t += next;
