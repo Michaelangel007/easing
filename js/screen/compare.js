@@ -228,7 +228,7 @@ Ease.prototype =
             , 'Stop animation'
         ];
         var textFoot =
-            '<a href="http://www.github.com/Michaelangel007/easing_optimizations">http://www.github.com/Michaelangel007/easing_optimizations</a>';
+            '<a href="http://www.github.com/Michaelangel007/easing">http://www.github.com/Michaelangel007/easing</a>';
 
         var fontSize = 16;
         var head = new Text().init( { text: textHead, size: 2*fontSize } );
