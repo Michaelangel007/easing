@@ -1413,14 +1413,34 @@ With manual substitution:
 
 ![In Out Octic graph](pics/22_in_out_octic.png)
 
+## Cleanup - In Out Quadratic
+
+![In Out Quadratic graph](pics/16_in_out_quadratic.png)
+
 ## Cleanup - In Out Quartic
 
 ![In Out Quartic graph](pics/18_in_out_quartic.png)
 
-
 ## Cleanup - In Out Quintic
 
 ![In Out Quintic graph](pics/19_in_out_quintic.png)
+
+## Cleanup - In Out Septic
+
+![In Out Septic graph](pics/21_in_out_septic.png)
+
+## Cleanup - In Out Sextic
+
+![In Out Sextic graph](pics/20_in_out_sextic.png)
+
+## Cleanup - In Out Sine
+
+![In Out Sine graph](pics/39_in_out_sine.png)
+
+## Cleanup - In Out Square Root
+
+![In Out Square root graph](pics/48_out_sqrt.png)
+
 
 # jQuery UI
 
