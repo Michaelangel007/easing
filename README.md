@@ -924,6 +924,9 @@ Again, there isn't one so we'll add one for completeness.
     },
 ```
 
+
+# Cleanup - Out
+
 ## Cleanup - Out Back
 
 ![Out Back graph](pics/25_out_back.png)
@@ -958,7 +961,7 @@ Again, there isn't one so we'll add one for completeness.
 
 ## Cleanup - Out Octic
 
-![Out Octic graph](pics/22_out_octic.png)
+![Out Octic graph](pics/15_out_octic.png)
 
 ## Cleanup - Out Quadratic
 
@@ -966,11 +969,11 @@ Again, there isn't one so we'll add one for completeness.
 
 ## Cleanup - Out Quartic
 
-![Out Quartic graph](pics/18_out_quartic.png)
+![Out Quartic graph](pics/11_out_quartic.png)
 
 ## Cleanup - Out Quintic
 
-![Out Quintic graph](pics/19_out_quintic.png)
+![Out Quintic graph](pics/12_out_quintic.png)
 
 ## Cleanup - Out Septic
 
@@ -988,8 +991,22 @@ Again, there isn't one so we'll add one for completeness.
 
 ![Out Square root graph](pics/49_out_sqrt.png)
 
-To be continued.
 
+
+# Cleanup In Out
+
+## Cleanup - In Out Octic
+
+![In Out Octic graph](pics/22_in_out_octic.png)
+
+## Cleanup - In Out Quartic
+
+![In Out Quartic graph](pics/18_in_out_quartic.png)
+
+
+## Cleanup - In Out Quintic
+
+![In Out Quintic graph](pics/19_in_out_quintic.png)
 
 # jQuery UI
 
