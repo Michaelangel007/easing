@@ -1183,22 +1183,68 @@ In order to do this we need 4 pre-requisites:
 1. Scale the `In` height (`y`) by 1/2.
 
  ```Javascript
- function InOutQuadratic_v1( p ) {
-     return 0.5 * InQuadratic(p);
- }
+function InOutQuadratic_v1( p ) {
+    return 0.5 * InQuadratic(p);
+}
  ```
 
  or simply when inlined:
 
  ```Javascript
- function InOutQuadratic_v1( p ) {
-     return 0.5 * p*p;
- }
+function InOutQuadratic_v1( p ) {
+    return 0.5 * p*p;
+}
  ```
 
  The graph looks like this:
 
  ![HalfH In Quadratic](pics/tutorial/1_in_quadratic_halfh.png)
+
+2. Scale the `In` width (`x`) by 1/2.
+
+ Reparameterization to the rescue!
+
+ How? We can remap our original input `p` range and split it into _two_ ranges.
+ I'll call the new input `t`:
+
+| p range      | new t range  |
+|:-------------|:-------------|
+| [0.0 .. 0.5) | [0.0 .. 1.0] |
+| [0.5 .. 1.0] | [1.0 .. 2.0] |
+
+ And with a little bit of algebra it should be obvious of the scale factor:
+
+ ```
+    Input  : p = [0.0 .. 0.5)
+    Output : t = [0.0 .. 1.0]
+    Formula: t = 2*p
+ ```
+
+ ```Javascript
+function InOutQuadratic_v2( p ) {
+    return 0.5 * InQuadratic(2*p);
+}
+ ```
+
+ or when inlined:
+
+ ```Javascript
+function InOutQuadratic_v2( p ) {
+    return 0.5 * (2*p)*(2*p);
+}
+ ```
+
+ Which simplies down to:
+ ```Javascript
+function InOutQuadratic_v2( p ) {
+    return 2*(p*p);
+}
+ ```
+
+ ![HalfH HalfW In Quadratic](pics/tutorial/2_in_quadratic_halfh_halfw.png)
+
+ **Note:** We don't care about the right side of the graph, since we'll
+ replace that with the `Out` form.
 
 
 # Cleanup - In
