@@ -1302,6 +1302,8 @@ function InOutQuadratic_v4( p ) {
 
  We'll simplying this later in the [Cleanup - In Out Quadratic](https://github.com/Michaelangel007/easing#cleanup---in-out-quadratic) section.
 
+ ![Quarter Out Quadratic](pics/tutorial/4_out_quadratic_quarter.png)
+
 
 # Cleanup - In
 
