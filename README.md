@@ -1368,6 +1368,23 @@ With manual substitution:
 
 # Cleanup In Out
 
+## Cleanup - In Out Back
+
+![In Out Back graph](pics/24_in_out_back.png)
+
+## Cleanup - In Out Bounce
+
+![In Out Bounce graph](pics/27_in_out_bounce.png)
+
+## Cleanup - In Out Circle
+
+![In Out Circle graph](pics/30_in_out_circle.png)
+
+## Cleanup - In Out Cubic
+
+![In Out Cubic graph](pics/17_in_out_cubic.png)
+
+
 ## Cleanup - In Out Elastic
 
 ![Out Elastic graph](pics/34_out_elastic.png)
