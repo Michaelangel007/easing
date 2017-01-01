@@ -903,6 +903,252 @@ Hmmm, some of these equations are starting to look familiar !
 
 ![In Elastic graph](pics/32_in_elastic.png)
 
+Recall the original:
+
+
+```Javascript
+    easeInElastic: function (x, t, b, c, d) {
+        var s=1.70158;var p=0;var a=c;
+        if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
+        if (a < Math.abs(c)) { a=c; var s=p/4; }
+        else var s = p/(2*Math.PI) * Math.asin (c/a);
+        return -(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+    },
+```
+
+UGH.
+
+Version 1 - Add line breaks
+
+```Javascript
+    easeInElastic: function (x, t, b, c, d) {
+        var s=1.70158;
+        var p=0;
+        var a=c;
+
+        if (t==0)
+            return b;
+        if ((t/=d)==1)
+            return b+c;
+
+        if (!p)
+            p=d*.3;
+
+        if (a < Math.abs(c)) {
+            a=c;
+            var s=p/4;
+        }
+        else
+            var s = p/(2*Math.PI) * Math.asin (c/a);
+
+        return -(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+    },
+```
+
+Version 2 - Add whitespace
+
+```Javascript
+    easeInElastic: function (x, t, b, c, d) {
+        var s = 1.70158;
+        var p = 0;
+        var a = c;
+
+        if( t == 0 )
+            return b;
+        if( (t/=d) == 1)
+            return b+c;
+
+        if( !p )
+            p = d*.3;
+
+        if( a < Math.abs(c) ) {
+                a = c;
+            var s = p/4;
+        }
+        else
+            var s = p/(2*Math.PI) * Math.asin (c/a);
+
+        return -(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+    },
+```
+
+Version 3 - Static Analysis & Dynamic Analysis
+
+```Javascript
+    easeInElastic: function (x, t, b, c, d) {
+        var s = 1.70158; // useless constant -- not used as it is over-written
+        var p = 0;
+        var a = c;
+
+        if( t == 0 )
+            return b;
+        if( (t/=d) == 1 )
+            return b+c;
+
+        if( !p ) // useless conditional -- always true
+            p = d*.3;
+
+        // Over-engineered if
+        // a=c; if (a < Math.abs(c)) == if (c < Math.abs(c)) == if( c < 0 )
+        if( a < Math.abs(c) ) { // uncommon case: if( c < 0)
+            a=c;         // why?? redundant
+            var s = p/4; // s has same value in both true and false clauses
+        }
+        else // common case: if (c >= 0)
+            var s = p/(2*Math.PI) * Math.asin (c/a);  // Over-engineered: s=p/4;
+            // c/a == +1  Math.asin(+1) = +90 deg
+            // c/a == -1  Math.asin(-1) = -90 deg
+            // but a=c, and if(c<0) then ... else c>0, therefore c/a always +1
+            // var s = p/(2*Math.PI) * Math.asin(1);
+
+            // PI/2 radians =  90 degrees
+            // 2 PI radians = 360 degrees
+            // var s = p/(2*Math.PI) * Math.PI/2;
+            // var s = p/4;
+
+        // unnecessary a, since a=c
+        return -(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+    },
+```
+
+Version 4 - Remove redundant code
+
+```Javascript
+    easeInElastic: function (x, t, b, c, d) {
+        var p = d*.3;
+        var s = p/4;
+
+        if (t < 0)
+            return b;
+
+        t /= d;
+        if (t > 1)
+            return b+c;
+
+        t -= 1;
+        return -(c*Math.pow(2,10*t) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+    },
+```
+
+Version 5 - Robustness: Handle edge cases
+
+```Javascript
+    easeInElastic: function (x, t, b, c, d) {
+        var p = d*.3;
+        var s = p/4;
+
+        if (d <= 0) // clamp position
+            return b; // b -> 0.0
+
+        if (t <= 0) // clamp position
+            return b; // b -> 0.0
+
+        t /= d;
+        if (t >= 1) // clamp position
+            return b+c; // b+c -> 1.0
+
+        t -= 1;
+        return -(c*Math.pow(2,10*t) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+    },
+```
+
+Version 6 - Refactor last term `sin( .. )`
+
+```Javascript
+    = (t*d-s)*(2*Math.PI)/p
+    = (t*d-p/4)   *(2*Math.PI)/p
+    = (t*d-d*.3/4)*(2*Math.PI)/(d*.3)
+    = d*(t-.3/4)  *(2*Math.PI)/(d*.3)
+    = (t-.3/4)    *(2*Math.PI)/.3
+    = (t/.3-1/4)  *(2*Math.PI)
+    = (2*t/.3-1/2)*   Math.PI
+    = (40*t-3)    *   Math.PI/6
+```
+
+**Note:**
+
+ * 40/6
+ * = 6.666...
+ * = 2/0.3
+ * = 1/0.3 * 2 * ...PI...
+
+That is:
+
+```Javascript
+    return -(c*Math.pow(2,10*t) * Math.sin( (t*d-s)     *(2*Math.PI)/k      )) + b; // original
+    return -(c*Math.pow(2,10*t) * Math.sin( (t*d-k/4)   *(2*Math.PI)/k      )) + b;
+    return -(c*Math.pow(2,10*t) * Math.sin( (t*d-d*.3/4)*(2*Math.PI)/(d*.3) )) + b;
+    return -(c*Math.pow(2,10*t) * Math.sin( d*(t-.3/4)  *(2*Math.PI)/(d*.3) )) + b;
+    return -(c*Math.pow(2,10*t) * Math.sin( (t-.3/4)    *(2*Math.PI)/.3     )) + b; // can factor our duration
+    return -(c*Math.pow(2,10*t) * Math.sin( (t/.3-1/4)  *(2*Math.PI)        )) + b;
+    return -(c*Math.pow(2,10*t) * Math.sin( (2*t/.3-1/2)*   Math.PI         )) + b;
+    return -(c*Math.pow(2,10*t) * Math.sin( (40*t-3)    *   Math.PI/6       )) + b; // simplified
+```
+
+Version 7 - Simplified & Optimized 'easeInElastic'
+
+```Javascript
+    easeInElastic: function (x, t, b, c, d) {
+        t /= d;
+        if (t <= 0) return b  ;
+        if (t >= 1) return b+c;
+        t -= 1;
+        return -(c*Math.pow(2,10*t) * Math.sin( (40*t-3) * Math.PI/6 )) + b;
+    },
+```
+
+**NOTE**: jQuery UI does NOT match the original, constants are incorrect
+
+```Javascript
+    easeInElastic   : function(p) {
+        return p === 0 || p === 1 ? p :
+            -Math.pow( 2, 8 * (p - 1) ) * Math.sin( ( (p - 1) * 80 - 7.5 ) * Math.PI / 15 );
+    },
+    easeOutElastic  : function(p) { return 1 - this.easeInElastic( 1-p ); },
+    easeInOutElastic: function(p) {
+        if (p < 0.5) return     this.easeInBack ( t     )*0.5;
+        else         return 1 - this.easeOutBack( t - 1 )*0.5;
+    },
+```
+
+Whew! We can now finally provide the **single variable version**:
+
+```Javascript
+    easeInElastic: function(p) {
+        var m = p-1;
+        if (p <= 0) return 0;
+        if (p >= 1) return 1;
+        return -Math.pow(2,10*m) * Math.sin( (40*m-3) * Math.PI/6 );
+    },
+```
+
+There are some variations, depending on how much inlining of variables you want to do:
+
+* With `m = p-1`:
+
+```Javascript
+    easeInElastic: function(p) {
+        var m = p-1;
+        return -Math.pow( 2,  10*m ) * Math.sin( (m*40 - 3) * Math.PI/6 );
+    },
+```
+
+* With `m` removed, replaced with `p`:
+
+```Javascript
+    easeInElastic: function(p) {
+        return -  Math.pow( 2,10*(p-1) ) * Math.sin(((p-1)*40 - 3) * Math.PI/6 ); // (p-1)*40-3 -> 40*p-43
+    },
+```
+
+* With `-1` optimized out:
+
+```Javascript
+    easeInElastic: function(p) {
+        return -  Math.pow( 2,10*p-10 ) * Math.sin( (40*p  -43) * Math.PI/6 ); // m=p-1, m*40-1 -> (p-1)*40-3 -> 40*p-43
+    },
+```
+
 ## Cleanup - In Exponent 2
 
 ![In Exponent 2 graph](pics/35_in_exponent_2.png)
