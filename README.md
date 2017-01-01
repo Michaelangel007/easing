@@ -400,7 +400,7 @@ There is no reason why we couldn't even have multiple simulataneous animations
 on the _same_ object all going on at once!  Typically objects have more then
 one dimension, such as eight dimensions (8D).
 
-Eight dimensions!?
+_Eight dimensions!?_
 
 Whoa! Where did all those come from? When did this turn into String Theory? :-)
 
@@ -761,7 +761,7 @@ var Original =
 };
 ```
 
-Uhm, _yeah._
+Uhm, _yeah._ **NOT**.
 
 Let's learn how to clean up this _fugly, overengineered code_ into the _beautiful_, exact equivalent mentioned at the beginning.
 
@@ -793,7 +793,7 @@ The _implementation_ problems are:
 
 1. Buggy 1     - Generates NaN when d == 0
 2. Buggy 2     - Doesn't handle edge cases when t<0 or t>d
-3. Inefficient - t/d is always done to normalize the time; If there are multiple animations with the same duration then this causes extra processing
+3. Inefficient - t/d is always done to normalize the time; If there are multiple animations with the same duration then this causes extra processing. Also, you can often multiply by the reciprocal duration instead of doing a slow divide. When the animation is _started_ we "pre-calculate" `1/duration`.
 4. Slow 1      - due to inefficient, redundant, or dead code
 5. Slow 2      - b can be replaced with 0.0
 6. Slow 3      - c can be replaced with 1.0
