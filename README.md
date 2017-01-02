@@ -260,8 +260,9 @@ But we're getting ahead of ourselves ...
 
 # Easing ... what is it and why is it important?
 
-In UI (User Interface) design, or CG (Computer Graphics) rendering, often times
-we want to animate some "thing" over time. For eample:
+In UI (User Interface) design, UX (User Experience), or CG (Computer Graphics) rendering, often times
+we want to animate some "thing" over time. Basically "cheap physics" where cheap means
+inexpensive to calculate without resorting to a full physics simulation. For example:
 
 * fade out an object (e.g. transistion alpha from 1.0 to 0.0),
 * interpolate its location so it "slides offscreen" (e.g. change x (or y) over time), or
