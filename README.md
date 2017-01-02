@@ -876,7 +876,7 @@ Uhm, _yeah._ **NOT**.
 Let's learn how to clean up this _fugly, overengineered code_ into the _beautiful_, exact equivalent mentioned at the beginning.
 
 The astute reader will notice that `jQuery` initially adapted these _"as-is"_
-before coming to their senses and cleaning them up into the _single argument version_ eventually.
+before coming to their senses and cleaning them up into the _single parameter version._
 
 * https://raw.githubusercontent.com/danro/jquery-easing/master/jquery.easing.js
 
@@ -885,7 +885,7 @@ before coming to their senses and cleaning them up into the _single argument ver
 # Easing Cleanup
 
 There are numerous problems with the defacto 5-parameter easing functions.
-This is **crap code** -- that's the technical term for _over-engineered._
+This is **crap code** -- that's the "technical" term for _over-engineered._
 
 Problems can be placed into two general categories:
 
@@ -916,9 +916,9 @@ We will address and fix **all** of these bugs.
 
 First, let's start with the linear easing.
 
-Hmm, there isn't one. Really?!  Let's add one for _completeness._
+Hmm, there isn't one. _Really?!_  Let's add one for _completeness._
 
-Its graph looks like this:
+Recall its graph looks like this:
 
 ![Linear graph](pics/01_linear.png)
 
@@ -982,12 +982,32 @@ A simple mnemonic to help remember it is: _re-parameter_
 
 Basically, we want to re-map the range into something _convenient._
 But that begs the question -- _what_ would be convenient?
-Hmm, maybe a _range_ between 0.0 and 1.0 inclusive aka `normalized` values! :)
+Hmm, maybe a _range_ between 0.0 and 1.0 (inclusive) aka `normalized` values! :)
 
 | b   | c       | Notes     |
 |:---:|:--------|:----------|
 | min | max-min | Old range |
 | 0.0 | 1.0     | New range |
+
+```Javascript
+    easeLinear: function (x, t, b, c, d) {
+        if (t <= 0) return b    ; // If d=0, then t is always t >= d
+        if (t >= d) return b + c; // due to t < 0 already being handled
+        var p = t/d;
+        return c*p + b;
+    },
+```
+
+Becomes
+
+```Javascript
+    easeLinear: function (x, t, b, c, d) {
+        if (t <= 0) return b    ; // If d=0, then t is always t >= d
+        if (t >= d) return b + c; // due to t < 0 already being handled
+        var p = t/d;
+        return p;
+    },
+```
 
 Notice now:
 
@@ -995,7 +1015,8 @@ Notice now:
  * how the term `c` drops out
  * The entire formula becomes much simpler.
 
-We'll do this for all the easing equations, converting them into a **single argument version**.
+We'll do this for all the easing equations, converting them into a **single argument version**
+using these steps:.
 
 1. Since `x` is unused our function prototype becomes: `function( t, b, c, d )`
 2. Since `b` is zero, our function prototype becomes: `function( t, c, d )`
@@ -1010,19 +1031,21 @@ function Linear( p ) {
 }
 ```
 
-We'll drop the `ease` prefix since
+We'll also drop the `ease` prefix since:
 
 * These functions will be in a namespace anyways, and
 * It provides a visual mnemonic to know which easing functions take 1 argument vs 5 arguments.
+  If the function _starts_ with `ease` it is the 5 parameter version.
+  If the function _doesn't_ start with `ease` then we know it is the 1 parameter version.
 
 
-## "Warp Speed Mr. Sulu"
+## _"Warp Speed Mr. Sulu"_
 
 Now this linear easing form by itself isn't very interesting.
 
 However, what if we _adjusted_ the time ? That is, when the animation is:
 
-*   0% done, it really hasn't started,
+*   0% done, no change,
 *  10% done, we pretend it is only  1% done,
 *  20% done, we pretend it is only  4% done,
 *  30% done, we pretend it is only  9% done,
@@ -1045,6 +1068,7 @@ Here is the data in table format:
 
 | x   | y    |
 |:----|:-----|
+| 0.0 | 0.00 |
 | 0.1 | 0.01 |
 | 0.2 | 0.04 |
 | 0.3 | 0.09 |
@@ -1055,7 +1079,7 @@ Here is the data in table format:
 | 0.9 | 0.81 |
 | 1.0 | 1.00 |
 
-If we graph this pretend game we end up with this:
+If we graph this _pretend game_ we end up with this:
 
 ![In Quadratic graph](pics/02_in_quadratic.png)
 
@@ -1076,12 +1100,16 @@ Or in our parlance:
 In one sense you could say that **`easing` is a function that "warps time".**
 We can apply all sorts of "time warping" to produce many different interesting effects.
 
-But first before we investigate and optimize them we need to go over `In`, `Out`, and `In Out`
+But before we investigate and optimize them we first need to go over the concepts of:
+
+* `In`,
+* `Out`, and
+* `In Out`
 
 
 ## What's with this "In, Out, In-Out" business, anyways?
 
-We introduced a new easing function which has the form: `quadratic`
+We introduced a new easing function which has the form of a `Quadratic` equation:
 
 ```Javascript
     function InQuadratic(p) { return p*p; }, // p^2 = Math.pow(p,2)
@@ -1114,7 +1142,7 @@ Those graphs look like these:
 ![In Septic    graph](pics/07_in_septic.png)
 ![In Octic     graph](pics/08_in_octic.png)
 
-We'll discuss other variations but first we need to discuss an important concept.
+We'll discuss other variations later.
 
 
 ## Out
@@ -1372,7 +1400,7 @@ function InOutQuadratic_v4( p ) {
 
  ![HalfH HalfW Out Quadratic](pics/tutorial/4_out_quadratic_halfh_halfw.png)
 
- We'll simplying this later in the [Cleanup - In Out Quadratic](https://github.com/Michaelangel007/easing#cleanup---in-out-quadratic) section.
+ We'll simplying this later in the [Cleanup - In Out Quadratic](#cleanup---in-out-quadratic) section.
 
  Again, we don't care about the left side since that is being
  replaced with `In`
@@ -1472,13 +1500,12 @@ This matches our optimized version: :)
 To avoid havin to repeat myself there are some common
 idioms and epxressions used in the original code:
 
-|Expression| Meaning          | Replacement |
-|---------:|:-----------------|:------------|
-| x        | not used         | n/a         |
-| b        | min x            | 0           |
-| c        | max x            | 1           |
-| t/=d     | current/duration | p           |
-```
+|Expression| Meaning                 | Replacement |
+|---------:|:------------------------|:------------|
+| x        | not used                | n/a         |
+| b        | min x                   | 0           |
+| c        | max x                   | 1           |
+| t/=d     | elapsed time / duration | p           |
 
 **Note:**
 
