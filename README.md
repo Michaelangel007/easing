@@ -497,7 +497,7 @@ var Axis =
 
 ## Why Javascript?
 
-_Javascript_ is a crappy (*) language designed in 10 days. If it is so bad then why use it?
+_Javascript_ (JS) is a crappy (*) language designed in 10 days. If it is so bad then why use it?
 
 Two reasons:
 
@@ -708,9 +708,10 @@ Quaternions won't be discussed here, but it is also nice to be aware of the broa
 
 # De Facto Easing Functions
 
-Robert Penner provided the original, "canonical" 'de facto' easing functions in 2001 in ActionScript.
+Back in 2001 Robert Penner provided the original, "canonical" _de facto_ easing functions written in ActionScript.
+They became extremely popular.
 
-First, let's tabulate the variables we'll be using:
+First, let's tabulate the arguments they use:
 
 **Legend:**
 
