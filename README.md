@@ -1140,7 +1140,7 @@ And its graph:
 
 ![In Quadratic graph](pics/02_in_quadratic.png)
 
-We have p^2, but what about raising p to the standard (integer) powers such as 2, 3, 4, ..., etc.?
+We have p^2, but what about raising p to the standard (integer) powers such as 3, 4, 5, ..., etc.?
 
 |Power|Formula|Name       |
 |----:|------:|:----------|
