@@ -1222,7 +1222,8 @@ function InOutQuadratic_v1( p ) {
 
  ```Javascript
 function InOutQuadratic_v2( p ) {
-    return 0.5 * InQuadratic( 2*p );
+    var t = 2*p;
+    return 0.5 * InQuadratic( t );
 }
  ```
 
@@ -1293,6 +1294,7 @@ function InOutQuadratic_v2( p ) {
 
 ```Javascript
 function InOutQuadratic_v4( p ) {
+    var t = 2*p - 1;
     return 0.5 * OutQuadratic( 2*p - 1 );
 }
 ```
@@ -1312,12 +1314,83 @@ function InOutQuadratic_v4( p ) {
 
 ```Javascript
 function InOutQuadratic_v5( p ) {
+    var t = 2*p - 1;
     return 0.5 + 0.5*OutQuadratic( 2*p - 1 );
 }
 ```
 
  ![Quarter ShiftUp Out Quadratic](pics/tutorial/5_out_quadratic_quarter_shift.png)
 
+And now we can piece together our `InOut` function.
+
+First the `In`:
+
+ ```Javascript
+function InOutQuadratic_v2( p ) {
+    var t = 2*p;
+    return 0.5 * InQuadratic( t );
+}
+ ```
+
+Plus the `Out`:
+
+```Javascript
+function InOutQuadratic_v5( p ) {
+    var t = 2*p - 1;
+    return 0.5 + 0.5*OutQuadratic( 2*p - 1 );
+}
+```
+
+In Mathematics this is called a [piecewise function.](https://en.wikipedia.org/wiki/Piecewise)
+
+It is written with the curly brace notation:
+
+```
+y =       0.5*InQudratic  ( 2*x     )   { 0  < x <= 1/2 }
+y = 0.5 + 0.5*OutQuadratic( 2*x - 1 )   {1/2 < x <= 1   }
+```
+
+or alternatively:
+
+```
+    {        0.5*InQudratic  ( 2*x     ), if x <  1/2
+y = {
+    {  0.5 + 0.5*OutQuadratic( 2*x - 1 ), if x >= 1/2
+```
+
+We can factor out the common term `2*x` for readability:
+
+ ```Javascript
+function InOutQuadratic_v6( p )
+{
+    var t = 2*p;
+
+    if( p < 0.5 ) return       0.5*InQuadratic ( 2*p     );
+    else          return 0.5 + 0.5*OutQuadratic( 2*p - 1 );
+}
+ ```
+
+ To save some typing we can remove that `0.5` and use `1` directly:
+
+ ```Javascript
+function InOutQuadratic_v6( p )
+{
+    var t = 2*p;
+
+    if( t < 1 ) return       0.5*InQuadratic ( t     );
+    else        return 0.5 + 0.5*OutQuadratic( t - 1 );
+}
+ ```
+
+And now for the moment of truth:
+
+ ![In Out Quadratic Piecewise](pics/tutorial/6_in_out_quadratic.png)
+
+TA-DA !
+
+This matches our optimized version: :)
+
+ ![In Out Quadratic Optimized](pics/tutorial/16_in_out_quadratic.png)
 
 # Cleanup - In
 
