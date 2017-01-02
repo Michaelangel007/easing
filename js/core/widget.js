@@ -388,11 +388,12 @@ Widget.prototype =
 
 /*
     // You need to provide if you over-ride:
-    onCreate     : function() {}, // Called when a widget's div and all their children has been created
-    onFocusAccept: function() {},
-    onFocusLost  : function() {},
-    onResize     : function() {}, // Game.w and/or Game.h has changed
-    onUpdate     : function( dt ) { },
+    onCreate     : function()     {}, // Called when a widget's div and all their children has been created
+    onFocusAccept: function()     {}, // when a widget received focus
+    onFocusLost  : function()     {}, // when a widget loses focus
+    onInput      : function()     {}, // whenever a key is pressed or released
+    onResize     : function()     {}, // Game.w and/or Game.h has changed
+    onUpdate     : function( dt ) {}, // When Widget.update() has finished update all animation for this frame
 */
 
     /**
