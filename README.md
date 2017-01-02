@@ -1009,16 +1009,16 @@ Now this linear easing form by itself isn't very interesting.
 
 However, what if we _adjusted_ the time ? That is, when the animation is:
 
-* 10% done, we pretend it is only  1% done,
-* 20% done, we pretend it is only  4% done,
-* 30% done, we pretend it is only  9% done,
-* 40% done, we pretend it is only 16% done,
-* 50% done, we pretend it is only 25% done,
-* 60% done, we pretend it is only 36% done,
-* 70% done, we pretend it is only 49% done,
-* 80% done, we pretend it is only 64% done,
-* 90% done, we pretend it is only 81% done,
-*100% done, it really is 100% done.
+*  10% done, we pretend it is only  1% done,
+*  20% done, we pretend it is only  4% done,
+*  30% done, we pretend it is only  9% done,
+*  40% done, we pretend it is only 16% done,
+*  50% done, we pretend it is only 25% done,
+*  60% done, we pretend it is only 36% done,
+*  70% done, we pretend it is only 49% done,
+*  80% done, we pretend it is only 64% done,
+*  90% done, we pretend it is only 81% done,
+* 100% done, it really is 100% done.
 
 Spot the pattern?
 
