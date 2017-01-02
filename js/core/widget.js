@@ -517,7 +517,7 @@ Widget.prototype =
 
         n = this._children.length;
         for( var child = 0; child < n; ++child )
-            this._children[ child ].update();
+            this._children[ child ].update( dT );
 
         if( this.onUpdate )
             this.onUpdate( dT );
