@@ -22,7 +22,7 @@
  * [What's with this "In, Out, In-Out" business, anyways?](#whats-with-this-in-out-in-out-business-anyways)
  * [Out](#out)
  * [In-Out](#in-out)
-* [Cleanup - In](#in)
+* [Cleanup - In](#cleanup---in)
  * [Cleanup - In Back](#cleanup---in-back)
  * [Cleanup - In Bounce](#cleanup---in-bounce)
  * [Cleanup - In Circle](#cleanup---in-circle)
@@ -1449,16 +1449,156 @@ This matches our optimized version: :)
 
 # Cleanup - In
 
+To avoid havin to repeat myself there are some common
+idioms and epxressions used in the original code:
+
+|Expression| Meaning          | Replacement |
+|---------:|:-----------------|:------------|
+| x        | not used         | n/a         |
+| b        | min x            | 0           |
+| c        | max x            | 1           |
+| t/=d     | current/duration | p           |
+```
+
+**Note:**
+
+* Also keep in mind that we'll drop the `ease` prefix
+  so we can tell the difference between the
+  original 5 parameter version and the
+  optimized 1 parameter version.
+
 With the fundamentals out of the way we can start optimizing
 all the easing functions.
+
 
 ## Cleanup - In Back
 
 ![In Back graph](pics/23_in_back.png)
 
+Original 5 argument version:
+
+```Javascript
+    easeInBack: function (x, t, b, c, d, s) {
+        if (s == undefined) s = 1.70158;
+        return c*(t/=d)*t*((s+1)*t - s) + b;
+    },
+```
+
+Version 1 - remove x, b, c, t, d,
+
+```Javascript
+    InBack: function (p,s) {
+        if (s == undefined) s = 1.70158;
+        return p*p*((s+1)*p - s);
+    },
+```
+
+Since most users will never override `s` with a custom constant
+it is safe to remove it
+
+Version 2 - Remove s
+
+```Javascript
+    InBack: function (p) {
+        var s = 1.70158;
+        return p*p*((s+1)*p - s);
+    },
+```
+
+Version 3 - Reorder multiplication
+
+```Javascript
+    InBack: function (p) {
+        var s = 1.70158;
+        return p*p*(p*(s+1) - s);
+    },
+```
+
+One last cleanup.
+Since the variable `k` is usually used to mean a constant
+we'll use that instead of `s`, the latter which is usually
+used to signal a `scale` factor.
+
+One-liner single argument version (1SAV):
+
+```Javascript
+    function InBack(p) { var k = 1.70158; return p*p*(p*(k+1) - k); }
+```
+
+Unanswered question:
+
+* Where does the [magic number](https://en.wikipedia.org/wiki/Magic_number_(programming\)) `1.70158` come from?
+
+
 ## Cleanup - In Bounce
 
 ![In Bounce graph](pics/26_in_bounce.png)
+
+```Javascript
+    easeInBounce: function (x, t, b, c, d) {
+        return c - easeOutBounce (x, d-t, 0, c, d) + b;
+    },
+```
+
+Hmm, it chains to `easeOutBounce` which has this prototype:
+
+```Javascript
+    easeOutBounce: function (x, t, b, c, d)
+```
+
+Since our cleaned up`OutBounce()` will eventually operate on the
+normalized _input_ range [0,1] then, technically, we don't need to
+know the internal details -- just as long as we keep track
+of what is being passed in.
+
+Version 1 - remove x
+
+```Javascript
+    InBounce: function (t, b, c, d) {
+        return c - OutBounce (d-t, 0, c, d) + b;
+    },
+```
+
+Version 2 - replace b=0 and c=1
+
+```Javascript
+    InBounce: function (t, d) {
+        return 1 - OutBounce (d-t, 0, 1, d) + 0;
+    },
+```
+
+Version 3 - remove OutBounce() arguments
+
+```Javascript
+    easeInBounce: function (t, d) {
+        return 1 - OutBounce ( d-t, d);
+    },
+```
+
+Normally `p = t /d`, but we have `d-t / d`.
+What is this equal to? With a little bit of algebra:
+
+```Javascript
+    = (d - t)/d
+    = d/d - t/d
+    = 1 - p
+
+This is looking much better:
+
+Version 4 - simplify `(d-t, d)`
+
+```Javascript
+    easeInBounce: function ( p ) {
+        return 1 - OutBounce ( 1-p );
+    },
+```
+
+One-liner single parameter version (1SAV):
+
+```Javascript
+    function InBounce(p) { return 1 - OutBounce( 1-p ); }
+```
+
 
 ## Cleanup - In Circle
 
@@ -2036,8 +2176,8 @@ $.each( baseEasings, function( name, easeIn ) {
  * [x] Linear
  * [x] What's with this "In, Out, In-Out" business, anyways?
 * Cleanup
- * [ ] In Back
- * [ ] In Bounce
+ * [x] In Back
+ * [x] In Bounce
  * [ ] In Circle
  * [ ] In Cubic
  * [ ] In Elastic
@@ -2086,7 +2226,7 @@ $.each( baseEasings, function( name, easeIn ) {
  * [ ] Out Sextic
  * [ ] Out Sine
  * [ ] Out Square Root
-* verify.html
+* [ ] verify.html
 
 By: Michael "Code Poet" Pohoreski
 Copyright: 2016-2017
