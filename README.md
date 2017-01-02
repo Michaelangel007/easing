@@ -2226,7 +2226,7 @@ $.each( baseEasings, function( name, easeIn ) {
  * [ ] Out Sextic
  * [ ] Out Sine
  * [ ] Out Square Root
-* [ ] verify.html
+* [ ] Verification, and verify.html
 
 By: Michael "Code Poet" Pohoreski
 Copyright: 2016-2017
