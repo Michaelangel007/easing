@@ -506,7 +506,7 @@ _Javascript_ (JS) is a crappy (*) language designed in 10 days. If it is so bad 
 Two reasons:
 
 * Every modern computer has a web browser which means there is _nothing to install,_ and
-* More importantly, _to show that is possible_ to write **good** code in any language,
+* More importantly, _to show that is possible_ to write **good** (**) code in any language,
 even as one as bad as Javascript.
 
 (*) What precisely makes Javascript so garbage you ask?
@@ -518,12 +518,11 @@ even as one as bad as Javascript.
 * No native unsigned 64-bit int. `var n = (1 << 63); console.log( n ); // -2147483648` // **facepalm**
 * Every number is a 64-bit floating-point, unless you use [Float32Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array)
 * The comparision operator `==` is [horribly broken](https://dorey.github.io/JavaScript-Equality-Table/) i.e. `if( 0 == "0" ) console.log( "equal" ); // equal!?`
-* Its type system is foobar. See Gary Bernhardt's [WAT talk](https://www.destroyallsoftware.com/talks/wat) for how brain-dead the language is.
+* Its type system is foobar. See Gary Bernhardt's [WAT talk](https://www.destroyallsoftware.com/talks/wat) for how _brain-dead_ JS is. No, not [that](https://github.com/macmade/BrainDead) language.
 * No automatic _multiline string_ concatenation. This means you need to do stupid shit like this _at run-time!_
 
 ```Javascript
- var text = ''
-          +'First line\n'
+ var text = 'First line\n'
           + 'Second line\n'
           + 'Third line\n'
           ;
@@ -549,6 +548,16 @@ or [Python's way](http://stackoverflow.com/questions/10660435/pythonic-way-to-cr
 
 Of course you have to deal with Python's idiotic indentation shenanigans but that is a discussion for another day.
 
+(**) Good code is one that has:
+
+* succinct and descriptive variable names,
+* lots of whitespace (both horizontally and vertically),
+* uses multi-column alignment
+* documents WHY not HOW
+
+An example of how to GOOD write code: [widget.js](js/core/widget.js)
+
+Example of how NOT to write code: [procmail.c](https://opensource.apple.com/source/procmail/procmail-1.2/procmail/src/procmail.c)
 
 OK, enough ranting. Let's get back to our axis of evil, er, 8D axis ...
 
