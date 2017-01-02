@@ -64,7 +64,7 @@ Widget.prototype =
         for( var axis = 0; axis < Axis.INIT; ++axis )
             vals[ axis ] = 0;
 
-        this._type  = vals.slice(); // animation easing type NOTE: Easing.NONE = 0, no active animation
+        this._ease  = vals.slice(); // animation easing type NOTE: Easing.NONE = 0, no active animation
         this._start = vals.slice(); // animation time start
         this._oodur = vals.slice(); // animation time One Over Duration (NOTE: This is 1/milliseconds in order to use multiply instead of divide)
         this._onEnd = vals.slice(); // callback when animation done
@@ -161,7 +161,7 @@ Widget.prototype =
                 this._onEnd[ axis ] = params.onEnd;
                 this._onInc[ axis ] = params.onInc;
                 this._start[ axis ] = Widget.time; // anim time start
-                this._type [ axis ] = easing;
+                this._ease [ axis ] = easing;
             }
 
             axis = undefined;
@@ -333,7 +333,7 @@ Widget.prototype =
      * @returns {Boolean} true if animating, else false
      */
     // ========================================================================
-    isAxisAnimating: function( axis ) { return this._type[ axis ] !== Easing.NONE; },
+    isAxisAnimating: function( axis ) { return this._ease[ axis ] !== Easing.NONE; },
 
     /**
      * Category: Animation
@@ -460,7 +460,7 @@ Widget.prototype =
         if( axis === undefined )
             console.error( "Widget.stop() Axis not specified" );
 
-        this._type[ axis ] = Easing.NONE;
+        this._ease[ axis ] = Easing.NONE;
         this._max [ axis ] = this._cur[ axis ];
 
         var callback = this._onEnd[ axis ];
@@ -484,7 +484,7 @@ Widget.prototype =
 
         for( var axis = 0; axis < n; ++axis )
         {
-            var easing = this._type[ axis ];
+            var easing = this._ease[ axis ];
             if( easing ) // Animation != Easing.NONE
             {
                 var min = this._min[ axis ];
