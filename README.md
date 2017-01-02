@@ -776,6 +776,10 @@ smoothstep function( t, x0, x1 )
 }
 ```
 
+The graph looks like this:
+
+![smoothstep](pics/50_smoothstep.png)
+
 See my interactive [WebGL smoothstep](https://www.shadertoy.com/view/lsVSRD) demo.
 
 
