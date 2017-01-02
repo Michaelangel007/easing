@@ -963,7 +963,7 @@ There will be a test. :)
 Since that Wikipedia page is so badly written and
 will probably just confuse you more then it helps, the only take-away you need is this:
 
-* Reparameterization ... is the process of deciding and defining the parameters necessary for a ... specification.
+* _Reparameterization ... is the process of deciding and defining the parameters necessary for a ... specification._
 
 A simple mnemonic to help remember it is: _re-parameter_
 
