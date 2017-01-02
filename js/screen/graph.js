@@ -46,6 +46,7 @@ Plot.prototype =
             Easing.IN_OUT_SQRT     ,
             Easing.IN_OUT_LOG10    ,
             Easing.IN_OUT_SINE     ,
+            Easing.SMOOTHSTEP      , // cubic variation
             Easing.IN_OUT_QUADRATIC,
             Easing.IN_OUT_CUBIC    ,
             Easing.IN_OUT_CIRCLE   ,
