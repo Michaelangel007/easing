@@ -8,11 +8,12 @@
  * [Comparision of easing functions](https://github.com/Michaelangel007/easing#comparision-of-easing-functions)
 * [TL:DR; _"Shut up and show me the code!"_](https://github.com/Michaelangel007/easing#tldr-shut-up-and-show-me-the-code)
 * [Easing ... what is it and why is it important?](https://github.com/Michaelangel007/easing#easing--what-is-it-and-why-is-it-important)
-* [Parameter `t` or `p`](https://github.com/Michaelangel007/easing#parameter-t-or-p)
-* [Simultaneous Animations](https://github.com/Michaelangel007/easing#simultaneous-animations)
-* [Why Javascript?](https://github.com/Michaelangel007/easing#why-javascript)
-* [The Color Axis](https://github.com/Michaelangel007/easing#the-color-axis)
-* [Interpolation](https://github.com/Michaelangel007/easing#interpolation)
+  * [Parameter `t` or `p`](https://github.com/Michaelangel007/easing#parameter-t-or-p)
+  * [Simultaneous Animations](https://github.com/Michaelangel007/easing#simultaneous-animations)
+  * [Why Javascript?](https://github.com/Michaelangel007/easing#why-javascript)
+  * [The Color Axis](https://github.com/Michaelangel007/easing#the-color-axis)
+  * [Linear Interpolation: Lerp](https://github.com/Michaelangel007/easing#linear-interpolation--lerp)
+  * [Non-Linear Interpolation: Slerp](https://github.com/Michaelangel007/easing#linear-interpolation--slerp)
 * [De Facto Easing Functions](https://github.com/Michaelangel007/easing#de-facto-easing-functions)
 * [Easing Cleanup](https://github.com/Michaelangel007/easing#easing-cleanup)
  * [Cleanup - Linear](https://github.com/Michaelangel007/easing#cleanup---linear)
@@ -234,7 +235,7 @@ But we're getting ahead of ourselves ...
 
 
 
-## Easing ... what is it and why is it important?
+# Easing ... what is it and why is it important?
 
 In UI (User Interface) design, or CG (Computer Graphics) rendering, often times
 we want to animate some "thing" over time. For eample:
@@ -616,7 +617,7 @@ See Tom Forsyth's
 But I digress.
 
 
-## Interpolation
+## Linear Interpolation: Lerp
 
 In _computer graphics_ terminology this calculating "inbetween" values is
 called `interpolation`. In _animation_ it is called `tweening`.
@@ -694,6 +695,13 @@ precision and minimize error, at the cost of slightly slower performance.
 
 This is a common trade-off in computing -- you can have speed or accuracy, pick one. :-/
 
+## Non-linear interpolation: slerp
+
+If one interpolates between two quaternions they will come across the term `slerp`.
+
+This is just an abbreviation for _spherical interpolation_.
+
+Quaternions won't be discussed here, but it is also nice to be aware of the broader terminology in related fields.
 
 
 # De Facto Easing Functions
