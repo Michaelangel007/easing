@@ -68,7 +68,7 @@ Widget.prototype =
         this._start = vals.slice(); // animation time start
         this._oodur = vals.slice(); // animation time One Over Duration (NOTE: This is 1/milliseconds in order to use multiply instead of divide)
         this._onEnd = vals.slice(); // callback when animation done
-        this._onInc = vals.slice(); // callback while animationg active
+        this._onInc = vals.slice(); // callback while animation active
 
         vals[ Axis.A ] =  1; // default alpha = opaque
         this._min = vals.slice();
