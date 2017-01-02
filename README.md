@@ -19,8 +19,8 @@
 * [Easing Cleanup](#easing-cleanup)
   * [Cleanup - Linear](#cleanup---linear)
   * [_"I'm here for an argument"_](#im-here-for-an-argument)
-  * [_"Warp Speed, Mr. Sulu"_](#warp-speed-mr-sulu)
-  * [What's with this "In, Out, In-Out" business, anyways?](#whats-with-this-in-out-in-out-business-anyways)
+  * [_"Warp Speed, Mr. Sulu"_](#warp-speed--mr-sulu)
+  * [What's up with this "In, Out, In-Out" business, anyways?](#whats-up-with-this-in-out-in-out-business-anyways)
   * [Out](#out)
     * [_"No backflip for you!"_](#no-backflip-for-you)
     * [Flip Y](#flip-y)
@@ -1001,7 +1001,7 @@ Let's make this a little more robust:
 
 Hmmm, some of these equations are starting to look familiar !
 
-## "I'm here for an argument"
+## _"I'm here for an argument"_
 
 Without being pedantic with [Argument vs Parameter](http://stackoverflow.com/questions/1788923/parameter-vs-argument)
 we still have a lot of parameters in our easing functions. Is there any way we can get rid of them?
@@ -1078,7 +1078,7 @@ We'll also drop the `ease` prefix since:
   If the function _doesn't_ start with `ease` then we know it is the 1 parameter version.
 
 
-## _"Warp Speed Mr. Sulu"_
+## _"Warp Speed, Mr. Sulu"_
 
 Now this linear easing form by itself isn't very interesting.
 
@@ -1146,7 +1146,7 @@ But before we investigate and optimize them we first need to go over the concept
 * `In Out`
 
 
-## What's with this "In, Out, In-Out" business, anyways?
+## _"What's up with this 'In', 'Out', 'In-Out' business, anyways?"_
 
 We introduced a new easing function which has the form of a `Quadratic` equation:
 
