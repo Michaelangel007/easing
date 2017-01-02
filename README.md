@@ -84,25 +84,32 @@
 
 ## Overview
 
-Wikipedia squanders the opportunity to be a:
+Wikipedia completely squanders the opportunity to be a **comprehensive:**
 
 * Tutorial
 * Reference
+* Textbook
 * Guide
-* Complete Theory + Application
+* Complete Theory + Application collection
 
-via the shenanigans of a myopic _"No Original Research"_ policy
+via the shenanigans of a myopic _"No Original Research"_
+[policy](http://en.wikipedia.org/wiki/Wikipedia:NOTGUIDE)
 even when documenting Mathematics that have been _known_ for **years.**
 Since some of these formulas have become so common
-no has bothered to document them and thus beginners are left
-looking for a clear, simple, explanation of the _Theory_
-plus good, clean code of _Application._
+no has bothered to document them leaving the cannoncial
+`{{Citation needed}}` _unanswered._
 
-This document shows how to:
+Worse, beginners are left looking for a simple, _explanation_
+of the **Theory** that the layman can understand in clear terms.
+Likewise good, clean code demonstrating **Application** is also
+severly deficient.
+
+Thus, this document shows how to:
 
 * understand easing functions,
 * how to derive and implement them,
 * how to optimize them, and
+* how NOT to write bad code,
 * how to write the beautiful code that can be found within them.
 
 
