@@ -418,8 +418,10 @@ switch statement:
 But before we can calculate the final position we need the relevent information:
 
 ```Javascript
-    position = Easing( type, elapsed/duration, start, end )
+    position = Easing( type, progress, start, end )
 ```
+
+Where `progress = elapsed/duration`
 
 We'll get to easing `types` shortly but first we need to talk about time.
 
@@ -460,7 +462,8 @@ Getting back to our normalized time value `p` ...
     p = elapsed / duration.
 ```
 
-What does this mean?  Visually when `p` is:
+What does this mean?  You could think of `p` being a mnemonic for `progress`.
+Visually when `p` is:
 
 | p  | Animation ... |
 |:---|:--------------|
@@ -473,7 +476,7 @@ What does this mean?  Visually when `p` is:
 it can be confused with `time` which _may_ or _may not_ be normalized.  UGH.
 
 Instead, I'll use the variable `p` as a visual mnemonic that we are representing
-a normalized percentage time, that is, `elapsed/duration`.
+a _normalized percentage_ elapsed time, that is, `elapsed/duration`.
 
 
 ## Simultaneous Animations
