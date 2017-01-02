@@ -389,11 +389,29 @@ With parameterization, it might look like:
 
         switch( type )
         {
-            case ?: position = ...; break;
-            case ?: position = ...; break;
+            case FOO: position = ...; break;
+            case BAR: position = ...; break;
+            case QUX: position = ...; break;
+            default: console.error( "ERROR: Unknown easing type" );
         }
 
         return position;
+    }
+```
+
+Using the associate arrays of Javascript we can remove that
+switch statement:
+
+```Javascript
+    Easings = {
+        foo: function( ... ) { return ...; },
+        bar: function( ... ) { return ...; },
+        qux: function( ... ) { return ...; },
+    };
+
+    Easing: function( type, ... )
+    {
+        return Easings[ type ]( ... );
     }
 ```
 
