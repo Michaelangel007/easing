@@ -17,8 +17,8 @@
 * [De Facto Easing Functions](#de-facto-easing-functions)
 * [Easing Cleanup](#easing-cleanup)
  * [Cleanup - Linear](#cleanup---linear)
- * [I'm here for an argument](#im-here-for-an-argument)
- * [Warp Speed Mr. Sulu](#warp-speed-mr-sulu)
+ * [_"I'm here for an argument"_](#im-here-for-an-argument)
+ * [_"Warp Speed, Mr. Sulu"_](#warp-speed-mr-sulu)
  * [What's with this "In, Out, In-Out" business, anyways?](#whats-with-this-in-out-in-out-business-anyways)
  * [Out](#out)
  * [In-Out](#in-out)
@@ -76,7 +76,7 @@
 * [TODO](#todo)
 
 
-## Demos (HTML + Javascript)
+## Demos
 
 * [Compare Demo](https://htmlpreview.github.io/?https://github.com/Michaelangel007/easing/blob/master/compare.html)
 * [Graph   Demo](https://htmlpreview.github.io/?https://github.com/Michaelangel007/easing/blob/master/graph.html)
