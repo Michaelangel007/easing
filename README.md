@@ -1009,6 +1009,7 @@ Now this linear easing form by itself isn't very interesting.
 
 However, what if we _adjusted_ the time ? That is, when the animation is:
 
+*   0% done, it really hasn't started,
 *  10% done, we pretend it is only  1% done,
 *  20% done, we pretend it is only  4% done,
 *  30% done, we pretend it is only  9% done,
@@ -1027,6 +1028,8 @@ Using this legend:
 * x = Percent 'normal' time
 * y = Percent 'warped' time
 
+Here is the data in table format:
+
 | x   | y    |
 |:----|:-----|
 | 0.1 | 0.01 |
@@ -1043,7 +1046,7 @@ If we graph this pretend game we end up with this:
 
 ![In Quadratic graph](pics/02_in_quadratic.png)
 
-This is what is know as a `quadratic mapping.`
+This is what is known as a `quadratic mapping.`
 
 Mathematically the formula looks like this:
 
@@ -1075,11 +1078,11 @@ And its graph:
 
 ![In Quadratic graph](pics/02_in_quadratic.png)
 
-
-For example, we could raise p to the standard powers:
+We have p^2, but what about raising p to the standard (integer) powers such as 2, 3, 4, ..., etc.?
 
 |Power|Formula|Name       |
 |----:|------:|:----------|
+| 1   | p^1   | Linear    |
 | 2   | p^2   | Quadratic |
 | 3   | p^3   | Cubic     |
 | 4   | p^4   | Quartic   |
@@ -1105,6 +1108,7 @@ We'll discuss other variations but first we need to discuss an important concept
 
 You may have noticed we snuck in the prefix `In` but didn't have one for Linear.
 
+* Linear
 * InQuadratic
 * InCubic
 * InQuartic
@@ -1116,9 +1120,10 @@ There are two reasons for that:
 * If you assumed this implies there are more variations you would be correct!
 There are many variations of mirrors, rotations, etc.
 
-For now we're primarily interested in _flips_ -- of which there are 4 permutations:
+For now we're primarily interested in mirroring along the principal axis
+or what I will call _flips_ -- of which there are 4 permutations:
 
-1. We have already been discussin the case of _no flips_.
+1. We have already been discussing the case of _no flips_.
 
  ![In Quadratic graph](pics/02_in_quadratic.png)
 
@@ -1144,7 +1149,7 @@ For now we're primarily interested in _flips_ -- of which there are 4 permutatio
  ![FlipX InQuadratic graph](pics/tutorial/flipx_quadratic.png)
 
 
-4.  The most interesting ones are we _also_ flip along _both_ the `x-axis` and `y-axis`:
+4.  The most interesting is is when we flip along _both_ the `x-axis` and `y-axis`:
 
  ```Javascript
      function FlipY_FlipX_Quadratic(p) { return 1 - InQuadratic( 1-p ); }
@@ -1166,7 +1171,7 @@ For now we're primarily interested in _flips_ -- of which there are 4 permutatio
     function OutQuadratic (p) { var m=p-1; return 1-m*m; }
  ```
 
- Let's "semantically uncompress", adding line breaks and whitespace,  this so it is more readable:
+ Let's "semantically uncompress" this adding line breaks and whitespace so it is more readable:
 
  ```Javascript
     function OutQuadratic (p)
@@ -1205,17 +1210,17 @@ This reminds me of the [Cubic Hermite spline](https://en.wikipedia.org/wiki/Cubi
 ![Hermite Basis Functions](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HermiteBasis.svg/300px-HermiteBasis.svg.png)
 
 I mentioned that there is `Out` variation for _Linear_.
-By now it should be obvious that the FlipYFlipX doesn't change the graph.
+By now it should be obvious that the FlipYFlipX for Linear doesn't change its graph.
 Specifically,
 
 * InLinear === OutLinear
 
-Just in case you wondering.
+Just in case you were wondering.
 
 
 ### In-Out
 
-In addition to flips, there is also another variation called
+In addition to flips there is also another variation called
 `InOut` where we "stitch" together both the `In` and `Out` into
 one _continuous_ function.
 
@@ -1242,7 +1247,7 @@ function InOutQuadratic_v1( p ) {
 }
  ```
 
- The graph looks like this:
+ That graph looks like this:
 
  ![HalfH In Quadratic](pics/tutorial/1_in_quadratic_halfh.png)
 
@@ -1253,7 +1258,7 @@ function InOutQuadratic_v1( p ) {
  How? We can remap our original input `p` range and split it into _two_ ranges.
  I'll call the new input `t`:
 
-| p range      | new t range  |
+| old p input  | new t input  |
 |:-------------|:-------------|
 | [0.0 .. 0.5) | [0.0 .. 1.0] |
 | [0.5 .. 1.0] | don't care   |
@@ -1356,12 +1361,15 @@ function InOutQuadratic_v4( p ) {
 
 5\. We need to move the <0,0> of `Out` to <0.5,0.5>
 
- That is a simply `y + 0.5`
+ That is a simply shifting the graph "up", via `y + 0.5`
 
 ```Javascript
 function InOutQuadratic_v5( p ) {
     var t = 2*p - 1;
     return 0.5 + 0.5*OutQuadratic( 2*p - 1 );
+
+    //           \_________________________/
+    //     0.5 +           y
 }
 ```
 
@@ -1387,9 +1395,8 @@ function InOutQuadratic_v5( p ) {
 }
 ```
 
-In Mathematics this is called a [piecewise function.](https://en.wikipedia.org/wiki/Piecewise)
-
-It is written with the curly brace notation:
+In Mathematics this is called a [piecewise function.](https://en.wikipedia.org/wiki/Piecewise);
+it is written with the curly brace notation:
 
 ```
 y =       0.5*InQudratic  ( 2*x     )   { 0  < x <= 1/2 }
@@ -1416,7 +1423,9 @@ function InOutQuadratic_v6( p )
 }
  ```
 
- To save some typing we can remove that `0.5` and use `1` directly:
+ Since the endpoint of the `In` === the startpoint of `Out`,
+that is , `(p <= 0.5)` is equivalent to `(p < 0.5)`
+We can remove some visual clutter by remove that `0.5` and use `1` directly
 
  ```Javascript
 function InOutQuadratic_v6( p )
