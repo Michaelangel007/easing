@@ -999,7 +999,7 @@ function Linear( p ) {
 
 We'll drop the `ease` prefix since
 
-* These will be in a namespace, and
+* These functions will be in a namespace anyways, and
 * It provides a visual mnemonic to know which easing functions take 1 argument vs 5 arguments.
 
 
