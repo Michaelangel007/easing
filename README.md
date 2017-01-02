@@ -15,6 +15,7 @@
   * [The Color Axis](#the-color-axis)
   * [Linear Interpolation: Lerp](#linear-interpolation-lerp)
   * [Non-Linear Interpolation: Slerp](#non-linear-interpolation-slerp)
+  * [Non-linear interpolation: smoothstep](#non-linear-interpolation-smoothstep)
 * [De Facto Easing Functions](#de-facto-easing-functions)
 * [Easing Cleanup](#easing-cleanup)
   * [Cleanup - Linear](#cleanup---linear)
@@ -749,6 +750,7 @@ precision and minimize error, at the cost of slightly slower performance.
 
 This is a common trade-off in computing -- you can have speed or accuracy, pick one. :-/
 
+
 ## Non-linear interpolation: slerp
 
 If one interpolates between two quaternions they will come across the term `slerp`.
@@ -756,6 +758,26 @@ If one interpolates between two quaternions they will come across the term `sler
 This is just an abbreviation for _spherical interpolation_.
 
 Quaternions won't be discussed here, but it is also nice to be aware of the broader terminology in related fields.
+
+
+## Non-linear interpolation: smoothstep
+
+In computer graphics there is a common (cubic) interpolation function called `Smoothstep()`:
+
+```Javascript
+smoothstep function( t, x0, x1 )
+{
+    var p = (t - x0) / (x1 - x0);
+
+    if( p < 0 ) p = 0;
+    if( p > 1 ) p = 1;
+
+    return p*p*(3-2*p);
+}
+```
+
+See my interactive [WebGL smoothstep](https://www.shadertoy.com/view/lsVSRD) demo.
+
 
 
 # De Facto Easing Functions
@@ -2537,8 +2559,11 @@ $.each( baseEasings, function( name, easeIn ) {
   * [ ] Out Sextic
   * [ ] Out Sine
   * [ ] Out Square Root
-* [ ] Verification, and verify.html
-* [ ] Smoothstep, and WebGL demo
+* [ ] Verification demo verify.html
+* [ ] Smoothstep
+  * [x] WebGL demo
+  * [ ] graph
+  * [ ] Add smoothstep to easing
 * [ ] Update animation loop
 
 By: Michael "Code Poet" Pohoreski
