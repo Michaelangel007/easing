@@ -1880,7 +1880,7 @@ This will be forthcoming.
 
 # Miscellaneous
 
-##c jQuery UI
+## jQuery UI
 
 If you use [JQuery UI](https://jqueryui.com/) be aware that [effect.js](https://github.com/jquery/jquery-ui/blob/master/ui/effect.js):
 
