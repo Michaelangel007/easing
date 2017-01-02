@@ -90,7 +90,7 @@ Wikipedia completely squanders the opportunity to be a **comprehensive:**
 * Reference
 * Textbook
 * Guide
-* Complete Theory + Application collection
+* Working examples demonstrating Theory + Application in a clean fashion
 
 via the shenanigans of a myopic _"No Original Research"_
 [policy](http://en.wikipedia.org/wiki/Wikipedia:NOTGUIDE)
