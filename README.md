@@ -1581,6 +1581,8 @@ Unanswered question:
 
 ![In Bounce graph](pics/26_in_bounce.png)
 
+Original 5 argument version:
+
 ```Javascript
     easeInBounce: function (x, t, b, c, d) {
         return c - easeOutBounce (x, d-t, 0, c, d) + b;
@@ -1659,6 +1661,8 @@ One-liner single argument version (1SAV):
 
 ![In Circle graph](pics/29_in_circle.png)
 
+Original 5 argument version:
+
 ```Javascript
     easeInCirc: function (x, t, b, c, d) {
         return -c * (Math.sqrt(1 - (t/=d)*t) - 1) + b;
@@ -1697,7 +1701,7 @@ Version 3 - replace `t/=d` with `p`
     },
 ```
 
-Version 4 - distribute -1
+Version 4 - distribute `-1`
 
 ```Javascript
     InCircle: function (t, d) {
@@ -1705,7 +1709,7 @@ Version 4 - distribute -1
     },
 ```
 
-Version 5 - rearrange
+Version 5 - rearrange terms
 
 ```Javascript
     InCircle: function (t, d) {
@@ -1717,6 +1721,8 @@ Version 5 - rearrange
 
 ![In Cubic graph](pics/03_in_cubic.png)
 
+Original 5 argument version:
+
 ```Javscript
 ```
 
@@ -1725,7 +1731,7 @@ Version 5 - rearrange
 
 ![In Elastic graph](pics/32_in_elastic.png)
 
-Recall the original:
+Original 5 parameter version:
 
 
 ```Javascript
@@ -1957,7 +1963,7 @@ There are some variations, depending on how much inlining of terms you want to d
     },
 ```
 
-**NOTE**: jQuery UI does NOT match the original, constants are incorrect
+**NOTE**: jQuery UI does NOT match the original as constants are incorrect
 
 
 ## Cleanup - In Exponent 2
