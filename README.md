@@ -912,7 +912,7 @@ Its graph looks like this:
 And in the original style the easing function would look like this:
 
 ```Javascript
-    easeInLinear: function (x, t, b, c, d) {
+    easeLinear: function (x, t, b, c, d) {
         return c*(t/=d) + b;
     },
 ```
@@ -921,7 +921,7 @@ Now, when `d` is 0, this generates a bug #1 `NaN`.  Let's digress slightly and
 address bug #2, `t < 0` and `t > d` before we fix this.
 
 ```Javascript
-    easeInLinear: function (x, t, b, c, d) {
+    easeLinear: function (x, t, b, c, d) {
         if (t <= 0) return b    ; // start
         if (t >= d) return b + c; // end
         return c*(t/=d) + b;
@@ -930,7 +930,7 @@ address bug #2, `t < 0` and `t > d` before we fix this.
 What happens when `d` == 0 ? It returns the `end` for free!
 
 ```Javascript
-    easeInLinear: function (x, t, b, c, d) {
+    easeLinear: function (x, t, b, c, d) {
         if (t <= 0) return b    ;
         if (t >= d) return b + c; // t >= 0 return end
         return c*(t/=d) + b;
@@ -939,7 +939,7 @@ What happens when `d` == 0 ? It returns the `end` for free!
 Let's make this a little more robust:
 
 ```Javascript
-    easeInLinear: function (x, t, b, c, d) {
+    easeLinear: function (x, t, b, c, d) {
         if (t <= 0) return b    ; // If d=0, then t is always t >= d
         if (t >= d) return b + c; // due to t < 0 already being handled
         var p = t/d;
@@ -989,6 +989,12 @@ function Linear( p ) {
     return p;
 }
 ```
+
+We'll drop the `ease` prefix since
+
+* These will be in a namespace, and
+* It provides a visual mnemonic to know which easing functions take 1 argument vs 5 arguments.
+
 
 ## "Warp Speed Mr. Sulu"
 
@@ -1090,9 +1096,17 @@ We'll discuss other variations but first we need to discuss an important concept
 
 ### Out
 
-You may have noticed we have been using the prefix `In`.
+You may have noticed we snuck in the prefix `In` but didn't have one for Linear.
 
-If you assumed this implies there are more variations you would be correct!
+* InQuadratic
+* InCubic
+* InQuartic
+* etc.
+
+There are two reasons for that:
+
+* Linear doesn't have them -- once you finish this section you'll understand why.
+* If you assumed this implies there are more variations you would be correct!
 There are many variations of mirrors, rotations, etc.
 
 For now we're primarily interested in _flips_ -- of which there are 4 permutations:
@@ -1182,6 +1196,14 @@ since I'm not aware if you can name functions in Desmos.
 This reminds me of the [Cubic Hermite spline](https://en.wikipedia.org/wiki/Cubic_Hermite_spline) -- specifically, the hermite basis functions.
 
 ![Hermite Basis Functions](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HermiteBasis.svg/300px-HermiteBasis.svg.png)
+
+I mentioned that there is `Out` variation for _Linear_.
+By now it should be obvious that the FlipYFlipX doesn't change the graph.
+Specifically,
+
+* InLinear === OutLinear
+
+Just in case you wondering.
 
 
 ### In-Out
