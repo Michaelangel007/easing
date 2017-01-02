@@ -21,6 +21,10 @@
  * [_"Warp Speed, Mr. Sulu"_](#warp-speed-mr-sulu)
  * [What's with this "In, Out, In-Out" business, anyways?](#whats-with-this-in-out-in-out-business-anyways)
  * [Out](#out)
+   * [_"No backflip for you!"](#no-backflip-for-you)
+   * [Flip Y](#flip-y)
+   * [Flip X](#flip-x)
+   * [Flip X, Flip Y](#flip-x-flip-y)
  * [In-Out](#in-out)
 * [Cleanup - In](#cleanup---in)
  * [Cleanup - In Back](#cleanup---in-back)
@@ -1123,11 +1127,15 @@ There are many variations of mirrors, rotations, etc.
 For now we're primarily interested in mirroring along the principal axis
 or what I will call _flips_ -- of which there are 4 permutations:
 
+## "No backflip for you!"
+
 1. We have already been discussing the case of _no flips_.
 
  ![In Quadratic graph](pics/02_in_quadratic.png)
 
-2. What happens when we flip the _output_ along the `y-axis`:
+## Flip Y
+
+2\. What happens when we flip the _output_ along the `y-axis`:
 
  ```Javascript
     function FlipY_Quadratic(p) { return 1 - InQuadratic( p ); }
@@ -1137,6 +1145,8 @@ or what I will call _flips_ -- of which there are 4 permutations:
 
  ![FlipY InQuadratic graph](pics/tutorial/flipy_quadratic.png)
 
+
+## Flip X
 
 3. We could also flip the _input_ along the `x-axis`:
 
@@ -1148,6 +1158,7 @@ or what I will call _flips_ -- of which there are 4 permutations:
 
  ![FlipX InQuadratic graph](pics/tutorial/flipx_quadratic.png)
 
+## Flip X, Flip Y
 
 4.  The most interesting is is when we flip along _both_ the `x-axis` and `y-axis`:
 
@@ -1567,33 +1578,41 @@ Version 2 - replace b=0 and c=1
     },
 ```
 
-Version 3 - remove OutBounce() arguments
+Version 3 - remove extra OutBounce() arguments
 
 ```Javascript
-    easeInBounce: function (t, d) {
+    InBounce: function (t, d) {
         return 1 - OutBounce ( d-t, d);
     },
 ```
 
 Normally `p = t /d`, but we have `d-t / d`.
-What is this equal to? With a little bit of algebra:
+What is this equal to? With a little bit of algebra this simplies to:
 
 ```Javascript
     = (d - t)/d
     = d/d - t/d
     = 1 - p
 
-This is looking much better:
-
 Version 4 - simplify `(d-t, d)`
 
 ```Javascript
-    easeInBounce: function ( p ) {
+    InBounce: function ( p ) {
         return 1 - OutBounce ( 1-p );
     },
 ```
 
-One-liner single parameter version (1SAV):
+WOW - so much clearer.  From our previous discussion of [flips](#out)
+it should be immediately obvious that:
+
+* InBounce = OutBounce flipped x, and flipped y !
+
+This is a perfect example of why _simplifying_ is so important.
+The _whole point_ of Mathematics is to _communicate efficiently_.
+When you clutter up formulas with extra crap
+it becomes extremely difficult to see the forest from the trees.
+
+One-liner single argument version (1SAV):
 
 ```Javascript
     function InBounce(p) { return 1 - OutBounce( 1-p ); }
@@ -1604,9 +1623,67 @@ One-liner single parameter version (1SAV):
 
 ![In Circle graph](pics/29_in_circle.png)
 
+```Javascript
+    easeInCirc: function (x, t, b, c, d) {
+        return -c * (Math.sqrt(1 - (t/=d)*t) - 1) + b;
+    },
+```
+
+Version 0 - Don't abbreviate `Circle`
+
+```Javascript
+    InCircle: function (x, t, b, c, d) {
+        return -c * (Math.sqrt(1 - (t/=d)*t) - 1) + b;
+    },
+```
+
+Version 1 - remove x
+
+```Javascript
+    InCircle: function (t, b, c, d) {
+        return -c * (Math.sqrt(1 - (t/=d)*t) - 1) + b;
+    },
+```
+
+Version 2 - replace b=0, c=1
+
+```Javascript
+    InCircle: function (t, d) {
+        return -1 * (Math.sqrt(1 - (t/=d)*t) - 1) + 0;
+    },
+```
+
+Version 3 - replace `t/=d` with `p`
+
+```Javascript
+    InCircle: function (t, d) {
+        return -1 * (Math.sqrt(1 - p*p) - 1);
+    },
+```
+
+Version 4 - distribute -1
+
+```Javascript
+    InCircle: function (t, d) {
+        return -Math.sqrt(1 - p*p) + 1;
+    },
+```
+
+Version 5 - rearrange
+
+```Javascript
+    InCircle: function (t, d) {
+        return 1 - Math.sqrt(1 - p*p);
+    },
+```
+
 ## Cleanup - In Cubic
 
 ![In Cubic graph](pics/03_in_cubic.png)
+
+```Javscript
+```
+
 
 ## Cleanup - In Elastic
 
@@ -2178,7 +2255,7 @@ $.each( baseEasings, function( name, easeIn ) {
 * Cleanup
  * [x] In Back
  * [x] In Bounce
- * [ ] In Circle
+ * [x] In Circle
  * [ ] In Cubic
  * [ ] In Elastic
  * [ ] In Exponent 2
