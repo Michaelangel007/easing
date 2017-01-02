@@ -15,11 +15,11 @@
 * [Interpolation](https://github.com/Michaelangel007/easing#interpolation)
 * [De Facto Easing Functions](https://github.com/Michaelangel007/easing#de-facto-easing-functions)
 * [Easing Cleanup](https://github.com/Michaelangel007/easing#easing-cleanup)
-* Cleanup In
  * [Cleanup - Linear](https://github.com/Michaelangel007/easing#cleanup---linear)
  * [What's with this "In, Out, In-Out" business, anyways?](https://github.com/Michaelangel007/easing#whats-with-this-in-out-in-out-business-anyways)
    * [Out](https://github.com/Michaelangel007/easing#out)
    * [In-Out](https://github.com/Michaelangel007/easing#in-out)
+* [Cleanup - In](https://github.com/Michaelangel007/easing#in)
  * [Cleanup - In Back](https://github.com/Michaelangel007/easing#cleanup---in-back)
  * [Cleanup - In Bounce](https://github.com/Michaelangel007/easing#cleanup---in-bounce)
  * [Cleanup - In Circle](https://github.com/Michaelangel007/easing#cleanup---in-circle)
@@ -35,7 +35,7 @@
  * [Cleanup - In Septic](https://github.com/Michaelangel007/easing#cleanup---in-sextic)
  * [Cleanup - In Sextic](https://github.com/Michaelangel007/easing#cleanup---in-septic)
  * [Cleanup - In Sine](https://github.com/Michaelangel007/easing#cleanup---in-sine)
-* Cleanup Out
+* [Cleanup Out](https://github.com/Michaelangel007/easing#cleanup---out)
  * [Cleanup - Out Back](https://github.com/Michaelangel007/easing#cleanup---out-back)
  * [Cleanup - Out Bounce](https://github.com/Michaelangel007/easing#cleanup---out-bounce)
  * [Cleanup - Out Circle](https://github.com/Michaelangel007/easing#cleanup---out-circle)
@@ -51,7 +51,7 @@
  * [Cleanup - Out Septic](https://github.com/Michaelangel007/easing#cleanup---out-sextic)
  * [Cleanup - Out Sextic](https://github.com/Michaelangel007/easing#cleanup---out-septic)
  * [Cleanup - Out Sine](https://github.com/Michaelangel007/easing#cleanup---out-sine)
-* Cleanup In Out
+* [Cleanup In Out](https://github.com/Michaelangel007/easing#cleanup-in-out)
  * [Cleanup - In Out Back](https://github.com/Michaelangel007/easing#cleanup---in-out-back)
  * [Cleanup - In Out Bounce](https://github.com/Michaelangel007/easing#cleanup---in-out-bounce)
  * [Cleanup - In Out Circle](https://github.com/Michaelangel007/easing#cleanup---in-out-circle)
