@@ -951,13 +951,14 @@ Hmmm, some of these equations are starting to look familiar !
 
 ## "I'm here for an argument"
 
-We still have a lot of arguments. Is there any way we can get rid of them?
+Without being pedantic with [Argument vs Parameter](http://stackoverflow.com/questions/1788923/parameter-vs-argument)
+we still have a lot of parameters in our easing functions. Is there any way we can get rid of them?
 Yes, with _reparameterization._
 
 Reparameterization is just a fancy word for `re-mapping`.
 Technically, it is [this](https://en.wikipedia.org/wiki/Parametrization)
 but since that Wikipedia page is so badly written it will probably just confuse you
-more then it helps.
+more then it helps feel free to ignore it.
 
 Basically, we want to re-map the range into something _convenient._
 
