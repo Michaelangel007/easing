@@ -225,7 +225,7 @@ Plot.prototype =
 
             for( x = 0; x < n; ++x )
             {
-                rect = new Rect().init( { w: 1, h: 1, r: 1/3, g: 2/3, b: 1, a:1 } );
+                rect = new Rect().init( { w: 1, h: 1, r: 1/3, g: 2/3, b: 1, a:0 } );
                 y = h - x;
                 plot.addXY( rect, x, y );
             }
