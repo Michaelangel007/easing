@@ -2158,11 +2158,16 @@ One-liner single argument version (1SAV):
 
 ![In Sine graph](pics/38_in_sine.png)
 
+
 ## Cleanup - In Square Root
 
 ![In Square root graph](pics/47_in_sqrt.png)
 
 Again, there isn't one so we'll add one for completeness.
+
+Like [In Bounce](#in-bounce), for `InSquareRoot` we defer to `OutSquareRoot`:
+
+* InSquareRoot = OutSquareRoot flipped x, and flipped y
 
 ```Javascript
     easeInSqrt: function (x, t, b, c, d) {
@@ -2170,6 +2175,11 @@ Again, there isn't one so we'll add one for completeness.
     },
 ```
 
+One-liner single argument version (1SAV):
+
+```Javascript
+    function InSquareRoot(p) { return 1 - OutSquareRoot( 1-p ); }
+```
 
 # Cleanup - Out
 
