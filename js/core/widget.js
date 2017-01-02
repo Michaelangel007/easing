@@ -229,7 +229,7 @@ Widget.prototype =
 
     /**
      * Category: Creation
-     * Note: A screen is reponsible for creating all children
+     * Note: A screen is responsible for creating all children
      */
     // ========================================================================
     createDiv: function()
@@ -504,7 +504,7 @@ Widget.prototype =
                 }
                 else
                 {
-                    t  = EasingFuncs[ easing ]( p );
+                    t  = EasingFuncs[ easing ]( p ); // p = normal time, t = warped time
                     dx = max - min;
                     x  = min + dx*t;
                     this.setAxis( axis, x );
