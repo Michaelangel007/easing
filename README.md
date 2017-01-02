@@ -2029,9 +2029,102 @@ There are some variations, depending on how much inlining of terms you want to d
 
 ![In Exponent 2 graph](pics/35_in_exponent_2.png)
 
+Original 5 argument version:
+
+```Javascript
+    easeInExpo: function (x, t, b, c, d) {
+        return (t==0) ? b : c * Math.pow(2, 10 * (t/d - 1)) + b;
+    },
+```
+
+Version 0 - Rename `Expo` to `Exponent2`
+
+```Javascript
+    InExponent2: function (x, t, b, c, d) {
+        return (t==0) ? b : c * Math.pow(2, 10 * (t/d - 1)) + b;
+    },
+```
+
+Version 1 - remove x
+
+```Javascript
+    InExponent2: function (t, b, c, d) {
+        return (t==0) ? b : c * Math.pow(2, 10 * (t/d - 1)) + b;
+    },
+```
+
+Version 2 - semantically uncompress out-of-bounds
+
+```Javascript
+    InExponent2: function (t, b, c, d) {
+        if (t <= 0) return b;
+        return c * Math.pow(2, 10 * (t/d - 1)) + b;
+    },
+```
+
+Version 3 - replace b=0, c=1
+
+```Javascript
+    InExponent2: function (t, d) {
+        if (t <= 0) return 0;
+        return 1 * Math.pow(2, 10 * (t/d - 1)) + 0;
+    },
+```
+
+Version 4 - simplify `t/d`
+
+```Javascript
+    InExponent2: function (p) {
+        if (p <= 0) return 0;
+        return Math.pow(2, 10 * (p-1));
+    },
+```
+
+One-liner single argument version (1SAV):
+
+```Javascript
+    function InExponent2(p) { if (p <= 0) return 0; return Math.pow( 2, 10*(p-1) ); }
+```
+
+
 ## Cleanup - In Exponent e
 
 ![In Exponent e graph](pics/41_in_exponent_e.png)
+
+This is missing in the original since `Exponent2` was abbreviated as `Expo`
+and there was, sadly, no need for _completeness._ Let's fix this deficiency.
+
+This is what a normal graph of `e^x` looks like:
+
+![e^x](pics/tutorial/e_x.png)
+
+We can "shift" the y-intercept of the graph over to the right via: `e^(x-#)`
+
+![e^(x-1)](pics/tutorial/e_x_sub_1.png)
+
+However, an `In` function starts at zero,and ends at one.
+We need to "compress" the width.
+We'll match what `Exponent2` does and use a scale value of 10.
+
+![e^10*(x-1)](pics/tutorial/e_10_x_sub_1.png)
+
+To see how `Exponent2` and `ExponentE` compare:
+
+![2^x vs e^x](pics/tutorial/2x_vs_ex.png)
+
+In the original style the easing function would look like this:
+
+```Javascript
+    InExponentE: function (x, t, b, c, d) {
+        return (t==0) ? b : c * Math.pow( Math.E, 10 * (t/d - 1)) + b;
+    },
+```
+
+One-liner single argument version (1SAV):
+
+```Javascript
+    function InExponentE(p) { if (p <= 0) return 0; return Math.pow( Math.E, 10*(p-1) ); },
+```
 
 ## Cleanup - In Log10
 
