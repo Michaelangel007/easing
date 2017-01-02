@@ -1390,7 +1390,7 @@ TA-DA !
 
 This matches our optimized version: :)
 
- ![In Out Quadratic Optimized](pics/tutorial/16_in_out_quadratic.png)
+ ![In Out Quadratic Optimized](pics/16_in_out_quadratic.png)
 
 # Cleanup - In
 
