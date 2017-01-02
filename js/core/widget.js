@@ -490,11 +490,11 @@ Widget.prototype =
                 var min = this._min[ axis ];
                 var max = this._max[ axis ];
 
-                var total = this._oodur[ axis ];
+                var total = this._oodur[ axis ]; // reciprocal duration: 1/milliseconds
                 var start = this._start[ axis ];
 
                 var dt = Widget.time - start;
-                var p  = dt * total; // Note: total ms is reciprocal duration: 1/milliseconds
+                var p  = dt * total; // Optimization: Removed divide; 1/duration stored at type of animate()
 
                 // Animation done?
                 if( p >= 1 )
