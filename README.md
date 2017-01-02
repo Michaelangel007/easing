@@ -2418,109 +2418,107 @@ $.each( baseEasings, function( name, easeIn ) {
 * [x] Optimize easing functions
 * [x] Demo
 * [x] Plot easing functions (code)
- * [x] Linear
- * [x] In Back
- * [x] In Bounce
- * [x] In Circle
- * [x] In Cubic
- * [x] In Elastic
- * [x] In Exponent 2
- * [x] In Exponent e
- * [x] In Log10
- * [x] In Octic
- * [x] In Quadratic
- * [x] In Quartic
- * [x] In Quintic
- * [x] In Septic
- * [x] In Sextic
- * [x] In Sine
- * [x] In Square Root
- * [x] In Out Back
- * [x] In Out Bounce
- * [x] In Out Circle
- * [x] In Out Cubic
- * [x] In Out Elastic
- * [x] In Out Exponent 2
- * [x] In Out Exponent e
- * [x] In Out Log10
- * [x] In Out Octic
- * [x] In Out Quadratic
- * [x] In Out Quartic
- * [x] In Out Quintic
- * [x] In Out Septic
- * [x] In Out Sextic
- * [x] In Out Sine
- * [x] In Out Square Root
- * [x] Out Back
- * [x] Out Bounce
- * [x] Out Circle
- * [x] Out Cubic
- * [x] Out Elastic
- * [x] Out Exponent 2
- * [x] Out Exponent e
- * [x] Out Log10
- * [x] Out Octic
- * [x] Out Quadratic
- * [x] Out Quartic
- * [x] Out Quintic
- * [x] Out Septic
- * [x] Out Sextic
- * [x] Out Sine
- * [x] Out Square Root
+  * [x] Linear
+  * [x] In Back
+  * [x] In Bounce
+  * [x] In Circle
+  * [x] In Cubic
+  * [x] In Elastic
+  * [x] In Exponent 2
+  * [x] In Exponent e
+  * [x] In Log10
+  * [x] In Octic
+  * [x] In Quadratic
+  * [x] In Quartic
+  * [x] In Quintic
+  * [x] In Septic
+  * [x] In Sextic
+  * [x] In Sine
+  * [x] In Square Root
+  * [x] In Out Back
+  * [x] In Out Bounce
+  * [x] In Out Circle
+  * [x] In Out Cubic
+  * [x] In Out Elastic
+  * [x] In Out Exponent 2
+  * [x] In Out Exponent e
+  * [x] In Out Log10
+  * [x] In Out Octic
+  * [x] In Out Quadratic
+  * [x] In Out Quartic
+  * [x] In Out Quintic
+  * [x] In Out Septic
+  * [x] In Out Sextic
+  * [x] In Out Sine
+  * [x] In Out Square Root
+  * [x] Out Back
+  * [x] Out Bounce
+  * [x] Out Circle
+  * [x] Out Cubic
+  * [x] Out Elastic
+  * [x] Out Exponent 2
+  * [x] Out Exponent e
+  * [x] Out Log10
+  * [x] Out Octic
+  * [x] Out Quadratic
+  * [x] Out Quartic
+  * [x] Out Quintic
+  * [x] Out Septic
+  * [x] Out Sextic
+  * [x] Out Sine
+  * [x] Out Square Root
 * [ ] Write up tutorial (Work-In-Progress)
- * [x] Linear
- * [x] What's with this "In, Out, In-Out" business, anyways?
+  * [x] Linear
+  * [x] What's with this "In, Out, In-Out" business, anyways?
 * Cleanup
- * [x] In Back
- * [x] In Bounce
- * [x] In Circle
- * [ ] In Cubic
- * [ ] In Elastic
- * [ ] In Exponent 2
- * [ ] In Exponent e
- * [ ] In Log10
- * [ ] In Octic
- * [ ] In Quadratic
- * [ ] In Quartic
- * [ ] In Quintic
- * [ ] In Septic
- * [ ] In Sextic
- * [ ] In Sine
- * [ ] In Square Root
-* Cleanup
- * [ ] In Out Back
- * [ ] In Out Bounce
- * [ ] In Out Circle
- * [ ] In Out Cubic
- * [ ] In Out Elastic
- * [ ] In Out Exponent 2
- * [ ] In Out Exponent e
- * [ ] In Out Log10
- * [ ] In Out Octic
- * [ ] In Out Quadratic
- * [ ] In Out Quartic
- * [ ] In Out Quintic
- * [ ] In Out Septic
- * [ ] In Out Sextic
- * [ ] In Out Sine
- * [ ] In Out Square Root
-* Cleanup
- * [ ] Out Back
- * [ ] Out Bounce
- * [ ] Out Circle
- * [ ] Out Cubic
- * [ ] Out Elastic
- * [ ] Out Exponent 2
- * [ ] Out Exponent e
- * [ ] Out Log10
- * [ ] Out Octic
- * [ ] Out Quadratic
- * [ ] Out Quartic
- * [ ] Out Quintic
- * [ ] Out Septic
- * [ ] Out Sextic
- * [ ] Out Sine
- * [ ] Out Square Root
+  * [x] In Back
+  * [x] In Bounce
+  * [x] In Circle
+  * [x] In Cubic
+  * [x] In Elastic
+  * [x] In Exponent 2
+  * [x] In Exponent e
+  * [ ] In Log10
+  * [ ] In Octic
+  * [x] In Quadratic
+  * [ ] In Quartic
+  * [ ] In Quintic
+  * [ ] In Septic
+  * [ ] In Sextic
+  * [ ] In Sine
+  * [ ] In Square Root
+  * [ ] In Out Back
+  * [ ] In Out Bounce
+  * [ ] In Out Circle
+  * [ ] In Out Cubic
+  * [ ] In Out Elastic
+  * [ ] In Out Exponent 2
+  * [ ] In Out Exponent e
+  * [ ] In Out Log10
+  * [ ] In Out Octic
+  * [ ] In Out Quadratic
+  * [ ] In Out Quartic
+  * [ ] In Out Quintic
+  * [ ] In Out Septic
+  * [ ] In Out Sextic
+  * [ ] In Out Sine
+  * [ ] In Out Square Root
+  * [ ] Out Back
+  * [ ] Out Bounce
+  * [ ] Out Circle
+  * [ ] Out Cubic
+  * [ ] Out Elastic
+  * [ ] Out Exponent 2
+  * [ ] Out Exponent e
+  * [ ] Out Log10
+  * [ ] Out Octic
+  * [ ] Out Quadratic
+  * [ ] Out Quartic
+  * [ ] Out Quintic
+  * [ ] Out Septic
+  * [ ] Out Sextic
+  * [ ] Out Sine
+  * [ ] Out Square Root
 * [ ] Verification, and verify.html
 * [ ] Smoothstep, and WebGL demo
 
