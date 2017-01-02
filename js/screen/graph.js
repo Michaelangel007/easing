@@ -310,7 +310,7 @@ Plot.prototype =
             easing = 0;
 
         this._iEasing = easing;
-        var op = EasingFuncs[ this._aEasing[ easing ] ];
+        var f = EasingFuncs[ this._aEasing[ easing ] ];
 
         var plot = this._plot;
         var w    = this._w;
@@ -320,7 +320,6 @@ Plot.prototype =
         var p, y;
 
         var p0, p1;
-
         Game.bg.clearRect( 0, 0, Game.w, Game.h );
         Game.fg.clearRect( 0, 0, Game.w, Game.h );
 
@@ -330,7 +329,7 @@ Plot.prototype =
                 Notes:
                 * 100 - y, since origin is top-left
                 * Math.floor() to work around crappy double precision floating point
-                    y = h - ( op( p ) * h );
+                    y = h - ( f( p ) * h );
                   Linear:
                     55% = 44.99999999999999
                     56% = 43.99999999999999
@@ -338,7 +337,7 @@ Plot.prototype =
                     58% = 42.00000000000001
             */
             p = x / n;
-            y = h - Math.floor( op( p )*h + 0.5 );
+            y = h - Math.floor( f( p )*h + 0.5 );
 
             plot._children[ x ].setY( y );
 
@@ -451,10 +450,10 @@ Plot.prototype =
         var w  = this._w;
         var h  = this._h;
 
-        var t  = rect.getT();
-        var op = EasingFuncs[ this._aEasing[ this._iEasing ] ];
-        var p  = t * rect._invSteps;
-        var q  = op( p );
+        var t = rect.getT();
+        var f = EasingFuncs[ this._aEasing[ this._iEasing ] ];
+        var p = t * rect._invSteps;
+        var q = f( p );
 
         // NOTE: InOutBack() can actually go negative!
         //     EasingFuncs[ Easing.IN_OUT_BACK ]( 0.008 )
