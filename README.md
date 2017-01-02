@@ -68,7 +68,9 @@
  * [Cleanup - In Out Sextic](https://github.com/Michaelangel007/easing#cleanup---in-out-septic)
  * [Cleanup - In Out Sine](https://github.com/Michaelangel007/easing#cleanup---in-out-sine)
 * [Verification](https://github.com/Michaelangel007/easing#verification)
-* TODO
+* [Miscellaneous](https://github.com/Michaelangel007/easing#miscellaneous)
+ * [jQuery UI](https://github.com/Michaelangel007/easing#jquery-ui)
+* [TODO](https://github.com/Michaelangel007/easing#todo)
 
 
 ## Demos (HTML + Javascript)
@@ -77,7 +79,7 @@
 * [Graph   Demo](https://htmlpreview.github.io/?https://github.com/Michaelangel007/easing/blob/master/graph.html)
 
 
-# Overview
+## Overview
 
 This a tutorial in how to:
 
@@ -1167,7 +1169,7 @@ This reminds me of the [Cubic Hermite spline](https://en.wikipedia.org/wiki/Cubi
 ![Hermite Basis Functions](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HermiteBasis.svg/300px-HermiteBasis.svg.png)
 
 
-### In Out
+### In-Out
 
 In addition to flips, there is also another variation called
 `InOut` where we "stitch" together both the `In` and `Out` into
@@ -1866,8 +1868,19 @@ With manual substitution:
 
 ![In Out Square root graph](pics/48_in_out_sqrt.png)
 
+# Verification
 
-# jQuery UI
+Any good scientist _verifies_ the data. As computer scientists any time
+we do _optimizations_ we need to as well -- else we could be introducing bugs.
+
+* _"It doesn't matter how fast you get the answer if it is wrong!"_
+
+This will be forthcoming.
+
+
+# Miscellaneous
+
+##c jQuery UI
 
 If you use [JQuery UI](https://jqueryui.com/) be aware that [effect.js](https://github.com/jquery/jquery-ui/blob/master/ui/effect.js):
 
@@ -1911,16 +1924,6 @@ $.each( baseEasings, function( name, easeIn ) {
 	};
 });
 ```
-
-# Verification
-
-Any good scientist _verifies_ the data. As computer scientists any time
-we do _optimizations_ we need to as well -- else we could be introducing bugs.
-
-* _"It doesn't matter how fast you get the answer if it is wrong!"_
-
-This will be forthcoming.
-
 
 # TODO
 
