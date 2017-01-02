@@ -118,7 +118,7 @@ Widget.prototype =
      * @param {Number}   [params.w]     - Width     to animate to
      * @param {Number}   [params.x]     - Left      to animate to
      * @param {Number}   [params.y]     - Top       to animate to
-     * @param {Number}   [params.ms     - Delay in milliseconds
+     * @param {Number}   [params.ms]    - Delay in milliseconds
      * @param {Function} [params.onEnd] - Callback when animation done
      * @param {Function} [params.onInc] - Callback while animating
      * @param {Easing}   [params.type]  - Type of easing animation
