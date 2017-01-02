@@ -2,11 +2,12 @@
 
 # Table of Contents
 
-* [Demos](#demos)
 * [Overview](#overview)
+* [Demos](#demos)
+* [Reference](#refence)
   * [Easing Cheat Sheet](#easing-cheet-sheet)
   * [Comparision of easing functions](#comparision-of-easing-functions)
-* [TL:DR; _"Shut up and show me the code!"_](#tldr-shut-up-and-show-me-the-code)
+  * [TL:DR; _"Shut up and show me the code!"_](#tldr-shut-up-and-show-me-the-code)
 * [Easing ... what is it and why is it important?](#easing--what-is-it-and-why-is-it-important)
   * [Parameter `t` or `p`](#parameter-t-or-p)
   * [Simultaneous Animations](#simultaneous-animations)
@@ -80,21 +81,37 @@
 * [TODO](#todo)
 
 
-## Demos
+## Overview
+
+Wikipedia squanders the opportunity to be a:
+
+* Tutorial
+* Reference
+* Guide
+* Complete Theory + Application
+
+via the shenanigans of a myopic _"No Original Research"_ policy
+even when documenting Mathematics that have been _known_ for **years.**
+Since some of these formulas have become so common
+no has bothered to document them and thus beginners are left
+looking for a clear, simple, explanation of the _Theory_
+plus good, clean code of _Application._
+
+This document shows how to:
+
+* understand easing functions,
+* how to derive and implement them,
+* how to optimize them, and
+* how to write the beautiful code that can be found within them.
+
+
+# Demos
 
 * [Compare Demo](https://htmlpreview.github.io/?https://github.com/Michaelangel007/easing/blob/master/compare.html)
 * [Graph   Demo](https://htmlpreview.github.io/?https://github.com/Michaelangel007/easing/blob/master/graph.html)
 
 
-## Overview
-
-This a tutorial in how to:
-
-* understand easing functions,
-* how to implement them,
-* how to optimize them, and
-* how to write the beautiful code behind them
-
+# Reference
 
 ## Easing Cheet Sheet
 
@@ -115,7 +132,7 @@ There is also a high resolution [4861x4000 Cheat Sheet](pics/easing_cheat_sheet.
 ![End](pics/end.png)
 
 
-# TL:DR; _"Shut up and show me the code!"_
+## TL:DR; _"Shut up and show me the code!"_
 
 **`Easing` is a function that "warps time".**
 
