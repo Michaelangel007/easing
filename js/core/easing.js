@@ -68,8 +68,11 @@ var Easing =
     IN_OUT_SQRT     : 48,
     OUT_SQRT        : 49,
 
-    NUM             : 50,
+    SMOOTHSTEP      : 50, // Hsd no 'In' not 'Out' since is 'InOut'
+
+    NUM             : 51,
 };
+
 
 /**
  * Given an normalized elapsed time (between 0.0 and 1.0 inclusive)
@@ -200,6 +203,16 @@ var EasingFuncs = // Array of Functions
                                     return            0.5 + 0.5*EasingFuncs[ Easing.OUT_SQRT       ]( t - 1 );
                                 },
     function OutSquareRoot  (p) { return Math.sqrt( p ) },
+
+    function Smoothstep(t,x0,x1){
+        if( x0 === undefined ) x0 = 0;
+        if( x1 === undefined ) x1 = 1;
+        var p = (t - x0) / (x1 - x0);
+        if( p < 0 ) p = 0;
+        if( p > 1 ) p = 1;
+
+        return p*p*(3-2*p);
+    },
 
 /*
 // Alternative: Standard -- Grouped by In, Out, InOut
