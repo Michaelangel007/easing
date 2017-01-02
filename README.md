@@ -20,8 +20,8 @@
  * [I'm here for an argument](https://github.com/Michaelangel007/easing#im-here-for-an-argument)
  * [Warp Speed Mr. Sulu](https://github.com/Michaelangel007/easing#warp-speed-mr-sulu)
  * [What's with this "In, Out, In-Out" business, anyways?](https://github.com/Michaelangel007/easing#whats-with-this-in-out-in-out-business-anyways)
-   * [Out   ](https://github.com/Michaelangel007/easing#out)
-   * [In-Out](https://github.com/Michaelangel007/easing#in-out)
+ * [Out   ](#out)
+ * [In-Out](#in-out)
 * [Cleanup - In](https://github.com/Michaelangel007/easing#in)
  * [Cleanup - In Back](https://github.com/Michaelangel007/easing#cleanup---in-back)
  * [Cleanup - In Bounce](https://github.com/Michaelangel007/easing#cleanup---in-bounce)
@@ -1104,7 +1104,7 @@ Those graphs look like these:
 We'll discuss other variations but first we need to discuss an important concept.
 
 
-### Out
+## Out
 
 You may have noticed we snuck in the prefix `In` but didn't have one for Linear.
 
@@ -1215,10 +1215,10 @@ Specifically,
 
 * InLinear === OutLinear
 
-Just in case you were wondering.
+Just in case you were wondering now you know.
 
 
-### In-Out
+## In-Out
 
 In addition to flips there is also another variation called
 `InOut` where we "stitch" together both the `In` and `Out` into
