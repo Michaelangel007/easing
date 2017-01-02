@@ -2304,6 +2304,7 @@ $.each( baseEasings, function( name, easeIn ) {
  * [ ] Out Sine
  * [ ] Out Square Root
 * [ ] Verification, and verify.html
+* [ ] Smoothstep, and WebGL demo
 
 By: Michael "Code Poet" Pohoreski
 Copyright: 2016-2017
