@@ -2521,6 +2521,7 @@ $.each( baseEasings, function( name, easeIn ) {
   * [ ] Out Square Root
 * [ ] Verification, and verify.html
 * [ ] Smoothstep, and WebGL demo
+* [ ] Update animation loop
 
 By: Michael "Code Poet" Pohoreski
 Copyright: 2016-2017
