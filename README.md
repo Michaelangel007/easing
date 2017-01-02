@@ -2134,6 +2134,20 @@ One-liner single argument version (1SAV):
 
 ![In Octic graph](pics/08_in_octic.png)
 
+This is missing in the original but it is trivial to add:
+
+```Javascript
+    easeInOctic: function (x, t, b, c, d) {
+        return c*(t/=d)*t*t*t*t*t*t*t + b;;
+    },
+```
+
+One-liner single argument version (1SAV):
+
+```Javascript
+function InOctic(p) { return p*p*p*p*p*p*p*p; },
+```
+
 ## Cleanup - In Quadratic
 
 ![In Quadratic graph](pics/02_in_quadratic.png)
