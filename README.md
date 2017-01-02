@@ -968,8 +968,7 @@ will probably just confuse you more then it helps, the only take-away you need i
 A simple mnemonic to help remember it is: _re-parameter_
 
 Basically, we want to re-map the range into something _convenient._
-
-Well that begs the question -- _what_ would be convenient?
+But that begs the question -- _what_ would be convenient?
 Hmm, maybe a _range_ between 0.0 and 1.0 inclusive aka `normalized` values! :)
 
 | b   | c       | Notes     |
