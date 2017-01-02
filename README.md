@@ -1562,7 +1562,7 @@ Version 1 - remove x, b, c, t, d,
 ```
 
 Since most users will never override `s` with a custom constant
-it is safe to remove it
+it is safe to hard-code it
 
 Version 2 - Remove s
 
@@ -1733,10 +1733,17 @@ Version 4 - distribute `-1`
 Version 5 - rearrange terms
 
 ```Javascript
-    InCircle: function (t, d) {
+    InCircle: function (p) {
         return 1 - Math.sqrt(1 - p*p);
     },
 ```
+
+One-liner single argument version (1SAV):
+
+```Javascript
+    InCircle: function (p) { return 1 - Math.sqrt(1 - p*p); },
+```
+
 
 ## Cleanup - In Cubic
 
@@ -1745,6 +1752,38 @@ Version 5 - rearrange terms
 Original 5 argument version:
 
 ```Javscript
+    easeInCubic: function (x, t, b, c, d) {
+        return c*(t/=d)*t*t + b;
+    },
+```
+
+Version 1 - remove x
+
+```Javscript
+    InCubic: function (t, b, c, d) {
+        return c*(t/=d)*t*t + b;
+    },
+```
+
+Version 2 - replace b=0, c=1
+
+```Javscript
+    InCubic: function (t, d) {
+        return 1*(t/=d)*t*t + 0;
+    },
+```
+
+Version 3  simply `t/=d`
+```Javscript
+    InCubic: function (p) {
+        return p*p*p;
+    },
+```
+
+One-liner single argument version (1SAV):
+
+```Javscript
+function InCubic(p) { return p*p*p; },
 ```
 
 
@@ -1752,8 +1791,7 @@ Original 5 argument version:
 
 ![In Elastic graph](pics/32_in_elastic.png)
 
-Original 5 parameter version:
-
+Original 5 argument version:
 
 ```Javascript
     easeInElastic: function (x, t, b, c, d) {
