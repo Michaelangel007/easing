@@ -14,21 +14,21 @@ Rect.prototype =
      * @param {Object}   [params.border]       - Optional border
      * @param {Number}   [params.border.size]  - Single value will be applied to top,left,bottom,right border thickness
      * @param {Number[]} [params.border.skirt] - Array for [top,right,bottom,left] for border thickness
-     * @param {Number}   [params.border.r]     - Normalized border color red   [0.0 .. 1.0]
-     * @param {Number}   [params.border.g]     - Normalized border color green [0.0 .. 1.0]
-     * @param {Number}   [params.border.b]     - Normalized border color blue  [0.0 .. 1.0]
+     * @param {Number}   [params.border.r=0]   - Normalized border color red   [0.0 .. 1.0]
+     * @param {Number}   [params.border.g=0]   - Normalized border color green [0.0 .. 1.0]
+     * @param {Number}   [params.border.b=0]   - Normalized border color blue  [0.0 .. 1.0]
      */
     // ========================================================================
     init: function( params )
     {
         Widget.prototype.init.call( this, "Rect" );
 
-        if( params.w ) this.setW( params.w );
-        if( params.h ) this.setH( params.h );
-        if( params.r ) this.setR( params.r );
-        if( params.g ) this.setG( params.g );
-        if( params.b ) this.setB( params.b );
-        if( params.a ) this.setA( params.a );
+        if( params.w !== undefined ) this.setW( params.w );
+        if( params.h !== undefined ) this.setH( params.h );
+        if( params.r !== undefined ) this.setR( params.r );
+        if( params.g !== undefined ) this.setG( params.g );
+        if( params.b !== undefined ) this.setB( params.b );
+        if( params.a !== undefined ) this.setA( params.a );
 
         if( params.border )
         {
