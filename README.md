@@ -17,6 +17,8 @@
 * [De Facto Easing Functions](https://github.com/Michaelangel007/easing#de-facto-easing-functions)
 * [Easing Cleanup](https://github.com/Michaelangel007/easing#easing-cleanup)
  * [Cleanup - Linear](https://github.com/Michaelangel007/easing#cleanup---linear)
+ * [I'm here for an argument](https://github.com/Michaelangel007/easing#im-here-for-an-argument)
+ * [Warp Speed Mr. Sulu](https://github.com/Michaelangel007/easing#warps-speed-mr-sulu)
  * [What's with this "In, Out, In-Out" business, anyways?](https://github.com/Michaelangel007/easing#whats-with-this-in-out-in-out-business-anyways)
    * [Out](https://github.com/Michaelangel007/easing#out)
    * [In-Out](https://github.com/Michaelangel007/easing#in-out)
@@ -946,6 +948,8 @@ Let's make this a little more robust:
 
 Hmmm, some of these equations are starting to look familiar !
 
+## "I'm here for an argument"
+
 We still have a lot of arguments. Is there any way we can get rid of them?
 Yes, with _reparameterization._
 
@@ -984,6 +988,8 @@ function Linear( p ) {
     return p;
 }
 ```
+
+## "Warp Speed Mr. Sulu"
 
 Now this linear easing form by itself isn't very interesting.
 
