@@ -497,7 +497,7 @@ var Axis =
 
 ## Why Javascript?
 
-Javascript is a crappy language (*) designed in 10 days. If it is so bad then why use it?
+_Javascript_ is a crappy (*) language designed in 10 days. If it is so bad then why use it?
 
 Two reasons:
 
@@ -505,7 +505,7 @@ Two reasons:
 * More importantly, _to show that is possible_ to write **good** code in any language,
 even as one as bad as Javascript.
 
-(*) What makes Javascript such as shitty _designed_ language you ask?
+(*) What precisely makes Javascript so garbage you ask?
 
 * It is BASIC all over again -- accidently misspell a variable and JS uses the `undefined` value _without any warnings_ ...
 * ... unless you use the **hack** `"use strict";` at the top of every Javascript program
