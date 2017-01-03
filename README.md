@@ -2766,7 +2766,7 @@ Why JSON?
 
 Because you don't need to clutter up the code with more junk.
 e.g. You can see the
-[over-engineering extremes](https://github.com/rauschma/enums)
+[over-engineering extremes](https://github.com/rauschma/enums/blob/master/enums.js)
 some people go to just to work around a bad language
 and not using the native idioms.
 
