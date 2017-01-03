@@ -68,7 +68,7 @@ var Easing = Object.freeze(
     IN_OUT_SQRT     : 48,
     OUT_SQRT        : 49,
 
-    SMOOTHSTEP      : 50, // Hsd no 'In' not 'Out' since is 'InOut'
+    SMOOTHSTEP      : 50, // Has no 'In' not 'Out' since is 'InOut'
 
     NUM             : 51,
 });
