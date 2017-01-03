@@ -1603,7 +1603,25 @@ Original 5 argument version:
     },
 ```
 
-Version 1 - remove x, b, c, t, d,
+Version 1 - remove `x`,
+
+```Javascript
+    InBack: function (t, b, c, d, s) {
+        if (s == undefined) s = 1.70158;
+        return c*(t/=d)*t*((s+1)*t - s) + b;
+    },
+```
+
+Version 2 - replace `b` = 0, `c` = 1
+
+```Javascript
+    InBack: function (t, d, s) {
+        if (s == undefined) s = 1.70158;
+        return 1*p*p*((s+1)*p - s) + 0;
+    },
+```
+
+Version 3 - replace `t/=d`
 
 ```Javascript
     InBack: function (p,s) {
@@ -1615,7 +1633,7 @@ Version 1 - remove x, b, c, t, d,
 Since most users will never override `s` with a custom constant
 it is safe to hard-code it
 
-Version 2 - Remove s
+Version 4 - Remove `s`
 
 ```Javascript
     InBack: function (p) {
@@ -1624,7 +1642,7 @@ Version 2 - Remove s
     },
 ```
 
-Version 3 - Reorder multiplication
+Version 5 - Reorder multiplication
 
 ```Javascript
     InBack: function (p) {
