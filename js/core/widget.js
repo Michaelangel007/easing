@@ -1,6 +1,6 @@
 "use strict";
 
-var Axis =
+var Axis = Object.freeze(
 {
     X   : 0, // left position    (in pixels)
     Y   : 1, // top  position    (in pixels)
@@ -15,7 +15,7 @@ var Axis =
     _   :10, // whiteSpace 'nowrap' // http://www.w3schools.com/jsref/prop_style_whitespace.asp
     NUM :10, // NOTE: NOT a typo -- there is no point to interpolate whitespace
     INIT:11,
-};
+});
 
 /**
  * @classname Widget

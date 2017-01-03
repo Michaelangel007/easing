@@ -1,6 +1,6 @@
 "use strict";
 
-var Easing =
+var Easing = Object.freeze(
 {
     NONE            :  0,
     LINEAR          :  1,
@@ -71,7 +71,7 @@ var Easing =
     SMOOTHSTEP      : 50, // Hsd no 'In' not 'Out' since is 'InOut'
 
     NUM             : 51,
-};
+});
 
 
 /**
