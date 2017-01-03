@@ -2806,7 +2806,7 @@ var Easing = Object.freeze(
 The reason for `Easing.NONE`
 is that we'll use this a placeholder to signal
 that an animation is not currently active in our animation loop.
-See [Widget Line #](js/core/widget.js#L488)
+See [Widget Line #488](js/core/widget.js#L488)
 
 ## True Beautify lies on the inside
 
