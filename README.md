@@ -2800,6 +2800,12 @@ var Easing = Object.freeze(
     IN_OUT_SEXTIC   : 20,
     IN_OUT_SEPTIC   : 21,
     IN_OUT_OCTIC    : 22,
+
+// Standard
+    // :
+
+// Non-Standard
+   // :
 });
 ```
 
@@ -2839,11 +2845,12 @@ which will make your job trivial to find.
 
 _How_ do _experienced_ programmers write beautiful code?
 
-* **multi-column alignment** and,
-* **whitespace**
+* use _descriptive_ variables names
+* use **multi-column alignment** and,
+* use **whitespace**
 
-We'll aslso add comments on the end in case someone
-isn't familiar with all the terminology.
+We'll also add comments on the end in case someone
+isn't familiar with all the polynomial degree terminology.
 
 ```Javascript
     function None           (p) { return 1;               }, // p^0 Placeholder for no active animation
