@@ -2907,15 +2907,17 @@ we would only need to do 4 things:
 3. Add another `*m` term on the end
 4. Change the sign from `-` to `+`
 
-(*) Normally, you should "generally" _avoid_ copy/paste code
+(*) Normally, you should "generally" _avoid_ copy/pasting code
  as that is the #1 [reason](http://pages.cs.wisc.edu/~shanlu/paper/TSE-CPMiner.pdf)
  for bugs.  Many programmers are
- [against](http://discuss.joelonsoftware.com/default.asp?joel.3.409883.31) it.
+ [against](http://discuss.joelonsoftware.com/default.asp?joel.3.409883.31)
+ [it.](http://stackoverflow.com/questions/2490884/why-is-copy-and-paste-of-code-dangerous)
+ Don't confuse it with [cargo cult programming](http://softwareengineering.stackexchange.com/questions/32840/am-i-copy-paste-programmer).
+ or [Accidents of Implementation](https://pragprog.com/the-pragmatic-programmer/extracts/coincidence)
  Like any 'Rule-of-Thumb' there are times to break them.
  This is one of those cases where it is perfectly fine.
  Technically, the problem isn't copy/paste -- it is
  the _not-thinking_ part that typically goes along with it.
-
 
 ## Beauty is all around
 
