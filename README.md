@@ -2846,6 +2846,7 @@ $.each( baseEasings, function( name, easeIn ) {
   * [x] Out Sextic
   * [x] Out Sine
   * [x] Out Square Root
+  * [x] Smoothstep
 * [ ] Write up tutorial (Work-In-Progress)
   * [x] Linear
   * [x] What's with this "In, Out, In-Out" business, anyways?
@@ -2901,8 +2902,8 @@ $.each( baseEasings, function( name, easeIn ) {
 * [ ] Verification demo verify.html
 * [ ] Smoothstep
   * [x] WebGL demo
-  * [ ] graph
-  * [ ] Add smoothstep to easing
+  * [x] graph
+  * [x] Add smoothstep to easing
 * [ ] Update animation loop
 
 By: Michael "Code Poet" Pohoreski
