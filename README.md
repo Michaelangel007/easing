@@ -147,7 +147,9 @@ There is also a high resolution [4861x4000 Cheat Sheet](pics/easing_cheat_sheet.
 
 ## TL:DR; _"Shut up and show me the code!"_
 
-**`Easing` is a function that "warps time".**
+Jon Bentley has a talk called ["The most beautiful code I never wrote"](http://www.youtube.com/watch?v=aMnn0Jq0J-E)
+
+In contradistinction this is my _"The most beautiful code I ever wrote."_
 
 ```Javascript
 // Optimized Easing Functions by Michael "Code Poet" Pohoreski, aka _Michaelangel007_
