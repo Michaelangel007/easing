@@ -70,6 +70,10 @@ Widget.prototype =
         this._onEnd = vals.slice(); // callback when animation done
         this._onInc = vals.slice(); // callback while animation active
 
+// TODO: Need ready callbacks?
+// this._isReady = true;
+// this._onReady = undefined;
+
         vals[ Axis.A ] =  1; // default alpha = opaque
         this._min = vals.slice();
         this._cur = vals.slice();
