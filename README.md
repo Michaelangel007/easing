@@ -77,7 +77,7 @@
   * [In Out Sextic](#cleanup---in-out-septic)
   * [In Out Sine](#cleanup---in-out-sine)
 * [Verification](#verification)
-* [The Beauty of Power](#the-beauty-of-power)
+* [The Art and Science of Beautiful Code](#the-art-and-science-of-beautiful-code)
   * [True Beautify lies on the inside](#true-beautify-lies-on-the-inside)
   * [Beauty on the Outside](#beauty-on-the-outside)
   * [Beauty is all around](Beauty is all around)
@@ -2752,7 +2752,7 @@ we do _optimizations_ we need to as well -- else we could be introducing bugs.
 This will be forthcoming.
 
 
-# The Beauty of Power
+# The Art and Science of Beautiful Code
 
 Let's collect all the power functions we've cleaned up
 and stick them in an array for easy access.
