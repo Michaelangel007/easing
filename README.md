@@ -147,12 +147,14 @@ There is also a high resolution [4861x4000 Cheat Sheet](pics/easing_cheat_sheet.
 
 ## TL:DR; _"Shut up and show me the code!"_
 
-Jon Bentley has a talk called ["The most beautiful code I never wrote"](http://www.youtube.com/watch?v=aMnn0Jq0J-E)
+Jon Bentley has a talk called
+[Three Beautiful Quicksorts](http://www.youtube.com/watch?v=aMnn0Jq0J-E)
+sub-titled: _"The most beautiful code I never wrote"_
 
 In contradistinction this is my _"The most beautiful code I ever wrote."_
 
 ```Javascript
-// Optimized Easing Functions by Michael "Code Poet" Pohoreski, aka _Michaelangel007_
+// Optimized Easing Functions by Michael "Code Poet" Pohoreski, aka Michaelangel007
 // https://github.com/Michaelangel007/easing
 // License: Free as in speech and beer; Attribution is always appreciated!
 // Note: Please keep the URL so people can refer back to how these were derived.
@@ -266,6 +268,17 @@ var EasingFuncs = // Array of Functions
                                     return            0.5 + 0.5*EasingFuncs[ Easing.OUT_SQRT       ]( t - 1 );
                                 },
     function OutSquareRoot  (p) { return Math.sqrt( p ) },
+
+    function Smoothstep(t,x0,x1){
+        if( x0 === undefined ) x0 = 0;
+        if( x1 === undefined ) x1 = 1;
+
+        var p = (t - x0) / (x1 - x0);
+        if( p < 0 ) p = 0;
+        if( p > 1 ) p = 1;
+
+        return p*p*(3-2*p);
+    },
 ];
 ```
 
