@@ -1603,7 +1603,7 @@ Original 5 argument version:
     },
 ```
 
-Version 1 - remove `x`,
+Version 1 - remove `x`
 
 ```Javascript
     InBack: function (t, b, c, d, s) {
@@ -1621,7 +1621,7 @@ Version 2 - replace `b` = 0, `c` = 1
     },
 ```
 
-Version 3 - replace `t/=d`
+Version 3 - simplify `t/=d` = `p`
 
 ```Javascript
     InBack: function (p,s) {
@@ -1690,7 +1690,7 @@ normalized _input_ range [0,1] then, technically, we don't need to
 know the internal details -- just as long as we keep track
 of what is being passed in.
 
-Version 1 - remove x
+Version 1 - remove `x`
 
 ```Javascript
     InBounce: function (t, b, c, d) {
@@ -1698,7 +1698,7 @@ Version 1 - remove x
     },
 ```
 
-Version 2 - replace b=0 and c=1
+Version 2 - replace `b` = 0 and `c` = 1
 
 ```Javascript
     InBounce: function (t, d) {
@@ -1767,7 +1767,7 @@ Version 0 - Don't abbreviate `Circle`
     },
 ```
 
-Version 1 - remove x
+Version 1 - remove `x`
 
 ```Javascript
     InCircle: function (t, b, c, d) {
@@ -1775,7 +1775,7 @@ Version 1 - remove x
     },
 ```
 
-Version 2 - replace b=0, c=1
+Version 2 - replace `b` = 0, `c` = 1
 
 ```Javascript
     InCircle: function (t, d) {
@@ -1783,7 +1783,7 @@ Version 2 - replace b=0, c=1
     },
 ```
 
-Version 3 - replace `t/=d` with `p`
+Version 3 - simplify `t/=d` = `p`
 
 ```Javascript
     InCircle: function (t, d) {
@@ -1826,7 +1826,7 @@ Original 5 argument version:
     },
 ```
 
-Version 1 - remove x
+Version 1 - remove `x`
 
 ```Javscript
     InCubic: function (t, b, c, d) {
@@ -1834,7 +1834,7 @@ Version 1 - remove x
     },
 ```
 
-Version 2 - replace b=0, c=1
+Version 2 - replace `b` = 0, `c` = 1
 
 ```Javscript
     InCubic: function (t, d) {
@@ -1842,7 +1842,7 @@ Version 2 - replace b=0, c=1
     },
 ```
 
-Version 3  simply `t/=d`
+Version 3 - simplify `t/=d` = `p`
 ```Javscript
     InCubic: function (p) {
         return p*p*p;
@@ -1877,7 +1877,7 @@ UGH.
 Version 1 - Add line breaks
 
 ```Javascript
-    easeInElastic: function (x, t, b, c, d) {
+    InElastic: function (x, t, b, c, d) {
         var s=1.70158;
         var p=0;
         var a=c;
@@ -1904,7 +1904,7 @@ Version 1 - Add line breaks
 Version 2 - Add whitespace
 
 ```Javascript
-    easeInElastic: function (x, t, b, c, d) {
+    InElastic: function (x, t, b, c, d) {
         var s = 1.70158;
         var p = 0;
         var a = c;
@@ -1931,7 +1931,7 @@ Version 2 - Add whitespace
 Version 3 - Static Analysis & Dynamic Analysis
 
 ```Javascript
-    easeInElastic: function (x, t, b, c, d) {
+    InElastic: function (x, t, b, c, d) {
         var s = 1.70158; // useless constant -- not used as it is over-written
         var p = 0;
         var a = c;
@@ -1970,7 +1970,7 @@ Version 3 - Static Analysis & Dynamic Analysis
 Version 4 - Remove redundant code
 
 ```Javascript
-    easeInElastic: function (x, t, b, c, d) {
+    InElastic: function (x, t, b, c, d) {
         var p = d*.3;
         var s = p/4;
 
@@ -1989,7 +1989,7 @@ Version 4 - Remove redundant code
 Version 5 - Robustness: Handle edge cases
 
 ```Javascript
-    easeInElastic: function (x, t, b, c, d) {
+    InElastic: function (x, t, b, c, d) {
         var p = d*.3;
         var s = p/4;
 
@@ -2044,7 +2044,7 @@ That is:
 Version 7 - Simplified & Optimized 'easeInElastic'
 
 ```Javascript
-    easeInElastic: function (x, t, b, c, d) {
+    InElastic: function (x, t, b, c, d) {
         t /= d;
         if (t <= 0) return b  ;
         if (t >= 1) return b+c;
@@ -2053,10 +2053,45 @@ Version 7 - Simplified & Optimized 'easeInElastic'
     },
 ```
 
+Version 8 - remove `x`
+
+```Javascript
+    InElastic: function (t, b, c, d) {
+        t /= d;
+        if (t <= 0) return b  ;
+        if (t >= 1) return b+c;
+        t -= 1;
+        return -(c*Math.pow(2,10*t) * Math.sin( (40*t-3) * Math.PI/6 )) + b;
+    },
+```
+
+Version 9 - replace `b` = 0, `c` = 1
+
+```Javascript
+    InElastic: function (t, d) {
+        t /= d;
+        if (t <= 0) return 0  ;
+        if (t >= 1) return 0+1;
+        t -= 1;
+        return -(1*Math.pow(2,10*t) * Math.sin( (40*t-3) * Math.PI/6 )) + 0;
+    },
+```
+
+Version 10 - simplify `t/=d` = `p`
+
+```Javascript
+    InElastic: function (p) {
+        if (p <= 0) return 0;
+        if (t >= 1) return 1;
+        t -= 1;
+        return -(Math.pow(2,10*t) * Math.sin( (40*t-3) * Math.PI/6 ));
+    },
+```
+
 _Whew!_ We can now finally provide the **single argument version**:
 
 ```Javascript
-    easeInElastic: function(p) {
+    InElastic: function(p) {
         var m = p-1;
         if (p <= 0) return 0;
         if (p >= 1) return 1;
@@ -2069,7 +2104,7 @@ There are some variations, depending on how much inlining of terms you want to d
 * With `m = p-1`:
 
 ```Javascript
-    easeInElastic: function(p) {
+    InElastic: function(p) {
         var m = p-1;
         return -Math.pow( 2,  10*m ) * Math.sin( (m*40 - 3) * Math.PI/6 );
     },
@@ -2086,7 +2121,7 @@ There are some variations, depending on how much inlining of terms you want to d
 * With `-1` optimized out:
 
 ```Javascript
-    easeInElastic: function(p) {
+    InElastic: function(p) {
         return -  Math.pow( 2,10*p-10 ) * Math.sin( (40*p  -43) * Math.PI/6 ); // m=p-1, m*40-1 -> (p-1)*40-3 -> 40*p-43
     },
 ```
@@ -2114,7 +2149,7 @@ Version 0 - Rename `Expo` to `Exponent2`
     },
 ```
 
-Version 1 - remove x
+Version 1 - remove `x`
 
 ```Javascript
     InExponent2: function (t, b, c, d) {
@@ -2131,7 +2166,7 @@ Version 2 - semantically uncompress out-of-bounds
     },
 ```
 
-Version 3 - replace b=0, c=1
+Version 3 - replace `b` = 0, `c` = 1
 
 ```Javascript
     InExponent2: function (t, d) {
@@ -2140,7 +2175,7 @@ Version 3 - replace b=0, c=1
     },
 ```
 
-Version 4 - simplify `t/d`
+Version 4 - simplify `t/d` = `p`
 
 ```Javascript
     InExponent2: function (p) {
@@ -2184,8 +2219,42 @@ To see how `Exponent2` and `ExponentE` compare:
 In the original style the easing function would look like this:
 
 ```Javascript
-    InExponentE: function (x, t, b, c, d) {
+    easeInExponentE: function (x, t, b, c, d) {
         return (t==0) ? b : c * Math.pow( Math.E, 10 * (t/d - 1)) + b;
+    },
+```
+
+Version 1 - remove `x`
+
+```Javascript
+    InExponentE: function (t, b, c, d) {
+        return (t==0) ? b : c * Math.pow( Math.E, 10 * (t/d - 1)) + b;
+    },
+```
+
+Version 2 - replace `b` = 0, `c` = 1
+
+```Javascript
+    InExponentE: function (t, d) {
+        return (t==0) ? 0 : 1 * Math.pow( Math.E, 10 * (t/d - 1)) + 0;
+    },
+```
+
+Version 3 - uncompress edge condition
+
+```Javascript
+    InExponentE: function (t, d) {
+        if (t <= 0) return 0;
+        reutrn Math.pow( Math.E, 10 * (t/d - 1));
+    },
+```
+
+Version 4 - simplify `t/d` = `p`
+
+```Javascript
+    InExponentE: function (p) {
+        if (p <= 0) return 0;
+        return Math.pow( Math.E, 10 * (p - 1));
     },
 ```
 
@@ -2221,13 +2290,114 @@ function InOctic(p) { return p*p*p*p*p*p*p*p; },
 
 ![In Quadratic graph](pics/02_in_quadratic.png)
 
+We already covered this above and know the answer should be `p*p`
+but the extra practise does't hurt.
+
+We've already covered this above.
+
+```Javascript
+    easeInQuad: function (x, t, b, c, d) {
+        return c*(t/=d)*t + b;
+    },
+```
+
+Version 0 - unabbreviate `Quad`
+
+```Javascript
+    InQuadratic: function (x, t, b, c, d) {
+        return c*(t/=d)*t + b;
+    },
+```
+
+Version 1 - remove `x`
+
+```Javascript
+    InQuadratic: function (t, b, c, d) {
+        return c*(t/=d)*t + b;
+    },
+```
+
+Version 2 - replace `b` = 0, `c` = 1
+
+```Javascript
+    InQuadratic: function (t, d) {
+        return 1*(t/=d)*t + 0;
+    },
+```
+
+Version 3 - simplify `t/=d` = `p`
+
+```Javascript
+    InQuadratic: function (p) {
+        return p*p;
+    },
+```
+
+One-liner single argument version (1SAV):
+
+```Javascript
+    function InQuadratic(p) { return p*p; },
+```
+
 ## Cleanup - In Quartic
 
 ![In Quartic graph](pics/04_in_quartic.png)
 
+```Javascript
+    easeInQuart: function (x, t, b, c, d) {
+        return c*(t/=d)*t*t*t + b;
+    },
+```
+
+Version 0 - unabbreviate `Quart`
+
+```Javascript
+    InQuart: function (x, t, b, c, d) {
+        return c*(t/=d)*t*t*t + b;
+    },
+```
+
+Version 1 - remove `x`
+
+```Javascript
+    InQuart: function (t, b, c, d) {
+        return c*(t/=d)*t*t*t + b;
+    },
+```
+
+Version 2 - replace `b` = 0, `c` = 1
+
+```Javascript
+    InQuart: function (t, d) {
+        return 1*(t/=d)*t*t*t + 0;
+    },
+```
+
+Version 3 - simplify `t/=d` = `p`
+
+```Javascript
+    InQuart: function (p) {
+        return p*p*p*p;
+    },
+```
+
+One-liner single argument version (1SAV):
+
+```Javascript
+    function InQuartic(p) { return p*p*p*p; },
+```
+
+
 ## Cleanup - In Quintic
 
 ![In Quintic graph](pics/05_in_quintic.png)
+
+One-liner single argument version (1SAV):
+
+```Javascript
+    function InQuintic(p) { return p*p*p*p*p; },
+```
+
 
 ## Cleanup - In Septic
 
@@ -2294,14 +2464,16 @@ If we are lazy ...
 leaves us with:
 
 ```Javascript
-    easeOutElastic: function(p) { return 1 - this.easeInElastic( 1-p ); },
+    OutElastic: function(p) { return 1 - this.easeInElastic( 1-p ); },
 ```
 However that isn't optimal:
 
 With manual substitution:
 
+One-liner single argument version (1SAV):
+
 ```Javascript
-    easeOutElastic: function(p) { return 1+(Math.pow( 2,10*-p ) * Math.sin( (-p*40 - 3) * Math.PI/6 )); },
+    OutElastic: function(p) { return 1+(Math.pow( 2,10*-p ) * Math.sin( (-p*40 - 3) * Math.PI/6 )); },
 ```
 
 ## Cleanup - Out Exponent 2
@@ -2324,9 +2496,147 @@ With manual substitution:
 
 ![Out Quadratic graph](pics/09_out_quadratic.png)
 
+Original 5 argument version:
+
+```Javascript
+    easeOutQuad: function (x, t, b, c, d) {
+        return -c*(t/=d)*(t-2) + b;
+    },
+```
+
+Version 0 - rename `Quad` to `Quadratic`
+
+```Javascript
+    OutQuadratic: function (x, t, b, c, d) {
+        return -c*(t/=d)*(t-2) + b;
+    },
+```
+
+Version 1 - remove `x`
+
+```Javascript
+    OutQuadratic: function (t, b, c, d) {
+        return -c*(t/=d)*(t-2) + b;
+    },
+```
+
+Version 2 - replace `b` = 0, `c` = 1
+
+```Javascript
+    OutQuadratic: function (t, d) {
+        return -1*(t/=d)*(t-2) + 0;
+    },
+```
+
+Version 3 - simplify `t/=d` = `p`
+
+```Javascript
+    OutQuadratic: function (p) {
+        return -1*(p)*(p-2);
+    },
+```
+
+Version 4 - simplify
+
+```Javascript
+    OutQuadratic: function (p) {
+        return -p*(p-2);
+    },
+```
+
+Version 5 - factor out `p-1`
+
+Why `p-1` ? To show the symmetry of the Out power series.
+
+```
+    = -1*p*(p-2)
+    = -p*(p-2)
+    = -p^2+2p
+    = 1-(p^2+2p-1)
+    = 1-((p-1)*(p-1))
+```
+
+Leaving:
+
+```Javascript
+    OutQuadratic: function (p) {
+        var m = p-1;
+        return 1-(m*m);
+    },
+```
+
+One-liner single argument version (1SAV):
+
+```Javascript
+    function OutQuadratic(p) { var m=p-1; return 1-m*m; },
+```
+
+
 ## Cleanup - Out Quartic
 
 ![Out Quartic graph](pics/11_out_quartic.png)
+
+Original 5 argument version:
+
+```Javascript
+    easeOutQuart: function (x, t, b, c, d) {
+        return -c * ((t=t/d-1)*t*t*t - 1) + b;
+    },
+```
+
+Version 0 - unabbreviate `Quart`
+
+```Javascript
+    OutQuartic: function (x, t, b, c, d) {
+        return -c * ((t=t/d-1)*t*t*t - 1) + b;
+    },
+```
+
+Version 1 - remove `x`
+
+```Javascript
+    OutQuartic: function (t, b, c, d) {
+        return -c * ((t=t/d-1)*t*t*t - 1) + b;
+    },
+```
+Version 2 - replace `b` = 0, `c` = 1
+
+```Javascript
+    OutQuartic: function (t, d) {
+        return -1 * ((t=t/d-1)*t*t*t - 1) + 0;
+    },
+```
+
+Version 3 - simplify `t/=d` = `p`
+
+```Javascript
+    OutQuartic: function (p) {
+        var m = p - 1
+        return -1 * (m*m*m*m - 1);
+    },
+```
+
+Version 4 - distribute `-1`
+
+```
+    = -1 * (m*m*m*m - 1)
+    = -m*m*m*m + 1)
+    = 1 - m*m*m*m
+```
+
+```Javascript
+    OutQuartic: function (t, d) {
+        var m = p-1;
+        return 1 - m*m*m*m;
+    },
+```
+
+One-liner single argument version (1SAV):
+
+```
+    function OutQuartic(p) { var m=p-1; return 1-m*m*m*m; }
+```
+
 
 ## Cleanup - Out Quintic
 
@@ -2548,14 +2858,14 @@ $.each( baseEasings, function( name, easeIn ) {
   * [x] In Exponent 2
   * [x] In Exponent e
   * [ ] In Log10
-  * [ ] In Octic
+  * [x] In Octic
   * [x] In Quadratic
-  * [ ] In Quartic
+  * [x] In Quartic
   * [ ] In Quintic
   * [ ] In Septic
   * [ ] In Sextic
   * [ ] In Sine
-  * [ ] In Square Root
+  * [x] In Square Root
   * [ ] In Out Back
   * [ ] In Out Bounce
   * [ ] In Out Circle
@@ -2576,13 +2886,13 @@ $.each( baseEasings, function( name, easeIn ) {
   * [ ] Out Bounce
   * [ ] Out Circle
   * [ ] Out Cubic
-  * [ ] Out Elastic
+  * [x] Out Elastic
   * [ ] Out Exponent 2
   * [ ] Out Exponent e
   * [ ] Out Log10
   * [ ] Out Octic
-  * [ ] Out Quadratic
-  * [ ] Out Quartic
+  * [x] Out Quadratic
+  * [x] Out Quartic
   * [ ] Out Quintic
   * [ ] Out Septic
   * [ ] Out Sextic
