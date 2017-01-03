@@ -370,7 +370,7 @@ Widget.prototype =
     },
 
     /**
-     * Category: Input
+     * Category: Input Event
      * Dispatch key to current widget with focus
      * @param {Boolean} isKeyPressed - true if pressed else false
      * @param {Number}  key          - key code
@@ -443,6 +443,9 @@ Widget.prototype =
             this._div.style.backgroundColor = color;
     },
 
+    /**
+     * Category: Resize Event
+     */
     // ========================================================================
     resize: function()
     {
@@ -476,7 +479,7 @@ Widget.prototype =
     },
 
     /**
-     * Category: Animation
+     * Category: Animation, Update Event
      * Update all axis animation, and then children
      * If there is an on end callback will call with (Axis, Widget)
      * @param {Number} dT - Delta Time (in milliseconds)
