@@ -77,6 +77,11 @@
   * [In Out Sextic](#cleanup---in-out-septic)
   * [In Out Sine](#cleanup---in-out-sine)
 * [Verification](#verification)
+* [The Beauty of Power](#the-beauty-of-power)
+  * [True Beautify lies on the inside](#true-beautify-lies-on-the-inside)
+  * [Beauty on the Outside](#beauty-on-the-outside)
+  * [Beauty is all around](Beauty is all around)
+* [Animation Update Loop](#animation-update-loop)
 * [Miscellaneous](#miscellaneous)
   * [jQuery UI](#jquery-ui)
 * [TODO](#todo)
@@ -1054,7 +1059,8 @@ A simple mnemonic to help remember it is: _re-parameter_
 
 Basically, we want to re-map the range into something _convenient._
 But that begs the question -- _what_ would be convenient?
-Hmm, maybe a _range_ between 0.0 and 1.0 (inclusive) aka `normalized` values! :)
+Hmm, since we can pick _any_ start and end values
+maybe a _range_ between 0.0 and 1.0 (inclusive) aka `normalized` values! :)
 
 | b   | c       | Notes     |
 |:---:|:--------|:----------|
@@ -1184,7 +1190,7 @@ But before we investigate and optimize them we first need to go over the concept
 We introduced a new easing function which has the form of a `Quadratic` equation:
 
 ```Javascript
-    function InQuadratic(p) { return p*p; }, // p^2 = Math.pow(p,2)
+    function InQuadratic(p) { return p*p; }
 ```
 
 And its graph:
@@ -1192,6 +1198,7 @@ And its graph:
 ![In Quadratic graph](pics/02_in_quadratic.png)
 
 We have p^2, but what about raising p to the standard (integer) powers such as 3, 4, 5, ..., etc.?
+Here are the common names for polynomials of degree `n`:
 
 |Power|Formula|Name       |
 |----:|------:|:----------|
@@ -2744,6 +2751,295 @@ we do _optimizations_ we need to as well -- else we could be introducing bugs.
 
 This will be forthcoming.
 
+
+# The Beauty of Power
+
+Let's collect all the power functions we've cleaned up
+and stick them in an array for easy access.
+
+First, we'll need an enumation -- but since JS is so badly designed
+it doesn't have one we'll fake it using an [Javascript object notation syntax](http://www.json.org/) (JSON).
+This is just a fancy way of saying we'll have object with
+a named `key,value` pair.
+
+Why JSON?
+
+Because you don't need to clutter up the code with more junk.
+e.g. You can see the
+[over-engineering extremes](https://github.com/rauschma/enums)
+some people go to just to work around a bad language
+and not using the native idioms.
+
+```Javascript
+var Easing = Object.freeze(
+{
+    NONE            :  0,
+    LINEAR          :  1,
+
+// Power
+    IN_QUADRATIC    :  2,
+    IN_CUBIC        :  3,
+    IN_QUARTIC      :  4,
+    IN_QUINTIC      :  5,
+    IN_SEXTIC       :  6,
+    IN_SEPTIC       :  7,
+    IN_OCTIC        :  8,
+
+    OUT_QUADRATIC   :  9,
+    OUT_CUBIC       : 10,
+    OUT_QUARTIC     : 11,
+    OUT_QUINTIC     : 12,
+    OUT_SEXTIC      : 13,
+    OUT_SEPTIC      : 14,
+    OUT_OCTIC       : 15,
+
+    IN_OUT_QUADRATIC: 16,
+    IN_OUT_CUBIC    : 17,
+    IN_OUT_QUARTIC  : 18,
+    IN_OUT_QUINTIC  : 19,
+    IN_OUT_SEXTIC   : 20,
+    IN_OUT_SEPTIC   : 21,
+    IN_OUT_OCTIC    : 22,
+});
+```
+
+The reason for `Easing.NONE`
+is that we'll use this a placeholder to signal
+that an animation is not currently active in our animation loop.
+See [Widget Line #](js/core/widget.js#L488)
+
+## True Beautify lies on the inside
+
+Most _inexperienced_ programmers would collate the
+functions like this.
+
+```Javascript
+    function None(p) { return 1; }
+    function Linear(p) { return p; }
+    function InQuadratic(p) { return p*p; }
+    function InCubic(p) { return p*p; }
+    function InQuartic(p) { return p*p*p*p; }
+    function InQuintic(p) { return p*p*p*p*p; }
+    function InSextic(p) { return p*p*p*p*p*p; }
+    function InSeptic(p) { return p*p*p*p*p*p*p; }
+    function InOctic(p) { return p*p*p*p*p*p*p*p; }
+```
+
+This is **crap code.**
+
+Why?
+
+* While _Functionally_ it is correct,
+* _Visuallly_ it is **code vomit.**
+
+You can't easily tell if we made a mistake and accidently
+left off one of the `p` variables -- which I _intentionally_ did.
+Now before you go looking for it let's reformat this code
+which will make your job trivial to find.
+
+_How_ do _experienced_ programmers write beautiful code?
+
+* **multi-column alignment** and,
+* **whitespace**
+
+We'll aslso add comments on the end in case someone
+isn't familiar with all the terminology.
+
+```Javascript
+    function None           (p) { return 1;               }, // p^0 Placeholder for no active animation
+    function Linear         (p) { return p;               }, // p^1 Note: In = Out = InOut
+    function InQuadratic    (p) { return p*p;             }, // p^2 = Math.pow(p,2)
+    function InCubic        (p) { return p*p;             }, // p^3 = Math.pow(p,3)
+    function InQuartic      (p) { return p*p*p*p;         }, // p^4 = Math.pow(p,4)
+    function InQuintic      (p) { return p*p*p*p*p;       }, // p^5 = Math.pow(p,5)
+    function InSextic       (p) { return p*p*p*p*p*p;     }, // p^6 = Math.pow(p,6)
+    function InSeptic       (p) { return p*p*p*p*p*p*p;   }, // p^7 = Math.pow(p,7)
+    function InOctic        (p) { return p*p*p*p*p*p*p*p; }, // p^8 = Math.pow(p,8)
+```
+
+It becomes trivial to spot that `InCubic` is missing `*p` term
+and should be this:
+
+```Javascript
+    function InCubic        (p) { return p*p*p;           }, // p^3 = Math.pow(p,3)
+```
+
+## Beauty on the Outside
+
+Let's do the same thing for `Out`
+
+```Javascript
+    function OutQuadratic(p) { var m=p-1; return 1-m*m; },
+    function OutCubic(p) { var m=p-1; return 1+m*m*m; },
+    function OutQuartic(p) { var m=p-1; return 1-m*m*m*m; },
+    function OutQuintic(p) { var m=p-1; return 1+m*m*m*m*m; },
+    function OutSextic(p) { var m=p-1; return 1-m*m*m*m*m*m; },
+    function OutSeptic(p) { var m=p-1; return 1+m*m*m*m*m*m*m;},
+    function OutOctic(p) { var m=p-1; return 1-m*m*m*m*m*m*m*m; },
+```
+
+The reason I factored `p-1` is that when we use alignment
+we can see the _beautiful symmetry_ of the Out Power functions:
+
+```Javascript
+    function OutQuadratic   (p) { var m=p-1; return 1-m*m;             },
+    function OutCubic       (p) { var m=p-1; return 1+m*m*m;           },
+    function OutQuartic     (p) { var m=p-1; return 1-m*m*m*m;         },
+    function OutQuintic     (p) { var m=p-1; return 1+m*m*m*m*m;       },
+    function OutSextic      (p) { var m=p-1; return 1-m*m*m*m*m*m;     },
+    function OutSeptic      (p) { var m=p-1; return 1+m*m*m*m*m*m*m;   },
+    function OutOctic       (p) { var m=p-1; return 1-m*m*m*m*m*m*m*m; },
+```
+
+If we ever needed to write a Out polynomial for degree 9,
+which has the term [Nonic](http://mathforum.org/library/drmath/view/56413.html)
+we would only need to do 4 things:
+
+1. Copy-paste (*) `OutOctic`
+2. Rename the new line to `OutNonic`
+3. Add another `*m` term on the end
+4. Change the sign from `-` to `+`
+
+(*) Normally, you should generally _avoid_ copy-paste
+ as that is the #1 reason for bugs.  In this it is warranted.
+
+## Beauty is all around
+
+Using alignment lets us see the symmetry for the `InOut` polynomials:
+
+```Javascript
+    function InOutQuadratic (p) { var m=p-1,t=p*2; if (t < 1) return p*t;             return 1-m*m            *  2; },
+    function InOutCubic     (p) { var m=p-1,t=p*2; if (t < 1) return p*t*t;           return 1+m*m*m          *  4; },
+    function InOutQuartic   (p) { var m=p-1,t=p*2; if (t < 1) return p*t*t*t;         return 1-m*m*m*m        *  8; },
+    function InOutQuintic   (p) { var m=p-1,t=p*2; if (t < 1) return p*t*t*t*t;       return 1+m*m*m*m*m      * 16; },
+    function InOutSextic    (p) { var m=p-1,t=p*2; if (t < 1) return p*t*t*t*t*t;     return 1-m*m*m*m*m*m    * 32; },
+    function InOutSeptic    (p) { var m=p-1,t=p*2; if (t < 1) return p*t*t*t*t*t*t;   return 1+m*m*m*m*m*m*m  * 64; },
+    function InOutOctic     (p) { var m=p-1,t=p*2; if (t < 1) return p*t*t*t*t*t*t*t; return 1-m*m*m*m*m*m*m*m*128; },
+```
+
+And if one ever needed to add an `InOutNoctic`
+You don't need to be a [brain surgeon](https://www.youtube.com/watch?v=THNPmhBl-8I) to spot the pattern.
+
+```Javascript
+    function InOutNonic     (p) { var m=p-1,t=p*2; if (t < 1) return p*t*t*t*t*t*t*t*t; return 1-m*m*m*m*m*m*m*m*m*256; },
+```
+
+
+# Animation Update Loop
+
+The heart of animation is the update loop.
+
+How would we animate a single axis?
+
+We first need the givens:
+
+|Variable|Description           |
+|:-------|:---------------------|
+|min     |start value           |
+|max     |end value             |
+|elapsed |elapsed time          |
+|start   |time animation started|
+|duration|how long the animation lasts|
+
+```Javascript
+    update: function( min, max, elapsed, start, duration )
+    {
+        var total = 1/duration;
+
+        var dt = elapsed - start;
+        var p  = dt * total;
+
+        // Animation done?
+        if( p >= 1 )
+        {
+            return max;
+        }
+        else
+        {
+            t  = EasingFuncs[ easing ]( p );
+            dx = max - min;
+            x  = min + dx*t;
+            return x;
+        }
+    }
+```
+
+One optimization we can apply is to remove that `1/duration`
+and replace it with a multiplication.
+
+Why?
+
+Because when an animation is started its duration doesn't change.
+
+How do we animate multiple axis?
+
+We need a `start()` to initialize the axis values when
+an animation starts,
+and an `update()` to update the array of axis values.
+
+```Javascript
+    var val  = new Array( Axis.NUM );
+    var min  = val.slice();
+    var cur  = val.slice();
+    var max  = val.slice();
+    var ood  = val.slice(); // one/duration
+    var ease = Easing.NONE;
+
+    function now()
+    {
+        return new Date().getTime();
+    }
+
+    function animate( axis, begin, end, duration, type )
+    {
+        ease [ axis ] = type;
+        min  [ axis ] = begin;
+        cur  [ axis ] = begin;
+        max  [ axis ] = end;
+        ood  [ axis ] = 1 / duration;
+        start[ axis ] = now();
+    }
+
+    function stop( axis )
+    {
+        ease[ axis ] = Easing.NONE;
+    }
+
+    function update()
+    {
+        var n = Axis.NUM, dx, t, x;
+
+        for( var axis = 0; axis < n; ++axis )
+        {
+            var easing = ease[ axis ];
+            if( easing ) // Animation != Easing.NONE
+            {
+                var min = min[ axis ];
+                var max = max[ axis ];
+
+                var total = oodur[ axis ]; // reciprocal duration: 1/milliseconds
+                var start = start[ axis ];
+
+                var dt = now() - start;
+                var p  = dt * total; // Optimization: Removed divide; 1/duration stored at type of animate()
+
+                // Animation done?
+                if( p >= 1 )
+                {
+                    setAxis( axis, max );
+                    stop   ( axis );
+                }
+                else
+                {
+                    t  = EasingFuncs[ easing ]( p ); // p = normal time, t = warped time
+                    dx = max - min;
+                    x  = min + dx*t;
+                    setAxis( axis, x );
+                }
+            }
+        }
+    }
+```
 
 # Miscellaneous
 
