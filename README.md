@@ -2568,9 +2568,9 @@ There are 2 inconsistencies with this:
   -- there is a reason for this but it will have to wait for `OutSine`
 * It should have been abbreviated `Sin`
 
-We'll ignore renaming this so as not to confuse people for why
-we have a `InCos` but not an `InSine`.
-_"Sometimes a bad standard is better then no standard."_
+We'll ignore renaming this to `InCos` so as not to confuse people for why
+we have a `InCos` but not an `InSine` like everyone else.
+_"Sometimes a consistent, bad standard is better then an inconsistent, good standard."_
 
 Sometimes. :-/
 
@@ -2578,12 +2578,19 @@ Moving on, the graph of `cos(x)` looks like this:
 
 ![Cos(x)](pics/tutorial/cos_x.png)
 
-But we want to scale our input `p` to be between 0 and &pi;
+But our input `p` is between `0` and `1`:
+
+| p | x | y |
+|:--|:--|:--|
+| 0 | 0 | 1 |
+| 1 | ? | 0 |
+
+We need to scale our input `p` to be between 0 and &pi;
 
 ![Cos(x * pi)](pics/tutorial/cos_x_pi.png)
 
 But we've _compressed_ the x _too_ much. We want `x = 1` to be `y = 0`
-in our equation `cos(pi/n)`. Solve for `n` we have 2.
+in our equation `cos(pi/n)`. Solving for `n` leaves `2`.
 
 ```Javascript
     var x = p/2
