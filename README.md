@@ -2452,7 +2452,49 @@ One-liner single argument version (1SAV):
 
 ![In Quintic graph](pics/05_in_quintic.png)
 
+Original 5 argument version:
+
+```Javascript
+    easeInQuint: function (x, t, b, c, d) {
+        return c*(t/=d)*t*t*t*t + b;
+    },
+```
+
+Version 0 - unabbreviate `Quintic`
+
+```Javascript
+    InQuintic: function (x, t, b, c, d) {
+        return c*(t/=d)*t*t*t*t + b;
+    },
+```
+
+Version 1 - remove `x`
+
+```Javascript
+    InQuintic: function (t, b, c, d) {
+        return c*(t/=d)*t*t*t*t + b;
+    },
+```
+
+Version 2 - replace `b` = 0, `c` = 1
+
+```Javascript
+    InQuintic: function (t, d) {
+        return 1*(t/=d)*t*t*t*t + 0;
+    },
+```
+
+Version 3 - simplify `t/=d` = p
+
+```Javascript
+    InQuintic: function ( p ) {
+        return p*p*p*p*p;
+    },
+```
+
 One-liner single argument version (1SAV):
+
+
 
 ```Javascript
     function InQuintic(p) { return p*p*p*p*p; },
