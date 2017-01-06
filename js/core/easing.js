@@ -207,6 +207,7 @@ var EasingFuncs = // Array of Functions
     function Smoothstep(t,x0,x1){
         if( x0 === undefined ) x0 = 0;
         if( x1 === undefined ) x1 = 1;
+
         var p = (t - x0) / (x1 - x0);
         if( p < 0 ) p = 0;
         if( p > 1 ) p = 1;
