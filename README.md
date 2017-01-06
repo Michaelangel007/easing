@@ -2353,8 +2353,6 @@ function InOctic(p) { return p*p*p*p*p*p*p*p; },
 We already covered this above and know the answer should be `p*p`
 but the extra practise does't hurt.
 
-We've already covered this above.
-
 ```Javascript
     easeInQuad: function (x, t, b, c, d) {
         return c*(t/=d)*t + b;
