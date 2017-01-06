@@ -3435,6 +3435,7 @@ $.each( baseEasings, function( name, easeIn ) {
   * [x] WebGL demo
   * [x] graph
   * [x] Add smoothstep to easing
+  * [ ] Add smoothstep to reference graph
 * [ ] Update animation loop
 
 By: Michael "Code Poet" Pohoreski
