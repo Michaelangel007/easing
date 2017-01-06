@@ -2589,8 +2589,8 @@ We need to scale our input `p` to be between 0 and &pi;
 
 ![Cos(x * pi)](pics/tutorial/cos_x_pi.png)
 
-But we've _compressed_ the x _too_ much. We want `x = 1` to be `y = 0`
-in our equation `cos(pi/n)`. Solving for `n` leaves `2`.
+But we've _compressed_ the x _too_ much. When `p = 1` we need `y = 0`
+in our equation `cos(x * pi/n) = 0`. Solving for `n` leaves `2`.
 
 ```Javascript
     var x = p/2
