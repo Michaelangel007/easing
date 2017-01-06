@@ -2290,6 +2290,42 @@ One-liner single argument version (1SAV):
 
 ![In Log10 graph](pics/44_in_log10.png)
 
+This is also missing in the original.
+Let's add it for completeness.
+
+Here is a graph of Log10(x):
+
+![Log10(x)](pics/tutorial/log10x_0_10.png)
+
+We're interested in the range { 1 <= x <= 10 }
+
+|  x | y = log10(x) |
+|---:|-------------:|
+|  1 |            0 |
+| 10 |            1 |
+
+Since input `p` ranges from `0` to `1` we need to re-map it:
+
+|  p |  x | y = log10(x) |
+|---:|---:|-------------:|
+|  0 |  1 |            0 |
+|  1 | 10 |            1 |
+
+```Javascript
+    var x = (p*9)+1
+    return Math.log10( t );
+```
+
+But notice this shape is an `Out` shape, not an `In` shape.
+
+We'll defer the rest of this explanation by having
+`In` = `Out` flipped x and flipped y.
+
+```Javascript
+    function InLog10(p) { return 1 - OutLog10( 1-p ); }
+```
+
+
 ## Cleanup - In Octic
 
 ![In Octic graph](pics/08_in_octic.png)
