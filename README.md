@@ -2401,6 +2401,8 @@ One-liner single argument version (1SAV):
 
 ![In Quartic graph](pics/04_in_quartic.png)
 
+Original 5 argument version:
+
 ```Javascript
     easeInQuart: function (x, t, b, c, d) {
         return c*(t/=d)*t*t*t + b;
