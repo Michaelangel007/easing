@@ -2505,13 +2505,120 @@ One-liner single argument version (1SAV):
 
 ![In Septic graph](pics/07_in_septic.png)
 
+Polynomials above degree 5 are missing in the original.
+Let's add degree _7_ for completeness.
+
+In the original style it would be written as:
+
+```Javascript
+    easeInSept: function (x, t, b, c, d) {
+        return c*(t/=d)*t*t*t*t*t*t + b;
+    },
+```
+
+It is easy to verify we have the correct numbers of terms above.
+There should be `n-1` terms of `t`.
+
+One-liner single argument version (1SAV):
+
+```Javascript
+    function InSeptic(p) { return p*p*p*p*p*p*p; },
+```
+
+For the 1-liner there should be `7` terms of `p`.
+
+
 ## Cleanup - In Sextic
 
 ![In Sextic graph](pics/06_in_sextic.png)
 
+Polynomials above degree 5 are missing in the original.
+Let's add degree _6_ for completeness.
+
+```Javascript
+    easeInSex: function (x, t, b, c, d) {
+        return c*(t/=d)*t*t*t*t*t + b;
+    },
+```
+
+One-liner single argument version (1SAV):
+
+```Javascript
+    function InSextix(p) { return p*p*p*p*p*p; },
+```
+
+For the 1-liner there should be `6` terms of `p`.
+
+
 ## Cleanup - In Sine
 
 ![In Sine graph](pics/38_in_sine.png)
+
+Original 5 argument version:
+
+```Javascript
+    easeInSine: function (x, t, b, c, d) {
+        return -c * Math.cos(t/d * (Math.PI/2)) + c + b;
+    },
+```
+
+There are 2 inconsistencies with this.
+
+* It is called `Sine` even though it uses _Cosine_
+  -- there is a reason for this but it will have to wait for `OutSine`
+* It should have been abbreviated `Sin`
+
+We'll ignore re-naming this so as not to confuse people for why
+there is a `InCos` but not an `InSine`.
+
+_"Sometimes a bad standard is better then no standard."_
+
+Sometimes. :-/
+
+Version 1 - remove `x`
+
+```Javascript
+    InSine: function (t, b, c, d) {
+        return -c * Math.cos(t/d * (Math.PI/2)) + c + b;
+    },
+```
+
+Version 2 - replace `b` = 0, `c` = 1
+
+```Javascript
+    InSine: function (t, d) {
+        return -1 * Math.cos(t/d * (Math.PI/2)) + 1 + 0;
+    },
+```
+
+Version 3 - simply
+
+```Javascript
+    InSine: function (t, d) {
+        return 1 - Math.cos(t/d * (Math.PI/2));
+    },
+```
+
+Version 4 - simplify `t/d` = `p`
+
+```Javascript
+    InSine: function (p) {
+        return 1 - Math.cos(p * (Math.PI/2));
+    },
+```
+
+Version 5 - replace slow division with multiplication
+
+```Javascript
+    InSine: function (p) {
+        return 1 - Math.cos( p * Math.PI * 0.5 );
+    },
+```
+
+One-liner single argument version (1SAV):
+```Javascript
+    function InSine(p) { return 1 - Math.cos( p * Math.PI*0.5 ); }
+```
 
 
 ## Cleanup - In Square Root
@@ -3269,10 +3376,10 @@ $.each( baseEasings, function( name, easeIn ) {
   * [x] In Octic
   * [x] In Quadratic
   * [x] In Quartic
-  * [ ] In Quintic
-  * [ ] In Septic
-  * [ ] In Sextic
-  * [ ] In Sine
+  * [x] In Quintic
+  * [x] In Septic
+  * [x] In Sextic
+  * [x] In Sine
   * [x] In Square Root
   * [ ] In Out Back
   * [ ] In Out Bounce
