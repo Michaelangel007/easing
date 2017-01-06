@@ -248,6 +248,20 @@ Widget.prototype =
             this._parent._div.appendChild( div );
     },
 
+    // End values
+    endB: function() { return this._max[ Axis.B ]; }, // Color
+    endG: function() { return this._max[ Axis.G ]; },
+    endR: function() { return this._max[ Axis.R ]; },
+    endA: function() { return this._max[ Axis.A ]; },
+    endW: function() { return this._max[ Axis.W ]; }, // Dimension // return this._div.offsetHeight | 0;
+    endH: function() { return this._max[ Axis.H ]; },              // return this._div.offsetWidth  | 0;
+    endX: function() { return this._max[ Axis.X ]; }, // Position
+    endY: function() { return this._max[ Axis.Y ]; },
+    endS: function() { return this._max[ Axis.S ]; }, // Font
+    end_: function() { return this._max[ Axis._ ]; }, // Whitespace
+    endT: function() { return this._max[ Axis.T ]; }, // User Timer
+
+    // Current values
     getB: function() { return this._cur[ Axis.B ]; }, // Color
     getG: function() { return this._cur[ Axis.G ]; },
     getR: function() { return this._cur[ Axis.R ]; },
