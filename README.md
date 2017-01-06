@@ -2562,18 +2562,35 @@ Original 5 argument version:
     },
 ```
 
-There are 2 inconsistencies with this.
+There are 2 inconsistencies with this:
 
 * It is called `Sine` even though it uses _Cosine_
   -- there is a reason for this but it will have to wait for `OutSine`
 * It should have been abbreviated `Sin`
 
-We'll ignore re-naming this so as not to confuse people for why
-there is a `InCos` but not an `InSine`.
-
+We'll ignore renaming this so as not to confuse people for why
+we have a `InCos` but not an `InSine`.
 _"Sometimes a bad standard is better then no standard."_
 
 Sometimes. :-/
+
+Moving on, the graph of `cos(x)` looks like this:
+
+![Cos(x)](pics/tutorial/cos_x.png)
+
+But we want to scale our input `p` to be between 0 and &pi;
+
+![Cos(x * pi)](pics/tutorial/cos_x_pi.png)
+
+But we've _compressed_ the x _too_ much. We want `x = 1` to be `y = 0`
+in our equation `cos(pi/n)`. Solve for `n` we have 2.
+
+```Javascript
+    var x = p/2
+    y = cos( x * PI );
+```
+
+![Cos(x * pi/2)](pics/tutorial/cos_x_half_pi.png)
 
 Version 1 - remove `x`
 
