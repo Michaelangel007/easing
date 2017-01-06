@@ -404,6 +404,30 @@ Widget.prototype =
         }
     },
 
+    /**
+     * Category: Animation
+     * Pause the specified axis
+     * @param return {Easing}
+     */
+    // ========================================================================
+    pause: function( axis )
+    {
+        var easing = this._ease[ axis ];
+                     this._ease[ axis ] = Easing.NONE;
+        return easing;
+    }
+
+    /**
+     * Category: Animation
+     * Resume animating the specified axis
+     * @param return {Easing}
+     */
+    // ========================================================================
+    resume: function( axis, easing )
+    {
+        this._ease[ axis ] = easing;
+    }
+
 /*
     // You need to provide if you over-ride:
     onCreate     : function()     {}, // Called when a widget's div and all their children has been created
