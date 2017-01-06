@@ -2313,10 +2313,12 @@ Since input `p` ranges from `0` to `1` we need to re-map it:
 
 ```Javascript
     var x = (p*9)+1
-    return Math.log10( t );
+    return Math.log10( x );
 ```
 
 But notice this shape is an `Out` shape, not an `In` shape.
+
+![Out Log10 graph](pics/46_out_log10.png)
 
 We'll defer the rest of this explanation by having
 `In` = `Out` flipped x and flipped y.
@@ -3221,7 +3223,7 @@ $.each( baseEasings, function( name, easeIn ) {
   * [x] In Elastic
   * [x] In Exponent 2
   * [x] In Exponent e
-  * [ ] In Log10
+  * [x] In Log10
   * [x] In Octic
   * [x] In Quadratic
   * [x] In Quartic
