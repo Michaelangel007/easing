@@ -231,17 +231,14 @@ GraphScreen.prototype =
             */
             var prevLabel = new Text().init( { text: '|<', size: fontSize } );
             var nextLabel = new Text().init( { text: '>|', size: fontSize } );
-            this.addXY( prevLabel, left  + gx, y );
-            this.addXY( nextLabel, right - gx, y );
+            this.addXY( prevLabel, left  + gx, y + fontSize );
+            this.addXY( nextLabel, right - gx, y + fontSize );
 
             // TODO: <<  time -
             // TODO: >>  time +
             // TOOD: >   Play
 
             // And side labels and values
-            x = left + gw;
-            y = 0;
-
             var timeLabel = new Text().init( { text: 'x: ', size: fontSize, r:xR, g:xG, b:xB } ); // Normal Time
             var timeText  = new Text().init( { text: '?'  , size: fontSize                   } );
 
