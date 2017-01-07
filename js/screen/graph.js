@@ -191,12 +191,51 @@ Plot.prototype =
             var iofnLabel = new Text().init( { size: size } ); // # of #
             this.addXY( iofnLabel, left, y + size );
 
-            // <
-            // >
-            var prevLabel = new Text().init( { text: '<', size: size } );
-            var nextLabel = new Text().init( { text: '>', size: size } );
+            /*
+                "Transport" or "Media Controls"
+                https://en.wikipedia.org/wiki/Media_controls
+
+                NOT the Unicode Transport Block
+                http://unicode.org/charts/PDF/U1F680.pdf
+
+                    Hex    Symbol Description
+                    #5107B >      Play
+                    #5111B ||     Pause
+                    #5110B []     Stop
+                    n/a    <<     Rewind
+                    #5108B >>     Fast Forward
+                    #5862  |<     Skip Previous
+                    #5861  >|     Skip Next
+
+                http://stackoverflow.com/questions/22885702/html-for-the-pause-symbol-in-a-video-control
+
+                    http://fortawesome.github.io/Font-Awesome/icons/#video-player
+                    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+                    <i class="fa fa-arrows-alt"></i>
+                    <i class="fa fa-backward"></i>
+                    <i class="fa fa-compress"></i>
+                    <i class="fa fa-eject"></i>
+                    <i class="fa fa-expand"></i>
+                    <i class="fa fa-fast-backward"></i>
+                    <i class="fa fa-fast-forward"></i>
+                    <i class="fa fa-forward"></i>
+                    <i class="fa fa-pause"></i>
+                    <i class="fa fa-play"></i>
+                    <i class="fa fa-play-circle"></i>
+                    <i class="fa fa-play-circle-o"></i>
+                    <i class="fa fa-step-backward"></i>
+                    <i class="fa fa-step-forward"></i>
+                    <i class="fa fa-stop"></i>
+                    <i class="fa fa-youtube-play"></i>
+            */
+            var prevLabel = new Text().init( { text: '|<', size: size } );
+            var nextLabel = new Text().init( { text: '>|', size: size } );
             this.addXY( prevLabel, left  + gx, y );
             this.addXY( nextLabel, right - gx, y );
+
+            // TODO: <<  time -
+            // TODO: >>  time +
+            // TOOD: >   Play
 
             // And side labels and values
             x = left + gw;
