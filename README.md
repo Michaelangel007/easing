@@ -1396,10 +1396,10 @@ function InOutQuadratic_v1( p ) {
 
 2. Scale the `In` width (`x`) by 1/2.
 
- How? We can remap our original input `p` range and split it into _two_ ranges.
-
- Reparameterization to the rescue! I'll call the new input `t`:
-
+ How0?
+ Reparameterization to the rescue!
+ We can remap our original input `p` range and split it into _two_ ranges.
+ I'll call the new input `t`:
 
 | old p input  | new t input  |
 |:-------------|:-------------|
