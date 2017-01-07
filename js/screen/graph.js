@@ -645,5 +645,6 @@ Plot.prototype =
         var dim = this._instructions.getDimensions();
         this._instructions.setX( Game.w - (dim.w               + Plot.PAD) ); // right align instructions
         this._footer      .setX( Game.w - (this._footer.getW() + Plot.PAD) ); // right align footer
+        this._footer      .setY( Game.h - (this._footer.getH() + Plot.PAD) );
     },
 };
