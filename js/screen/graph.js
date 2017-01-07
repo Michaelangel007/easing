@@ -383,6 +383,69 @@ GraphScreen.prototype =
     },
 
     // ========================================================================
+    drawLine: function( x0, y0, x1, y1, color, context )
+    {
+        context.beginPath();
+            context.strokeStyle = color;
+            context.moveTo( x0, y0 );
+            context.lineTo( x1, y1 );
+        context.stroke();
+    },
+
+    // ========================================================================
+    fixupGridLabels: function()
+    {
+        var kid;
+        var x, y;
+        var w, h;
+        var i, n;
+        var gridLabelX = this._gridLabelX;
+        var gridLabelY = this._gridLabelY;
+        var pad = 2;
+        var dim;
+
+        n = gridLabelX._children.length;
+        for( i = 0; i < n; ++i )
+        {
+            kid = gridLabelX._children[i];
+            dim = kid.getMetrics();
+
+            y   = pad;
+            y  += (i & 1) ? dim.h :  0; // stagger horizontal axis labels vertically
+
+            kid.setX( dim.x - dim.w*0.5 ); // Center
+            kid.setY( dim.y + y );
+
+            if( i != (n-1) )
+            {
+                kid = gridLabelY._children[i];
+                dim = kid.getMetrics();
+                kid.setX( dim.x - dim.w - pad );
+                kid.setY( dim.y - dim.h*0.5 );
+            }
+        }
+    },
+
+    // ========================================================================
+    fixupTextLabels: function()
+    {
+        // Put SideR's left edge adjacent SideL's width
+        // SideL  SideR
+        //
+        // Head1  Val1
+        // Head2  Val2
+        // Head3  Val3
+        var dim = this._sideL.getDimensions();
+        var x   = this._sideN.getX();
+        /*     */ this._sideN.setX( x + dim.w + GraphScreen.PAD );
+
+        // Right Align '>' next button
+        dim = this._next$.getDimensions();
+        x   = this._next$.getX();
+              this._next$.setX( x - dim.w );
+    },
+
+    // ========================================================================
     layout: function( delta )
     {
         var easing = this._iEasing;
@@ -459,66 +522,41 @@ GraphScreen.prototype =
     },
 
     // ========================================================================
-    drawLine: function( x0, y0, x1, y1, color, context )
+    loopAnimation: function()
     {
-        context.beginPath();
-            context.strokeStyle = color;
-            context.moveTo( x0, y0 );
-            context.lineTo( x1, y1 );
-        context.stroke();
-    },
+        var self = this;
 
-    // ========================================================================
-    fixupGridLabels: function()
-    {
-        var kid;
-        var x, y;
-        var w, h;
-        var i, n;
-        var gridLabelX = this._gridLabelX;
-        var gridLabelY = this._gridLabelY;
-        var pad = 2;
-        var dim;
+        var i = this._iAnim;
+        var n = this._aAnimFunc.length;
 
-        n = gridLabelX._children.length;
-        for( i = 0; i < n; ++i )
+        for( ; i < n; ++i )
         {
-            kid = gridLabelX._children[i];
-            dim = kid.getMetrics();
+            ++this._iAnim;
 
-            y   = pad;
-            y  += (i & 1) ? dim.h :  0; // stagger horizontal axis labels vertically
+            var f = this._aAnimFunc[ i ];
+            var x = this._aAnimData[ i ];
 
-            kid.setX( dim.x - dim.w*0.5 ); // Center
-            kid.setY( dim.y + y );
-
-            if( i != (n-1) )
+            // If no animate params then apply immediately
+            if( x === undefined )
             {
-                kid = gridLabelY._children[i];
-                dim = kid.getMetrics();
-                kid.setX( dim.x - dim.w - pad );
-                kid.setY( dim.y - dim.h*0.5 );
+                f();
+            }
+            else
+            {
+                x.onEnd = function()
+                {
+                    if( f !== undefined )
+                        f();
+                    self.loopAnimation();
+                };
+
+                if( !x.type )
+                    x.type = this._aEasing[ this._iEasing ];
+
+                this._anim.animate( x );
+                break;
             }
         }
-    },
-
-    // ========================================================================
-    fixupTextLabels: function()
-    {
-        // Put SideR's left edge adjacent SideL's width
-        // SideL  SideR
-        //
-        // Head1  Val1
-        // Head2  Val2
-        // Head3  Val3
-        var dim = this._sideL.getDimensions();
-        var x   = this._sideN.getX();
-        /*     */ this._sideN.setX( x + dim.w + GraphScreen.PAD );
-
-        // Right Align '>' next button
-        dim = this._next$.getDimensions();
-        x   = this._next$.getX();
-              this._next$.setX( x - dim.w );
     },
 
     // ========================================================================
@@ -649,44 +687,6 @@ GraphScreen.prototype =
         this._instructions.setX( Game.w - (dim.w               + GraphScreen.PAD) ); // right align instructions
         this._footer      .setX( Game.w - (this._footer.getW() + GraphScreen.PAD) ); // right align footer
         this._footer      .setY( Game.h - (this._footer.getH() + GraphScreen.PAD) );
-    },
-
-    // ========================================================================
-    loopAnimation: function()
-    {
-        var self = this;
-
-        var i = this._iAnim;
-        var n = this._aAnimFunc.length;
-
-        for( ; i < n; ++i )
-        {
-            ++this._iAnim;
-
-            var f = this._aAnimFunc[ i ];
-            var x = this._aAnimData[ i ];
-
-            // If no animate params then apply immediately
-            if( x === undefined )
-            {
-                f();
-            }
-            else
-            {
-                x.onEnd = function()
-                {
-                    if( f !== undefined )
-                        f();
-                    self.loopAnimation();
-                };
-
-                if( !x.type )
-                    x.type = this._aEasing[ this._iEasing ];
-
-                this._anim.animate( x );
-                break;
-            }
-        }
     },
 
     // ========================================================================
