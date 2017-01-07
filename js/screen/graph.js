@@ -290,29 +290,20 @@ GraphScreen.prototype =
                 self.onIncDec( widget );
             };
 
-            var objInc = {};
-            var objDec = {};
-            var params = function( obj, onEnd, t )
-            {
-                obj.axis  = Axis.T;
-                obj.ms    = 2000;
-                obj.type  = self._iEasing;
-                obj.onInc = onIncDec;
-
-                obj.onEnd = onEnd;
-                obj.t     = t;
-            };
-
-            var cbInc = function( axis ) { self.objInc.type = self._iEasing; self._anim.animate( self.objInc ); }; // Done decrement, start increment animation
-            var cbDec = function( axis ) { self.objInc.type = self._iEasing; self._anim.animate( self.objDec ); }; // Done increment, start decrement animation
-
-            params( objInc, cbDec, steps ); // Count up   to 1000
-            params( objDec, cbInc,     0 ); // Count down to    0
-
-            this._cbInc = cbInc;
-            this._cbDec = cbDec;
-            this.objInc = objInc;
-            this.objDec = objDec;
+            // Loop: Animate Forward, fade out
+            this._iAnim     = 0;
+            this._aAnimData =
+            [
+                undefined,
+                { t: steps, onInc: onIncDec,  ms: 2000 }, // type: will default to this._iEasing
+                { a: 0    ,                   ms: 1000 },
+            ];
+            this._aAnimFunc = // Sequence of Animation
+            [
+                function() { self._anim.setA( 1 );       self._anim.setT( 0 ); }, // Init Animation
+                function() { self.onIncDec( self._anim); self._anim.setT( 0 ); }, // Done increment, Start Alpha fade out
+                function() { self._iAnim = 0;                                  }
+            ];
 
         // Instructions
         var textHead = 'Graph Instructions';
@@ -460,7 +451,9 @@ GraphScreen.prototype =
         var isAnimating = this._anim.isAnimating( Axis.T );
         this._anim.stop( Axis.T );
         if( isAnimating )
-            this._cbInc();
+        {
+            this.resetAnimation();
+        }
         else
             this.onIncDec( this._anim );
     },
@@ -534,10 +527,9 @@ GraphScreen.prototype =
         this.fixupGridLabels();
         this.fixupTextLabels();
 
-        this.layout( 0 );
-        this._cbInc();
-
         this.onResize();
+        this.layout( 0 );
+        this.resetAnimation();
     },
 
     // Update animating rect position
@@ -569,71 +561,67 @@ GraphScreen.prototype =
     // ========================================================================
     onInput: function( isKeyPressed, key )
     {
+        var t;
+
         if( isKeyPressed )
         {
             if( key === KEY.DOWN ) // Set to zero
             {
-                this._anim.clearOnEnd( Axis.T );
-                this._anim.stop( Axis.T );
-                this._anim.setT( 0 );
-                this.onIncDec( this._anim );
+                this.stopAnimation( 0 );
             }
 
             if( key === KEY.UP ) // Set to one
             {
-                this._anim.clearOnEnd( Axis.T );
-                this._anim.stop( Axis.T );
-                this._anim.setT( this._anim._steps );
-                this.onIncDec( this._anim );
+                this.stopAnimation( this._anim._steps );
             }
 
             if( key === KEY.MINUS ) // Move red anim dot closer to zero
             {
-                this._anim.clearOnEnd( Axis.T );
-                this._anim.stop( Axis.T );
-
-                var t = this._anim.getT();
-                t -= 10;
-                if( t < 0 )
-                    t = 0;
-                this._anim.setT( t );
-                this.onIncDec( this._anim );
+                t = this._anim.getT();
+                t -= 10; // 10/1000 = 1%
+                this.stopAnimation( t );
             }
 
             if( key === KEY.EQUAL ) // Move red anim dot closer to one
             {
-                this._anim.clearOnEnd( Axis.T );
-                this._anim.stop( Axis.T );
-
-                var t = this._anim.getT();
+                t = this._anim.getT();
                 t += 10;
-                if( t > this._anim._steps)
-                    t = this._anim._steps;
-                this._anim.setT( t );
-                this.onIncDec( this._anim );
+                this.stopAnimation( t );
             }
 
             if( key === KEY.ENTER ) // Stop animation
             {
-                // resume( Axis.T )
-                this._anim.clearOnEnd( Axis.T );
-                this._anim.stop( Axis.T );
-                this._anim.setT( 0 );
-                this.onIncDec( this._anim );
+                this.stopAnimation( 0 );
             }
 
             if( key === KEY.SPACE ) // Toggle animation
             {
-                var isAnimating = this._anim.isAnimating( Axis.T );
+                var isReady     = (this._iAnim == 2);
+                var isStarted   = this._anim.isAxisAnimating( Axis.T );
+                var isAnimating = isReady && isStarted;
+
                 if( isAnimating )
                 {
-                    this._anim.clearOnEnd( Axis.T );
-                    this._anim.stop( Axis.T );
+                    this._anim.pause( Axis.T );
                     this.onIncDec( this._anim );
                 }
                 else
                 {
-                    this._cbInc();
+                    // User can pause while fading out
+                    if( !isReady )
+                    {
+                        this.stopAnimation();
+                    }
+                    else
+                    {
+                        if( this._anim.isAxisPaused( Axis.T ) )
+                            this._anim.resume( Axis.T );
+                        else
+                        {
+                            this._iAnim = 0;
+                            this.loopAnimation();
+                        }
+                    }
                 }
             }
 
