@@ -16,7 +16,7 @@ Plot.prototype =
         var right = left + w, bot = top + h;
 
         // font
-            var size = 32;
+            var size = 24;
             var pad  = size/4;
 
             var x, n = w+1, y;
