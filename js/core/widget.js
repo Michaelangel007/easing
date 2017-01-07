@@ -152,7 +152,7 @@ Widget.prototype =
                 case 'w': axis = Axis.W; break;
                 case 'x': axis = Axis.X; break;
                 case 'y': axis = Axis.Y; break;
-                default: break; // 'easing', 'ms', 'onEnd, 'onInc', 'type'
+                default: break; // 'ms', 'onEnd, 'onInc', 'type'
             }
 
             if( axis !== undefined )
