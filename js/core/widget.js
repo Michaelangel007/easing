@@ -17,6 +17,11 @@ var Axis = Object.freeze(
     INIT:11,
 });
 
+var AxisNames = [];
+AxisNames.init   = function() { for( var key in Axis ) AxisNames.insert( key ); };
+AxisNames.insert = function( elem ) { AxisNames.push( elem ); };
+AxisNames.init();
+
 /**
  * @classname Widget
  */
