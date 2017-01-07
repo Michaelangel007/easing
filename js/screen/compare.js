@@ -1,12 +1,12 @@
 "use strict";
 
-function Ease() {}
-
 var Direction =
 {
     LEFT : 0,
     RIGHT: 1,
 };
+
+function Ease() {}
 
 Ease.PAD = 4;
 
