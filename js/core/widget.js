@@ -307,9 +307,9 @@ Widget.prototype =
 
     /*
      * Category: Metrics
-     * Returns the bounding box of the container
+     * Returns the bounding box of this widget and all child widgets
      * Iterate though all children keeping track of the maximum width and height
-     * @returns {Object}
+     * @returns {Object} { w: {Number}, h: {Number} }
      */
     // ========================================================================
     getDimensions: function()
