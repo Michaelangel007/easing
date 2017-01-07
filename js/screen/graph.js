@@ -397,14 +397,15 @@ GraphScreen.prototype =
         var easing = this._iEasing;
         var last   = this._aEasing.length - 1;
 
-        easing += delta;
-        if( easing < 0 )
-            easing = last;
-        if( easing > last )
-            easing = 0;
-
+                        easing += delta;
+                    if( easing < 0 )
+                        easing = last;
+                    if( easing > last )
+                        easing = 0;
         this._iEasing = easing;
-        var f = EasingFuncs[ this._aEasing[ easing ] ];
+
+        var type = this._aEasing[ easing ];
+        var f    = EasingFuncs[ type ];
 
         var plot = this._plot;
         var w    = this._w;
@@ -446,8 +447,8 @@ GraphScreen.prototype =
             }
         }
 
-        var text = EasingNames[ this._aEasing[ this._iEasing ] ];
-        var i_n  = '' + this._iEasing + ' of ' + last;
+        var text = EasingNames[ type ];
+        var i_n  = '' + easing + ' of ' + last;
 
         this._type$.setText( text );
         this._iofn$.setText( i_n  );
