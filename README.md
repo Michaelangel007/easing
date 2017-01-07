@@ -994,7 +994,7 @@ The _meta_ coding problems are:
 The _implementation_ problems are:
 
 1. Buggy 1     - Generates NaN when d == 0
-2. Buggy 2     - Doesn't handle edge cases when t<0 or t>d
+2. Buggy 2     - Doesn't handle edge cases when `t < 0` or `t > d`
 3. Inefficient - t/d is always done to normalize the time; If there are multiple animations with the same duration then this causes extra processing. Also, you can often multiply by the reciprocal duration instead of doing a slow divide. When the animation is _started_ we "pre-calculate" `1/duration`.
 4. Slow 1      - due to inefficient, redundant, or dead code
 5. Slow 2      - b can be replaced with 0.0
@@ -1032,7 +1032,7 @@ address bug #2, `t < 0` and `t > d` before we fix this.
         return c*(t/=d) + b;
 ```
 
-What happens when `d` == 0 ? It returns the `end` for free!
+What happens when `d` is zero ? It returns the `end` for free!
 
 ```Javascript
     easeLinear: function (x, t, b, c, d) {
@@ -1074,8 +1074,8 @@ A simple mnemonic to help remember it is: _re-parameter_
 
 Basically, we want to re-map the range into something _convenient._
 But that begs the question -- _what_ would be convenient?
-Hmm, since we can pick _any_ start and end values
-maybe a _range_ between 0.0 and 1.0 (inclusive) aka `normalized` values! :)
+Hmm, since we can pick _any_ start and end values --
+maybe a _range_ between 0.0 and 1.0 (inclusive) aka `normalized` values? :)
 
 | b   | c       | Notes     |
 |:---:|:--------|:----------|
@@ -1094,9 +1094,9 @@ maybe a _range_ between 0.0 and 1.0 (inclusive) aka `normalized` values! :)
 Becomes
 
 ```Javascript
-    easeLinear: function (x, t, b, c, d) {
-        if (t <= 0) return b    ; // If d=0, then t is always t >= d
-        if (t >= d) return b + c; // due to t < 0 already being handled
+    easeLinear: function (x, t, d) {
+        if (t <= 0) return 0; // If d=0, then t is always t >= d
+        if (t >= d) return 1; // due to t < 0 already being handled
         var p = t/d;
         return p;
     },
@@ -1104,8 +1104,8 @@ Becomes
 
 Notice now:
 
- * how the term `b` drops out
- * how the term `c` drops out
+ * how the term `b` drops out from the arguments,
+ * how the term `c` drops out from the arguments,
  * The entire formula becomes much simpler.
 
 We'll do this for all the easing equations, converting them into a **single argument version**
@@ -1355,7 +1355,7 @@ I mentioned that there is `Out` variation for _Linear_.
 By now it should be obvious that the FlipYFlipX for Linear doesn't change its graph.
 Specifically,
 
-* InLinear === OutLinear
+* InLinear = OutLinear
 
 Just in case you were wondering now you know.
 
@@ -1368,8 +1368,8 @@ one _continuous_ function.
 
 This means we need to move 2 points:
 
-* The end-point   of `In`  is <0.5,0.5>
-* The start-point of `Out` is <0.5,0.5>
+* The end-point   of `In`  from <1,1> to <0.5,0.5>
+* The start-point of `Out` from <0,0> to <0.5,0.5>
 
 This requires 5 pre-requisites:
 
@@ -1553,19 +1553,19 @@ y = {
     {  0.5 + 0.5*OutQuadratic( 2*x - 1 ), if x >= 1/2
 ```
 
-We can factor out the common term `2*x` for readability:
+We can factor out the common term `2*x` as `t` (for _two times_) for readability:
 
  ```Javascript
 function InOutQuadratic_v6( p )
 {
     var t = 2*p;
 
-    if( p < 0.5 ) return       0.5*InQuadratic ( 2*p     );
-    else          return 0.5 + 0.5*OutQuadratic( 2*p - 1 );
+    if( p < 0.5 ) return       0.5*InQuadratic ( t     );
+    else          return 0.5 + 0.5*OutQuadratic( t - 1 );
 }
  ```
 
- Since the endpoint of the `In` === the startpoint of `Out`,
+ Since the end point of the `In` is the start point of `Out`,
 that is , `(p <= 0.5)` is equivalent to `(p < 0.5)`
 We can remove some visual clutter by remove that `0.5` and use `1` directly
 
@@ -1674,7 +1674,7 @@ Version 5 - Reorder multiplication
 ```
 
 One last cleanup.
-Since the variable `k` is usually used to mean a constant
+Since the variable `K` is usually used to mean a constant
 we'll use that instead of `s`, the latter which is usually
 used to signal a `scale` factor.
 
@@ -1686,7 +1686,7 @@ One-liner single argument version (1SAV):
 
 Unanswered question:
 
-* Where does the [magic number](https://en.wikipedia.org/wiki/Magic_number_(programming\)) `1.70158` come from?
+* Where does the [magic number](https://en.wikipedia.org/wiki/Magic_number_\(programming\)) `1.70158` come from?
 
 
 ## Cleanup - In Bounce
@@ -3444,6 +3444,9 @@ $.each( baseEasings, function( name, easeIn ) {
   * [x] Add smoothstep to easing
   * [ ] Add smoothstep to reference graph
 * [ ] Update animation loop
+* Fix
+  * [ ] In Back 'k = 0', 'k = 2'
+  * [ ] Broken markdown link Magic Number
 
 By: Michael "Code Poet" Pohoreski
 Copyright: 2016-2017
