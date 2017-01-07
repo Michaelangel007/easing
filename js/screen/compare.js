@@ -8,6 +8,8 @@ var Direction =
     RIGHT: 1,
 };
 
+Ease.PAD = 4;
+
 Ease.prototype =
 {
     init: function()
@@ -372,12 +374,10 @@ Ease.prototype =
             this._vals[ i ].setText( this._rects[ i ].getX() );
         }
 
-        // right align instructions
+        // Right align
         var dim = this._instructions.getDimensions();
-        this._instructions.setX( Game.w - (dim.w + this.middle) );
-
-        // right align footer
-        this._footer.setX( Game.w - this._footer.getW() );
+        this._instructions.setX( Game.w - (dim.w               + Ease.PAD) ); // right align instructions
+        this._footer      .setX( Game.w - (this._footer.getW() + Ease.PAD) ); // right align footer
     },
 
     /**
