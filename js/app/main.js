@@ -37,8 +37,8 @@ function OnLoad( screen, bCanvasMask )
     Extend( Widget, Text );
 
     // Screen
-    Extend( Widget, Ease );
-    Extend( Widget, GraphScreen );
+    Extend( Widget, CompareScreen );
+    Extend( Widget, GraphScreen   );
 
     game = new Game().init( bCanvasMask );
     game.pushScreen( screen );

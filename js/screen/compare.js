@@ -6,15 +6,15 @@ var Direction =
     RIGHT: 1,
 };
 
-function Ease() {}
+function CompareScreen() {}
 
-Ease.PAD = 4;
+CompareScreen.PAD = 4;
 
-Ease.prototype =
+CompareScreen.prototype =
 {
     init: function()
     {
-        Widget.prototype.init.call( this, "Ease" );
+        Widget.prototype.init.call( this, "CompareScreen" );
 
         var dim = 7 + 2*(Game.h > 720) + 2*(Game.h > 1080) + 2*(Game.h > 1280); // cube dimensions (pixels) // 15 = 2560x1440
 
@@ -376,8 +376,8 @@ Ease.prototype =
 
         // Right align
         var dim = this._instructions.getDimensions();
-        this._instructions.setX( Game.w - (dim.w               + Ease.PAD) ); // right align instructions
-        this._footer      .setX( Game.w - (this._footer.getW() + Ease.PAD) ); // right align footer
+        this._instructions.setX( Game.w - (dim.w               + CompareScreen.PAD) ); // right align instructions
+        this._footer      .setX( Game.w - (this._footer.getW() + CompareScreen.PAD) ); // right align footer
     },
 
     /**
