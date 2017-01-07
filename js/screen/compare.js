@@ -19,7 +19,7 @@ CompareScreen.prototype =
         var dim = 7 + 2*(Game.h > 720) + 2*(Game.h > 1080) + 2*(Game.h > 1280); // cube dimensions (pixels) // 15 = 2560x1440
 
         var left  = 100;
-        var right = left + dim*2*10;
+        var right = 400; //left + dim*3*10;
 
         var extra = 5; // number of extra grid lines (for bounce)
         var dx    = (right - left) / 10;
