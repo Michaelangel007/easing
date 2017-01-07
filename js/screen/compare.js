@@ -429,10 +429,13 @@ CompareScreen.prototype =
 
             if( !done )
             {
-                if( !durationMS )
-                    rect.setA( 1.0 );
-                else
-                    rect.setA( 0.5 ); // 0.25
+                if( CompareScreen.CONFIG_UPDATE_LABELS )
+                {
+                    if( !durationMS )
+                        rect.setA( 1.0 );
+                    else
+                        rect.setA( 0.5 ); // 0.25
+                }
 
                 ++this._animating;
 
