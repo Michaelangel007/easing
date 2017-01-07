@@ -487,7 +487,7 @@ into simpler terms:
  See my StackOverflow answer about [What does the square bracket and parenthesis mean?](http://stackoverflow.com/a/37171635/1339447)
 
 Since `normalized percentage` is so common and unweidly most people just use the
-shorted `normalized` phrase to mean this value is inbetween 0.0 and 1.0.
+shorted phrase: **normalized**
 
 If you are familiar with OpenGL or DirectX graphic API's,
 when a vertex is tranformed through the pipleine you will run across something
@@ -586,7 +586,7 @@ even as one as bad as Javascript.
 * Every number is a 64-bit floating-point, unless you use [Float32Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array)
 * The comparision operator `==` is [horribly broken](https://dorey.github.io/JavaScript-Equality-Table/) i.e. `if( 0 == "0" ) console.log( "equal" ); // equal!?`
 * Its type system is foobar. See Gary Bernhardt's [WAT talk](https://www.destroyallsoftware.com/talks/wat) for how _brain-dead_ JS is. No, not [that](https://github.com/macmade/BrainDead) language.
-* No automatic _multiline string_ concatenation. This means you need to do stupid shit like this _at run-time!_
+* No automatic _multiline string_ concatenation. This means you need to do stupid shit like this _at run-time:_
 
 ```Javascript
  var text = 'First line\n'
@@ -1076,6 +1076,7 @@ Basically, we want to re-map the range into something _convenient._
 But that begs the question -- _what_ would be convenient?
 Hmm, since we can pick _any_ start and end values --
 maybe a _range_ between 0.0 and 1.0 (inclusive) aka `normalized` values? :)
+Who over calls us will be responsible for _scaling_ the values back up to their full range.
 
 | b   | c       | Notes     |
 |:---:|:--------|:----------|
@@ -1108,7 +1109,7 @@ Notice now:
  * how the term `c` drops out from the arguments,
  * The entire formula becomes much simpler.
 
-We'll do this for all the easing equations, converting them into a **single argument version**
+We'll do this for all the original easing equations converting them into a **single argument version**
 using these steps:.
 
 1. Since `x` is unused our function prototype becomes: `function( t, b, c, d )`
