@@ -1,14 +1,14 @@
 "use strict";
 
-function Plot() {}
+function GraphScreen() {}
 
-Plot.PAD = 4;
+GraphScreen.PAD = 4;
 
-Plot.prototype =
+GraphScreen.prototype =
 {
     init: function()
     {
-        Widget.prototype.init.call( this, "Plot" );
+        Widget.prototype.init.call( this, "GraphScreen" );
 
         var w = 300, h = 300;
 
@@ -514,7 +514,7 @@ Plot.prototype =
         // Head3  Val3
         var dim = this._sideL.getDimensions();
         var x   = this._sideN.getX();
-        /*     */ this._sideN.setX( x + dim.w + Plot.PAD );
+        /*     */ this._sideN.setX( x + dim.w + GraphScreen.PAD );
 
         // Right Align '>' next button
         dim = this._next$.getDimensions();
@@ -643,8 +643,8 @@ Plot.prototype =
     onResize: function()
     {
         var dim = this._instructions.getDimensions();
-        this._instructions.setX( Game.w - (dim.w               + Plot.PAD) ); // right align instructions
-        this._footer      .setX( Game.w - (this._footer.getW() + Plot.PAD) ); // right align footer
-        this._footer      .setY( Game.h - (this._footer.getH() + Plot.PAD) );
+        this._instructions.setX( Game.w - (dim.w               + GraphScreen.PAD) ); // right align instructions
+        this._footer      .setX( Game.w - (this._footer.getW() + GraphScreen.PAD) ); // right align footer
+        this._footer      .setY( Game.h - (this._footer.getH() + GraphScreen.PAD) );
     },
 };
