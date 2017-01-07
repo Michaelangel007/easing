@@ -293,6 +293,7 @@ CompareScreen.prototype =
     onCreate: function()
     {
         this.onResize();
+        this.onInput( true, KEY.SPACE );
     },
 
     // ========================================================================
