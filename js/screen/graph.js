@@ -275,12 +275,14 @@ GraphScreen.prototype =
         // Animation
             var steps = 1000;
             var dim   = 3;
-            rect = new Rect().init( { w:2*dim+1, h:2*dim+1, r:1, g:0, b:0 } );
-            rect.setT( 0 );
-            rect._dim      = dim + 1;
-            rect._steps    = steps;
-            rect._invSteps = 1 / steps;
-            this.addXY( rect, 0, 0 );
+            var anim;
+            anim = new Rect().init( { w:2*dim+1, h:2*dim+1, r:1, g:0, b:0 } );
+            anim.setT( 0 );
+            anim._dim      = dim + 1;
+            anim._steps    = steps;
+            anim._invSteps = 1 / steps;
+            anim._name     = 'red cursor';
+            this.addXY( anim, 0, 0 );
 
             var self     = this;
             var onIncDec = function( axis, widget )
@@ -384,7 +386,7 @@ GraphScreen.prototype =
             this._time$  = timeText;
             this._warp$  = warpText;
 
-            this._anim   = rect;
+            this._anim   = anim;
 
         return this;
     },
