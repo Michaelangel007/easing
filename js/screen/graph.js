@@ -16,8 +16,8 @@ Plot.prototype =
         var right = left + w, bot = top + h;
 
         // font
-            var size = 24;
-            var pad  = size/4;
+            var fontSize = 24;
+            var pad      = fontSize/4;
 
             var x, n = w+1, y;
 
@@ -185,11 +185,11 @@ Plot.prototype =
 
         // Label showing easing type
             y = gh + dy;
-            var typeLabel = new Text().init( { size: size } ); // Type
+            var typeLabel = new Text().init( { size: fontSize } ); // Type
             this.addXY( typeLabel, left, y );
 
-            var iofnLabel = new Text().init( { size: size } ); // # of #
-            this.addXY( iofnLabel, left, y + size );
+            var iofnLabel = new Text().init( { size: fontSize } ); // # of #
+            this.addXY( iofnLabel, left, y + fontSize );
 
             /*
                 "Transport" or "Media Controls"
@@ -228,8 +228,8 @@ Plot.prototype =
                     <i class="fa fa-stop"></i>
                     <i class="fa fa-youtube-play"></i>
             */
-            var prevLabel = new Text().init( { text: '|<', size: size } );
-            var nextLabel = new Text().init( { text: '>|', size: size } );
+            var prevLabel = new Text().init( { text: '|<', size: fontSize } );
+            var nextLabel = new Text().init( { text: '>|', size: fontSize } );
             this.addXY( prevLabel, left  + gx, y );
             this.addXY( nextLabel, right - gx, y );
 
@@ -241,23 +241,23 @@ Plot.prototype =
             x = left + gw;
             y = 0;
 
-            var timeLabel = new Text().init( { text: 'x: ', size: size, r:xR, g:xG, b:xB } ); // Normal Time
-            var timeText  = new Text().init( { text: '?'  , size: size                   } );
+            var timeLabel = new Text().init( { text: 'x: ', size: fontSize, r:xR, g:xG, b:xB } ); // Normal Time
+            var timeText  = new Text().init( { text: '?'  , size: fontSize                   } );
 
-            var warpLabel = new Text().init( { text: 'y: ', size: size, r:yR, g:yG, b:yB } ); // Warped Time
-            var warpText  = new Text().init( { text: '?'  , size: size                   } );
+            var warpLabel = new Text().init( { text: 'y: ', size: fontSize, r:yR, g:yG, b:yB } ); // Warped Time
+            var warpText  = new Text().init( { text: '?'  , size: fontSize                   } );
 
 
             this._sideL = new Widget().init(); // Container
             this._sideN = new Widget().init();
 
             this._sideL.addXY( timeLabel, 0, y );
-            this._sideN.addXY( timeText , 0, y ); y += size;
+            this._sideN.addXY( timeText , 0, y ); y += fontSize;
             this._sideL.addXY( warpLabel, 0, y );
-            this._sideN.addXY( warpText , 0, y ); y += size;
+            this._sideN.addXY( warpText , 0, y ); y += fontSize;
 
-            this.addXY( this._sideL, x, gb - size );
-            this.addXY( this._sideN, x, gb - size );
+            this.addXY( this._sideL, x, gb - fontSize );
+            this.addXY( this._sideN, x, gb - fontSize );
 
         // Graph
             var rect;
@@ -338,7 +338,6 @@ Plot.prototype =
         var textFoot =
             '<a href="http://www.github.com/Michaelangel007/easing">http://www.github.com/Michaelangel007/easing</a>';
 
-        var fontSize = 20;
         var head = new Text().init( { text: textHead, size: 2*fontSize } );
 
         this._instructions = new Widget().init();
