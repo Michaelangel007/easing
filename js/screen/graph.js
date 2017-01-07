@@ -565,6 +565,15 @@ GraphScreen.prototype =
 
         if( isKeyPressed )
         {
+            if( key === KEY._1 )
+                this.stopAnimation( 0.1 * this._anim._steps );
+
+            if( key === KEY._5 )
+                this.stopAnimation( 0.5 * this._anim._steps );
+
+            if( key === KEY._9 )
+                this.stopAnimation( 0.9 * this._anim._steps );
+
             if( key === KEY.DOWN ) // Set to zero
             {
                 this.stopAnimation( 0 );
