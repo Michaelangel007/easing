@@ -107,7 +107,8 @@ GraphScreen.prototype =
             var gx = -dx*extra; // pad
             var gy = -dy*extra;
 
-            var gb = gh + 2*gy; // bottom
+            var gr = gw +   gx; // outer right edge
+            var gb = gh + 2*gy; // x-axis bottom
 
             x = gx;
             y = -dy*extra;
@@ -256,8 +257,8 @@ GraphScreen.prototype =
             this._sideL.addXY( warpLabel, 0, y );
             this._sideN.addXY( warpText , 0, y ); y += fontSize;
 
-            this.addXY( this._sideL, x, gb - fontSize );
-            this.addXY( this._sideN, x, gb - fontSize );
+            this.addXY( this._sideL, left + gr + GraphScreen.PAD, top + gb );
+            this.addXY( this._sideN, left + gr + GraphScreen.PAD, top + gb );
 
         // Graph
             var rect;
