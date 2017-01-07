@@ -489,8 +489,10 @@ GraphScreen.prototype =
         {
             kid = gridLabelX._children[i];
             dim = kid.getMetrics();
+
             y   = pad;
             y  += (i & 1) ? dim.h :  0; // stagger horizontal axis labels vertically
+
             kid.setX( dim.x - dim.w*0.5 ); // Center
             kid.setY( dim.y + y );
 
@@ -520,7 +522,7 @@ GraphScreen.prototype =
         // Right Align '>' next button
         dim = this._next$.getDimensions();
         x   = this._next$.getX();
-        /* */ this._next$.setX( x - dim.w );
+              this._next$.setX( x - dim.w );
     },
 
     // ========================================================================
