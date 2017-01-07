@@ -334,7 +334,8 @@ Widget.prototype =
 
     /*
      * Category: Metrics
-     * @returns {Object} - width, height, x, y
+     * Gets the width, height, top, and left metrics
+     * @returns {Object} { w: {Number}, h: {Number}, x: {Number}, y: {Number} }
      */
     // ========================================================================
     getMetrics: function()
