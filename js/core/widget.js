@@ -118,28 +118,25 @@ Widget.prototype =
     /**
      * Category: Animation
      * Animate specified axis
-     * @param {Number}   [params.a]     - Alpha     to animate to
-     * @param {Number}   [params.b]     - Blue      to animate to
-     * @param {Number}   [params.g]     - Green     to animate to
-     * @param {Number}   [params.h]     - Height    to animate to
-     * @param {Number}   [params.r]     - Red       to animate to
-     * @param {Number}   [params.s]     - Font size to animate to
-     * @param {Number}   [params.w]     - Width     to animate to
-     * @param {Number}   [params.x]     - Left      to animate to
-     * @param {Number}   [params.y]     - Top       to animate to
-     * @param {Number}   [params.ms]    - Delay in milliseconds
-     * @param {Function} [params.onEnd] - Callback when animation done
-     * @param {Function} [params.onInc] - Callback while animating
-     * @param {Easing}   [params.type]  - Type of easing animation
+     * @param {Number}   [params.a]                         - Alpha     to animate to
+     * @param {Number}   [params.b]                         - Blue      to animate to
+     * @param {Number}   [params.g]                         - Green     to animate to
+     * @param {Number}   [params.h]                         - Height    to animate to
+     * @param {Number}   [params.r]                         - Red       to animate to
+     * @param {Number}   [params.s]                         - Font size to animate to
+     * @param {Number}   [params.w]                         - Width     to animate to
+     * @param {Number}   [params.x]                         - Left      to animate to
+     * @param {Number}   [params.y]                         - Top       to animate to
+     * @param {Number}   [params.ms=1]                      - Delay in milliseconds
+     * @param {Function} [params.onEnd]                     - Callback when animation done
+     * @param {Function} [params.onInc]                     - Callback while animating
+     * @param {Easing}   [params.type=Easing.OUT_QUADRATIC] - Type of easing animation
      * @see stop(), clearEnd()
      */
     // ========================================================================
     animate: function( params )
     {
-        var key, axis, val, ms = params.ms | 0, easing = params.type;
-
-        if( !easing )
-             easing = Easing.OUT_QUADRATIC;
+        var key, axis, val, ms = params.ms | 0, easing = params.type || Easing.OUT_QUADRATIC;
 
         for( key  in params )
         {
