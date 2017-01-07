@@ -445,8 +445,8 @@ With parameterization, it might look like:
     }
 ```
 
-Using the associate arrays of Javascript we can remove that
-switch statement:
+Since arrays of Javascript are [associate arrays](https://en.wikipedia.org/wiki/Associative_array)
+we can remove that switch statement:
 
 ```Javascript
     Easings = {
