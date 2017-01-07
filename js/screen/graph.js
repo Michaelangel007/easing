@@ -653,4 +653,70 @@ GraphScreen.prototype =
         this._footer      .setX( Game.w - (this._footer.getW() + GraphScreen.PAD) ); // right align footer
         this._footer      .setY( Game.h - (this._footer.getH() + GraphScreen.PAD) );
     },
+
+    // ========================================================================
+    loopAnimation: function()
+    {
+        var self = this;
+
+        var i = this._iAnim;
+        var n = this._aAnimFunc.length;
+
+        for( ; i < n; ++i )
+        {
+            ++this._iAnim;
+
+            var f = this._aAnimFunc[ i ];
+            var x = this._aAnimData[ i ];
+
+            // If no animate params then apply immediately
+            if( x === undefined )
+            {
+                f();
+            }
+            else
+            {
+                x.onEnd = function()
+                {
+                    if( f !== undefined )
+                        f();
+                    self.loopAnimation();
+                };
+
+                if( !x.type )
+                    x.type = this._aEasing[ this._iEasing ];
+
+                this._anim.animate( x );
+                break;
+            }
+        }
+    },
+
+    // ========================================================================
+    resetAnimation: function()
+    {
+        this._iAnim = 0;
+        this.loopAnimation();
+    },
+
+    stopAnimation: function( t )
+    {
+        this._anim.clearOnEnd( Axis.T ); this._anim.stop( Axis.T );
+
+        if( t !== undefined )
+        {
+            if( t < 0 )
+                t = 0;
+
+            if( t > this._anim._steps)
+                t = this._anim._steps;
+
+            this._anim.setT( t );
+        }
+
+        this.onIncDec( this._anim );
+
+        this._iAnim = 2;
+        this._anim.clearOnEnd( Axis.A ); this._anim.stop( Axis.A ); this._anim.setA( 1 );
+    }
 };
