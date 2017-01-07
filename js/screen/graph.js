@@ -2,6 +2,8 @@
 
 function Plot() {}
 
+Plot.PAD = 4;
+
 Plot.prototype =
 {
     init: function()
@@ -415,8 +417,6 @@ Plot.prototype =
     // ========================================================================
     fixupTextLabels: function()
     {
-        var pad = 4;
-
         // Put SideR's left edge adjacent SideL's width
         // SideL  SideR
         //
@@ -425,7 +425,7 @@ Plot.prototype =
         // Head3  Val3
         var dim = this._sideL.getDimensions();
         var x   = this._sideN.getX();
-        /*     */ this._sideN.setX( x + dim.w + pad );
+        /*     */ this._sideN.setX( x + dim.w + Plot.PAD );
 
         // Right Align '>' next button
         dim = this._next$.getDimensions();
