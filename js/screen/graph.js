@@ -249,13 +249,16 @@ GraphScreen.prototype =
             this._sideL = new Widget().init(); // Container
             this._sideN = new Widget().init();
 
+            y = 0;
             this._sideL.addXY( timeLabel, 0, y );
             this._sideN.addXY( timeText , 0, y ); y += fontSize;
             this._sideL.addXY( warpLabel, 0, y );
             this._sideN.addXY( warpText , 0, y ); y += fontSize;
 
-            this.addXY( this._sideL, left + gr + GraphScreen.PAD, top + gb );
-            this.addXY( this._sideN, left + gr + GraphScreen.PAD, top + gb );
+            x = left + gr + GraphScreen.PAD;
+            y = top + gb;
+            this.addXY( this._sideL, x, y );
+            this.addXY( this._sideN, x, y );
 
         // Graph
             var rect;
