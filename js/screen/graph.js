@@ -333,8 +333,8 @@ GraphScreen.prototype =
             , 'Set time to 0'
             , 'Toggle start/stop animation'
             , 'Stop animation, set time to 0'
-            , 'Add 0.1 to time'
-            , 'Subtract 0.1 to time'
+            , 'Add 0.01 to time'
+            , 'Subtract 0.01 to time'
         ];
         var textFoot =
             '<a href="http://www.github.com/Michaelangel007/easing">http://www.github.com/Michaelangel007/easing</a>';
