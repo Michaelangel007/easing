@@ -415,7 +415,7 @@ Widget.prototype =
         var easing = this._ease[ axis ];
                      this._ease[ axis ] = Easing.NONE;
         return easing;
-    }
+    },
 
     /**
      * Category: Animation
@@ -426,7 +426,7 @@ Widget.prototype =
     resume: function( axis, easing )
     {
         this._ease[ axis ] = easing;
-    }
+    },
 
 /*
     // You need to provide if you over-ride:
