@@ -6,15 +6,25 @@ var Direction =
     RIGHT: 1,
 };
 
+// http://stackoverflow.com/questions/3007480/determine-if-user-navigated-from-mobile-safari/29696509
+function isMobileSafari()
+{
+    return navigator.userAgent.match(/(iPod|iPhone|iPad)/) && navigator.userAgent.match(/AppleWebKit/)
+}
+
 function CompareScreen() {}
 
 CompareScreen.PAD = 4;
+CompareScreen.CONFIG_UPDATE_LABELS = 1;
 
 CompareScreen.prototype =
 {
     init: function()
     {
         Widget.prototype.init.call( this, "CompareScreen" );
+
+        if( isMobileSafari() )
+            CompareScreen.CONFIG_UPDATE_LABELS = 0;
 
         var dim = 7 + 2*(Game.h > 720) + 2*(Game.h > 1080) + 2*(Game.h > 1280); // cube dimensions (pixels) // 15 = 2560x1440
 
@@ -425,7 +435,12 @@ CompareScreen.prototype =
                     rect.setA( 0.5 ); // 0.25
 
                 ++this._animating;
-                rect.animate( { x: edge, ms: durationMS, type: easing, onEnd: cbEnd, onInc: cbInc } );
+
+                var params = { x: edge, ms: durationMS, type: easing, onEnd: cbEnd, onInc: cbInc };
+                if( !CompareScreen.CONFIG_UPDATE_LABELS )
+                    params.onInc = undefined;
+
+                rect.animate( params );
             }
         }
     },
