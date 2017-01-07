@@ -338,7 +338,7 @@ Plot.prototype =
         var textFoot =
             '<a href="http://www.github.com/Michaelangel007/easing">http://www.github.com/Michaelangel007/easing</a>';
 
-        var fontSize = 16;
+        var fontSize = 20;
         var head = new Text().init( { text: textHead, size: 2*fontSize } );
 
         this._instructions = new Widget().init();
