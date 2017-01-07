@@ -1065,8 +1065,8 @@ Technically, it is [this](https://en.wikipedia.org/wiki/Parametrization).
 
 There will be a test. :)
 
-Since that Wikipedia page is so badly written and
-will probably just confuse you more then it helps, the only take-away you need is this:
+Since that Wikipedia page is so badly written -- and
+will probably just confuse you more then it helps -- the only take-away you need is this:
 
 * _Reparameterization ... is the process of deciding and defining the parameters necessary for a ... specification._
 
@@ -1396,10 +1396,10 @@ function InOutQuadratic_v1( p ) {
 
 2. Scale the `In` width (`x`) by 1/2.
 
- Reparameterization to the rescue!
-
  How? We can remap our original input `p` range and split it into _two_ ranges.
- I'll call the new input `t`:
+
+ Reparameterization to the rescue! I'll call the new input `t`:
+
 
 | old p input  | new t input  |
 |:-------------|:-------------|
