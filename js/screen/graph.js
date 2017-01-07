@@ -313,7 +313,7 @@ GraphScreen.prototype =
             this.objDec = objDec;
 
         // Instructions
-        var textHead = 'Easing Graph Instructions';
+        var textHead = 'Graph Instructions';
         var textKeys =
         [
               '&larr;'
@@ -339,7 +339,7 @@ GraphScreen.prototype =
         var textFoot =
             '<a href="http://www.github.com/Michaelangel007/easing">http://www.github.com/Michaelangel007/easing</a>';
 
-        var head = new Text().init( { text: textHead, size: 2*fontSize } );
+        var head = new Text().init( { text: textHead, size: 1.5*fontSize } );
 
         this._instructions = new Widget().init();
         this._instructions.addXY( head,  0, 0 );
