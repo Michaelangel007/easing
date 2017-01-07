@@ -353,7 +353,8 @@ Widget.prototype =
      * @returns {Boolean} true if animating, else false
      */
     // ========================================================================
-    isAxisAnimating: function( axis ) { return this._ease[ axis ] !== Easing.NONE; },
+    isAxisAnimating: function( axis ) { return this._ease[ axis ] > Easing.NONE; },
+    isAxisPaused   : function( axis ) { return this._ease[ axis ] < Easing.NONE; },
 
     /**
      * Category: Animation
@@ -415,19 +416,43 @@ Widget.prototype =
     pause: function( axis )
     {
         var easing = this._ease[ axis ];
-                     this._ease[ axis ] = Easing.NONE;
+
+        if( easing > 0 ) // Only pause on first call; ignore multiple pause() on same axis
+                     this._ease[ axis ] = -easing;
+
         return easing;
     },
 
     /**
      * Category: Animation
      * Resume animating the specified axis
-     * @param return {Easing}
+     * @param {Axis}    axis    - Which axis to resume
+     * @param {Easing} [easing] - Type of animation to resume, default will be previously stopped easing type
+     * @return return {Easing}
      */
     // ========================================================================
     resume: function( axis, easing )
     {
-        this._ease[ axis ] = easing;
+        if( !easing )
+             easing = -this._ease[ axis ];
+
+        if( easing < 0) // Only allow first resume(); ignore multipel resume() on same axis
+            return;
+
+        // We need to reset time to its new start time
+        // in order to maintain the current progress
+        // This requires we reconstruct the original duration
+        var dur = 1/this._oodur[axis];
+
+        var min = this._min[ axis ];
+        var max = this._max[ axis ];
+
+        var x   = this._cur[ axis ];
+        var dx  = max - min;
+        var p   = x / dx;
+
+        this._ease [ axis ] = easing;
+        this._start[ axis ] = Widget.time - p*dur;
     },
 
 /*
@@ -532,7 +557,7 @@ Widget.prototype =
         for( var axis = 0; axis < n; ++axis )
         {
             var easing = this._ease[ axis ];
-            if( easing ) // Animation != Easing.NONE
+            if( easing > 0 ) // + = type, 0 = Easing.NONE, - = Paused
             {
                 var min = this._min[ axis ];
                 var max = this._max[ axis ];
