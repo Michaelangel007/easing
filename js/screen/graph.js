@@ -272,6 +272,57 @@ Plot.prototype =
             this.objInc = objInc;
             this.objDec = objDec;
 
+        // Instructions
+        var textHead = 'Easing Graph Instructions';
+        var textKeys =
+        [
+              '&larr;'
+            , '&rarr;'
+            , '&uarr;'
+            , '&darr;'
+            , '{Space}'
+            , '{Enter}'
+            , '+'
+            , '-'
+        ];
+        var textHelp =
+        [
+              'Previous easing function'
+            , 'Next easing function'
+            , 'Set time to 1'
+            , 'Set time to 0'
+            , 'Toggle start/stop animation'
+            , 'Stop animation, set time to 0'
+            , 'Add 0.1 to time'
+            , 'Subtract 0.1 to time'
+        ];
+        var textFoot =
+            '<a href="http://www.github.com/Michaelangel007/easing">http://www.github.com/Michaelangel007/easing</a>';
+
+        var fontSize = 16;
+        var head = new Text().init( { text: textHead, size: 2*fontSize } );
+
+        this._instructions = new Widget().init();
+        this._instructions.addXY( head,  0, 0 );
+
+        y = fontSize*3;
+        for( i = 0; i < textKeys.length; ++i )
+        {
+            var keys = new Text().init( { text: textKeys[i], size: fontSize } );
+            var help = new Text().init( { text: textHelp[i], size: fontSize } );
+            this._instructions.addXY( keys,  0, y );
+            this._instructions.addXY( help, 96, y );
+
+            y += fontSize * 1.5;
+        }
+
+        this._footer = new Text().init( { text: textFoot, size: fontSize*0.75|0 } );
+
+        // layout will re-position to right align
+        this.addXY( this._instructions, Game.w, 0 );
+        this.addXY( this._footer      , Game.w, y );
+
+
         // layout needs access
             this._top    = top;
             this._left   = left;
@@ -441,6 +492,8 @@ Plot.prototype =
 
         this.layout( 0 );
         this._cbInc();
+
+        this.onResize();
     },
 
     // Update animating rect position
@@ -546,5 +599,13 @@ Plot.prototype =
             if( key === KEY.RIGHT )
                 this.layout( +1 );
         }
+    },
+
+    // ========================================================================
+    onResize: function()
+    {
+        var dim = this._instructions.getDimensions();
+        this._instructions.setX( Game.w - (dim.w               + Plot.PAD) ); // right align instructions
+        this._footer      .setX( Game.w - (this._footer.getW() + Plot.PAD) ); // right align footer
     },
 };
