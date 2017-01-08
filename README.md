@@ -1739,29 +1739,27 @@ We can't solve this -- yet. However, we actually have a 2nd equation.
 Let's use calculas to find the `x` value of the minimum `y = -0.1` value,
 that is, **where the slope (or first derivate) is 0**
 
-```Javascript
-    f\'(x) = d_dX{ (K+1)*x^3 - K*x^2 }
-          = d_dX{ K*x^3 + x^3 - K*x^2 }
-          = 3*K*x^2 + 3*x^2 - 2*K*x
-          = 3*K*x^2 - 2*K*x + 3*x^2
-```
-
-And using the differential equation we just derived:
+Solving the differential equation:
 
 ```Javascript
-   0 = 3*K*x^2 - 2*K*x + 3*x^2
-       3*K*x^2 - 2*K*x = -3*x^2
-       K*(3*x^2 - 2*x) = -3*x^2
-       K = -3*x^2 / (3*x^2 - 2*x)
+    0 = d_dX f(x)
+    0 = d_dX{ (K+1)*x^3 - K*x^2 }
+    0 = d_dX{ K*x^3 + x^3 - K*x^2 }
+    0 = 3*K*x^2 + 3*x^2 - 2*K*x
+    0 = 3*K*x^2 - 2*K*x + 3*x^2
+    0 = 3*K*x^2 - 2*K*x + 3*x^2
+    3*K*x^2 - 2*K*x = -3*x^2
+    K*(3*x^2 - 2*x) = -3*x^2
+    K = -3*x^2 / (3*x^2 - 2*x)
 ```
 
     OR
 
 ```Javascript
-     0.1 = x^2*[ 3*K + 3 ] - 2*K*x
-       2*K*x = x^2*[ 3*K + 3 ]
-       2*K = x * (3*k + 3)
-       x = 2*K / (3*K + 3)
+    0.1 = x^2*[ 3*K + 3 ] - 2*K*x
+    2*K*x = x^2*[ 3*K + 3 ]
+    2*K = x * (3*k + 3)
+    x = 2*K / (3*K + 3)
 ```
 
 Substituting the 2nd form back into the original equation:
