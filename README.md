@@ -30,6 +30,7 @@
   * [In-Out](#in-out)
 * [Cleanup - In](#cleanup---in)
   * [In Back](#cleanup---in-back)
+    * [The magic of 1.70158](#the-magic-of-1.70158)
   * [In Bounce](#cleanup---in-bounce)
   * [In Circle](#cleanup---in-circle)
   * [In Cubic](#cleanup---in-cubic)
@@ -1685,9 +1686,142 @@ One-liner single argument version (1SAV):
     function InBack(p) { var k = 1.70158; return p*p*(p*(k+1) - k); }
 ```
 
-Unanswered question:
+### The magic of 1.70158
+
+There is an unanswered question:
 
 * Where does the [magic number](https://en.wikipedia.org/wiki/Magic_number_\(programming\)) `1.70158` come from?
+
+Let's graph various `K` values and overlay them using this legend:
+
+| K | Color |
+|:--|:------|
+| 0 | Red   |
+| 1 | Green |
+| 2 | Blue  |
+
+![In Back K = 1](pics/tutorial/in_back_0_1_2.png)
+
+Hmm, `K=0` is _exactly_ In Cubic, since:
+
+```
+   = p*p*(p*(K+1) - K)
+   = p^3
+```
+
+Zooming into the `K = 1.70158` graph ...
+
+![In Back K = 1](pics/tutorial/in_back_k_zoom.png) FIXME!
+
+... hmm, it looks like this magic number was chosen to have a _minimum_ of -10% !
+
+Let's confirm our hunch; it looks like y == ~-0.1 when `x == ~0.42`:
+
+```Javascript
+f(x) = x*x*(x*(K+1) - K)
+     = x*x*(x*(K+1) - K)
+     = 0.42 * 0.42 * (0.42*(1.70158 + 1) - 1.70158)
+     = -0.10000405296
+```
+
+So far so good. Can we get an exact value for x and for K ?
+We have one equation in two unknowns -- we need two equations.
+
+First, we need to _expand_ this:
+
+```Javascript
+-0.1 = (K+1)*x^3 - K*x^2
+   0 = (K+1)*x^3 - K*x^2 + 0.1
+```
+
+We can't solve this -- yet. However, we actually have a 2nd equation.
+
+Let's use calculas to find the `x` value of the minimum `y = -0.1` value,
+that is, **where the slope (or first derivate) is 0**
+
+```Javascript
+f'(x) = d_dX{ (K+1)*x^3 - K*x^2 }
+      = d_dX{ K*x^3 + x^3 - K*x^2 }
+      = 3*K*x^2 + 3*x^2 - 2*K*x
+      = 3*K*x^2 - 2*K*x + 3*x^2
+```
+
+And using the differential equation we just derived:
+
+```Javascript
+   0 = 3*K*x^2 - 2*K*x + 3*x^2
+       3*K*x^2 - 2*K*x = -3*x^2
+       K*(3*x^2 - 2*x) = -3*x^2
+       K = -3*x^2 / (3*x^2 - 2*x)
+```
+
+    OR
+
+```Javascript
+     0.1 = x^2*[ 3*K + 3 ] - 2*K*x
+       2*K*x = x^2*[ 3*K + 3 ]
+       2*K = x * (3*k + 3)
+       x = 2*K / (3*K + 3)
+```
+
+Substituting the 2nd form back into the original equation:
+
+```
+    -0.1 = (K+1)*(2*K / (3*K + 3))^3 - K*(2*K / (3*K + 3))^2
+    -0.1 = (K+1)*8K^3 / (3*K + 3)^3 - 4*K^3 / (3*K + 3)^2
+    -0.1*(3*K + 3)^3 = (K+1)*8K^3 - 4*K^3*(3*K + 3)
+    -0.1*27*(K+1)^3 = -4*K^4 - 4*K^3
+    -0.1*(27*K^3 + 81*x^2 + 81*x + 27) = -4*K^4 - 4*K^3
+    4*K^4 + 4*K^3 - 0.1*(27*K^3 + 81*K^2 + 81*K + 27) = 0
+    4*K^4 + (4*K^3 - 2.7*K^3) - 8.1*K^2 - 8.1*K - 2.7 = 0
+    4*K^4 + 1.3*K^3 - 8.1*K^2 - 8.1*K - 2.7 = 0
+```
+
+The graph of this equation looks like this:
+
+![In Back Polynomial Degree 4](pics/tutorial/in_back_poly_degree_4.png) FIXME
+
+To solve this polynomial equation of degree 4,
+use your favorite symbolic calculator, such as [GNU Octave](https://octave-online.net/)
+
+Don't worry if you're not familiar with GNU Octave, here are the 2 links that we need:
+
+* [Output Precision](https://www.gnu.org/software/octave/doc/interpreter/Terminal-Output.html)
+* [Finding Roots](https://www.gnu.org/software/octave/doc/interpreter/Finding-Roots.html#Finding-Roots)
+
+```Matlab
+    format long;
+    c = [ 4, 1.3, -8.1, -8.1, -2.7 ];
+    roots ( c )
+```
+
+The 4 roots are:
+
+|Root | Real               | Imaginary           |
+|:----|:------------------:|--------------------:|
+| 1   | +1.701540198866824 | n/a                 |
+| 2   | -1.0               | n/a                 |
+| 3   | -0.513270099433411 | +0.365038654326168i |
+| 4   | -0.513270099433411 | -0.365038654326168i |
+
+We are only interested in the first root.
+
+Why?
+
+* Solving for `x` with `K = -1` is a division by zero; that omits the 2nd root.
+* We are not interested in the complex numbers so that rules out roots 3 and 4.
+
+And solving for `x`
+
+```
+    K = 1.701540198866824
+
+    x = 2*K / (3*K + 3)
+    x = 2*1.701540198866824 / (3*1.701540198866824 + 3)
+    x =  0.419893856494786
+```
+
+_"And now you know the rest of the story."_ -- Paul Harvey
 
 
 ## Cleanup - In Bounce
@@ -3330,6 +3464,8 @@ $.each( baseEasings, function( name, easeIn ) {
 	};
 });
 ```
+
+
 
 # TODO
 
