@@ -1655,7 +1655,7 @@ Version 3 - simplify `t/=d` = `p`
 ```
 
 Since most users will never override `s` with a custom constant
-it is safe to hard-code it
+it is safe to hard-code it; we'll discuss this in a moment.
 
 Version 4 - Remove `s`
 
@@ -1709,11 +1709,11 @@ Hmm, `K=0` is _exactly_ In Cubic, since:
    = p^3
 ```
 
-Zooming into the `K = 1.70158` graph ...
+Zooming into the `K = 1.70158` graph:
 
 ![In Back K Zoom](pics/tutorial/in_back_k_zoom.png)
 
-... hmm, it looks like this magic number was chosen to have a _minimum_ of -10% !
+Hmm, it looks like this magic number was chosen to have a _minimum_ of -10% !
 
 Let's confirm our hunch; it looks like y == ~-0.1 when `x == ~0.42`:
 
@@ -1740,7 +1740,7 @@ Let's use calculas to find the `x` value of the minimum `y = -0.1` value,
 that is, **where the slope (or first derivate) is 0**
 
 ```Javascript
-    f'(x) = d_dX{ (K+1)*x^3 - K*x^2 }
+    f\'(x) = d_dX{ (K+1)*x^3 - K*x^2 }
           = d_dX{ K*x^3 + x^3 - K*x^2 }
           = 3*K*x^2 + 3*x^2 - 2*K*x
           = 3*K*x^2 - 2*K*x + 3*x^2
