@@ -1688,7 +1688,7 @@ One-liner single argument version (1SAV):
 
 ### The magic of 1.70158
 
-There is an unanswered question:
+If you are like me you might have an unanswered question:
 
 * Where does the [magic number](https://en.wikipedia.org/wiki/Magic_number_\(programming\)) `1.70158` come from?
 
@@ -1700,28 +1700,28 @@ Let's graph various `K` values and overlay them using this legend:
 | 1 | Green |
 | 2 | Blue  |
 
-![In Back K = 1](pics/tutorial/in_back_0_1_2.png)
+![In Back K = 0,1,2](pics/tutorial/in_back_0_1_2.png)
 
 Hmm, `K=0` is _exactly_ In Cubic, since:
 
-```
+```Javascript
    = p*p*(p*(K+1) - K)
    = p^3
 ```
 
 Zooming into the `K = 1.70158` graph ...
 
-![In Back K = 1](pics/tutorial/in_back_k_zoom.png) FIXME!
+![In Back K Zoom](pics/tutorial/in_back_k_zoom.png)
 
 ... hmm, it looks like this magic number was chosen to have a _minimum_ of -10% !
 
 Let's confirm our hunch; it looks like y == ~-0.1 when `x == ~0.42`:
 
 ```Javascript
-f(x) = x*x*(x*(K+1) - K)
-     = x*x*(x*(K+1) - K)
-     = 0.42 * 0.42 * (0.42*(1.70158 + 1) - 1.70158)
-     = -0.10000405296
+    f(x) = x*x*(x*(K+1) - K)
+         = x*x*(x*(K+1) - K)
+         = 0.42 * 0.42 * (0.42*(1.70158 + 1) - 1.70158)
+         = -0.10000405296
 ```
 
 So far so good. Can we get an exact value for x and for K ?
@@ -1740,10 +1740,10 @@ Let's use calculas to find the `x` value of the minimum `y = -0.1` value,
 that is, **where the slope (or first derivate) is 0**
 
 ```Javascript
-f'(x) = d_dX{ (K+1)*x^3 - K*x^2 }
-      = d_dX{ K*x^3 + x^3 - K*x^2 }
-      = 3*K*x^2 + 3*x^2 - 2*K*x
-      = 3*K*x^2 - 2*K*x + 3*x^2
+    f'(x) = d_dX{ (K+1)*x^3 - K*x^2 }
+          = d_dX{ K*x^3 + x^3 - K*x^2 }
+          = 3*K*x^2 + 3*x^2 - 2*K*x
+          = 3*K*x^2 - 2*K*x + 3*x^2
 ```
 
 And using the differential equation we just derived:
@@ -1789,6 +1789,8 @@ Don't worry if you're not familiar with GNU Octave, here are the 2 links that we
 * [Output Precision](https://www.gnu.org/software/octave/doc/interpreter/Terminal-Output.html)
 * [Finding Roots](https://www.gnu.org/software/octave/doc/interpreter/Finding-Roots.html#Finding-Roots)
 
+And solving:
+
 ```Matlab
     format long;
     c = [ 4, 1.3, -8.1, -8.1, -2.7 ];
@@ -1813,13 +1815,23 @@ Why?
 
 And solving for `x`
 
-```
+```Javascript
     K = 1.701540198866824
 
     x = 2*K / (3*K + 3)
     x = 2*1.701540198866824 / (3*1.701540198866824 + 3)
-    x =  0.419893856494786
+    x = 0.419893856494786
 ```
+
+Produces `y`:
+
+```Javascript
+    = (K+1)*x^3 - K*x^2
+    = (1.701540198866824 + 1)*0.419893856494786^3 - 1.701540198866824*0.419893856494786^2
+    = -0.100000000000000
+```
+
+Pretty conclusive proof that value of `K = 1.70158` was chosen to have -10% back.
 
 _"And now you know the rest of the story."_ -- Paul Harvey
 
