@@ -1748,12 +1748,16 @@ Solving the differential equation:
     0 = 3*K*x^2 + 3*x^2 - 2*K*x
     0 = 3*K*x^2 - 2*K*x + 3*x^2
     0 = 3*K*x^2 - 2*K*x + 3*x^2
+```
+
+We can either solve for `K`
+
     3*K*x^2 - 2*K*x = -3*x^2
     K*(3*x^2 - 2*x) = -3*x^2
     K = -3*x^2 / (3*x^2 - 2*x)
 ```
 
-    OR
+Or, solve for `x`
 
 ```Javascript
     0.1 = x^2*[ 3*K + 3 ] - 2*K*x
