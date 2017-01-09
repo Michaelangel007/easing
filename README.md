@@ -2223,9 +2223,9 @@ Version 7 - Simplified & Optimized 'easeInElastic'
 
 ```Javascript
     InElastic: function (x, t, b, c, d) {
-        t /= d;
         if (t <= 0) return b  ;
-        if (t >= 1) return b+c;
+        if (t >= d) return b+c;
+        t /= d;
         t -= 1;
         return -(c*Math.pow(2,10*t) * Math.sin( (40*t-3) * Math.PI/6 )) + b;
     },
