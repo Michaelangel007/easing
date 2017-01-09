@@ -1738,7 +1738,7 @@ First, we need to _expand_ this:
 
 ```Javascript
 -0.1 = (K+1)*x^3 - K*x^2
-   0 = (K+1)*x^3 - K*x^2 + 0.1
+   0 = K*x^3 + x^3 - K*x^2 + 0.1
 ```
 
 We can't solve this -- yet. However, we actually have a 2nd equation.
@@ -1757,14 +1757,15 @@ Solving the differential equation:
     0 = 3*K*x^2 - 2*K*x + 3*x^2
 ```
 
-We can either solve for `K`
+We can either solve for `K`:
 
+```
     3*K*x^2 - 2*K*x = -3*x^2
     K*(3*x^2 - 2*x) = -3*x^2
     K = -3*x^2 / (3*x^2 - 2*x)
 ```
 
-Or, solve for `x`
+Or solve for `x`:
 
 ```Javascript
     0.1 = x^2*[ 3*K + 3 ] - 2*K*x
@@ -1775,7 +1776,7 @@ Or, solve for `x`
 
 Substituting the 2nd form back into the original equation:
 
-```
+```Javascript
     -0.1 = (K+1)*(2*K / (3*K + 3))^3 - K*(2*K / (3*K + 3))^2
     -0.1 = (K+1)*8K^3 / (3*K + 3)^3 - 4*K^3 / (3*K + 3)^2
     -0.1*(3*K + 3)^3 = (K+1)*8K^3 - 4*K^3*(3*K + 3)
@@ -1819,20 +1820,18 @@ We are only interested in the first root.
 
 Why?
 
-* Solving for `x` with `K = -1` is a division by zero; that omits the 2nd root.
+* Solving for `x` with `K = -1` is a division by zero; this omits the 2nd root.
 * We are not interested in the complex numbers so that rules out roots 3 and 4.
 
-And solving for `x`
+And solving for `x` with `K = 1.701540198866824`:
 
 ```Javascript
-    K = 1.701540198866824
-
     x = 2*K / (3*K + 3)
     x = 2*1.701540198866824 / (3*1.701540198866824 + 3)
     x = 0.419893856494786
 ```
 
-Produces `y`:
+Produces this `y` value:
 
 ```Javascript
     = (K+1)*x^3 - K*x^2
