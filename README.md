@@ -2213,16 +2213,16 @@ That is:
     return -(c*Math.pow(2,10*t) * Math.sin( (t*d-k/4)   *(2*Math.PI)/k      )) + b;
     return -(c*Math.pow(2,10*t) * Math.sin( (t*d-d*.3/4)*(2*Math.PI)/(d*.3) )) + b;
     return -(c*Math.pow(2,10*t) * Math.sin( d*(t-.3/4)  *(2*Math.PI)/(d*.3) )) + b;
-    return -(c*Math.pow(2,10*t) * Math.sin( (t-.3/4)    *(2*Math.PI)/.3     )) + b; // can factor our duration
+    return -(c*Math.pow(2,10*t) * Math.sin( (t-.3/4)    *(2*Math.PI)/.3     )) + b; // can factor out duration
     return -(c*Math.pow(2,10*t) * Math.sin( (t/.3-1/4)  *(2*Math.PI)        )) + b;
     return -(c*Math.pow(2,10*t) * Math.sin( (2*t/.3-1/2)*   Math.PI         )) + b;
     return -(c*Math.pow(2,10*t) * Math.sin( (40*t-3)    *   Math.PI/6       )) + b; // simplified
 ```
 
-Version 7 - Simplified & Optimized 'easeInElastic'
+Version 7 - Simplified & Optimized original style 'easeInElastic'
 
 ```Javascript
-    InElastic: function (x, t, b, c, d) {
+    easeInElastic: function (x, t, b, c, d) {
         if (t <= 0) return b  ;
         if (t >= d) return b+c;
         t /= d;
@@ -2266,33 +2266,25 @@ Version 10 - simplify `t/=d` = `p`
     },
 ```
 
-_Whew!_ We can now finally provide the **single argument version**:
+_Whew!_ We can now finally provide the **single argument version**
+using `m = p-1`:
 
 ```Javascript
     InElastic: function(p) {
         var m = p-1;
         if (p <= 0) return 0;
         if (p >= 1) return 1;
-        return -Math.pow(2,10*m) * Math.sin( (40*m-3) * Math.PI/6 );
+        return -Math.pow( 2, 10*m ) * Math.sin( (40*m-3) * Math.PI/6 );
     },
 ```
 
 There are some variations, depending on how much inlining of terms you want to do:
 
-* With `m = p-1`:
-
-```Javascript
-    InElastic: function(p) {
-        var m = p-1;
-        return -Math.pow( 2,  10*m ) * Math.sin( (m*40 - 3) * Math.PI/6 );
-    },
-```
-
-* With `m` removed, replaced with `p`:
+* With `m` removed, replaced with `p-1`:
 
 ```Javascript
     easeInElastic: function(p) {
-        return -  Math.pow( 2,10*(p-1) ) * Math.sin(((p-1)*40 - 3) * Math.PI/6 ); // (p-1)*40-3 -> 40*p-43
+        return -Math.pow( 2,10*(p-1) ) * Math.sin( ((p-1)*40 - 3) * Math.PI/6 );
     },
 ```
 
@@ -2300,11 +2292,11 @@ There are some variations, depending on how much inlining of terms you want to d
 
 ```Javascript
     InElastic: function(p) {
-        return -  Math.pow( 2,10*p-10 ) * Math.sin( (40*p  -43) * Math.PI/6 ); // m=p-1, m*40-1 -> (p-1)*40-3 -> 40*p-43
+        return -  Math.pow( 2,10*p-10 ) * Math.sin( (40*p-43) * Math.PI/6 ); // m=p-1, m*40-1 -> (p-1)*40-3 -> 40*p-43
     },
 ```
 
-**NOTE**: jQuery UI does NOT match the original as constants are incorrect
+**NOTE**: jQuery UI does NOT match the original as their constants are incorrect
 
 
 ## Cleanup - In Exponent 2
