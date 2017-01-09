@@ -30,7 +30,7 @@
   * [In-Out](#in-out)
 * [Cleanup - In](#cleanup---in)
   * [In Back](#cleanup---in-back)
-    * [The magic of 1.70158](#the-magic-of-1.70158)
+    * [The magic of 1.70158](#the-magic-of-170158)
   * [In Bounce](#cleanup---in-bounce)
   * [In Circle](#cleanup---in-circle)
   * [In Cubic](#cleanup---in-cubic)
@@ -3602,9 +3602,6 @@ $.each( baseEasings, function( name, easeIn ) {
   * [x] Add smoothstep to easing
   * [ ] Add smoothstep to reference graph
 * [ ] Update animation loop
-* Fix
-  * [ ] In Back 'k = 0', 'k = 2'
-  * [ ] Broken markdown link Magic Number
 
 By: Michael "Code Poet" Pohoreski
 Copyright: 2016-2017
