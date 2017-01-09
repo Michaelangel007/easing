@@ -1665,7 +1665,6 @@ Version 3 - simplify `t/=d` = `p`
 
 Since most users will never override `s` with a custom constant
 it is safe to hard-code it; we'll discuss this in a moment.
-
 The variable `K` is usually used to mean a constant --
 we'll use that instead of `s`, the latter which is usually
 used to signal a `scale` factor.
@@ -1710,7 +1709,7 @@ Let's graph various `K` values and overlay them using this legend:
 
 ![In Back K = 0,1,2](pics/tutorial/in_back_0_1_2.png)
 
-Hmm, `K=0` is _exactly_ In Cubic, since:
+Hmm, `K = 0` is _exactly_ `In Cubic`.
 
 ```Javascript
    = p*p*(p*(K+1) - K)
@@ -1723,7 +1722,7 @@ Zooming into the `K = 1.70158` graph:
 
 Hmm, it looks like this magic number was chosen to have a _minimum_ of -10% !
 
-Let's confirm our hunch; it looks like y == ~-0.1 when `x == ~0.42`:
+Let's confirm our hunch; it looks like `y` is -0.1 when `x` is around 0.42:
 
 ```Javascript
     f(x) = x*x*(x*(K+1) - K)
@@ -1744,7 +1743,7 @@ First, we need to _expand_ this:
 
 We can't solve this -- yet. However, we actually have a 2nd equation.
 
-Let's use calculas to find the `x` value of the minimum `y = -0.1` value,
+Let's use _Calculus_ to find the `x` value of the minimum `y = -0.1` value,
 that is, **where the slope (or first derivate) is 0**
 
 Solving the differential equation:
@@ -1775,7 +1774,8 @@ Or solve for `x`:
     x = 2*K / (3*K + 3)
 ```
 
-Substituting the 2nd form back into the original equation:
+Substituting the 2nd form back into the original equation
+leaves this polynomial::
 
 ```Javascript
     -0.1 = (K+1)*(2*K / (3*K + 3))^3 - K*(2*K / (3*K + 3))^2
@@ -1800,7 +1800,7 @@ Don't worry if you're not familiar with GNU Octave, here are the 2 links that we
 * [Output Precision](https://www.gnu.org/software/octave/doc/interpreter/Terminal-Output.html)
 * [Finding Roots](https://www.gnu.org/software/octave/doc/interpreter/Finding-Roots.html#Finding-Roots)
 
-And solving:
+Solving the roots:
 
 ```Matlab
     format long;
