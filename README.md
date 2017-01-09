@@ -1240,7 +1240,6 @@ Those graphs look like these:
 
 We'll discuss other variations later.
 
-
 ## Out
 
 You may have noticed we snuck in the prefix `In` but didn't have one for Linear.
@@ -1256,6 +1255,14 @@ There are two reasons for that:
 * Linear doesn't have them -- once you finish this section you'll understand why.
 * If you assumed this implies there are more variations you would be correct!
 There are many variations of mirrors, rotations, etc.
+
+Now the linear line is a constant motion.  Anything below the line we call an `In`
+
+![In](pic/tutorial/in.png)
+
+And anything above the linear line we call an `Out`
+
+![Out](pic/tutorial/out.png)
 
 For now we're primarily interested in mirroring along the principal axis
 or what I will call _flips_ -- of which there are 4 permutations:
