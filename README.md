@@ -1937,6 +1937,9 @@ Original 5 argument version:
     },
 ```
 
+Technically this easing should be called `QuarterCircle` but that deviates too
+much from the de facto name `Circ`.
+
 Version 0 - Don't abbreviate `Circle`
 
 ```Javascript
@@ -2004,6 +2007,8 @@ Original 5 argument version:
     },
 ```
 
+Version 0 - drop `ease` from name
+
 Version 1 - remove `x`
 
 ```Javscript
@@ -2051,6 +2056,8 @@ Original 5 argument version:
 ```
 
 UGH.
+
+Version 0 - drop `ease` from name
 
 Version 1 - Add line breaks
 
@@ -2311,7 +2318,7 @@ Original 5 argument version:
     },
 ```
 
-Version 0 - Rename `Expo` to `Exponent2`
+Version 0 - drop `ease` from name; rename `Expo` to `Exponent2`
 
 ```Javascript
     InExponent2: function (x, t, b, c, d) {
@@ -2393,6 +2400,8 @@ In the original style the easing function would look like this:
         return (t==0) ? b : c * Math.pow( Math.E, 10 * (t/d - 1)) + b;
     },
 ```
+
+Version 0 - drop `ease` from name
 
 Version 1 - remove `x`
 
@@ -2488,10 +2497,12 @@ This is missing in the original but it is trivial to add:
     },
 ```
 
+Version 0 - drop `ease` from name
+
 One-liner single argument version (1SAV):
 
 ```Javascript
-function InOctic(p) { return p*p*p*p*p*p*p*p; },
+    function InOctic(p) { return p*p*p*p*p*p*p*p; },
 ```
 
 ## Cleanup - In Quadratic
@@ -2507,7 +2518,7 @@ but the extra practise does't hurt.
     },
 ```
 
-Version 0 - unabbreviate `Quad`
+Version 0 - drop `ease` from name; unabbreviate `Quad` for clarity
 
 ```Javascript
     InQuadratic: function (x, t, b, c, d) {
@@ -2557,7 +2568,7 @@ Original 5 argument version:
     },
 ```
 
-Version 0 - unabbreviate `Quart`
+Version 0 - drop `ease` from name; unabbreviate `Quart` for clarity
 
 ```Javascript
     InQuart: function (x, t, b, c, d) {
@@ -2608,7 +2619,7 @@ Original 5 argument version:
     },
 ```
 
-Version 0 - unabbreviate `Quintic`
+Version 0 - drop `ease` from name; unabbreviate `Quint` for clarity
 
 ```Javascript
     InQuintic: function (x, t, b, c, d) {
@@ -2664,6 +2675,8 @@ In the original style it would be written as:
     },
 ```
 
+Version 0 - drop `ease` from name; unabbreviate `Sept` for clarity
+
 It is easy to verify we have the correct numbers of terms above.
 There should be `n-1` terms of `t`.
 
@@ -2684,10 +2697,12 @@ Polynomials above degree 5 are missing in the original.
 Let's add degree _6_ for completeness.
 
 ```Javascript
-    easeInSex: function (x, t, b, c, d) {
+    easeInSext: function (x, t, b, c, d) {
         return c*(t/=d)*t*t*t*t*t + b;
     },
 ```
+
+Version 0 - drop `ease` from name; unabbreviate `Sext` for clarity
 
 One-liner single argument version (1SAV):
 
@@ -2747,6 +2762,8 @@ in our equation `cos(x * pi/n) = 0`. Solving for `n` leaves `2`.
 
 ![Cos(x * pi/2)](pics/tutorial/cos_x_half_pi.png)
 
+Version 0 - drop `ease` from name
+
 Version 1 - remove `x`
 
 ```Javascript
@@ -2803,11 +2820,15 @@ Like [In Bounce](#in-bounce), for `InSquareRoot` we defer to `OutSquareRoot`:
 
 * InSquareRoot = OutSquareRoot flipped x, and flipped y
 
+In the original style:
+
 ```Javascript
     easeInSqrt: function (x, t, b, c, d) {
         return c - easeOutSqrt( x, d-t, 0, c, d ) + b;
     },
 ```
+
+Version 0 - drop `ease` from name
 
 One-liner single argument version (1SAV):
 
@@ -2829,6 +2850,8 @@ Original 5 argument version:
         return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
     },
 ```
+
+Version 0 - drop `ease` from name
 
 Version 1 - Remove `x`
 
@@ -2880,7 +2903,7 @@ Version 5 - Re-order `m` and `+ 1`
 Version 6 - Make `1.70158` constant `K`
 
 ```Javascript
-    easeOutBack: function (p) {
+    OutBack: function (p) {
         var K = 1.70158;
         return 1 + m*m*(m*(k+1) + k);
     },
@@ -2889,7 +2912,7 @@ Version 6 - Make `1.70158` constant `K`
 One-liner single argument version (1SAV):
 
 ```Javascript
-    function OutBack(p) { var m=p-1, k = 1.70158; return 1 + m*m*(m*(k+1) + k); },
+    function OutBack(p) { var m=p-1, K = 1.70158; return 1 + m*m*(m*(K+1) + K); }
 ```
 
 
