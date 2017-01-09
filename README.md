@@ -1634,6 +1634,8 @@ Original 5 argument version:
     },
 ```
 
+Version 0 - rename `easeInBack` to `InBack`
+
 Version 1 - remove `x`
 
 ```Javascript
@@ -1664,12 +1666,16 @@ Version 3 - simplify `t/=d` = `p`
 Since most users will never override `s` with a custom constant
 it is safe to hard-code it; we'll discuss this in a moment.
 
+The variable `K` is usually used to mean a constant --
+we'll use that instead of `s`, the latter which is usually
+used to signal a `scale` factor.
+
 Version 4 - Remove `s`
 
 ```Javascript
     InBack: function (p) {
-        var s = 1.70158;
-        return p*p*((s+1)*p - s);
+        var K = 1.70158;
+        return p*p*((K+1)*p - K);
     },
 ```
 
@@ -1681,11 +1687,6 @@ Version 5 - Reorder multiplication
         return p*p*(p*(s+1) - s);
     },
 ```
-
-One last cleanup.
-Since the variable `K` is usually used to mean a constant
-we'll use that instead of `s`, the latter which is usually
-used to signal a `scale` factor.
 
 One-liner single argument version (1SAV):
 
