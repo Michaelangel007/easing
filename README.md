@@ -2829,6 +2829,78 @@ One-liner single argument version (1SAV):
 
 ![Out Back graph](pics/25_out_back.png)
 
+Original 5 argument version:
+
+```Javascript
+    easeOutBack: function (x, t, b, c, d, s) {
+        if (s == undefined) s = 1.70158;
+        return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
+    },
+```
+
+Version 1 - Remove `x`
+
+```Javascript
+    OutBack: function (t, b, c, d, s) {
+        if (s == undefined) s = 1.70158;
+        return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
+    },
+```
+
+Version 2 - Replace `b` = 0, `c` = 1
+
+```Javascript
+    OutBack: function (t,d, s) {
+        if (s == undefined) s = 1.70158;
+        return 1*((t=t/d-1)*t*((s+1)*t + s) + 1) + 0;
+    },
+```
+
+Version 3 - replace `t/d` with `p`
+
+```Javascript
+    OutBack: function (p, s) {
+        if (s == undefined) s = 1.70158;
+        return (p-1)*(p-1)*((s+1)*(p-1) + s) + 1;
+    },
+```
+
+Version 4 - Factor `p-1` with `m`
+
+```Javascript
+    OutBack: function (p, s) {
+        if (s == undefined) s = 1.70158;
+        var m = p-1;
+        return m*m*((s+1)*m + s) + 1;
+    },
+```
+
+Version 5 - Re-order `m` and `+ 1`
+
+```Javascript
+    OutBack: function (p, s) {
+        if (s == undefined) s = 1.70158;
+        var m = p-1;
+        return 1 + m*m*(m*(s+1) + s);
+    },
+```
+
+Version 6 - Make `1.70158` constant `K`
+
+```Javascript
+    easeOutBack: function (p) {
+        var K = 1.70158;
+        return 1 + m*m*(m*(k+1) + k);
+    },
+```
+
+One-liner single argument version (1SAV):
+
+```Javascript
+    function OutBack(p) { var m=p-1, k = 1.70158; return 1 + m*m*(m*(k+1) + k); },
+```
+
+
 ## Cleanup - Out Bounce
 
 ![Out Bounce graph](pics/28_out_bounce.png)
@@ -3563,7 +3635,7 @@ $.each( baseEasings, function( name, easeIn ) {
   * [x] In Sextic
   * [x] In Sine
   * [x] In Square Root
-  * [ ] In Out Back
+  * [x] In Out Back
   * [ ] In Out Bounce
   * [ ] In Out Circle
   * [ ] In Out Cubic
