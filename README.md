@@ -2150,7 +2150,7 @@ Version 4 - Remove redundant code
 ```Javascript
     InElastic: function (x, t, b, c, d) {
         var p = d*.3;
-        var s = p/4;
+        var s = p/4; // 4 bounces
 
         if (t < 0)
             return b;
