@@ -1005,6 +1005,7 @@ The _implementation_ problems are:
 We will address and fix **all** of these bugs.
 
 
+
 ## Cleanup - Linear
 
 First, let's start with the linear easing.
@@ -1621,6 +1622,7 @@ With the fundamentals out of the way we can start optimizing
 all the easing functions.
 
 
+
 ## Cleanup - In Back
 
 ![In Back graph](pics/23_in_back.png)
@@ -1844,6 +1846,7 @@ Pretty conclusive proof that value of `K = 1.70158` was chosen to have -10% back
 _"And now you know the rest of the story."_ -- Paul Harvey
 
 
+
 ## Cleanup - In Bounce
 
 ![In Bounce graph](pics/26_in_bounce.png)
@@ -1925,6 +1928,7 @@ One-liner single argument version (1SAV):
 ```
 
 
+
 ## Cleanup - In Circle
 
 ![In Circle graph](pics/29_in_circle.png)
@@ -1995,6 +1999,7 @@ One-liner single argument version (1SAV):
 ```
 
 
+
 ## Cleanup - In Cubic
 
 ![In Cubic graph](pics/03_in_cubic.png)
@@ -2037,6 +2042,7 @@ One-liner single argument version (1SAV):
 ```Javscript
 function InCubic(p) { return p*p*p; },
 ```
+
 
 
 ## Cleanup - In Elastic
@@ -2306,6 +2312,7 @@ There are some variations, depending on how much inlining of terms you want to d
 **NOTE**: jQuery UI does NOT match the original as their constants are incorrect
 
 
+
 ## Cleanup - In Exponent 2
 
 ![In Exponent 2 graph](pics/35_in_exponent_2.png)
@@ -2366,6 +2373,7 @@ One-liner single argument version (1SAV):
 ```Javascript
     function InExponent2(p) { if (p <= 0) return 0; return Math.pow( 2, 10*(p-1) ); }
 ```
+
 
 
 ## Cleanup - In Exponent e
@@ -2443,6 +2451,8 @@ One-liner single argument version (1SAV):
     function InExponentE(p) { if (p <= 0) return 0; return Math.pow( Math.E, 10*(p-1) ); },
 ```
 
+
+
 ## Cleanup - In Log10
 
 ![In Log10 graph](pics/44_in_log10.png)
@@ -2485,6 +2495,7 @@ We'll defer the rest of this explanation by having
 ```
 
 
+
 ## Cleanup - In Octic
 
 ![In Octic graph](pics/08_in_octic.png)
@@ -2504,6 +2515,8 @@ One-liner single argument version (1SAV):
 ```Javascript
     function InOctic(p) { return p*p*p*p*p*p*p*p; },
 ```
+
+
 
 ## Cleanup - In Quadratic
 
@@ -2556,6 +2569,8 @@ One-liner single argument version (1SAV):
     function InQuadratic(p) { return p*p; },
 ```
 
+
+
 ## Cleanup - In Quartic
 
 ![In Quartic graph](pics/04_in_quartic.png)
@@ -2605,6 +2620,7 @@ One-liner single argument version (1SAV):
 ```Javascript
     function InQuartic(p) { return p*p*p*p; },
 ```
+
 
 
 ## Cleanup - In Quintic
@@ -2660,6 +2676,7 @@ One-liner single argument version (1SAV):
 ```
 
 
+
 ## Cleanup - In Septic
 
 ![In Septic graph](pics/07_in_septic.png)
@@ -2689,6 +2706,7 @@ One-liner single argument version (1SAV):
 For the 1-liner there should be `7` terms of `p`.
 
 
+
 ## Cleanup - In Sextic
 
 ![In Sextic graph](pics/06_in_sextic.png)
@@ -2711,6 +2729,7 @@ One-liner single argument version (1SAV):
 ```
 
 For the 1-liner there should be `6` terms of `p`.
+
 
 
 ## Cleanup - In Sine
@@ -2810,6 +2829,7 @@ One-liner single argument version (1SAV):
 ```
 
 
+
 ## Cleanup - In Square Root
 
 ![In Square root graph](pics/47_in_sqrt.png)
@@ -2835,6 +2855,8 @@ One-liner single argument version (1SAV):
 ```Javascript
     function InSquareRoot(p) { return 1 - OutSquareRoot( 1-p ); }
 ```
+
+
 
 # Cleanup - Out
 
@@ -2916,17 +2938,24 @@ One-liner single argument version (1SAV):
 ```
 
 
+
 ## Cleanup - Out Bounce
 
 ![Out Bounce graph](pics/28_out_bounce.png)
+
+
 
 ## Cleanup - Out Circle
 
 ![Out Circle graph](pics/31_out_circle.png)
 
+
+
 ## Cleanup - Out Cubic
 
 ![Out Cubic graph](pics/10_out_cubic.png)
+
+
 
 ## Cleanup - Out Elastic
 
@@ -2952,21 +2981,31 @@ One-liner single argument version (1SAV):
     OutElastic: function(p) { return 1+(Math.pow( 2,10*-p ) * Math.sin( (-p*40 - 3) * Math.PI/6 )); },
 ```
 
+
+
 ## Cleanup - Out Exponent 2
 
 ![Out Exponent 2 graph](pics/37_out_exponent_2.png)
+
+
 
 ## Cleanup - Out Exponent e
 
 ![Out Exponent e graph](pics/43_out_exponent_e.png)
 
+
+
 ## Cleanup - Out Log10
 
 ![Out Log10 graph](pics/46_out_log10.png)
 
+
+
 ## Cleanup - Out Octic
 
 ![Out Octic graph](pics/15_out_octic.png)
+
+
 
 ## Cleanup - Out Quadratic
 
@@ -3048,6 +3087,7 @@ One-liner single argument version (1SAV):
 ```
 
 
+
 ## Cleanup - Out Quartic
 
 ![Out Quartic graph](pics/11_out_quartic.png)
@@ -3114,21 +3154,30 @@ One-liner single argument version (1SAV):
 ```
 
 
+
 ## Cleanup - Out Quintic
 
 ![Out Quintic graph](pics/12_out_quintic.png)
+
+
 
 ## Cleanup - Out Septic
 
 ![Out Septic graph](pics/14_out_septic.png)
 
+
+
 ## Cleanup - Out Sextic
 
 ![Out Sextic graph](pics/13_out_sextic.png)
 
+
+
 ## Cleanup - Out Sine
 
 ![Out Sine graph](pics/40_out_sine.png)
+
+
 
 ## Cleanup - Out Square Root
 
@@ -3142,17 +3191,24 @@ One-liner single argument version (1SAV):
 
 ![In Out Back graph](pics/24_in_out_back.png)
 
+
+
 ## Cleanup - In Out Bounce
 
 ![In Out Bounce graph](pics/27_in_out_bounce.png)
+
+
 
 ## Cleanup - In Out Circle
 
 ![In Out Circle graph](pics/30_in_out_circle.png)
 
+
+
 ## Cleanup - In Out Cubic
 
 ![In Out Cubic graph](pics/17_in_out_cubic.png)
+
 
 
 ## Cleanup - In Out Elastic
@@ -3166,46 +3222,67 @@ One-liner single argument version (1SAV):
     },
 ```
 
+
+
 ## Cleanup - In Out Exponent 2
 
 ![In Out Exponent 2 graph](pics/36_in_out_exponent_2.png)
+
+
 
 ## Cleanup - In Out Exponent e
 
 ![In Out Exponent e graph](pics/42_in_out_exponent_e.png)
 
 
+
 ## Cleanup - In Out Log10
 
 ![In Out Log10 graph](pics/45_in_out_log10.png)
+
+
 
 ## Cleanup - In Out Octic
 
 ![In Out Octic graph](pics/22_in_out_octic.png)
 
+
+
 ## Cleanup - In Out Quadratic
 
 ![In Out Quadratic graph](pics/16_in_out_quadratic.png)
+
+
 
 ## Cleanup - In Out Quartic
 
 ![In Out Quartic graph](pics/18_in_out_quartic.png)
 
+
+
 ## Cleanup - In Out Quintic
 
 ![In Out Quintic graph](pics/19_in_out_quintic.png)
+
+
 
 ## Cleanup - In Out Septic
 
 ![In Out Septic graph](pics/21_in_out_septic.png)
 
+
+
 ## Cleanup - In Out Sextic
 
 ![In Out Sextic graph](pics/20_in_out_sextic.png)
 
+
+
 ## Cleanup - In Out Sine
 
 ![In Out Sine graph](pics/39_in_out_sine.png)
+
+
 
 ## Cleanup - In Out Square Root
 
