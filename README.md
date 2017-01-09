@@ -2767,7 +2767,7 @@ But our input `p` is between `0` and `1`:
 | 0 | 0 | 1 |
 | 1 | ? | 0 |
 
-We need to scale our input `p` to be between 0 and &pi;
+We need to scale our input `p` such that `x` is in-between 0 and &pi; (inclusive.)
 
 ![Cos(x * pi)](pics/tutorial/cos_x_pi.png)
 
