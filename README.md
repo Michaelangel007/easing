@@ -1779,8 +1779,8 @@ leaves this polynomial::
 
 ```Javascript
     -0.1 = (K+1)*(2*K / (3*K + 3))^3 - K*(2*K / (3*K + 3))^2
-    -0.1 = (K+1)*8K^3 / (3*K + 3)^3 - 4*K^3 / (3*K + 3)^2
-    -0.1*(3*K + 3)^3 = (K+1)*8K^3 - 4*K^3*(3*K + 3)
+    -0.1 = (K+1)*8*K^3 / (3*K + 3)^3 - 4*K^3 / (3*K + 3)^2
+    -0.1*(3*K + 3)^3 = (K+1)*8*K^3 - 4*K^3*(3*K + 3)
     -0.1*27*(K+1)^3 = -4*K^4 - 4*K^3
     -0.1*(27*K^3 + 81*x^2 + 81*x + 27) = -4*K^4 - 4*K^3
     4*K^4 + 4*K^3 - 0.1*(27*K^3 + 81*K^2 + 81*K + 27) = 0
@@ -1793,14 +1793,13 @@ The graph of this equation looks like this:
 ![In Back Polynomial Degree 4](pics/tutorial/in_back_poly_degree_4.png) FIXME
 
 To solve this polynomial equation of degree 4,
-use your favorite symbolic calculator, such as [GNU Octave](https://octave-online.net/)
-
+use your favorite symbolic calculator, such as [GNU Octave](https://octave-online.net/).
 Don't worry if you're not familiar with GNU Octave, here are the 2 links that we need:
 
 * [Output Precision](https://www.gnu.org/software/octave/doc/interpreter/Terminal-Output.html)
 * [Finding Roots](https://www.gnu.org/software/octave/doc/interpreter/Finding-Roots.html#Finding-Roots)
 
-Solving the roots:
+Here are the GNU Octave commands to find the roots:
 
 ```Matlab
     format long;
