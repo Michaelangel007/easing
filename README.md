@@ -1898,6 +1898,7 @@ What is this equal to? With a little bit of algebra this simplies to:
     = (d - t)/d
     = d/d - t/d
     = 1 - p
+```
 
 Version 4 - simplify `(d-t, d)`
 
