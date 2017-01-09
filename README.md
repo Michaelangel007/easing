@@ -2682,7 +2682,7 @@ One-liner single argument version (1SAV):
 ![In Septic graph](pics/07_in_septic.png)
 
 Polynomials above degree 5 are missing in the original.
-Let's add degree _7_ for completeness.
+Let's add **degree 7**, _Septic_, for completeness.
 
 In the original style it would be written as:
 
