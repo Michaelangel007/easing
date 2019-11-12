@@ -3520,11 +3520,11 @@ Using alignment lets us see the symmetry for the `InOut` polynomials:
     function InOutOctic     (p) { var m=p-1,t=p*2; if (t < 1) return p*t*t*t*t*t*t*t; return 1-m*m*m*m*m*m*m*m*128; },
 ```
 
-And if one ever needed to add an `InOutNoctic`
+And if one ever needed to add an `InOutNonic`
 You don't need to be a [brain surgeon](https://www.youtube.com/watch?v=THNPmhBl-8I) to spot the pattern.
 
 ```Javascript
-    function InOutNonic     (p) { var m=p-1,t=p*2; if (t < 1) return p*t*t*t*t*t*t*t*t; return 1-m*m*m*m*m*m*m*m*m*256; },
+    function InOutNonic     (p) { var m=p-1,t=p*2; if (t < 1) return p*t*t*t*t*t*t*t*t; return 1+m*m*m*m*m*m*m*m*m*256; },
 ```
 
 
