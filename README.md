@@ -1107,7 +1107,7 @@ will probably just confuse you more then it helps -- the only take-away you need
 A simple mnemonic to help remember it is: _re-parameter_
 
 Basically, we want to re-map the range into something _convenient._
-But that begs the question -- _what_ would be convenient?
+But that raises the question -- _what_ would be convenient?
 Hmm, since we can pick _any_ start and end values --
 maybe a _range_ between 0.0 and 1.0 (inclusive) aka `normalized` values? :)
 Who over calls us will be responsible for _scaling_ the values back up to their full range.
