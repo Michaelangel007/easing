@@ -491,7 +491,7 @@ Since `normalized percentage` is so common and unweildy most people just use the
 shorted phrase: **normalized**
 
 If you are familiar with OpenGL or DirectX graphic API's,
-when a vertex is transformed through the pipline you will run across something
+when a vertex is transformed through the pipeline you will run across something
 called _"Normalized Device Coordinates"_ which embody the same idea.
 
 If we wanted to place an object at the middle of the screen we could place
