@@ -4,7 +4,7 @@
 
 * [Overview](#overview)
 * [Demos](#demos)
-* [Reference](#refence)
+* [Reference](#reference)
   * [Easing Cheat Sheet](#easing-cheet-sheet)
   * [Comparision of easing functions](#comparision-of-easing-functions)
   * [TL:DR; _"Shut up and show me the code!"_](#tldr-shut-up-and-show-me-the-code)
@@ -20,7 +20,7 @@
 * [Easing Cleanup](#easing-cleanup)
   * [Cleanup - Linear](#cleanup---linear)
   * [_"I'm here for an argument"_](#im-here-for-an-argument)
-  * [_"Warp Speed, Mr. Sulu"_](#warp-speed--mr-sulu)
+  * [_"Warp Speed, Mr. Sulu"_](#warp-speed-mr-sulu)
   * [What's up with this "In, Out, In-Out" business, anyways?](#whats-up-with-this-in-out-in-out-business-anyways)
   * [Out](#out)
     * [_"No backflip for you!"_](#no-backflip-for-you)
@@ -79,9 +79,9 @@
   * [In Out Sine](#cleanup---in-out-sine)
 * [Verification](#verification)
 * [The Art and Science of Beautiful Code](#the-art-and-science-of-beautiful-code)
-  * [True Beautify lies on the inside](#true-beautify-lies-on-the-inside)
+  * [True Beautify Lies on the Inside](#true-beautify-lies-on-the-inside)
   * [Beauty on the Outside](#beauty-on-the-outside)
-  * [Beauty is all around](Beauty is all around)
+  * [Beauty Is All Around](#beauty-is-all-around)
 * [Animation Update Loop](#animation-update-loop)
 * [Miscellaneous](#miscellaneous)
   * [jQuery UI](#jquery-ui)
@@ -102,7 +102,7 @@ via the shenanigans of a myopic _"No Original Research"_
 [policy](http://en.wikipedia.org/wiki/Wikipedia:NOTGUIDE)
 even when documenting Mathematics that have been _known_ for **years.**
 Since some of these formulas have become so common
-no has bothered to document them leaving the cannoncial
+no one has bothered to document them leaving the canonical
 `{{Citation needed}}` _unanswered._
 
 Worse, beginners are left looking for a simple, _explanation_
@@ -190,7 +190,7 @@ var EasingFuncs = // Array of Functions
 
 // Standard -- grouped by Type
     function InBack         (p) { var              k = 1.70158        ;              return p*p*(p*(k+1) - k);                                        },
-    function InOutBack      (p) { var m=p-1,t=p*2, k = 1.70158 * 1.525; if (p < 0.5) return p*t*(t*(k+1) - k); else return 1 + 2*m*m*(2*m*(k+1) + k); }, // NOTE: Can go negative! i.e. p = 0.008
+    function InOutBack      (p) { var m=p-1,t=p*2, k = 1.70158 * 1.525; if (t < 1) return p*t*(t*(k+1) - k); else return 1 + 2*m*m*(2*m*(k+1) + k); }, // NOTE: Can go negative! i.e. p = 0.008
     function OutBack        (p) { var m=p-1,       k = 1.70158        ;                                             return 1 +   m*m*(  m*(k+1) + k); },
 
     function InBounce       (p) { return 1 - EasingFuncs[ Easing.OUT_BOUNCE ]( 1-p ); },
@@ -321,7 +321,7 @@ calculations would be incorrect if we mixed the units -- say `duration` was in
 seconds and `elapsed` in milliseconds.  Hey, even _rocket scientists_ sometimes
 have trouble with this concept in practice -- don't pull a NASA. :-)
 
-For example, a designer wants us to animate an dialog panel from 30 pixels to 40 pixels
+For example, a designer wants us to animate a dialog panel from 30 pixels to 40 pixels
 over 10 seconds. We draw the screen at 60 times a second.  What would be the current
 value (i.e. position) after 2 seconds?
 
@@ -329,20 +329,20 @@ Yes, this is a trivial example, but bear with me.
 
 Our _knowns_:
 
-    start     = 30 px
-    end       = 40 px
-    elapsed   =  2 seconds
-    duration  = 10 seconds
-    framerate = 60 Hz
+    start      = 30 px
+    end        = 40 px
+    elapsed    =  2 seconds
+    duration   = 10 seconds
+    frame rate = 60 Hz
 
-**Note:** The framerate was _extraneous_ information. It never hurts to
+**Note:** The frame rate was _extraneous_ information. It never hurts to
 _categorize_ ALL the information. We can always discard, or ignore,
 information that isn't pertinent to the problem.
 
 Anyways, solving for the unknown _current_ `position`:
 
 ```Javascript
-    position = start + (elapsed/duration)*(end-start);
+    position = start + (end-start)*(elapsed/duration);
     position = 30 + (2/10)*(40-30)
     position = 30 + (0.2*10)
     position = 30 + 2
@@ -384,7 +384,7 @@ We can replace `Velocity` with `(Distance/Time)` and re-solving for this new equ
     Distance = Velocity*Time
 
     Position = Start + Velocity*Elapsed
-    Position = Start + (Difference/Durationo)*Elapsed
+    Position = Start + (Difference/Duration)*Elapsed
     Position = Start + (End-Start)*Elapsed
 ```
 
@@ -487,11 +487,11 @@ into simpler terms:
  [0,1], that is, between 0.0 (inclusive) and 1.0 (inclusive).
  See my StackOverflow answer about [What does the square bracket and parenthesis mean?](http://stackoverflow.com/a/37171635/1339447)
 
-Since `normalized percentage` is so common and unweidly most people just use the
+Since `normalized percentage` is so common and unweildy most people just use the
 shorted phrase: **normalized**
 
 If you are familiar with OpenGL or DirectX graphic API's,
-when a vertex is tranformed through the pipleine you will run across something
+when a vertex is transformed through the pipeline you will run across something
 called _"Normalized Device Coordinates"_ which embody the same idea.
 
 If we wanted to place an object at the middle of the screen we could place
@@ -528,8 +528,8 @@ a _normalized percentage_ elapsed time, that is, `elapsed/duration`.
 
 ## Simultaneous Animations
 
-There is no reason why we couldn't even have multiple simulataneous animations
-on the _same_ object all going on at once!  Typically objects have more then
+There is no reason why we couldn't even have multiple simultaneous animations
+on the _same_ object all going on at once!  Typically objects have more than
 one dimension, such as eight dimensions (8D).
 
 _Eight dimensions!?_
@@ -574,15 +574,14 @@ _Javascript_ (JS) is a crappy (*) language designed in 10 days. If it is so bad 
 Two reasons:
 
 * Every modern computer has a web browser which means there is _nothing to install,_ and
-* More importantly, _to show that is possible_ to write **good** (**) code in any language,
-even as one as bad as Javascript.
+* More importantly, _to show that it is possible_ to write **good** (**) code in any language, even as one as bad as Javascript.
 
 (*) What precisely makes Javascript so garbage you ask?
 
 * It is BASIC all over again -- accidently misspell a variable and JS uses the `undefined` value _without any warnings_ ...
 * ... unless you use the **hack** `"use strict";` at the top of every Javascript program
 * No ability to include other code -- unless you use `require` hack which **only** works in _server_ and not in _a browser_
-* ASI, aka Automatic Semi-Colon Insertion.  You can't put a return on a line by itself due to the idiotic grammar/parsing.  Douglas Crockford [said it best @3:41](https://www.youtube.com/watch?v=hQVTIJBZook#t=1906) _"Why am I betting my career on this piece of crap?"_
+* ASI, aka Automatic Semicolon Insertion.  You can't put a return on a line by itself due to the idiotic grammar/parsing. Douglas Crockford [said it best @3:41](https://www.youtube.com/watch?v=hQVTIJBZook#t=1906) _"Why am I betting my career on this piece of crap?"_
 * No native unsigned 64-bit int. `var n = (1 << 63); console.log( n ); // -2147483648` // **facepalm**
 * Every number is a 64-bit floating-point, unless you use [Float32Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array)
 * The comparision operator `==` is [horribly broken](https://dorey.github.io/JavaScript-Equality-Table/) i.e. `if( 0 == "0" ) console.log( "equal" ); // equal!?`
@@ -623,7 +622,7 @@ Of course you have to deal with Python's idiotic indentation shenanigans but tha
 * uses multi-column alignment
 * documents WHY not HOW
 
-An example of how to GOOD write code: [widget.js](js/core/widget.js)
+An example of how to write GOOD code: [widget.js](js/core/widget.js)
 
 Example of how NOT to write code: [procmail.c](https://opensource.apple.com/source/procmail/procmail-1.2/procmail/src/procmail.c)
 
@@ -636,7 +635,7 @@ The astute reader will notice I snuck color in there!
 
 i.e. What if we wanted
 to fade an object from Black to Yellow and back to Black again, say for a glowing
-highlight? By separting the hue into separate axis such as red, green, and blue,
+highlight? By separating the hue into separate axis such as red, green, and blue,
 our animation engine could support this very easily.
 
 Why seperate the axis?
@@ -647,12 +646,12 @@ and want to interpolate between them. Before we can do this we would need to
  * Break this down into the 3 components, or Red, Green, Blue axis, respectively.
  * Then we need to scale the triad (between 0 and 255), and
  * Combine them to form a valid `#RRGGBB` hex string.
- * Lastly, then when we need to apply the color to the HTML element.
+ * Lastly, we need to apply the color to the HTML element.
 
 For example this function will do exactly the middle part.
 
 ```Javascript
-// Convert numeric r,g,b values to a HTML color hex string `#RRGGBB`
+// Convert numeric r,g,b values to an HTML color hex string `#RRGGBB`
 function RGBtoHex = function( r, g, b )
 {
     return '#'
@@ -664,8 +663,8 @@ function RGBtoHex = function( r, g, b )
 
 Sometimes you'll see the terminology of a `controller`.
 
-i.e. If wanted to animate across the rainbow
-from Red,Orange,Yellow,Green,Cyan,Azure,Blue,Violet,Magenta
+i.e. If we wanted to animate across the rainbow
+from Red, Orange, Yellow, Green, Cyan, Azure, Blue, Violet, Magenta
 it might be more convenient to use a `hue` controller.
 
 At the high level it would be:
@@ -1019,9 +1018,9 @@ Problems can be placed into two general categories:
 
 The _meta_ coding problems are:
 
- * Functions aren't alphabetized making searching/finding them non-intuitiave,
- * While _inter-easing_ functions are grouped together there is no seperator between _intra-easing_ such as whitespace.,
- * Names are abbreviated making them not obvious, such as `Expo` -- Exponent comes in multiple variations such as `Exponent_2` and `Exponent_e`,
+ * Functions aren't alphabetized making searching/finding them non-intuitiave.
+ * While _inter-easing_ functions are grouped together there is no seperator between _intra-easing_ such as whitespace.
+ * Names are abbreviated making them not obvious, such as `Expo` -- Exponent comes in multiple variations such as `Exponent_2` and `Exponent_e`.
  * Initially there seems to be a lot of easing functions, but they are incomplete -- they are missing some of the more common mathematical ones.
 
 The _implementation_ problems are:
@@ -1100,17 +1099,17 @@ Technically, it is [this](https://en.wikipedia.org/wiki/Parametrization).
 There will be a test. :)
 
 Since that Wikipedia page is so badly written -- and
-will probably just confuse you more then it helps -- the only take-away you need is this:
+will probably just confuse you more than it helps -- the only take-away you need is this:
 
 * _Reparameterization ... is the process of deciding and defining the parameters necessary for a ... specification._
 
-A simple mnemonic to help remember it is: _re-parameter_
+A simple mnemonic to help remember is: _re-parameter_
 
 Basically, we want to re-map the range into something _convenient._
 But that raises the question -- _what_ would be convenient?
 Hmm, since we can pick _any_ start and end values --
 maybe a _range_ between 0.0 and 1.0 (inclusive) aka `normalized` values? :)
-Who over calls us will be responsible for _scaling_ the values back up to their full range.
+Whoever calls us will be responsible for _scaling_ the values back up to their full range.
 
 | b   | c       | Notes     |
 |:---:|:--------|:----------|
@@ -1386,14 +1385,14 @@ If you want to play around with these, there is an excellent online (browser) gr
 
 ![Desmos Quadratic Flips](pics/tutorial/flips_quadratic_desmos.png)
 
-I've added color names to the above flip functions so you can what corresponds to what
+I've added color names to the above flip functions so you can see what corresponds to what
 since I'm not aware if you can name functions in Desmos.
 
 This reminds me of the [Cubic Hermite spline](https://en.wikipedia.org/wiki/Cubic_Hermite_spline) -- specifically, the hermite basis functions.
 
 ![Hermite Basis Functions](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HermiteBasis.svg/300px-HermiteBasis.svg.png)
 
-I mentioned that there is `Out` variation for _Linear_.
+I mentioned that there is an `Out` variation for _Linear_.
 By now it should be obvious that the FlipYFlipX for Linear doesn't change its graph.
 Specifically,
 
@@ -1437,7 +1436,7 @@ function InOutQuadratic_v1( p ) {
 
 2. Scale the `In` width (`x`) by 1/2.
 
- How0?
+ How?
  Reparameterization to the rescue!
  We can remap our original input `p` range and split it into _two_ ranges.
  I'll call the new input `t`:
@@ -1536,7 +1535,7 @@ function InOutQuadratic_v4( p ) {
 
  ![HalfH HalfW Out Quadratic](pics/tutorial/4_out_quadratic_halfh_halfw.png)
 
- We'll simplying this later in the [Cleanup - In Out Quadratic](#cleanup---in-out-quadratic) section.
+ We'll simplify this later in the [Cleanup - In Out Quadratic](#cleanup---in-out-quadratic) section.
 
  Again, we don't care about the left side since that is being
  replaced with `In`
@@ -1545,7 +1544,7 @@ function InOutQuadratic_v4( p ) {
 
 5\. We need to move the <0,0> of `Out` to <0.5,0.5>
 
- That is a simply shifting the graph "up", via `y + 0.5`
+ That is done by simply shifting the graph "up", via `y + 0.5`
 
 ```Javascript
 function InOutQuadratic_v5( p ) {
@@ -1607,9 +1606,9 @@ function InOutQuadratic_v6( p )
 }
  ```
 
- Since the end point of the `In` is the start point of `Out`,
+Since the end point of the `In` is the start point of `Out`,
 that is , `(p <= 0.5)` is equivalent to `(p < 0.5)`
-We can remove some visual clutter by remove that `0.5` and use `1` directly
+We can remove some visual clutter by removing that `0.5` and use `1` directly
 
  ```Javascript
 function InOutQuadratic_v6( p )
@@ -1633,8 +1632,8 @@ This matches our optimized version: :)
 
 # Cleanup - In
 
-To avoid havin to repeat myself there are some common
-idioms and epxressions used in the original code:
+To avoid having to repeat myself there are some common
+idioms and expressions used in the original code:
 
 |Expression| Meaning                 | Replacement |
 |---------:|:------------------------|:------------|
@@ -2555,7 +2554,7 @@ One-liner single argument version (1SAV):
 ![In Quadratic graph](pics/02_in_quadratic.png)
 
 We already covered this above and know the answer should be `p*p`
-but the extra practise does't hurt.
+but the extra practice doesn't hurt.
 
 ```Javascript
     easeInQuad: function (x, t, b, c, d) {
@@ -3344,9 +3343,9 @@ This will be forthcoming.
 Let's collect all the power functions we've cleaned up
 and stick them in an array for easy access.
 
-First, we'll need an enumation -- but since JS is so badly designed
-it doesn't have one we'll fake it using an [Javascript object notation syntax](http://www.json.org/) (JSON).
-This is just a fancy way of saying we'll have object with
+First, we'll need an enumeration -- but since JS is so badly designed
+it doesn't have one we'll fake it using [Javascript object notation syntax](http://www.json.org/) (JSON).
+This is just a fancy way of saying we'll have an object with
 a named `key,value` pair.
 
 Why JSON?
@@ -3397,11 +3396,11 @@ var Easing = Object.freeze(
 ```
 
 The reason for `Easing.NONE`
-is that we'll use this a placeholder to signal
+is that we'll use this as a placeholder to signal
 that an animation is not currently active in our animation loop.
 See [Widget Line #488](js/core/widget.js#L488)
 
-## True Beautify lies on the inside
+## True Beautify Lies on the Inside
 
 Most _inexperienced_ programmers would collate the
 functions like this.
@@ -3451,7 +3450,7 @@ isn't familiar with all the polynomial degree terminology.
     function InOctic        (p) { return p*p*p*p*p*p*p*p; }, // p^8 = Math.pow(p,8)
 ```
 
-It becomes trivial to spot that `InCubic` is missing `*p` term
+It becomes trivial to spot that `InCubic` is missing a `*p` term
 and should be this:
 
 ```Javascript
@@ -3485,7 +3484,7 @@ we can see the _beautiful symmetry_ of the Out Power functions:
     function OutOctic       (p) { var m=p-1; return 1-m*m*m*m*m*m*m*m; },
 ```
 
-If we ever needed to write a Out polynomial for degree 9,
+If we ever needed to write an Out polynomial for degree 9,
 which has the term [Nonic](http://mathforum.org/library/drmath/view/56413.html)
 we would only need to do 4 things:
 
@@ -3499,14 +3498,14 @@ we would only need to do 4 things:
  for bugs.  Many programmers are
  [against](http://discuss.joelonsoftware.com/default.asp?joel.3.409883.31)
  [it.](http://stackoverflow.com/questions/2490884/why-is-copy-and-paste-of-code-dangerous)
- Don't confuse it with [cargo cult programming](http://softwareengineering.stackexchange.com/questions/32840/am-i-copy-paste-programmer).
- or [Accidents of Implementation](https://pragprog.com/the-pragmatic-programmer/extracts/coincidence)
+ Don't confuse it with [cargo cult programming](http://softwareengineering.stackexchange.com/questions/32840/am-i-copy-paste-programmer)
+ or [Accidents of Implementation](https://pragprog.com/the-pragmatic-programmer/extracts/coincidence).
  Like any 'Rule-of-Thumb' there are times to break them.
  This is one of those cases where it is perfectly fine.
  Technically, the problem isn't copy/paste -- it is
  the _not-thinking_ part that typically goes along with it.
 
-## Beauty is all around
+## Beauty Is All Around
 
 Using alignment lets us see the symmetry for the `InOut` polynomials:
 
@@ -3810,4 +3809,3 @@ $.each( baseEasings, function( name, easeIn ) {
 
 By: Michael "Code Poet" Pohoreski
 Copyright: 2016-2017
-
