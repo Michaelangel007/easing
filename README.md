@@ -121,9 +121,8 @@ Thus, this document shows how to:
 
 # Demos
 
-* [Compare Demo](https://htmlpreview.github.io/?https://github.com/Michaelangel007/easing/blob/master/compare.html)
-* [Graph   Demo](https://htmlpreview.github.io/?https://github.com/Michaelangel007/easing/blob/master/graph.html)
-
+* [Compare Demo](https://michaelangel007.github.io/easing/compare.html)
+* [Graph   Demo](https://michaelangel007.github.io/easing/graph.html)
 
 # Reference
 
