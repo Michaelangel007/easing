@@ -1040,17 +1040,22 @@ We will address and fix **all** of these bugs.
 
 First, let's start with the linear easing.
 
-Hmm, there isn't one. _Really?!_  Let's add one for _completeness._
+At first glance it looks like there isn't one. _Really?!_  Turns out, there IS, _but_ it is _inconsistently_ called `linearTween()` instead of the expected name `easeLinear()`.
 
-Recall its graph looks like this:
+Let's add one for:
+
+a) _completeness,_ and
+b) it will used as a springboard for _simplifying_ the equations.
+
+Recall the linear graph looks like this:
 
 ![Linear graph](pics/01_linear.png)
 
-And in the original style the easing function would look like this:
+The original style for this easing function is:
 
 ```Javascript
     easeLinear: function (x, t, b, c, d) {
-        return c*(t/=d) + b;
+        return c*(t/d) + b;
     },
 ```
 
@@ -1061,7 +1066,7 @@ address bug #2, `t < 0` and `t > d` before we fix this.
     easeLinear: function (x, t, b, c, d) {
         if (t <= 0) return b    ; // start
         if (t >= d) return b + c; // end
-        return c*(t/=d) + b;
+        return c*(t/d) + b;
 ```
 
 What happens when `d` is zero ? It returns the `end` for free!
@@ -1070,7 +1075,7 @@ What happens when `d` is zero ? It returns the `end` for free!
     easeLinear: function (x, t, b, c, d) {
         if (t <= 0) return b    ;
         if (t >= d) return b + c; // t >= 0 return end
-        return c*(t/=d) + b;
+        return c*(t/d) + b;
 ```
 
 Let's make this a little more robust:
@@ -1141,8 +1146,7 @@ Notice now:
  * how the term `c` drops out from the arguments,
  * The entire formula becomes much simpler.
 
-We'll do this for all the original easing equations converting them into a **single argument version**
-using these steps:.
+We'll do this for all the original easing equations converting them into a **single argument version** using these steps:
 
 1. Since `x` is unused our function prototype becomes: `function( t, b, c, d )`
 2. Since `b` is zero, our function prototype becomes: `function( t, c, d )`
